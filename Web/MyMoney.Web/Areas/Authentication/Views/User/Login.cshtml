@@ -1,0 +1,64 @@
+﻿@using Cassette.Stylesheets
+@model MyMoney.ViewModels.Authentication.User.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_PlainLayout.cshtml";
+
+    Bundles.Reference<StylesheetBundle>("~/Areas/Authentication/Content/User/content.css");
+}
+
+<div class="login-container">
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <div class="ui large form">
+                @using (Html.BeginForm("Login", "User", FormMethod.Post, new { id = "log-in-form" }))
+                {
+                    <div class="ui stacked segment">
+                        <h2 class="ui block header">
+                            <i class="sign in icon"></i> Sign In
+                        </h2>
+
+                        @Html.AntiForgeryToken()
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="at icon"></i>
+                                @Html.TextBoxFor(m => m.EmailAddress, new { placeholder = "Email Address" })
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                            </div>
+
+                        </div>
+                        <div class="ui fluid large blue submit button" id="log-in">
+                            <i class="ui sign in icon"></i>
+                            Sign in
+                        </div>
+                    </div>
+                }
+                @Html.ValidationSummary(true)
+            </div>
+            <div class="ui message">
+                New user? Register <a href="@Url.Action("Register", "User")">here</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function() {
+            $("#log-in")
+                .click(function(e) {
+                    e.stopPropagation();
+
+                    if ($("#log-in-form").valid()) {
+                        $("#log-in-form").submit();
+                    }
+                });
+        })
+    </script>
+}

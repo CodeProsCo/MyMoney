@@ -1,0 +1,35 @@
+﻿<div class="ui left vertical inverted sidebar menu" id="sidebar">
+    <div class="item logo">
+        Menu
+    </div>
+    <div class="ui accordion">
+        <a class="item" href="@Url.Action("BudgetOverview", "Budget", new { area = "Dashboard" })">
+            <span>
+                <i class="dashboard icon"></i>
+                Budget Overview
+            </span>
+            <i class="right caret icon"></i>
+        </a>
+
+        <a class="item" href="@Url.Action("Manage", "Bill", new { area = "Spending" })">
+            <span>
+                <i class="delete calendar icon"></i>
+                Manage bills
+            </span>
+            <i class="right caret icon"></i>
+        </a>
+
+        <a class="ui item">
+            <span>
+                <i class="options icon"></i>
+                Manage limits
+            </span>
+            <i class="right caret icon"></i>
+        </a>
+    </div>
+    <div class="item fixed-bottom-item disabled">
+        <p>
+            myMoney v@(typeof(MvcApplication).Assembly.GetName().Version)
+        </p>
+    </div>
+</div>

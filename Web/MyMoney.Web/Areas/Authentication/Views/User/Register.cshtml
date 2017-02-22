@@ -1,0 +1,86 @@
+﻿@using Cassette.Stylesheets
+@model MyMoney.ViewModels.Authentication.User.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_PlainLayout.cshtml";
+
+    Bundles.Reference<StylesheetBundle>("~/Areas/Authentication/Content/User/content.css");
+}
+
+<div class="register-container">
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <div class="ui large form">
+                @using (Html.BeginForm("Register", "User", FormMethod.Post, new { id = "register-form" }))
+                {
+                    <div class="ui stacked segment">
+                        <h2 class="ui block header">
+                            <i class="add user icon"></i> Register
+                        </h2>
+
+                        @Html.AntiForgeryToken()
+
+                        <div class="two fields">
+                            <div class="field">
+                                @Html.EditorFor(m => m.FirstName, new { placeholder = "First Name" })
+                            </div>
+                            <div class="field">
+                                @Html.EditorFor(m => m.LastName, new { placeholder = "Last Name" })
+                            </div>
+                        </div>
+                        <div class="field" data-tooltip="You must be over 18 to use this website" data-position="right center">
+                            @Html.EditorFor(m => m.DateOfBirth, new { placeholder = "Date of Birth", type = "date" })
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="at icon"></i>
+                                @Html.EditorFor(m => m.EmailAddress, new { placeholder = "Email Address" })
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input" data-tooltip="Your password must be at least 8 characters long, contain symbols, digits and at least 1 upper case letter" data-position="right center">
+                                <i class="lock icon"></i>
+                                @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password" })
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui checkbox">
+                                @Html.CheckBoxFor(m => m.AcceptTermsAndConditions)
+                                <label>I accept the terms and conditions</label>
+                            </div>
+                        </div>
+                        <div class="ui fluid large blue submit button" id="register">
+                            <i class="ui sign in icon"></i>
+                            Register
+                        </div>
+                    </div>
+                }
+                @Html.ValidationSummary(true)
+            </div>
+            <div class="ui message">
+                Existing user? Log in <a href="@Url.Action("Login", "User")">here</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(function() {
+            $("#register")
+                .click(function(e) {
+                    e.stopPropagation();
+
+                    if ($("#register-form").valid()) {
+                        $("#register-form").submit();
+                    }
+
+                });
+        })
+    </script>
+}

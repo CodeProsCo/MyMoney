@@ -1,0 +1,27 @@
+﻿@model MyMoney.ViewModels.Spending.Bills.AddBillViewModel
+@{
+}
+<div class="ui modal" id="add-bill-modal">
+    <div class="header">
+        <i class="add icon"></i>
+        Add a new bill
+    </div>
+    <div class="content">
+        @using (Html.BeginForm("Add", "Bill", FormMethod.Post, new { id = "add-bill-form" }))
+        {
+            <div class="description">
+                @{ Html.RenderPartial("Bill/_AddBillEditor", Model); }
+            </div>
+        }
+    </div>
+    <div class="actions">
+        <div class="ui black deny right labeled icon button">
+            Cancel
+            <i class="cancel icon"></i>
+        </div>
+        <div class="ui positive right labeled icon button" id="add-bill">
+            Save
+            <i class="save icon"></i>
+        </div>
+    </div>
+</div>

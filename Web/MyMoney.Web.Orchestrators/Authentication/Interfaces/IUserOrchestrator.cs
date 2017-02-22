@@ -1,0 +1,32 @@
+﻿namespace MyMoney.Web.Orchestrators.Authentication.Interfaces
+{
+    #region Usings
+
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
+    using ViewModels.Authentication.User;
+
+    using Wrappers;
+
+    #endregion
+
+    /// <summary>
+    ///     Interface for the <see cref="UserOrchestrator" /> class.
+    /// </summary>
+    public interface IUserOrchestrator
+    {
+        #region  Public Methods
+
+        /// <summary>
+        ///     Gets the claim a user.
+        /// </summary>
+        /// <param name="model">The login model.</param>
+        /// <returns>The user's claim.</returns>
+        Task<OrchestratorResponseWrapper<ClaimsIdentity>> GetClaimForUser(LoginViewModel model);
+
+        Task<OrchestratorResponseWrapper<bool>> RegisterUser(RegisterViewModel model);
+
+        #endregion
+    }
+}

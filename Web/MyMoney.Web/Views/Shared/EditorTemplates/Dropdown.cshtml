@@ -1,0 +1,23 @@
+﻿@model object
+@{
+    var options = (SelectList)ViewData["options"];
+}
+
+<div class="field">
+    @Html.LabelForModel()
+    <div class="ui selection dropdown">
+        <input type="hidden" name="@Html.NameForModel()" id="@Html.IdForModel()"/>
+        <i class="dropdown icon"></i>
+
+        <div class="default text">@Html.LabelForModel()</div>
+        <div class="menu">
+            @if (options != null)
+            {
+                foreach (var item in options.Items)
+                {
+                    <div class="item @(options.SelectedValue == item ? "selected" : string.Empty)" data-value="@item.ToString()">@item.ToString()</div>
+                }
+            }
+        </div>
+    </div>
+</div>

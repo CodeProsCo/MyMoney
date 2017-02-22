@@ -1,0 +1,16 @@
+﻿@model DateTime
+@{
+    var date = Model != DateTime.MinValue ? Model.ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd");
+}
+
+<div class="field">
+    @Html.LabelForModel()
+    @Html.TextBoxFor(x => x, new { type = "date" })
+</div>
+
+<script type="text/javascript">
+    (function() {
+        var elem = document.getElementById("@Html.IdForModel()");
+        elem.value = "@date";
+    })();
+</script>
