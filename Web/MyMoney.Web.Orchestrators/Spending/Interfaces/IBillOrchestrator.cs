@@ -15,7 +15,7 @@
     {
         #region  Public Methods
 
-        Task<OrchestratorResponseWrapper<BillViewModel>> AddBill(AddBillViewModel model);
+        Task<OrchestratorResponseWrapper<BillViewModel>> AddBill(AddBillViewModel model, Guid userId);
 
         Task<OrchestratorResponseWrapper<ManageBillsViewModel>> GetBillInformation(Guid id);
 

@@ -39,5 +39,9 @@
         ManageBillsViewModel NewManageBillsViewModel(GetBillInformationResponse apiResponse);
 
         #endregion
+
+        AddBillRequest NewAddBillRequest(AddBillViewModel model, Guid userId);
+
+        BillViewModel NewBillViewModel(AddBillResponse apiResponse);
     }
 }

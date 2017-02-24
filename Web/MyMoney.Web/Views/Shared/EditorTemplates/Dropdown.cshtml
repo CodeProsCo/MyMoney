@@ -6,7 +6,7 @@
 <div class="field">
     @Html.LabelForModel()
     <div class="ui selection dropdown">
-        <input type="hidden" name="@Html.NameForModel()" id="@Html.IdForModel()"/>
+        @Html.HiddenFor(x => x)
         <i class="dropdown icon"></i>
 
         <div class="default text">@Html.LabelForModel()</div>

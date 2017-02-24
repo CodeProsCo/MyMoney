@@ -1,11 +1,16 @@
 ﻿@using Cassette.Scripts
+@using Cassette.Stylesheets
 @using Cassette.Views
+@using MyMoney.Resources
+@using Newtonsoft.Json
 @model MyMoney.ViewModels.Spending.Bills.ManageBillsViewModel
 
 @{
-    ViewBag.Title = "Manage Bills";
+    ViewBag.Title = Bills.Title_ManageBills;
 
     Bundles.Reference<ScriptBundle>("~/Areas/Spending/Scripts/Bill/MyMoney.ManageBills.js");
+
+    Bundles.Reference<StylesheetBundle>("~/Content/Chartist/chartist.css");
 }
 
 <div class="ui grid">
@@ -13,41 +18,69 @@
         <div class="ui styled segment">
             <div class="ui block header">
                 <i class="browser icon"></i>
-                Summary
+                @Bills.Heading_BillBreakdown
             </div>
+            <div class="ui divided items">
+
+                <div class="item">
+                    <div class="ui active inverted dimmer">
+                        <div class="ui text loader">Loading</div>
+                    </div>
+                    <div id="category-chart"></div>
+                </div>
+                <div class="item">
+                    <div class="ui active inverted dimmer">
+                        <div class="ui text loader">Loading</div>
+                    </div>
+                    <div id="period-chart"></div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="eight wide column">
         <div class="ui styled segment">
             <div class="ui block header">
                 <i class="delete calendar icon"></i>
-                Bills
+                @Bills.Title_Bills
             </div>
-            <table class="ui celled selectable table">
+            <table class="ui celled selectable table" id="bill-table">
                 <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                </tr>
+                    <tr>
+                        <th>@Common.Header_Date</th>
+                        <th>@Common.Header_Description</th>
+                        <th>@Common.Header_Category</th>
+                        <th>@Common.Header_ReocurringPeriod</th>
+                        <th>@Common.Header_Amount</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>
-                        2017-01-01
-                    </td>
-                    <td>British Gas</td>
-                    <td>Utilities</td>
-                    <td>£35.40</td>
-                </tr>
+                    @foreach (var bill in Model.Bills)
+                    {
+                        <tr class="@(bill.StartDate.Date == DateTime.Today ? "positive" : string.Empty)">
+                            <td>@bill.StartDate.ToShortDateString()</td>
+                            <td>@bill.Name</td>
+                            <td>@bill.Category</td>
+                            <td>@bill.ReoccuringPeriod</td>
+                            <td class="right aligned">@bill.Amount.ToString("C")</td>
+                        </tr>
+                    }
+
+                    @if (Model.BillCount == 0)
+                    {
+                        <tr>
+                            <td colspan="5">
+                                @Bills.Warning_NoBills
+                            </td>
+                        </tr>
+                    }
                 </tbody>
                 <tfoot>
-                <tr>
-                    <th colspan="4">
+                    <tr>
+                        <th colspan="5">
 
-                    </th>
-                </tr>
+                        </th>
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -56,27 +89,33 @@
         <div class="ui styled segment">
             <div class="ui block header">
                 <i class="setting icon"></i>
-                Actions
+                @Common.Header_Actions
             </div>
             <div class="button-list">
                 <div class="ui secondary button labeled icon" id="add">
-                    Add a new bill
+                    @Bills.Button_AddBill
                     <i class="add icon"></i>
                 </div>
                 <div class="ui secondary button labeled icon disabled" id="edit">
-                    Edit bill
+                    @Bills.Button_EditBill
                     <i class="edit icon"></i>
                 </div>
                 <div class="ui secondary button labeled icon disabled" id="delete">
-                    Delete bill
+                    @Bills.Button_DeleteBill
                     <i class="delete icon"></i>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 @section Modals{
     @{ Html.RenderPartial("Bill/_AddBillModal", Model.AddModel); }
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        createBillCategoryChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillCategories)));
+        createBillPeriodChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillPeriods)));
+    </script>
 }

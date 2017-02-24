@@ -70,6 +70,69 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string Header_Actions {
+            get {
+                return ResourceManager.GetString("Header_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Header_Amount {
+            get {
+                return ResourceManager.GetString("Header_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string Header_Category {
+            get {
+                return ResourceManager.GetString("Header_Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Header_Date {
+            get {
+                return ResourceManager.GetString("Header_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Header_Description {
+            get {
+                return ResourceManager.GetString("Header_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reocurring Period.
+        /// </summary>
+        public static string Header_ReocurringPeriod {
+            get {
+                return ResourceManager.GetString("Header_ReocurringPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string Header_Summary {
+            get {
+                return ResourceManager.GetString("Header_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information_Title {

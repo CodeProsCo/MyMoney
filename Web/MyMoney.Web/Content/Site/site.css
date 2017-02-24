@@ -68,16 +68,16 @@ body {
 }
 
 .user-dropdown {
-        text-align: center !important;
+    text-align: center !important;
     width: 100%;
 }
 
 .nav-item .text {
-        text-align: center !important;
+    text-align: center !important;
 }
 
 .nav-item:before {
-        position: absolute;
+    position: absolute;
     content: '';
     top: 0%;
     right: 0px;
@@ -87,7 +87,7 @@ body {
 }
 
 .nav-item:after {
-        position: absolute;
+    position: absolute;
     content: '';
     top: 0%;
     right: 0px;
@@ -104,4 +104,46 @@ body {
     margin-bottom: 5px;
     min-width: 100%;
     text-align: left !important;
+}
+
+th.highlighted {
+    text-decoration: underline;
+}
+
+th:hover {
+    cursor: pointer !important;
+}
+
+.ct-label {
+    fill: white !important;
+}
+
+.ct-series-a .ct-line,
+.ct-series-a .ct-point,
+.ct-series-a .ct-slice-donut {
+    stroke: #89F4F3 !important;
+}
+
+.ct-series-b .ct-line,
+.ct-series-b .ct-point, 
+.ct-series-b .ct-slice-donut {
+    stroke: #79D8D8 !important;
+}
+
+.ct-series-c .ct-line,
+.ct-series-c .ct-point, 
+.ct-series-c .ct-slice-donut {
+    stroke: #618F93 !important;
+}
+
+.ct-series-d .ct-line,
+.ct-series-d .ct-point, 
+.ct-series-d .ct-slice-donut {
+    stroke: #335C6B !important;
+}
+
+.ct-series-e .ct-line,
+.ct-series-e .ct-point, 
+.ct-series-e .ct-slice-donut {
+    stroke: #001626 !important;
 }

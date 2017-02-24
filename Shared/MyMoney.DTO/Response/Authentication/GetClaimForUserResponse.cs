@@ -4,6 +4,8 @@
 
     using System;
 
+    using Proxies.Authentication;
+
     #endregion
 
     /// <summary>
@@ -14,31 +16,7 @@
     {
         #region  Properties
 
-        public DateTime? DateOfBirth { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the username.
-        /// </summary>
-        /// <value>
-        ///     The username.
-        /// </value>
-        public string EmailAddress { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the first name.
-        /// </summary>
-        /// <value>
-        ///     The first name.
-        /// </value>
-        public string FirstName { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the last name.
-        /// </summary>
-        /// <value>
-        ///     The last name.
-        /// </value>
-        public string LastName { get; set; }
+        public UserProxy User { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether [login success].
@@ -48,7 +26,6 @@
         /// </value>
         public bool LoginSuccess { get; set; }
 
-        public Guid? UserId { get; set; }
 
         #endregion
     }

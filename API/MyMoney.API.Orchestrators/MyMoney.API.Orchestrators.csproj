@@ -45,6 +45,10 @@
     <Compile Include="Spending\Interfaces\IBillOrchestrator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
+      <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
+      <Name>MyMoney.Proxies</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
       <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
       <Name>MyMoney.DTO</Name>

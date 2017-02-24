@@ -5,7 +5,7 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using DataModels.Authentication.User;
+    using DataModels.Authentication;
 
     using Interfaces;
 

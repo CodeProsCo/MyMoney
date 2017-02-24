@@ -4,7 +4,7 @@
 
     using System;
 
-    using DataModels.Authentication.User;
+    using DataModels.Authentication;
 
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;

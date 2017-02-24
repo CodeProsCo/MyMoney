@@ -8,6 +8,7 @@
     Bundles.Reference<ScriptBundle>("~/Scripts/Semantic/semantic.js");
     Bundles.Reference<ScriptBundle>("~/Scripts/Common/MyMoney.Common.js");
     Bundles.Reference<ScriptBundle>("~/Scripts/Common/MyMoney.Localization.js");
+    Bundles.Reference<ScriptBundle>("~/Scripts/Common/MyMoney.Initialize.js");
 }
 
 <!DOCTYPE html>
@@ -35,6 +36,9 @@
 <div id="script-container">
     @Bundles.RenderScripts()
     @RenderSection("Scripts", false)
+    <script type="text/javascript">
+        initializeGlobalObject();
+    </script>
 </div>
 </body>
 </html>

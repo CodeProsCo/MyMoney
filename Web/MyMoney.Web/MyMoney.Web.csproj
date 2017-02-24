@@ -156,7 +156,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Authentication\Content\User\content.css" />
+    <Content Include="Areas\Authentication\Content\user.css" />
     <Content Include="Content\Chartist\chartist.css" />
     <Content Include="Content\Semantic\semantic.css" />
     <Content Include="Content\Semantic\themes\default\assets\fonts\icons.svg" />
@@ -172,6 +172,7 @@
     <Content Include="Scripts\jQuery\jquery-3.1.1.js" />
     <Content Include="Scripts\jQuery\jquery.cookie.js" />
     <Content Include="Scripts\jQuery\jquery.inputmask.bundle.js" />
+    <Content Include="Scripts\jQuery\jquery.tablesorter.js" />
     <Content Include="Scripts\jQuery\jquery.validate.js" />
     <Content Include="Scripts\jQuery\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\Semantic\semantic.js" />
@@ -238,6 +239,8 @@
     <Content Include="Areas\Common\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Common\Views\web.config" />
     <Content Include="Scripts\Common\MyMoney.Cookies.js" />
+    <Content Include="Areas\Spending\Scripts\Bill\MyMoney.Bill.js" />
+    <Content Include="Scripts\Common\MyMoney.Charts.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,5 +1,7 @@
 ﻿/// <reference path="~/Scripts/jQuery/jquery.cookie.js"/>
 /// <reference path="~/Scripts/Common/MyMoney.Cookies.js" />
+/// <reference path="MyMoney.Initialize.js"/>
+
 function LocalizedString(namespace, key) {
     this.key = key;
     this.namespace = namespace;
@@ -60,13 +62,13 @@ function LocalizedStringStore(urlFormat) {
         if (newString.state < 3) {
             this.strings.push(newString);
 
-            cookieManager.create("myMoney_LocalizedStrings", this, true);
+            this.cookieManager.create("myMoney_LocalizedStrings", this, true);
         }
 
         return newString;
     };
-    if (cookieManager.exists("myMoney_LocalizedStrings")) {
-        var cookie = cookieManager.get("myMoney_LocalizedStrings");
+    if (this.cookieManager.exists("myMoney_LocalizedStrings")) {
+        var cookie = this.cookieManager.get("myMoney_LocalizedStrings");
 
         $.each(cookie.strings,
             function(i, item) {

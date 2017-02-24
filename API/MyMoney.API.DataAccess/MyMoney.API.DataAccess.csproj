@@ -51,6 +51,8 @@
     <Compile Include="Authentication\UserRepository.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spending\BillRepository.cs" />
+    <Compile Include="Spending\Interfaces\IBillRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

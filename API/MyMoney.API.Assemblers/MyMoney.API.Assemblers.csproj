@@ -41,6 +41,8 @@
     <Compile Include="Authentication\Interfaces\IUserAssembler.cs" />
     <Compile Include="Authentication\UserAssembler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spending\BillAssembler.cs" />
+    <Compile Include="Spending\Interfaces\IBillAssembler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -49,6 +51,10 @@
     <ProjectReference Include="..\..\Models\MyMoney.DataModels\MyMoney.DataModels.csproj">
       <Project>{4FC33969-3E6B-4B9B-8F30-5F47DEF0AC49}</Project>
       <Name>MyMoney.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
+      <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
+      <Name>MyMoney.Proxies</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
       <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>

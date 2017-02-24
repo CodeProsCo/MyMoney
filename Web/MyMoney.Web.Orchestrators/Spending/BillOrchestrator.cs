@@ -49,9 +49,32 @@
 
         #region  Public Methods
 
-        public async Task<OrchestratorResponseWrapper<BillViewModel>> AddBill(AddBillViewModel model)
+        public async Task<OrchestratorResponseWrapper<BillViewModel>> AddBill(AddBillViewModel model, Guid userId)
         {
-            return null;
+            var response = new OrchestratorResponseWrapper<BillViewModel>();
+
+            try
+            {
+                var request = assembler.NewAddBillRequest(model, userId);
+                var apiResponse = await dataAccess.AddBill(request);
+
+                if (!apiResponse.Success)
+                {
+                    response.AddErrors(apiResponse.Errors);
+
+                    return response;
+                }
+
+                response.AddWarnings(apiResponse.Warnings);
+
+                response.Model = assembler.NewBillViewModel(apiResponse);
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex);
+            }
+
+            return response;
         }
 
         public async Task<OrchestratorResponseWrapper<ManageBillsViewModel>> GetBillInformation(Guid userId)

@@ -8,8 +8,12 @@
 
     using MyMoney.API.Assemblers.Authentication;
     using MyMoney.API.Assemblers.Authentication.Interfaces;
+    using MyMoney.API.Assemblers.Spending;
+    using MyMoney.API.Assemblers.Spending.Interfaces;
     using MyMoney.API.DataAccess.Authentication;
     using MyMoney.API.DataAccess.Authentication.Interfaces;
+    using MyMoney.API.DataAccess.Spending;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
     using MyMoney.API.Orchestrators.Authentication;
     using MyMoney.API.Orchestrators.Authentication.Interfaces;
     using MyMoney.API.Orchestrators.Spending;
@@ -40,7 +44,13 @@
                         Dependency.OnComponent<IUserAssembler, UserAssembler>(), 
                         Dependency.OnComponent<IUserRepository, UserRepository>()));
 
-            container.Register(Component.For<IBillOrchestrator>().ImplementedBy<BillOrchestrator>());
+            container.Register(
+                Component.For<IBillOrchestrator>()
+                    .ImplementedBy<BillOrchestrator>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IBillAssembler, BillAssembler>(),
+                        Dependency.OnComponent<IBillRepository, BillRepository>()));
         }
 
         #endregion

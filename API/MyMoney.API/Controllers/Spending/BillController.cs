@@ -6,6 +6,8 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
+    using DTO.Request.Spending;
+
     using Orchestrators.Spending.Interfaces;
 
     #endregion
@@ -25,11 +27,20 @@
             this.orchestrator = orchestrator;
         }
 
-        [HttpGet]
-        [Route("{userId:Guid}")]
-        public async Task<IHttpActionResult> GetBillInformation(Guid userId)
+        [HttpPost]
+        [Route("user")]
+        public async Task<IHttpActionResult> GetBillInformation([FromBody] GetBillInformationRequest request)
         {
-            var response = await orchestrator.GetBillInformation(userId);
+            var response = await orchestrator.GetBillInformation(request);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public async Task<IHttpActionResult> AddBill([FromBody] AddBillRequest request)
+        {
+            var response = await orchestrator.AddBill(request);
 
             return Ok(response);
         }

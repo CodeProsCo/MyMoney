@@ -1,4 +1,4 @@
-﻿namespace MyMoney.DataModels.Authentication.User
+﻿namespace MyMoney.DataModels.Authentication
 {
     #region Usings
 
@@ -19,6 +19,7 @@
 
         public string FirstName { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Guid Id { get; set; }
 

@@ -16,5 +16,7 @@
         Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request);
 
         #endregion
+
+        Task<AddBillResponse> AddBill(AddBillRequest request);
     }
 }

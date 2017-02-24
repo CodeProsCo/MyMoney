@@ -1,4 +1,4 @@
-﻿namespace MyMoney.DependencyInjection.API.Installers
+﻿namespace MyMoney.API.DependencyInjection.Installers
 {
     #region Usings
 
@@ -8,6 +8,8 @@
 
     using MyMoney.API.DataAccess.Authentication;
     using MyMoney.API.DataAccess.Authentication.Interfaces;
+    using MyMoney.API.DataAccess.Spending;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
 
     #endregion
 
@@ -28,6 +30,9 @@
         {
             container.Register(
                 Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IBillRepository>().ImplementedBy<BillRepository>().LifestylePerWebRequest());
         }
 
         #endregion

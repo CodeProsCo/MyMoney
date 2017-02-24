@@ -5,7 +5,7 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_PlainLayout.cshtml";
 
-    Bundles.Reference<StylesheetBundle>("~/Areas/Authentication/Content/User/content.css");
+    Bundles.Reference<StylesheetBundle>("~/Areas/Authentication/Content/user.css");
 }
 
 <div class="login-container">
@@ -50,15 +50,14 @@
 
 @section Scripts {
     <script type="text/javascript">
-        $(function() {
-            $("#log-in")
-                .click(function(e) {
-                    e.stopPropagation();
 
-                    if ($("#log-in-form").valid()) {
-                        $("#log-in-form").submit();
-                    }
-                });
-        })
+        $("#log-in")
+            .click(function (e) {
+                e.stopPropagation();
+
+                if ($("#log-in-form").valid()) {
+                    $("#log-in-form").submit();
+                }
+            });
     </script>
 }

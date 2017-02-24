@@ -4,7 +4,7 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_PlainLayout.cshtml";
 
-    Bundles.Reference<StylesheetBundle>("~/Areas/Authentication/Content/User/content.css");
+    Bundles.Reference<StylesheetBundle>("~/Areas/Authentication/Content/user.css");
 }
 
 <div class="register-container">
@@ -71,7 +71,7 @@
 </div>
 @section Scripts {
     <script type="text/javascript">
-        $(function() {
+        
             $("#register")
                 .click(function(e) {
                     e.stopPropagation();

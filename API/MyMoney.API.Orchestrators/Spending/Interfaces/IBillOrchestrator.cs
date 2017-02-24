@@ -3,10 +3,13 @@
     using System;
     using System.Threading.Tasks;
 
+    using DTO.Request.Spending;
     using DTO.Response.Spending;
 
     public interface IBillOrchestrator
     {
-        Task<GetBillInformationResponse> GetBillInformation(Guid userId);
+        Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request);
+
+        Task<AddBillResponse> AddBill(AddBillRequest request);
     }
 }

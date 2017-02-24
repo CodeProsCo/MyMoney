@@ -18,9 +18,12 @@
 
         public async Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request)
         {
-            var url = string.Format(request.GetAction(), request.UserId);
+            return await Post<GetBillInformationResponse>(request);
+        }
 
-            return await Get<GetBillInformationResponse>(url);
+        public async Task<AddBillResponse> AddBill(AddBillRequest request)
+        {
+            return await Post<AddBillResponse>(request);
         }
 
         #endregion

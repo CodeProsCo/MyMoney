@@ -4,7 +4,7 @@
 
     using System.Threading.Tasks;
 
-    using DataModels.Authentication.User;
+    using DataModels.Authentication;
 
     #endregion
 

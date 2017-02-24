@@ -1,4 +1,4 @@
-﻿namespace MyMoney.DependencyInjection.API.Installers
+﻿namespace MyMoney.API.DependencyInjection.Installers
 {
     #region Usings
 
@@ -8,6 +8,8 @@
 
     using MyMoney.API.Assemblers.Authentication;
     using MyMoney.API.Assemblers.Authentication.Interfaces;
+    using MyMoney.API.Assemblers.Spending;
+    using MyMoney.API.Assemblers.Spending.Interfaces;
 
     #endregion
 
@@ -27,6 +29,7 @@
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(Component.For<IUserAssembler>().ImplementedBy<UserAssembler>().LifestylePerWebRequest());
+            container.Register(Component.For<IBillAssembler>().ImplementedBy<BillAssembler>().LifestylePerWebRequest());
         }
 
         #endregion

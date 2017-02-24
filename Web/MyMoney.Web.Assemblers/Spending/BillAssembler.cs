@@ -3,6 +3,8 @@
     #region Usings
 
     using System;
+    using System.Linq;
+    using System.Web.Mvc;
 
     using DTO.Request.Spending;
     using DTO.Response.Spending;
@@ -11,7 +13,11 @@
 
     using JetBrains.Annotations;
 
+    using Proxies.Common;
+    using Proxies.Spending;
+
     using ViewModels.Spending.Bills;
+    using ViewModels.Spending.Bills.Enum;
 
     #endregion
 
@@ -47,7 +53,59 @@
         /// </returns>
         public ManageBillsViewModel NewManageBillsViewModel(GetBillInformationResponse apiResponse)
         {
-            return new ManageBillsViewModel();
+            return new ManageBillsViewModel
+            {
+                AddModel =
+                               new AddBillViewModel
+                               {
+                                   StartDate = DateTime.Now,
+                                   TimePeriodOptions = new SelectList(Enum.GetNames(typeof(TimePeriod))),
+                                   CategoryOptions = new SelectList(Enum.GetNames(typeof(BillCategory)).OrderBy(x => x))
+                               },
+                Bills =
+                               apiResponse.Bills.Select(
+                                   x =>
+                                   new BillViewModel
+                                   {
+                                       Amount = x.Amount,
+                                       Category = x.Category.Name,
+                                       Name = x.Name,
+                                       ReoccuringPeriod =
+                                               (TimePeriod)x.ReocurringPeriod,
+                                       StartDate = x.StartDate
+                                   }).ToList()
+            };
+        }
+
+        public AddBillRequest NewAddBillRequest(AddBillViewModel model, Guid userId)
+        {
+            return new AddBillRequest
+            {
+                Bill = new BillProxy
+                {
+                    Amount = model.Amount,
+                    Category = new CategoryProxy
+                    {
+                        Name = model.Category
+                    },
+                    Name = model.Name,
+                    ReocurringPeriod = (int)model.ReoccuringPeriod,
+                    StartDate = model.StartDate,
+                    UserId = userId
+                }
+            };
+        }
+
+        public BillViewModel NewBillViewModel(AddBillResponse apiResponse)
+        {
+            return new BillViewModel
+            {
+                Amount = apiResponse.Bill.Amount,
+                Category = apiResponse.Bill.Category.Name,
+                Name = apiResponse.Bill.Name,
+                ReoccuringPeriod = (TimePeriod)apiResponse.Bill.ReocurringPeriod,
+                StartDate = apiResponse.Bill.StartDate
+            };
         }
 
         #endregion

@@ -61,11 +61,83 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a new bill.
+        /// </summary>
+        public static string Button_AddBill {
+            get {
+                return ResourceManager.GetString("Button_AddBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete bill.
+        /// </summary>
+        public static string Button_DeleteBill {
+            get {
+                return ResourceManager.GetString("Button_DeleteBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit bill.
+        /// </summary>
+        public static string Button_EditBill {
+            get {
+                return ResourceManager.GetString("Button_EditBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bill Breakdown.
+        /// </summary>
+        public static string Heading_BillBreakdown {
+            get {
+                return ResourceManager.GetString("Heading_BillBreakdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Bills:.
+        /// </summary>
+        public static string Label_TotalBills {
+            get {
+                return ResourceManager.GetString("Label_TotalBills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your bill was recorded..
         /// </summary>
         public static string Message_RecordedBill {
             get {
                 return ResourceManager.GetString("Message_RecordedBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bills.
+        /// </summary>
+        public static string Title_Bills {
+            get {
+                return ResourceManager.GetString("Title_Bills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Bills.
+        /// </summary>
+        public static string Title_ManageBills {
+            get {
+                return ResourceManager.GetString("Title_ManageBills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no bills recorded..
+        /// </summary>
+        public static string Warning_NoBills {
+            get {
+                return ResourceManager.GetString("Warning_NoBills", resourceCulture);
             }
         }
     }

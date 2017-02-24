@@ -38,11 +38,11 @@
                 new ClaimsIdentity(
                     new[]
                         {
-                            new Claim(ClaimTypes.Email, response.EmailAddress), 
-                            new Claim(ClaimTypes.Surname, response.LastName), 
-                            new Claim(ClaimTypes.GivenName, response.FirstName), 
-                            new Claim(ClaimTypes.NameIdentifier, response.UserId.ToString()), 
-                            new Claim(ClaimTypes.Name, response.FirstName)
+                            new Claim(ClaimTypes.Email, response.User.EmailAddress), 
+                            new Claim(ClaimTypes.Surname, response.User.LastName), 
+                            new Claim(ClaimTypes.GivenName, response.User.FirstName), 
+                            new Claim(ClaimTypes.NameIdentifier, response.User.Id.ToString()), 
+                            new Claim(ClaimTypes.Name, response.User.FirstName)
                         }, 
                     "ApplicationCookie");
         }

@@ -49,7 +49,9 @@
         [AjaxOnly]
         public async Task<ActionResult> Add(AddBillViewModel model)
         {
-            var response = await orchestrator.AddBill(model);
+            var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
+
+            var response = await orchestrator.AddBill(model, Guid.Parse(userIdClaim.Value));
 
             return JsonResponse(response);
         }
@@ -61,6 +63,9 @@
             var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
 
             var modelWrapper = await orchestrator.GetBillInformation(Guid.Parse(userIdClaim.Value));
+
+            AddModelErrors(modelWrapper.Errors);
+            AddModelWarnings(modelWrapper.Warnings);
 
             return View("Manage", modelWrapper.Model);
         }

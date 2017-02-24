@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\Interfaces\IUserAssembler.cs" />
@@ -48,6 +49,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
+      <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
+      <Name>MyMoney.Proxies</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Models\MyMoney.ViewModels\MyMoney.ViewModels.csproj">
       <Project>{7CEDB9FF-F121-49B0-A9EA-14C34CAB01F7}</Project>
       <Name>MyMoney.ViewModels</Name>

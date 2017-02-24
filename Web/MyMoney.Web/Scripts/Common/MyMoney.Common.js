@@ -1,39 +1,49 @@
-﻿
-$(function() {
-    $("#menu-toggle")
-        .click(function(e) {
-            e.stopPropagation();
+﻿/// <reference path="~/Scripts/jQuery/jquery-3.1.1.js"/>
+/// <reference path="~/Scripts/jQuery/jquery.inputmask.bundle.js"/>
+/// <reference path="~/Scripts/jQuery/jquery.tablesorter.js" />
+/// <reference path="~/Scripts/Semantic/semantic.js" />
 
-            $("#sidebar").sidebar("toggle");
-        });
+$("#menu-toggle")
+    .click(function (e) {
+        e.stopPropagation();
 
-
-    $("[data-redirect]")
-        .click(function(e) {
-            e.stopPropagation();
-
-            var url = $(this).data("redirect");
-
-            window.location = url;
-        });
+        $("#sidebar").sidebar("toggle");
+    });
 
 
-    var menuItems = $("a.item");
+$("[data-redirect]")
+    .click(function (e) {
+        e.stopPropagation();
 
-    for (var i = 0; i < menuItems.length; i++) {
-        var item = $(menuItems[i]);
+        var url = $(this).data("redirect");
 
-        var url = $(item).attr("href");
+        window.location = url;
+    });
 
-        if (window.location.href.indexOf(url) >= 0) {
-            $(item).addClass("disabled");
-        }
+
+var menuItems = $("a.item");
+
+for (var i = 0; i < menuItems.length; i++) {
+    var item = $(menuItems[i]);
+
+    var url = $(item).attr("href");
+
+    if (window.location.href.indexOf(url) >= 0) {
+        $(item).addClass("disabled");
     }
+}
 
 
-    $(".ui.accordion").accordion();
-    $(".ui.dropdown").dropdown();
-    $("[data-input-mask=currency]").inputmask("currency", { rightAlign: false, prefix: "", groupSeparator: "" });
+$(".ui.accordion").accordion();
+$(".ui.dropdown").dropdown();
 
-    initializeGlobalObject();
-});
+$("[data-input-mask=currency]").inputmask("currency", { rightAlign: false, prefix: "", groupSeparator: "" });
+$("table").tablesorter();
+$("th")
+    .on("click",
+        function (e) {
+            e.stopPropagation();
+
+            $(this).siblings().removeClass("highlighted");
+            $(this).addClass("highlighted");
+        });

@@ -10,7 +10,7 @@
         ///     Initializes a new instance of the <see cref="BaseRequest" /> class.
         /// </summary>
         public GetBillInformationRequest()
-            : base("spending/bills/{0}")
+            : base("spending/bills/user")
         {
         }
 
