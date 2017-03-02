@@ -78,6 +78,24 @@
             return Ok(response);
         }
 
+        [HttpDelete]
+        [Route("delete/{billId:Guid}/{requestRef:Guid}/{username}")]
+        public async Task<IHttpActionResult> DeleteBill([FromUri] DeleteBillRequest request)
+        {
+            var response = await orchestrator.DeleteBill(request);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("edit")]
+        public async Task<IHttpActionResult> EditBill([FromBody] EditBillRequest request)
+        {
+            var response = await orchestrator.EditBill(request);
+
+            return Ok(response);
+        }
+
         #endregion
     }
 }

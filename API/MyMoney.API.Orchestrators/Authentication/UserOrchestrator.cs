@@ -71,19 +71,20 @@
 
         #region  Public Methods
 
-        public async Task<GetClaimForUserResponse> GetClaimForUser(string username, string password, Guid requestRef)
+        public async Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request)
         {
             var response = new GetClaimForUserResponse();
 
             try
             {
-                var userDataModel = await repository.GetUser(username, password);
+                var userDataModel =
+                    await repository.GetUser(request.EmailAddress.Replace(";", "@").Replace(",", "."), request.Password);
 
-                response = assembler.NewGetClaimForUserResponse(userDataModel, requestRef);
+                response = assembler.NewGetClaimForUserResponse(userDataModel, request.RequestReference);
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetClaimForUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetClaimForUser");
                 response.AddError(err);
             }
 

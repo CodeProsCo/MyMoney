@@ -24,7 +24,7 @@
         /// <returns>The response object.</returns>
         Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request);
 
-        Task<GetClaimForUserResponse> GetClaimForUser(string username, string password, Guid requestRef);
+        Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request);
 
         #endregion
     }

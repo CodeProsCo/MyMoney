@@ -43,13 +43,10 @@
             <param name="orchestrator">The orchestrator.</param>
             <exception cref="T:System.ArgumentNullException">Exception thrown if the orchestrator is null.</exception>
         </member>
-        <member name="M:MyMoney.API.Controllers.Authentication.UserController.GetClaimForUser(System.String,System.String,System.Guid)">
+        <member name="M:MyMoney.API.Controllers.Authentication.UserController.GetClaimForUser(MyMoney.DTO.Request.Authentication.GetClaimForUserRequest)">
             <summary>
                 Gets a claim for the given user.
             </summary>
-            <param name="username">The username.</param>
-            <param name="password">The user's password.</param>
-            <param name="requestRef">The request reference.</param>
             <returns>The response object.</returns>
         </member>
         <member name="M:MyMoney.API.Controllers.Authentication.UserController.RegisterUser(MyMoney.DTO.Request.Authentication.RegisterUserRequest)">

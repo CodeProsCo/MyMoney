@@ -124,6 +124,48 @@
             return response;
         }
 
+        public async Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request)
+        {
+            var response = new DeleteBillResponse();
+
+            try
+            {
+                var success = await repository.DeleteBill(request.BillId);
+
+                response = assembler.NewDeleteBillResponse(success, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(
+                    ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "DeleteBill");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        public async Task<EditBillResponse> EditBill(EditBillRequest request)
+        {
+            var response = new EditBillResponse();
+
+            try
+            {
+                var dataModel = assembler.NewBillDataModel(request.Bill);
+
+                var model = await repository.EditBill(dataModel);
+
+                response = assembler.NewEditBillResponse(model, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(
+                    ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "EditBill");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
         /// <summary>
         /// Gets the bill.
         /// </summary>

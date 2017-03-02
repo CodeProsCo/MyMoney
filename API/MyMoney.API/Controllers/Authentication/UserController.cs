@@ -52,15 +52,12 @@
         /// <summary>
         ///     Gets a claim for the given user.
         /// </summary>
-        /// <param name="username">The username.</param>
-        /// <param name="password">The user's password.</param>
-        /// <param name="requestRef">The request reference.</param>
         /// <returns>The response object.</returns>
-        [HttpPost]
-        [Route("get/{username}/{password}/{requestRef:Guid}")]
-        public async Task<IHttpActionResult> GetClaimForUser(string username, string password, Guid requestRef)
+        [HttpGet]
+        [Route("get/{emailAddress}/{password}/{requestRef:Guid}")]
+        public async Task<IHttpActionResult> GetClaimForUser([FromUri] GetClaimForUserRequest request)
         {
-            var response = await orchestrator.GetClaimForUser(username, password, requestRef);
+            var response = await orchestrator.GetClaimForUser(request);
 
             return Ok(response);
         }

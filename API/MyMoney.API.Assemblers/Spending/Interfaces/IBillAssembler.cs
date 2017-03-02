@@ -52,5 +52,9 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         GetBillResponse NewGetBillResponse(BillDataModel bill, Guid requestReference);
+
+        DeleteBillResponse NewDeleteBillResponse(bool success, Guid requestReference);
+
+        EditBillResponse NewEditBillResponse(BillDataModel model, Guid requestReference);
     }
 }

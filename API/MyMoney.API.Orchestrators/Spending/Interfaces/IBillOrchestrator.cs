@@ -40,5 +40,9 @@
         /// <param name="request"></param>
         /// <returns>The response object.</returns>
         Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request);
+
+        Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request);
+
+        Task<EditBillResponse> EditBill(EditBillRequest request);
     }
 }

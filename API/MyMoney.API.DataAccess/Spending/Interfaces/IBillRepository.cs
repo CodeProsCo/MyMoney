@@ -39,5 +39,9 @@
         Task<IList<BillDataModel>> GetBillsForUser(Guid userId);
 
         #endregion
+
+        Task<bool> DeleteBill(Guid billId);
+
+        Task<BillDataModel> EditBill(BillDataModel bill);
     }
 }

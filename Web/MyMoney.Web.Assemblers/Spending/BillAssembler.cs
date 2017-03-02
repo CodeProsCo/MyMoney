@@ -30,9 +30,9 @@
     {
         #region  Public Methods
 
-        public AddBillRequest NewAddBillRequest(BillViewModel model)
+        public AddBillRequest NewAddBillRequest(BillViewModel model, string username)
         {
-            return new AddBillRequest { Bill = BillViewModelToProxy(model) };
+            return new AddBillRequest { Bill = BillViewModelToProxy(model), Username = username};
         }
 
         public BillViewModel NewBillViewModel(AddBillResponse apiResponse)

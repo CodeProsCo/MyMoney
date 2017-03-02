@@ -44,7 +44,7 @@
 
         public string FormatRequestUri()
         {
-            return string.Format(GetAction(), EmailAddress, Password, RequestReference);
+            return string.Format(GetAction(), EmailAddress.Replace("@", ";").Replace(".", ","), Password, RequestReference);
         }
 
         #endregion

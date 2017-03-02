@@ -18,7 +18,7 @@
     {
         #region  Public Methods
 
-        AddBillRequest NewAddBillRequest(BillViewModel model);
+        AddBillRequest NewAddBillRequest(BillViewModel model, string username);
 
         BillViewModel NewBillViewModel(AddBillResponse apiResponse);
 

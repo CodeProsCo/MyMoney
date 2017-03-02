@@ -78,6 +78,16 @@
             return new GetBillResponse { RequestReference = requestReference, Bill = BillDataModelToProxy(bill) };
         }
 
+        public DeleteBillResponse NewDeleteBillResponse(bool success, Guid requestReference)
+        {
+            return new DeleteBillResponse { DeleteSuccess = success, RequestReference = requestReference };
+        }
+
+        public EditBillResponse NewEditBillResponse(BillDataModel model, Guid requestReference)
+        {
+            return new EditBillResponse { Bill = BillDataModelToProxy(model), RequestReference = requestReference};
+        }
+
         #endregion
 
         #region Private Methods

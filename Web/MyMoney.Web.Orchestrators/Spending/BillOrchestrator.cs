@@ -57,7 +57,7 @@
 
             try
             {
-                var request = assembler.NewAddBillRequest(model);
+                var request = assembler.NewAddBillRequest(model, username);
                 var apiResponse = await dataAccess.AddBill(request);
 
                 if (!apiResponse.Success)
