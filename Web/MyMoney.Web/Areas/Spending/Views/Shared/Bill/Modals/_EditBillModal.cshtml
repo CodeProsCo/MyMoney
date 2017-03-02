@@ -1,0 +1,42 @@
+﻿@model MyMoney.ViewModels.Spending.Bills.EditBillViewModel
+@{
+}
+<div class="ui modal" id="edit-bill-modal">
+    <div class="yellow header">
+        <i class="edit icon"></i>
+        Edit Bill
+    </div>
+    <div class="content">
+        @using (Html.BeginForm("Edit", "Bill", FormMethod.Post, new { id = "edit-bill-form" }))
+        {
+            <div class="description">
+                @{
+                    Html.RenderPartial(
+                        "Bill/_BillEditor",
+                        Model.Bill,
+                        new ViewDataDictionary
+                        {
+                            { "CategoryOptions", Model.CategoryOptions },
+                            { "TimePeriodOptions", Model.TimePeriodOptions },
+                        });
+                }
+            </div>
+                    }
+    </div>
+    <div class="actions">
+        <div class="ui red right labeled left floated icon button"
+             id="delete-bill" 
+             data-url="@Url.Action("Delete", "Bill", new { billId = Model.Bill.Id})">
+            Delete
+            <i class="trash icon"></i>
+        </div>
+        <div class="ui black deny right labeled icon button" id="cancel">
+            Cancel
+            <i class="cancel icon"></i>
+        </div>
+        <div class="ui yellow right labeled icon button" id="edit-bill">
+            Edit
+            <i class="edit icon"></i>
+        </div>
+    </div>
+</div>

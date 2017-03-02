@@ -114,6 +114,22 @@ th:hover {
     cursor: pointer !important;
 }
 
+.error-button-container {
+    text-align: center;
+}
+
+    .error-button-container button {
+        background-color: #bd362f !important;
+        color: white !important;
+        border: 1px solid #8f2924 !important;
+        margin-top: 10px !important;
+        min-width: 90px;
+    }
+
+        .error-button-container button:hover {
+        background-color: #8f2924 !important;
+    }
+
 .ct-label {
     fill: white !important;
 }
@@ -121,29 +137,43 @@ th:hover {
 .ct-series-a .ct-line,
 .ct-series-a .ct-point,
 .ct-series-a .ct-slice-donut {
-    stroke: #89F4F3 !important;
+    stroke: rgb(86, 79, 138) !important;
 }
 
 .ct-series-b .ct-line,
-.ct-series-b .ct-point, 
+.ct-series-b .ct-point,
 .ct-series-b .ct-slice-donut {
-    stroke: #79D8D8 !important;
+    stroke: rgb(59, 131, 192) !important;
 }
 
 .ct-series-c .ct-line,
-.ct-series-c .ct-point, 
+.ct-series-c .ct-point,
 .ct-series-c .ct-slice-donut {
-    stroke: #618F93 !important;
+    stroke: rgb(91, 189, 114) !important;
 }
 
 .ct-series-d .ct-line,
-.ct-series-d .ct-point, 
+.ct-series-d .ct-point,
 .ct-series-d .ct-slice-donut {
-    stroke: #335C6B !important;
+    stroke: rgb(224, 123, 83) !important;
 }
 
 .ct-series-e .ct-line,
-.ct-series-e .ct-point, 
+.ct-series-e .ct-point,
 .ct-series-e .ct-slice-donut {
-    stroke: #001626 !important;
+    stroke: rgb(217, 73, 154) !important;
+}
+
+.chartist-tooltip {
+    position: absolute;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+    margin: 1rem 0em;
+    padding: 1em 1em;
+    border-radius: 0.28571429rem;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+}
+
+.selectable:hover {
+    cursor: pointer !important;
 }

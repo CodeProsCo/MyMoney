@@ -16,7 +16,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// Gets a user based on the given email address and password.
+        ///     Gets a user based on the given email address and password.
         /// </summary>
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
@@ -24,7 +24,7 @@
         Task<UserDataModel> GetUser(string email, string password);
 
         /// <summary>
-        /// Registers a user.
+        ///     Registers a user.
         /// </summary>
         /// <param name="model">The registration model.</param>
         /// <returns>The user data model.</returns>

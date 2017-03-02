@@ -3,10 +3,12 @@
 /// <reference path="~/Scripts/Common/MyMoney.Initialize.js" />
 
 toastr.options.closeButton = true;
-toastr.options.timeOut = 0;
-toastr.options.extendedTimeOut = 0;
+toastr.options.timeOut = 60000;
+toastr.options.extendedTimeOut = 120000;
+toastr.options.closeButton = true;
+toastr.options.tapToDismiss = false;
 
-window.showError = function (error) {
+window.showError = function(error) {
     var message = "";
 
     if (typeof (error) === "string") {
@@ -23,9 +25,16 @@ window.showError = function (error) {
         title = error.title;
     }
 
-    toastr.error(message, title);
+    var reportButtonText = myMoney.strings.get("Common", "Button_Report");
+    var buttonContainer = $("<div>").addClass("error-button-container");
+    var reportButton =
+        $("<button>").addClass("ui").addClass("button").prop("id", "report-error").text(reportButtonText);
+
+    buttonContainer.append(reportButton);
+
+    toastr.error(message + buttonContainer.prop("outerHTML"), title);
 };
-window.showSuccess = function (msg) {
+window.showSuccess = function(msg) {
     if (typeof (msg) == "undefined" || msg == null) {
         return;
     }
@@ -34,7 +43,7 @@ window.showSuccess = function (msg) {
 
     toastr.success(msg, title);
 };
-window.showInfo = function (info) {
+window.showInfo = function(info) {
     if (typeof (info) == "undefined" || info == null) {
         return;
     }
@@ -44,7 +53,7 @@ window.showInfo = function (info) {
 
     toastr.info(message, title);
 };
-window.showWarning = function (warning) {
+window.showWarning = function(warning) {
     if (typeof (warning) == "undefined" || warning == null) {
         return;
     }
@@ -54,19 +63,21 @@ window.showWarning = function (warning) {
 
     toastr.warning(message, title);
 };
-window.checkResponseFormat = function (response) {
+window.checkResponseFormat = function(response) {
     if (typeof (response) == "undefined" || response == null) {
         showError("Failed to perform action, response object is null.");
-        return;
+        return false;
     }
 
     if (typeof (response.success) == "undefined" || typeof (response.success) !== "boolean") {
         showError("Failed to perform action, success property on response object is either null or non-boolean.");
-        return;
+        return false;
     }
 
     if (!response.success && (typeof (response.errors) == "undefined" || response.errors.length === 0)) {
         showError("Failed to perform action, success property on response object is false, but the response contains no errors.");
-        return;
+        return false;
     }
+
+    return true;
 };

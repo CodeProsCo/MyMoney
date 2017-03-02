@@ -63,6 +63,10 @@
       <Project>{4FC33969-3E6B-4B9B-8F30-5F47DEF0AC49}</Project>
       <Name>MyMoney.DataModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Resources\MyMoney.Resources.csproj">
+      <Project>{48b3b8d0-7999-4022-b2bb-a77bcb18228b}</Project>
+      <Name>MyMoney.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,21 +1,22 @@
 ﻿@model object
 @{
     var options = (SelectList)ViewData["options"];
+    var value = Model?.ToString() ?? options.AsEnumerable().First().Text;
 }
 
 <div class="field">
     @Html.LabelForModel()
     <div class="ui selection dropdown">
-        @Html.HiddenFor(x => x)
+        <input type="hidden" value="@value" id="@Html.IdForModel()" name="@Html.NameForModel()"/>
         <i class="dropdown icon"></i>
 
-        <div class="default text">@Html.LabelForModel()</div>
+        <div class="text">@value</div>
         <div class="menu">
             @if (options != null)
             {
                 foreach (var item in options.Items)
                 {
-                    <div class="item @(options.SelectedValue == item ? "selected" : string.Empty)" data-value="@item.ToString()">@item.ToString()</div>
+                    <div class="item @(item.Equals(options.AsEnumerable().First().Text) ? "selected" : string.Empty)" data-value="@item.ToString()">@item.ToString()</div>
                 }
             }
         </div>

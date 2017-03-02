@@ -32,15 +32,15 @@
         /// </returns>
         public async Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request)
         {
-            return await Post<GetClaimForUserResponse>(request);
+            return await Get<GetClaimForUserResponse>(request.FormatRequestUri(), request.Username);
         }
 
         /// <summary>
-        /// Sends a request to register the given user.
+        ///     Sends a request to register the given user.
         /// </summary>
         /// <param name="request">The request object.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request)
         {

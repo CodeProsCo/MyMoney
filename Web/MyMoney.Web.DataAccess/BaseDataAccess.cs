@@ -11,17 +11,19 @@
     using DTO.Request;
     using DTO.Response;
 
+    using Helpers.Error;
+
     #endregion
 
     /// <summary>
-    /// The base class for all data access objects.
+    ///     The base class for all data access objects.
     /// </summary>
     public class BaseDataAccess
     {
         #region Fields
 
         /// <summary>
-        /// The client
+        ///     The client
         /// </summary>
         private readonly HttpClient client;
 
@@ -30,7 +32,7 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseDataAccess"/> class.
+        ///     Initializes a new instance of the <see cref="BaseDataAccess" /> class.
         /// </summary>
         protected BaseDataAccess()
         {
@@ -42,12 +44,13 @@
         #region Private Methods
 
         /// <summary>
-        /// Sends a get request.
+        ///     Sends a get request.
         /// </summary>
         /// <typeparam name="T">The response type.</typeparam>
         /// <param name="uri">The request URI.</param>
+        /// <param name="username">The username</param>
         /// <returns>The response object.</returns>
-        protected async Task<T> Get<T>(string uri) where T : BaseResponse
+        protected async Task<T> Get<T>(string uri, string username) where T : BaseResponse
         {
             var response = (T)Activator.CreateInstance(typeof(T));
 
@@ -55,7 +58,9 @@
 
             if (!httpResponse.IsSuccessStatusCode)
             {
-                response.AddError(GetHttpError(httpResponse));
+                var err = ErrorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Get");
+                response.AddError(err);
+
                 return response;
             }
 
@@ -65,7 +70,7 @@
         }
 
         /// <summary>
-        /// Sends a post request.
+        ///     Sends a post request.
         /// </summary>
         /// <typeparam name="T">The response type.</typeparam>
         /// <param name="request">The request object.</param>
@@ -78,7 +83,9 @@
 
             if (!httpResponse.IsSuccessStatusCode)
             {
-                response.AddError(GetHttpError(httpResponse));
+                var err = ErrorHelper.Create(GetHttpError(httpResponse), request.Username, GetType(), "Post");
+                response.AddError(err);
+
                 return response;
             }
 
@@ -88,12 +95,12 @@
         }
 
         /// <summary>
-        /// Gets the HTTP error from the <see cref="HttpResponseMessage"/>.
+        ///     Gets the HTTP error from the <see cref="HttpResponseMessage" />.
         /// </summary>
         /// <param name="response">The response.</param>
         /// <returns>The error message.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Exception thrown if status code is invalid.
+        ///     Exception thrown if status code is invalid.
         /// </exception>
         private static string GetHttpError(HttpResponseMessage response)
         {

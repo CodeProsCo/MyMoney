@@ -10,6 +10,8 @@
 
     using DataAccess.Authentication.Interfaces;
 
+    using Helpers.Error;
+
     using Interfaces;
 
     using ViewModels.Authentication.User;
@@ -96,7 +98,8 @@
             }
             catch (Exception ex)
             {
-                response.AddError(ex);
+                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "GetClaimForUser");
+                response.AddError(err);
             }
 
             return response;
@@ -122,7 +125,8 @@
             }
             catch (Exception ex)
             {
-                response.AddError(ex);
+                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "RegisterUser");
+                response.AddError(err);
             }
 
             return response;

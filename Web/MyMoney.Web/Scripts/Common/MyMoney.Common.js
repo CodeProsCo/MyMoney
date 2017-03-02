@@ -2,9 +2,9 @@
 /// <reference path="~/Scripts/jQuery/jquery.inputmask.bundle.js"/>
 /// <reference path="~/Scripts/jQuery/jquery.tablesorter.js" />
 /// <reference path="~/Scripts/Semantic/semantic.js" />
-
+/// <reference path="~/Scripts/jQuery/jquery.validate.unobtrusive.js" />
 $("#menu-toggle")
-    .click(function (e) {
+    .click(function(e) {
         e.stopPropagation();
 
         $("#sidebar").sidebar("toggle");
@@ -12,7 +12,7 @@ $("#menu-toggle")
 
 
 $("[data-redirect]")
-    .click(function (e) {
+    .click(function(e) {
         e.stopPropagation();
 
         var url = $(this).data("redirect");
@@ -33,6 +33,7 @@ for (var i = 0; i < menuItems.length; i++) {
     }
 }
 
+$.validator.unobtrusive.parse($("form"));
 
 $(".ui.accordion").accordion();
 $(".ui.dropdown").dropdown();
@@ -41,9 +42,11 @@ $("[data-input-mask=currency]").inputmask("currency", { rightAlign: false, prefi
 $("table").tablesorter();
 $("th")
     .on("click",
-        function (e) {
+        function(e) {
             e.stopPropagation();
 
             $(this).siblings().removeClass("highlighted");
             $(this).addClass("highlighted");
         });
+
+$(".modal").modal("setting", "closable", false);

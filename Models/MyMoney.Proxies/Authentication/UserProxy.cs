@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.Proxies.Authentication
+﻿namespace MyMoney.Proxies.Authentication
 {
+    #region Usings
+
+    using System;
+
+    #endregion
+
     public class UserProxy
     {
+        #region  Properties
+
         public DateTime DateOfBirth { get; set; }
 
         public string EmailAddress { get; set; }
@@ -17,5 +19,7 @@ namespace MyMoney.Proxies.Authentication
         public Guid Id { get; set; }
 
         public string LastName { get; set; }
+
+        #endregion
     }
 }

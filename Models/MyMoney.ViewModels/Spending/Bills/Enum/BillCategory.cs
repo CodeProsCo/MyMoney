@@ -1,18 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.ViewModels.Spending.Bills.Enum
+﻿namespace MyMoney.ViewModels.Spending.Bills.Enum
 {
+    #region Usings
+
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
+    #endregion
+
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum BillCategory
     {
-        Utilities = 0,
-        Telephone,
-        Internet,
-        Rent,
-        Insurance,
+        Utilities = 0, 
+
+        Telephone, 
+
+        Internet, 
+
+        Rent, 
+
+        Insurance, 
+
         Vehicle
     }
 }

@@ -1,15 +1,16 @@
 ﻿
 function BillModel(dataObj) {
-	if (typeof(dataObj) == "undefined") {
-		showError("Could not create bill model. Given data object is null");
-	    return undefined;
-	}
+    if (typeof(dataObj) == "undefined" || dataObj == null) {
+        showError("Could not create bill model. Given data object is null");
+        return undefined;
+    }
 
-	this.name = dataObj.name;
-	this.amount = dataObj.amount;
-	this.startDate = new Date(dataObj.startDate);
-	this.category = dataObj.category;
-	this.period = dataObj.reoccuringPeriod;
+    this.name = dataObj.name;
+    this.amount = dataObj.amount;
+    this.startDate = new Date(dataObj.startDate);
+    this.category = dataObj.category;
+    this.period = dataObj.reoccuringPeriod;
+    this.id = dataObj.id;
 
     this.createTableRow = function() {
         var row = $("<tr>");
@@ -27,8 +28,9 @@ function BillModel(dataObj) {
         row.append(amountRow);
         row.addClass("positive");
 
-        return row;
-    }
+        row.data("bill", this.id);
 
+        return row;
+    };
     return this;
 }

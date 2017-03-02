@@ -1,5 +1,6 @@
 ﻿namespace MyMoney.API.Orchestrators.Authentication.Interfaces
 {
+    using System;
     #region Usings
 
     using System.Threading.Tasks;
@@ -17,13 +18,13 @@
         #region  Public Methods
 
         /// <summary>
-        ///     Gets the claim for the given user.
+        /// Registers a user.
         /// </summary>
-        /// <param name="request">The request object.</param>
+        /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request);
-
         Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request);
+
+        Task<GetClaimForUserResponse> GetClaimForUser(string username, string password, Guid requestRef);
 
         #endregion
     }

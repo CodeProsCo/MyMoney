@@ -71,16 +71,16 @@
 </div>
 @section Scripts {
     <script type="text/javascript">
-        
-            $("#register")
-                .click(function(e) {
-                    e.stopPropagation();
 
-                    if ($("#register-form").valid()) {
-                        $("#register-form").submit();
-                    }
+        $("#register")
+            .click(function(e) {
+                e.stopPropagation();
 
-                });
-        })
+                if ($("#register-form").valid()) {
+                    $("#register-form").submit();
+                }
+
+            });
+    })
     </script>
 }

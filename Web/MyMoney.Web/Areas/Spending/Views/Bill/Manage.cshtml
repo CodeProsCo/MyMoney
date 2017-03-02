@@ -2,8 +2,9 @@
 @using Cassette.Stylesheets
 @using Cassette.Views
 @using MyMoney.Resources
+@using MyMoney.ViewModels.Spending.Bills
 @using Newtonsoft.Json
-@model MyMoney.ViewModels.Spending.Bills.ManageBillsViewModel
+@model ManageBillsViewModel
 
 @{
     ViewBag.Title = Bills.Title_ManageBills;
@@ -14,6 +15,15 @@
 }
 
 <div class="ui grid">
+    <div class="twelve wide column">
+        <div class="ui styled segment">
+            <div class="ui block header">
+                <i class="delete calendar icon"></i>
+                @Bills.Title_Bills
+            </div>
+            @{ Html.RenderPartial("Bill/Tables/_BillTable", Model.Bills); }
+        </div>
+    </div>
     <div class="four wide column">
         <div class="ui styled segment">
             <div class="ui block header">
@@ -38,79 +48,11 @@
 
         </div>
     </div>
-    <div class="eight wide column">
-        <div class="ui styled segment">
-            <div class="ui block header">
-                <i class="delete calendar icon"></i>
-                @Bills.Title_Bills
-            </div>
-            <table class="ui celled selectable table" id="bill-table">
-                <thead>
-                    <tr>
-                        <th>@Common.Header_Date</th>
-                        <th>@Common.Header_Description</th>
-                        <th>@Common.Header_Category</th>
-                        <th>@Common.Header_ReocurringPeriod</th>
-                        <th>@Common.Header_Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var bill in Model.Bills)
-                    {
-                        <tr class="@(bill.StartDate.Date == DateTime.Today ? "positive" : string.Empty)">
-                            <td>@bill.StartDate.ToShortDateString()</td>
-                            <td>@bill.Name</td>
-                            <td>@bill.Category</td>
-                            <td>@bill.ReoccuringPeriod</td>
-                            <td class="right aligned">@bill.Amount.ToString("C")</td>
-                        </tr>
-                    }
-
-                    @if (Model.BillCount == 0)
-                    {
-                        <tr>
-                            <td colspan="5">
-                                @Bills.Warning_NoBills
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="5">
-
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>
-    <div class="four wide column">
-        <div class="ui styled segment">
-            <div class="ui block header">
-                <i class="setting icon"></i>
-                @Common.Header_Actions
-            </div>
-            <div class="button-list">
-                <div class="ui secondary button labeled icon" id="add">
-                    @Bills.Button_AddBill
-                    <i class="add icon"></i>
-                </div>
-                <div class="ui secondary button labeled icon disabled" id="edit">
-                    @Bills.Button_EditBill
-                    <i class="edit icon"></i>
-                </div>
-                <div class="ui secondary button labeled icon disabled" id="delete">
-                    @Bills.Button_DeleteBill
-                    <i class="delete icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 @section Modals{
-    @{ Html.RenderPartial("Bill/_AddBillModal", Model.AddModel); }
+    @{ Html.RenderPartial("Bill/Modals/_AddBillModal", Model.AddModel); }
+    @{ Html.RenderPartial("Bill/Modals/_EditBillModal", Model.EditModel); }
 }
 
 @section Scripts{

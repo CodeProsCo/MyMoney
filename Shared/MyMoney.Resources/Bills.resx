@@ -126,14 +126,23 @@
   <data name="Button_EditBill" xml:space="preserve">
     <value>Edit bill</value>
   </data>
+  <data name="Error_CouldNotFindBill" xml:space="preserve">
+    <value>Could not find bill.</value>
+  </data>
   <data name="Heading_BillBreakdown" xml:space="preserve">
     <value>Bill Breakdown</value>
   </data>
   <data name="Label_TotalBills" xml:space="preserve">
     <value>Total Bills:</value>
   </data>
+  <data name="Message_DeleteBill" xml:space="preserve">
+    <value>Your bill was deleted.</value>
+  </data>
   <data name="Message_RecordedBill" xml:space="preserve">
     <value>Your bill was recorded.</value>
+  </data>
+  <data name="Message_UpdatedBill" xml:space="preserve">
+    <value>Your bill has been updated.</value>
   </data>
   <data name="Title_Bills" xml:space="preserve">
     <value>Bills</value>

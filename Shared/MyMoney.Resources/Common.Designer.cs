@@ -61,6 +61,33 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Button_Close {
+            get {
+                return ResourceManager.GetString("Button_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        public static string Button_Confirm {
+            get {
+                return ResourceManager.GetString("Button_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string Button_Report {
+            get {
+                return ResourceManager.GetString("Button_Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error_Title {

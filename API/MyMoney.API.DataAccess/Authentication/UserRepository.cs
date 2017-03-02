@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using System;
     using System.Data.Entity;
     using System.Threading.Tasks;
 
@@ -10,6 +11,8 @@
     using Interfaces;
 
     using JetBrains.Annotations;
+
+    using Resources;
 
     #endregion
 
@@ -23,12 +26,12 @@
         #region  Public Methods
 
         /// <summary>
-        /// Gets a user based on the given email address and password.
+        ///     Gets a user based on the given email address and password.
         /// </summary>
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
         /// <returns>
-        /// The user data model.
+        ///     The user data model.
         /// </returns>
         public async Task<UserDataModel> GetUser(string email, string password)
         {
@@ -37,16 +40,21 @@
                 var result =
                     await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email && x.Password == password);
 
+                if (result == null)
+                {
+                    throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
+                }
+
                 return result;
             }
         }
 
         /// <summary>
-        /// Registers a user.
+        ///     Registers a user.
         /// </summary>
         /// <param name="model">The registration model.</param>
         /// <returns>
-        /// The user data model.
+        ///     The user data model.
         /// </returns>
         public async Task<UserDataModel> RegisterUser(UserDataModel model)
         {

@@ -10,7 +10,7 @@
         @using (Html.BeginForm("Add", "Bill", FormMethod.Post, new { id = "add-bill-form" }))
         {
             <div class="description">
-                @{ Html.RenderPartial("Bill/_AddBillEditor", Model); }
+                @{ Html.RenderPartial("Bill/_BillEditor", Model.Bill, new ViewDataDictionary { { "CategoryOptions", Model.CategoryOptions }, { "TimePeriodOptions", Model.TimePeriodOptions } }); }
             </div>
         }
     </div>

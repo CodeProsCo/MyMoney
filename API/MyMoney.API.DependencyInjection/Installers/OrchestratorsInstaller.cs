@@ -49,7 +49,7 @@
                     .ImplementedBy<BillOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IBillAssembler, BillAssembler>(),
+                        Dependency.OnComponent<IBillAssembler, BillAssembler>(), 
                         Dependency.OnComponent<IBillRepository, BillRepository>()));
         }
 

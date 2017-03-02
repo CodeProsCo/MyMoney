@@ -13,10 +13,16 @@
     {
         #region  Public Methods
 
+        Task<AddBillResponse> AddBill(AddBillRequest request);
+
+        Task<GetBillResponse> GetBill(GetBillRequest request);
+
         Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request);
 
         #endregion
 
-        Task<AddBillResponse> AddBill(AddBillRequest request);
+        Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request);
+
+        Task<EditBillResponse> EditBill(EditBillRequest request);
     }
 }

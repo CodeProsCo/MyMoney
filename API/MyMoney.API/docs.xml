@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyMoney.API</name>
+    </assembly>
+    <members>
+        <member name="T:MyMoney.API.SwaggerConfig">
+            <summary>
+                The configuration class for Swagger.
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.SwaggerConfig.Register">
+            <summary>
+                Registers this instance.
+            </summary>
+        </member>
+        <member name="T:MyMoney.API.WebApiConfig">
+            <summary>
+                The configuration class for the web API.
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+                Registers routes to specified configuration.
+            </summary>
+            <param name="config">The configuration.</param>
+        </member>
+        <member name="T:MyMoney.API.Controllers.Authentication.UserController">
+            <summary>
+                Handles all API requests regarding user authentication.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:MyMoney.API.Controllers.Authentication.UserController.orchestrator">
+            <summary>
+                The orchestrator
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Authentication.UserController.#ctor(MyMoney.API.Orchestrators.Authentication.Interfaces.IUserOrchestrator)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Authentication.UserController" /> class.
+            </summary>
+            <param name="orchestrator">The orchestrator.</param>
+            <exception cref="T:System.ArgumentNullException">Exception thrown if the orchestrator is null.</exception>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Authentication.UserController.GetClaimForUser(System.String,System.String,System.Guid)">
+            <summary>
+                Gets a claim for the given user.
+            </summary>
+            <param name="username">The username.</param>
+            <param name="password">The user's password.</param>
+            <param name="requestRef">The request reference.</param>
+            <returns>The response object.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Authentication.UserController.RegisterUser(MyMoney.DTO.Request.Authentication.RegisterUserRequest)">
+            <summary>
+            Registers a user.
+            </summary>
+            <param name="request">The request object.</param>
+            <returns>The response object.</returns>
+        </member>
+        <member name="T:MyMoney.API.Controllers.Spending.BillController">
+            <summary>
+             Handles all API requests regarding bills.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="F:MyMoney.API.Controllers.Spending.BillController.orchestrator">
+            <summary>
+            The orchestrator
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.#ctor(MyMoney.API.Orchestrators.Spending.Interfaces.IBillOrchestrator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Spending.BillController"/> class.
+            </summary>
+            <param name="orchestrator">The orchestrator.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Exception thrown when the orchestrator is null.
+            </exception>
+        </member>
+        <member name="T:MyMoney.API.WebApiApplication">
+            <summary>
+                The start up class for the API application.
+            </summary>
+            <seealso cref="T:System.Web.HttpApplication" />
+        </member>
+        <member name="M:MyMoney.API.WebApiApplication.Application_Start">
+            <summary>
+                Starts the application.
+            </summary>
+        </member>
+        <member name="T:MyMoney.API.Plumbing.Installers.ControllersInstaller">
+            <summary>
+                The dependency installer for API controllers.
+            </summary>
+            <seealso cref="T:Castle.MicroKernel.Registration.IWindsorInstaller" />
+        </member>
+        <member name="M:MyMoney.API.Plumbing.Installers.ControllersInstaller.Install(Castle.Windsor.IWindsorContainer,Castle.MicroKernel.SubSystems.Configuration.IConfigurationStore)">
+            <summary>
+                Performs the installation in the <see cref="T:Castle.Windsor.IWindsorContainer" />.
+            </summary>
+            <param name="container">The container.</param>
+            <param name="store">The configuration store.</param>
+        </member>
+    </members>
+</doc>

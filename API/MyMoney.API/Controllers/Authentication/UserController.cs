@@ -52,17 +52,24 @@
         /// <summary>
         ///     Gets a claim for the given user.
         /// </summary>
-        /// <param name="request">The request object.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The user's password.</param>
+        /// <param name="requestRef">The request reference.</param>
         /// <returns>The response object.</returns>
         [HttpPost]
-        [Route("get")]
-        public async Task<IHttpActionResult> GetClaimForUser([FromBody] GetClaimForUserRequest request)
+        [Route("get/{username}/{password}/{requestRef:Guid}")]
+        public async Task<IHttpActionResult> GetClaimForUser(string username, string password, Guid requestRef)
         {
-            var response = await orchestrator.GetClaimForUser(request);
+            var response = await orchestrator.GetClaimForUser(username, password, requestRef);
 
             return Ok(response);
         }
 
+        /// <summary>
+        /// Registers a user.
+        /// </summary>
+        /// <param name="request">The request object.</param>
+        /// <returns>The response object.</returns>
         [HttpPost]
         [Route("register")]
         public async Task<IHttpActionResult> RegisterUser([FromBody] RegisterUserRequest request)

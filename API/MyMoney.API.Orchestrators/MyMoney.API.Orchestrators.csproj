@@ -49,9 +49,17 @@
       <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
       <Name>MyMoney.Proxies</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\myMoney.Helpers\MyMoney.Helpers.csproj">
+      <Project>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</Project>
+      <Name>MyMoney.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
       <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
       <Name>MyMoney.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
+      <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
+      <Name>MyMoney.Wrappers</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyMoney.API.Assemblers\MyMoney.API.Assemblers.csproj">
       <Project>{92ce09e3-14dd-469a-8603-f792c54b1ecf}</Project>

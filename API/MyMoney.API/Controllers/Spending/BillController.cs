@@ -12,11 +12,31 @@
 
     #endregion
 
+    /// <summary>
+    ///  Handles all API requests regarding bills.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     [RoutePrefix("spending/bills")]
     public class BillController : ApiController
     {
+        #region Fields
+
+        /// <summary>
+        /// The orchestrator
+        /// </summary>
         private readonly IBillOrchestrator orchestrator;
 
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillController"/> class.
+        /// </summary>
+        /// <param name="orchestrator">The orchestrator.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown when the orchestrator is null.
+        /// </exception>
         public BillController(IBillOrchestrator orchestrator)
         {
             if (orchestrator == null)
@@ -27,22 +47,37 @@
             this.orchestrator = orchestrator;
         }
 
+        #endregion
+
+        #region  Public Methods
+
         [HttpPost]
-        [Route("user")]
-        public async Task<IHttpActionResult> GetBillInformation([FromBody] GetBillInformationRequest request)
+        [Route("add")]
+        public async Task<IHttpActionResult> AddBill([FromBody] AddBillRequest request)
+        {
+            var response = await orchestrator.AddBill(request, request.Username);
+
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("user/{userId:Guid}/{requestRef:Guid}/{username}")]
+        public async Task<IHttpActionResult> GetBillInformation([FromUri] GetBillInformationRequest request)
         {
             var response = await orchestrator.GetBillInformation(request);
 
             return Ok(response);
         }
 
-        [HttpPost]
-        [Route("add")]
-        public async Task<IHttpActionResult> AddBill([FromBody] AddBillRequest request)
+        [HttpGet]
+        [Route("get/{billId:Guid}/{requestRef:Guid}/{username}")]
+        public async Task<IHttpActionResult> GetBill([FromUri] GetBillRequest request)
         {
-            var response = await orchestrator.AddBill(request);
+            var response = await orchestrator.GetBill(request);
 
             return Ok(response);
         }
+
+        #endregion
     }
 }

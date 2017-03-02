@@ -1,9 +1,14 @@
 ﻿namespace MyMoney.ViewModels.Spending.Bills
 {
+    #region Usings
+
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web.Mvc;
 
     using Enum;
+
+    #endregion
 
     public class ManageBillsViewModel
     {
@@ -13,11 +18,13 @@
 
         public IEnumerable<IGrouping<string, BillViewModel>> BillCategories => Bills.GroupBy(x => x.Category);
 
-        public IEnumerable<IGrouping<TimePeriod, BillViewModel>> BillPeriods => Bills.GroupBy(x => x.ReoccuringPeriod);
-
         public int BillCount => Bills?.Count ?? 0;
 
+        public IEnumerable<IGrouping<TimePeriod, BillViewModel>> BillPeriods => Bills.GroupBy(x => x.ReoccuringPeriod);
+
         public IList<BillViewModel> Bills { get; set; }
+
+        public EditBillViewModel EditModel { get; set; }
 
         #endregion
     }

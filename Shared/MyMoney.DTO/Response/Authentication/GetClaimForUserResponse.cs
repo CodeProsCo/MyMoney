@@ -2,8 +2,6 @@
 {
     #region Usings
 
-    using System;
-
     using Proxies.Authentication;
 
     #endregion
@@ -16,8 +14,6 @@
     {
         #region  Properties
 
-        public UserProxy User { get; set; }
-
         /// <summary>
         ///     Gets or sets a value indicating whether [login success].
         /// </summary>
@@ -26,6 +22,7 @@
         /// </value>
         public bool LoginSuccess { get; set; }
 
+        public UserProxy User { get; set; }
 
         #endregion
     }

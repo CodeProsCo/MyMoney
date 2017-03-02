@@ -15,6 +15,8 @@
 
     using Web.Controllers;
 
+    using Wrappers;
+
     #endregion
 
     [RouteArea("Spending", AreaPrefix = "spending")]
@@ -47,13 +49,57 @@
         [HttpPost]
         [Route("add")]
         [AjaxOnly]
-        public async Task<ActionResult> Add(AddBillViewModel model)
+        public async Task<ActionResult> Add(BillViewModel model)
         {
-            var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
+            if (!ModelState.IsValid)
+            {
+                return InvalidModelState(ModelState);
+            }
 
-            var response = await orchestrator.AddBill(model, Guid.Parse(userIdClaim.Value));
+            var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
+            model.Id = Guid.Parse(userIdClaim.Value);
+
+            var response =
+                await orchestrator.AddBill(model, GetUserClaim(ClaimTypes.Email).Value);
 
             return JsonResponse(response);
+        }
+
+        [HttpGet]
+        [Route("delete/{billId:Guid}")]
+        [AjaxOnly]
+        public async Task<ActionResult> Delete(Guid billId)
+        {
+            var response = await orchestrator.DeleteBill(billId, GetUserClaim(ClaimTypes.Email).Value);
+
+            return JsonResponse(response);
+        }
+
+        [HttpPost]
+        [Route("edit")]
+        [AjaxOnly]
+        public async Task<ActionResult> Edit(BillViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return InvalidModelState(ModelState);
+            }
+
+            var response = await orchestrator.EditBill(model, GetUserClaim(ClaimTypes.Email).Value);
+
+            return JsonResponse(response);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        [Route("get/{billId:Guid}")]
+        public async Task<ActionResult> Get(Guid billId)
+        {
+            var modelWrapper = await orchestrator.GetBill(billId, GetUserClaim(ClaimTypes.Email).Value);
+
+            modelWrapper.Errors = null;
+
+            return JsonResponse(modelWrapper);
         }
 
         [HttpGet]
@@ -62,7 +108,9 @@
         {
             var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
 
-            var modelWrapper = await orchestrator.GetBillInformation(Guid.Parse(userIdClaim.Value));
+            var modelWrapper =
+                await
+                orchestrator.GetBillInformation(Guid.Parse(userIdClaim.Value), GetUserClaim(ClaimTypes.Email).Value);
 
             AddModelErrors(modelWrapper.Errors);
             AddModelWarnings(modelWrapper.Warnings);

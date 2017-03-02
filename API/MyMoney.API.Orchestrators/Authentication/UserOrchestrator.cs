@@ -12,6 +12,8 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
+    using Helpers.Error;
+
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -69,31 +71,32 @@
 
         #region  Public Methods
 
-        /// <summary>
-        ///     Gets the claim for the given user.
-        /// </summary>
-        /// <param name="request">The request object.</param>
-        /// <returns>
-        ///     The response object.
-        /// </returns>
-        public async Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request)
+        public async Task<GetClaimForUserResponse> GetClaimForUser(string username, string password, Guid requestRef)
         {
             var response = new GetClaimForUserResponse();
 
             try
             {
-                var userDataModel = await repository.GetUser(request.EmailAddress, request.Password);
+                var userDataModel = await repository.GetUser(username, password);
 
-                response = assembler.NewGetClaimForUserResponse(userDataModel, request.RequestReference);
+                response = assembler.NewGetClaimForUserResponse(userDataModel, requestRef);
             }
             catch (Exception ex)
             {
-                response.AddError(ex);
+                var err = ErrorHelper.Create(ex, username, GetType(), "GetClaimForUser");
+                response.AddError(err);
             }
 
             return response;
         }
 
+        /// <summary>
+        /// Registers a user.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request)
         {
             var response = new RegisterUserResponse();
@@ -107,7 +110,8 @@
             }
             catch (Exception ex)
             {
-                response.AddError(ex);
+                var err = ErrorHelper.Create(ex, request.EmailAddress, GetType(), "RegisterUser");
+                response.AddError(err);
             }
 
             return response;

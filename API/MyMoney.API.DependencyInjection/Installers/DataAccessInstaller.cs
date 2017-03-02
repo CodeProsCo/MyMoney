@@ -6,10 +6,10 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using MyMoney.API.DataAccess.Authentication;
-    using MyMoney.API.DataAccess.Authentication.Interfaces;
-    using MyMoney.API.DataAccess.Spending;
-    using MyMoney.API.DataAccess.Spending.Interfaces;
+    using DataAccess.Authentication;
+    using DataAccess.Authentication.Interfaces;
+    using DataAccess.Spending;
+    using DataAccess.Spending.Interfaces;
 
     #endregion
 

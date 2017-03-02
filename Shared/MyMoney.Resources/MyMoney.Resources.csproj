@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Authentication.resx</DependentUpon>
+    </Compile>
     <Compile Include="Bills.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -58,6 +63,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Authentication.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Authentication.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bills.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Bills.Designer.cs</LastGenOutput>

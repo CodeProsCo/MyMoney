@@ -45,6 +45,10 @@
       <Project>{7CEDB9FF-F121-49B0-A9EA-14C34CAB01F7}</Project>
       <Name>MyMoney.ViewModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\myMoney.Helpers\MyMoney.Helpers.csproj">
+      <Project>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</Project>
+      <Name>MyMoney.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
       <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
       <Name>MyMoney.DTO</Name>
@@ -61,6 +65,9 @@
       <Project>{E9F725D5-8F4D-492C-8B10-1F207CE399FD}</Project>
       <Name>MyMoney.Web.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

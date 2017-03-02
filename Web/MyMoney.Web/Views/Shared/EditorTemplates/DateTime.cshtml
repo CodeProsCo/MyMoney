@@ -1,6 +1,16 @@
-﻿@model DateTime
+﻿@model DateTime?
 @{
-    var date = Model != DateTime.MinValue ? Model.ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd");
+    string date;
+
+    if (!Model.HasValue || Model.Value == DateTime.MinValue)
+    {
+        date = DateTime.Now.ToString("yyyy-MM-dd");
+    }
+    else
+    {
+        date = Model.Value.ToString("yyyy-MM-dd");
+    }
+
 }
 
 <div class="field">

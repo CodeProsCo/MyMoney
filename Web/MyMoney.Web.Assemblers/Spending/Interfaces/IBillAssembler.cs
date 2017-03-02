@@ -12,21 +12,30 @@
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="BillAssembler"/> class.
+    ///     Interface for the <see cref="BillAssembler" /> class.
     /// </summary>
     public interface IBillAssembler
     {
         #region  Public Methods
+
+        AddBillRequest NewAddBillRequest(BillViewModel model);
+
+        BillViewModel NewBillViewModel(AddBillResponse apiResponse);
+
+        BillViewModel NewBillViewModel(GetBillResponse apiResponse);
 
         /// <summary>
         ///     Assembles an instance of the <see cref="GetBillInformationRequest" /> class based on the given
         ///     <see cref="string" />.
         /// </summary>
         /// <param name="email">The user's email address.</param>
+        /// <param name="username"></param>
         /// <returns>
         ///     The request object.
         /// </returns>
-        GetBillInformationRequest NewGetBillInformationRequest(Guid email);
+        GetBillInformationRequest NewGetBillInformationRequest(Guid email, string username);
+
+        GetBillRequest NewGetBillRequest(Guid billId, string username);
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ManageBillsViewModel" /> class based on the given
@@ -40,8 +49,10 @@
 
         #endregion
 
-        AddBillRequest NewAddBillRequest(AddBillViewModel model, Guid userId);
+        DeleteBillRequest NewDeleteBillRequest(Guid billId, string username);
 
-        BillViewModel NewBillViewModel(AddBillResponse apiResponse);
+        EditBillRequest NewEditBillRequest(BillViewModel model, string username);
+
+        BillViewModel NewBillViewModel(EditBillResponse apiResponse);
     }
 }

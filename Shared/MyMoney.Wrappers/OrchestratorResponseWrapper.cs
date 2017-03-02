@@ -2,7 +2,6 @@
 {
     #region Usings
 
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -14,7 +13,7 @@
 
         public OrchestratorResponseWrapper()
         {
-            Errors = new List<string>();
+            Errors = new List<ResponseErrorWrapper>();
             Warnings = new List<string>();
         }
 
@@ -22,11 +21,11 @@
 
         #region  Properties
 
-        public IList<string> Errors { get; set; }
+        public IList<ResponseErrorWrapper> Errors { get; set; }
 
         public T Model { get; set; }
 
-        public bool Success => !Errors.Any();
+        public bool Success => !Errors?.Any() ?? true;
 
         public IList<string> Warnings { get; set; }
 
@@ -34,28 +33,12 @@
 
         #region  Public Methods
 
-        public void AddError(string error)
+        public void AddError(ResponseErrorWrapper error)
         {
             Errors.Add(error);
         }
 
-        public void AddError(Exception ex)
-        {
-            while (true)
-            {
-                Errors.Add(ex.Message);
-
-                if (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                    continue;
-                }
-
-                break;
-            }
-        }
-
-        public void AddErrors(IList<string> errors)
+        public void AddErrors(IEnumerable<ResponseErrorWrapper> errors)
         {
             foreach (var error in errors)
             {

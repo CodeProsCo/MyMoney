@@ -61,12 +61,12 @@
         }
 
         /// <summary>
-        /// Assembles an instance of the <see cref="RegisterUserRequest" /> class based on the given
-        /// <see cref="RegisterViewModel" />.
+        ///     Assembles an instance of the <see cref="RegisterUserRequest" /> class based on the given
+        ///     <see cref="RegisterViewModel" />.
         /// </summary>
         /// <param name="model">The register model.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         public RegisterUserRequest NewRegisterUserRequest(RegisterViewModel model)
         {

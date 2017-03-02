@@ -2,20 +2,21 @@
 /// <reference path="MyMoney.ErrorHandling.js"/>
 
 
-window.AjaxResponse = function (callback) {
+window.AjaxResponse = function(callback) {
     if (typeof (callback) !== "function") {
         showError("Given callback is not a function.");
     }
 
-    var handler = function (data) {
-        checkResponseFormat(data);
+    var handler = function(data) {
+        if (checkResponseFormat(data)) {
 
-        if (!data.success) {
-            showError(data.errors[0]);
-            return;
+            if (!data.success) {
+                showError(data.errors[0]);
+                return;
+            }
+
+            callback(data);
         }
-
-        callback(data);
     };
     return handler;
 };

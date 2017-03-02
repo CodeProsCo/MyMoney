@@ -3,27 +3,44 @@
     #region Usings
 
     using System.Threading.Tasks;
-    using System.Web;
 
     using DTO.Request.Spending;
     using DTO.Response.Spending;
 
     using Interfaces;
 
+    using JetBrains.Annotations;
+
     #endregion
 
+    [UsedImplicitly]
     public class BillDataAccess : BaseDataAccess, IBillDataAccess
     {
         #region  Public Methods
 
-        public async Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request)
-        {
-            return await Post<GetBillInformationResponse>(request);
-        }
-
         public async Task<AddBillResponse> AddBill(AddBillRequest request)
         {
             return await Post<AddBillResponse>(request);
+        }
+
+        public async Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request)
+        {
+            return await Post<DeleteBillResponse>(request);
+        }
+
+        public async Task<EditBillResponse> EditBill(EditBillRequest request)
+        {
+            return await Post<EditBillResponse>(request);
+        }
+
+        public async Task<GetBillResponse> GetBill(GetBillRequest request)
+        {
+            return await Get<GetBillResponse>(request.FormatRequestUri(), request.Username);
+        }
+
+        public async Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request)
+        {
+            return await Get<GetBillInformationResponse>(request.FormatRequestUri(), request.Username);
         }
 
         #endregion

@@ -5,6 +5,8 @@
     using System;
     using System.Collections.Generic;
 
+    using Wrappers;
+
     #endregion
 
     public class BaseResponse
@@ -13,7 +15,7 @@
 
         protected BaseResponse()
         {
-            Errors = new List<string>();
+            Errors = new List<ResponseErrorWrapper>();
             Warnings = new List<string>();
         }
 
@@ -21,7 +23,7 @@
 
         #region  Properties
 
-        public IList<string> Errors { get; }
+        public IList<ResponseErrorWrapper> Errors { get; }
 
         public Guid RequestReference { get; set; }
 
@@ -33,23 +35,7 @@
 
         #region  Public Methods
 
-        public void AddError(Exception ex)
-        {
-            while (true)
-            {
-                Errors.Add(ex.Message);
-
-                if (ex.InnerException != null)
-                {
-                    ex = ex.InnerException;
-                    continue;
-                }
-
-                break;
-            }
-        }
-
-        public void AddError(string error)
+        public void AddError(ResponseErrorWrapper error)
         {
             Errors.Add(error);
         }

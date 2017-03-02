@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.API.Orchestrators.Spending
+﻿namespace MyMoney.API.Orchestrators.Spending
 {
+    #region Usings
+
+    using System;
+    using System.Threading.Tasks;
+
     using Assemblers.Spending.Interfaces;
 
     using DataAccess.Spending.Interfaces;
@@ -13,17 +12,45 @@ namespace MyMoney.API.Orchestrators.Spending
     using DTO.Request.Spending;
     using DTO.Response.Spending;
 
+    using Helpers.Error;
+
     using Interfaces;
 
     using JetBrains.Annotations;
 
+    #endregion
+
+    /// <summary>
+    /// Handles actions regarding bills.
+    /// </summary>
+    /// <seealso cref="MyMoney.API.Orchestrators.Spending.Interfaces.IBillOrchestrator" />
     [UsedImplicitly]
     public class BillOrchestrator : IBillOrchestrator
     {
-        public readonly IBillAssembler assembler;
+        #region Fields
 
-        public readonly IBillRepository repository;
+        /// <summary>
+        /// The assembler
+        /// </summary>
+        private readonly IBillAssembler assembler;
 
+        /// <summary>
+        /// The repository
+        /// </summary>
+        private readonly IBillRepository repository;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillOrchestrator"/> class.
+        /// </summary>
+        /// <param name="assembler">The assembler.</param>
+        /// <param name="repository">The repository.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown when either the assembler or repository are null.
+        /// </exception>
         public BillOrchestrator(IBillAssembler assembler, IBillRepository repository)
         {
             if (assembler == null)
@@ -40,27 +67,19 @@ namespace MyMoney.API.Orchestrators.Spending
             this.repository = repository;
         }
 
-        #region Implementation of IBillOrchestrator
+        #endregion
 
-        public async Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request)
-        {
-            var response = new GetBillInformationResponse();
+        #region  Public Methods
 
-            try
-            {
-                var bills = await repository.BetBillsForUser(request.UserId);
-
-                response = assembler.NewGetBillInformationResponse(bills, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                response.AddError(ex);
-            }
-
-            return response;
-        }
-
-        public async Task<AddBillResponse> AddBill(AddBillRequest request)
+        /// <summary>
+        /// Adds a bill.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
+        public async Task<AddBillResponse> AddBill(AddBillRequest request, string username)
         {
             var response = new AddBillResponse();
 
@@ -73,7 +92,57 @@ namespace MyMoney.API.Orchestrators.Spending
             }
             catch (Exception ex)
             {
-                response.AddError(ex);
+                var err = ErrorHelper.Create(ex, username, GetType(), "AddBill");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        ///     Gets a user's bill information.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>The response object.</returns>
+        public async Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request)
+        {
+            var response = new GetBillInformationResponse();
+
+            try
+            {
+                var bills = await repository.GetBillsForUser(request.UserId);
+
+                response = assembler.NewGetBillInformationResponse(bills, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(
+                    ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "GetBillInformation");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Gets the bill.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>The response object.</returns>
+        public async Task<GetBillResponse> GetBill(GetBillRequest request)
+        {
+            var response = new GetBillResponse();
+
+            try
+            {
+                var bill = await repository.GetBill(request.BillId);
+
+                response = assembler.NewGetBillResponse(bill, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "GetBill");
+                response.AddError(err);
             }
 
             return response;

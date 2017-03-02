@@ -38,18 +38,29 @@
     <Compile Include="Request\Authentication\GetClaimForUserRequest.cs" />
     <Compile Include="Request\Authentication\RegisterUserRequest.cs" />
     <Compile Include="Request\BaseRequest.cs" />
+    <Compile Include="Request\Interfaces\IGetRequest.cs" />
     <Compile Include="Request\Spending\AddBillRequest.cs" />
+    <Compile Include="Request\Spending\DeleteBillRequest.cs" />
+    <Compile Include="Request\Spending\EditBillRequest.cs" />
     <Compile Include="Request\Spending\GetBillInformationRequest.cs" />
+    <Compile Include="Request\Spending\GetBillRequest.cs" />
     <Compile Include="Response\Authentication\GetClaimForUserResponse.cs" />
     <Compile Include="Response\Authentication\RegisterUserResponse.cs" />
     <Compile Include="Response\BaseResponse.cs" />
     <Compile Include="Response\Spending\AddBillResponse.cs" />
+    <Compile Include="Response\Spending\DeleteBillResponse.cs" />
+    <Compile Include="Response\Spending\EditBillResponse.cs" />
     <Compile Include="Response\Spending\GetBillInformationResponse.cs" />
+    <Compile Include="Response\Spending\GetBillResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
       <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
       <Name>MyMoney.Proxies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
+      <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
+      <Name>MyMoney.Wrappers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

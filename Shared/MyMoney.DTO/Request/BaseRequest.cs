@@ -35,6 +35,8 @@
         /// </value>
         public Guid RequestReference { get; set; }
 
+        public string Username { get; set; }
+
         /// <summary>
         ///     Gets the action.
         /// </summary>

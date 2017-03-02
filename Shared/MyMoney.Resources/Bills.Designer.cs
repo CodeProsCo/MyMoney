@@ -88,6 +88,15 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find bill..
+        /// </summary>
+        public static string Error_CouldNotFindBill {
+            get {
+                return ResourceManager.GetString("Error_CouldNotFindBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bill Breakdown.
         /// </summary>
         public static string Heading_BillBreakdown {
@@ -106,11 +115,29 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your bill was deleted..
+        /// </summary>
+        public static string Message_DeleteBill {
+            get {
+                return ResourceManager.GetString("Message_DeleteBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your bill was recorded..
         /// </summary>
         public static string Message_RecordedBill {
             get {
                 return ResourceManager.GetString("Message_RecordedBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your bill has been updated..
+        /// </summary>
+        public static string Message_UpdatedBill {
+            get {
+                return ResourceManager.GetString("Message_UpdatedBill", resourceCulture);
             }
         }
         

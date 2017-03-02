@@ -1,10 +1,12 @@
 ﻿namespace MyMoney.DTO.Request.Authentication
 {
+    using Interfaces;
+
     /// <summary>
     ///     Request used for obtaining user claim information from the database.
     /// </summary>
     /// <seealso cref="BaseRequest" />
-    public class GetClaimForUserRequest : BaseRequest
+    public class GetClaimForUserRequest : BaseRequest, IGetRequest
     {
         #region Constructor
 
@@ -12,7 +14,7 @@
         ///     Initializes a new instance of the <see cref="GetClaimForUserRequest" /> class.
         /// </summary>
         public GetClaimForUserRequest()
-            : base("auth/user/get")
+            : base("auth/user/get/{0}/{1}/{2}")
         {
         }
 
@@ -35,6 +37,15 @@
         ///     The password.
         /// </value>
         public string Password { get; set; }
+
+        #endregion
+
+        #region Implementation of IGetRequest
+
+        public string FormatRequestUri()
+        {
+            return string.Format(GetAction(), EmailAddress, Password, RequestReference);
+        }
 
         #endregion
     }

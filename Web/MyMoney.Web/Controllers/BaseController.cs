@@ -12,6 +12,8 @@
     using System.Web;
     using System.Web.Mvc;
 
+    using Helpers.Error;
+
     using Microsoft.Owin.Security;
 
     using Newtonsoft.Json;
@@ -33,11 +35,11 @@
         ///     Adds errors to the model.
         /// </summary>
         /// <param name="errors">The errors.</param>
-        public void AddModelErrors(IEnumerable<string> errors)
+        public void AddModelErrors(IEnumerable<ResponseErrorWrapper> errors)
         {
             foreach (var error in errors)
             {
-                ModelState.AddModelError(string.Empty, error);
+                ModelState.AddModelError(string.Empty, error.Message);
             }
         }
 
@@ -115,6 +117,27 @@
                                        }), 
                            ContentEncoding = Encoding.UTF8
                        };
+        }
+
+        protected ContentResult InvalidModelState(ModelStateDictionary state)
+        {
+            var response = new OrchestratorResponseWrapper<bool>();
+
+            foreach (var modelState in state.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    var errorWrapper = ErrorHelper.Create(
+                        error.ErrorMessage,
+                        GetUserClaim(ClaimTypes.Email).Value,
+                        GetType(),
+                        "InvalidModelState");
+
+                    response.AddError(errorWrapper);
+                }
+            }
+
+            return JsonResponse(response);
         }
 
         #endregion

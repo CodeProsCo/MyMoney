@@ -22,7 +22,7 @@
     #endregion
 
     /// <summary>
-    /// Assembles requests and view models regarding bills.
+    ///     Assembles requests and view models regarding bills.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Assemblers.Spending.Interfaces.IBillAssembler" />
     [UsedImplicitly]
@@ -30,26 +30,62 @@
     {
         #region  Public Methods
 
-        /// <summary>
-        /// Assembles an instance of the <see cref="GetBillInformationRequest" /> class based on the given
-        /// <see cref="Guid" />.
-        /// </summary>
-        /// <param name="id">The user's email address.</param>
-        /// <returns>
-        /// The request object.
-        /// </returns>
-        public GetBillInformationRequest NewGetBillInformationRequest(Guid id)
+        public AddBillRequest NewAddBillRequest(BillViewModel model)
         {
-            return new GetBillInformationRequest { UserId = id };
+            return new AddBillRequest { Bill = BillViewModelToProxy(model) };
+        }
+
+        public BillViewModel NewBillViewModel(AddBillResponse apiResponse)
+        {
+            return BillProxyToViewModel(apiResponse.Bill);
+        }
+
+        public BillViewModel NewBillViewModel(GetBillResponse apiResponse)
+        {
+            return BillProxyToViewModel(apiResponse.Bill);
+        }
+
+        public BillViewModel NewBillViewModel(EditBillResponse apiResponse)
+        {
+            return BillProxyToViewModel(apiResponse.Bill);
+        }
+
+        public DeleteBillRequest NewDeleteBillRequest(Guid billId, string username)
+        {
+            return new DeleteBillRequest { BillId = billId, Username = username };
+        }
+
+        public EditBillRequest NewEditBillRequest(BillViewModel model, string username)
+        {
+            return new EditBillRequest { Username = username, Bill = BillViewModelToProxy(model) };
         }
 
         /// <summary>
-        /// Assembles an instance of the <see cref="ManageBillsViewModel" /> class based on the given
-        /// <see cref="GetBillInformationResponse" />.
+        ///     Assembles an instance of the <see cref="GetBillInformationRequest" /> class based on the given
+        ///     <see cref="Guid" />.
+        /// </summary>
+        /// <param name="id">The user identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        public GetBillInformationRequest NewGetBillInformationRequest(Guid id, string username)
+        {
+            return new GetBillInformationRequest { UserId = id, Username = username};
+        }
+
+        public GetBillRequest NewGetBillRequest(Guid billId, string username)
+        {
+            return new GetBillRequest { BillId = billId, Username = username };
+        }
+
+        /// <summary>
+        ///     Assembles an instance of the <see cref="ManageBillsViewModel" /> class based on the given
+        ///     <see cref="GetBillInformationResponse" />.
         /// </summary>
         /// <param name="apiResponse">The response object.</param>
         /// <returns>
-        /// The view model.
+        ///     The view model.
         /// </returns>
         public ManageBillsViewModel NewManageBillsViewModel(GetBillInformationResponse apiResponse)
         {
@@ -58,53 +94,68 @@
                 AddModel =
                                new AddBillViewModel
                                {
-                                   StartDate = DateTime.Now,
-                                   TimePeriodOptions = new SelectList(Enum.GetNames(typeof(TimePeriod))),
-                                   CategoryOptions = new SelectList(Enum.GetNames(typeof(BillCategory)).OrderBy(x => x))
+                                   Bill =
+                                           new BillViewModel
+                                           {
+                                               StartDate =
+                                                       DateTime.Now
+                                           },
+                                   TimePeriodOptions =
+                                           new SelectList(
+                                           Enum.GetNames(typeof(TimePeriod))),
+                                   CategoryOptions =
+                                           new SelectList(
+                                           Enum.GetNames(typeof(BillCategory))
+                                           .OrderBy(x => x))
                                },
-                Bills =
-                               apiResponse.Bills.Select(
-                                   x =>
-                                   new BillViewModel
-                                   {
-                                       Amount = x.Amount,
-                                       Category = x.Category.Name,
-                                       Name = x.Name,
-                                       ReoccuringPeriod =
-                                               (TimePeriod)x.ReocurringPeriod,
-                                       StartDate = x.StartDate
-                                   }).ToList()
+                EditModel =
+                               new EditBillViewModel
+                               {
+                                   Bill =
+                                           new BillViewModel
+                                           {
+                                               StartDate =
+                                                       DateTime.Now
+                                           },
+                                   TimePeriodOptions =
+                                           new SelectList(
+                                           Enum.GetNames(typeof(TimePeriod))),
+                                   CategoryOptions =
+                                           new SelectList(
+                                           Enum.GetNames(typeof(BillCategory))
+                                           .OrderBy(x => x))
+                               },
+                Bills = apiResponse.Bills.Select(BillProxyToViewModel).ToList()
             };
         }
 
-        public AddBillRequest NewAddBillRequest(AddBillViewModel model, Guid userId)
-        {
-            return new AddBillRequest
-            {
-                Bill = new BillProxy
-                {
-                    Amount = model.Amount,
-                    Category = new CategoryProxy
-                    {
-                        Name = model.Category
-                    },
-                    Name = model.Name,
-                    ReocurringPeriod = (int)model.ReoccuringPeriod,
-                    StartDate = model.StartDate,
-                    UserId = userId
-                }
-            };
-        }
+        #endregion
 
-        public BillViewModel NewBillViewModel(AddBillResponse apiResponse)
+        #region Private Methods
+
+        private static BillViewModel BillProxyToViewModel(BillProxy proxy)
         {
             return new BillViewModel
             {
-                Amount = apiResponse.Bill.Amount,
-                Category = apiResponse.Bill.Category.Name,
-                Name = apiResponse.Bill.Name,
-                ReoccuringPeriod = (TimePeriod)apiResponse.Bill.ReocurringPeriod,
-                StartDate = apiResponse.Bill.StartDate
+                Amount = proxy.Amount,
+                Category = proxy.Category.Name,
+                Name = proxy.Name,
+                ReoccuringPeriod = (TimePeriod)proxy.ReocurringPeriod,
+                StartDate = proxy.StartDate,
+                Id = proxy.Id
+            };
+        }
+
+        private static BillProxy BillViewModelToProxy(BillViewModel model)
+        {
+            return new BillProxy
+            {
+                Amount = model.Amount,
+                Category = new CategoryProxy { Name = model.Category },
+                Name = model.Name,
+                ReocurringPeriod = (int)model.ReoccuringPeriod,
+                StartDate = model.StartDate,
+                UserId = model.Id
             };
         }
 

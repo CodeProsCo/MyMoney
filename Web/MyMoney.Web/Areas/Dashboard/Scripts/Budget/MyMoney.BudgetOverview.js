@@ -13,7 +13,7 @@ $.ajax(url,
     async: true,
     dataType: "json",
     success: callback,
-    error: function () {
+    error: function() {
         var errMsg = myMoney.strings.get("Spending", "Error_FailedToLoadSpendingChart");
 
         var error = {

@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.DataModels.Spending
+﻿namespace MyMoney.DataModels.Spending
 {
+    #region Usings
+
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common;
 
+    #endregion
+
     [Table("Bill")]
     public class BillDataModel
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
-
-        public DateTime StartDate { get; set; }
+        #region  Properties
 
         public double Amount { get; set; }
 
@@ -28,8 +21,18 @@ namespace MyMoney.DataModels.Spending
 
         public Guid CategoryId { get; set; }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
         public int ReocurringPeriod { get; set; }
 
+        public DateTime StartDate { get; set; }
+
         public Guid UserId { get; set; }
+
+        #endregion
     }
 }

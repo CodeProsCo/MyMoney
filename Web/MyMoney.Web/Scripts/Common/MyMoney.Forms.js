@@ -4,8 +4,8 @@
 /// <reference path="~/Scripts/jQuery/jquery.validate.js"/>
 /// <reference path="~/Scripts/jQuery/jquery.validate.unobtrusive.js"/>
 
-window.submitForm = function (formId, successCallback, errorCallback) {
-    var error = { message: "" };
+
+window.submitForm = function(formId, successCallback, errorCallback) {
     var form = $(formId);
 
     if (!form.valid()) {
@@ -25,7 +25,7 @@ window.submitForm = function (formId, successCallback, errorCallback) {
     }
 
     if (typeof (errorCallback) == "undefined" || errorCallback == null) {
-        errorCallback = function () {
+        errorCallback = function() {
             var errMsg = myMoney.strings.get("Common", "Error_FailedToPerformAction");
 
             showError(errMsg);
