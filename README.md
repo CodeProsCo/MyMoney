@@ -1,6 +1,8 @@
 # MyMoney
 A personal finance planner written in .NET.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Libraries Used
 ### JavaScript & CSS
 - [Semantic UI](https://github.com/semantic-org/semantic-ui/)
