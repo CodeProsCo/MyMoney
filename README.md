@@ -2,17 +2,16 @@
 A personal finance planner written in .NET.
 
 ## JS Libraries Used
-- Semantic UI
-- jQuery
-- IntroJS
-- Chartist
-- Toastr
+- [Semantic UI](https://github.com/semantic-org/semantic-ui/)
+- [jQuery]https://github.com/jquery/jquery)
+- [IntroJS](https://github.com/usablica/intro.js/)
+- [Chartist](https://github.com/gionkunz/chartist-js)
+- [Toastr](https://github.com/CodeSeven/toastr)
 
 ## .NET Libraries Used
-- Cassette.Aspnet (For front-end resource bundling)
-- Castle.Windsor (For dependency injection)
-- JetBrains.Annotations (For preventing needless style errors)
-- Newtonsoft.Json (For parsing and serializing JSON)
-- EntityFramework (For interacting to the database)
-- Swashbuckle.Core (For documenting the API)
-- 
+- [Cassette.Aspnet](https://github.com/andrewdavey/cassette)
+- [Castle.Windsor](https://github.com/castleproject/Windsor)
+- [JetBrains.Annotations](https://www.nuget.org/packages/JetBrains.Annotations)
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+- [EntityFramework](https://github.com/aspnet/EntityFramework6)
+- [Swashbuckle.Core](https://github.com/domaindrivendev/Swashbuckle)
