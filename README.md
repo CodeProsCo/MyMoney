@@ -6,12 +6,20 @@ Explained below is the structure of the Visual Studio project.
 ### API
 The API folder contains the following projects:
 - MyMoney.API.Assemblers.Tests
+ - Contains unit tests for the MyMoney.API.Assemblers namespace.
 - MyMoney.API.Assemblers	
+ - Contains assemblers used to create request objects and parse response objects.
 - MyMoney.API.DataAccess	
+ - Contains the repository layer of the API which interacts with the database.
 - MyMoney.API.DependencyInjection	
+ - Contains the dependency injection configuratoin for the API.
 - MyMoney.API.Orchestrators.Tests	
+ - Contains unit tests for the MyMoney.API.Orchestrators namespace.
 - MyMoney.API.Orchestrators	
- -MyMoney.API
+ - Contains the orchestrators for the API. These perform actions based on the given requests.
+- MyMoney.API
+ - Contains the main .NET Web API project.
+
 ### Web
 ### Shared
 ### Models
