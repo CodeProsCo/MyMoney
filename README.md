@@ -1,6 +1,21 @@
 # MyMoney
 A personal finance planner written in .NET.
 
+## Project Structure
+Explained below is the structure of the Visual Studio project.
+### API
+The API folder contains the following projects:
+- MyMoney.API.Assemblers.Tests
+- MyMoney.API.Assemblers	
+- MyMoney.API.DataAccess	
+- MyMoney.API.DependencyInjection	
+- MyMoney.API.Orchestrators.Tests	
+- MyMoney.API.Orchestrators	
+ -MyMoney.API
+### Web
+### Shared
+### Models
+
 ## JS Libraries Used
 - [Semantic UI](https://github.com/semantic-org/semantic-ui/)
 - [jQuery](https://github.com/jquery/jquery)
