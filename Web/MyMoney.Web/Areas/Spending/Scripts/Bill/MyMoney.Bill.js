@@ -9,7 +9,7 @@ function BillModel(dataObj) {
     this.amount = dataObj.amount;
     this.startDate = new Date(dataObj.startDate);
     this.category = dataObj.category;
-    this.period = dataObj.reoccuringPeriod;
+    this.reoccuringPeriod = dataObj.reoccuringPeriod;
     this.id = dataObj.id;
 
     this.createTableRow = function(clickCallback) {
@@ -18,7 +18,7 @@ function BillModel(dataObj) {
         var dateRow = $("<td>").text(this.startDate.toLocaleDateString());
         var descRow = $("<td>").text(this.name);
         var catRow = $("<td>").text(this.category);
-        var periodRow = $("<td>").text(this.period);
+        var periodRow = $("<td>").text(this.reoccuringPeriod);
         var amountRow = $("<td>").addClass("right").addClass("aligned").text("£" + this.amount);
 
         row.attr("data-get", "/spending/bill/get/" + this.id);

@@ -143,7 +143,9 @@ function getBillCallback(data) {
             if ($(elem).attr("type") === "date") {
                 elem.valueAsDate = model[prop];
             } else {
-                $(elem).val(model[prop]);
+                var value = model[prop];
+
+                $(elem).val(value);
             }
         });
 
