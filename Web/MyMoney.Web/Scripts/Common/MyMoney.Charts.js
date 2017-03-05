@@ -24,7 +24,7 @@ function ChartGenerator(data) {
         var options = {
             container: containerId,
             data: this.data,
-            groupProperty: "ReoccuringPeriod",
+            groupProperty: "ReoccurringPeriod",
             groupType: groupTypes.count,
             animated: true,
             sumProperty: "Amount"

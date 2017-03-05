@@ -50,6 +50,31 @@
         }
 
         /// <summary>
+        /// Gets the user identifier by their email.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The user identifier.
+        /// </returns>
+        /// <exception cref="System.Exception">
+        /// Exception thrown if the user is not found.
+        /// </exception>
+        public async Task<Guid> GetUserIdByEmail(string username)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == username);
+
+                if (result == null)
+                {
+                    throw new Exception(Authentication.Error_CouldNotFindUser);
+                }
+
+                return result.Id;
+            }
+        }
+
+        /// <summary>
         ///     Registers a user.
         /// </summary>
         /// <param name="model">The registration model.</param>
@@ -65,21 +90,6 @@
                 var rowsChanged = await context.SaveChangesAsync();
 
                 return rowsChanged > 0 ? result : null;
-            }
-        }
-
-        public async Task<Guid> GetUserIdByEmail(string username)
-        {
-            using (var context = new DatabaseContext())
-            {
-                var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == username);
-
-                if (result == null)
-                {
-                    throw new Exception(Authentication.Error_CouldNotFindUser);
-                }
-
-                return result.Id;
             }
         }
 

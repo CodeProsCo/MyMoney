@@ -6,12 +6,27 @@
 
     #endregion
 
+    /// <summary>
+    /// The proxy class when transporting all category objects.
+    /// </summary>
     public class CategoryProxy
     {
         #region  Properties
 
-        public Guid CategoryId { get; set; }
+        /// <summary>
+        /// Gets or sets the category identifier.
+        /// </summary>
+        /// <value>
+        /// The category identifier.
+        /// </value>
+        public Guid Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public string Name { get; set; }
 
         #endregion

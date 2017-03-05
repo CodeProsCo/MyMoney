@@ -105,6 +105,13 @@
             return response;
         }
 
+        /// <summary>
+        /// Registers a user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<OrchestratorResponseWrapper<bool>> RegisterUser(RegisterViewModel model)
         {
             var response = new OrchestratorResponseWrapper<bool>();

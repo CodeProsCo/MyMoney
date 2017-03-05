@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.10.3.0\lib\net\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -43,7 +47,7 @@
     <Compile Include="Request\Spending\AddBillRequest.cs" />
     <Compile Include="Request\Spending\DeleteBillRequest.cs" />
     <Compile Include="Request\Spending\EditBillRequest.cs" />
-    <Compile Include="Request\Spending\GetBillInformationRequest.cs" />
+    <Compile Include="Request\Spending\GetBillsForUserRequest.cs" />
     <Compile Include="Request\Spending\GetBillRequest.cs" />
     <Compile Include="Response\Authentication\GetClaimForUserResponse.cs" />
     <Compile Include="Response\Authentication\RegisterUserResponse.cs" />
@@ -51,7 +55,7 @@
     <Compile Include="Response\Spending\AddBillResponse.cs" />
     <Compile Include="Response\Spending\DeleteBillResponse.cs" />
     <Compile Include="Response\Spending\EditBillResponse.cs" />
-    <Compile Include="Response\Spending\GetBillInformationResponse.cs" />
+    <Compile Include="Response\Spending\GetBillsForUserResponse.cs" />
     <Compile Include="Response\Spending\GetBillResponse.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +67,9 @@
       <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
       <Name>MyMoney.Wrappers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

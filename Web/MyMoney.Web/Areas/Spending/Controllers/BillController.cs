@@ -15,10 +15,12 @@
 
     using Web.Controllers;
 
-    using Wrappers;
-
     #endregion
 
+    /// <summary>
+    /// The <see cref="BillController"/> controller handles HTTP requests regarding bills.
+    /// </summary>
+    /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [RouteArea("Spending", AreaPrefix = "spending")]
     [RoutePrefix("bill")]
     [Authorize]
@@ -26,12 +28,22 @@
     {
         #region Fields
 
+        /// <summary>
+        /// The orchestrator
+        /// </summary>
         private readonly IBillOrchestrator orchestrator;
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillController"/> class.
+        /// </summary>
+        /// <param name="orchestrator">The orchestrator.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the orchestrator is null.
+        /// </exception>
         public BillController(IBillOrchestrator orchestrator)
         {
             if (orchestrator == null)
@@ -46,6 +58,11 @@
 
         #region  Public Methods
 
+        /// <summary>
+        /// Handles a HTTP request to add a bill to the database.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>The response object.</returns>
         [HttpPost]
         [Route("add")]
         [AjaxOnly]
@@ -59,12 +76,16 @@
             var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
             model.UserId = Guid.Parse(userIdClaim.Value);
 
-            var response =
-                await orchestrator.AddBill(model, GetUserClaim(ClaimTypes.Email).Value);
+            var response = await orchestrator.AddBill(model, GetUserClaim(ClaimTypes.Email).Value);
 
             return JsonResponse(response);
         }
 
+        /// <summary>
+        /// Handles a HTTP request to delete a specified bill.
+        /// </summary>
+        /// <param name="billId">The bill identifier.</param>
+        /// <returns>The response object.</returns>
         [HttpGet]
         [Route("delete/{billId:Guid}")]
         [AjaxOnly]
@@ -75,6 +96,11 @@
             return JsonResponse(response);
         }
 
+        /// <summary>
+        /// Handles HTTP requests to edit a specified bill.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>The response object.</returns>
         [HttpPost]
         [Route("edit")]
         [AjaxOnly]
@@ -92,6 +118,11 @@
             return JsonResponse(response);
         }
 
+        /// <summary>
+        /// Handles HTTP requests to get a specified bill.
+        /// </summary>
+        /// <param name="billId">The bill identifier.</param>
+        /// <returns>The response object.</returns>
         [HttpGet]
         [AjaxOnly]
         [Route("get/{billId:Guid}")]
@@ -99,11 +130,13 @@
         {
             var modelWrapper = await orchestrator.GetBill(billId, GetUserClaim(ClaimTypes.Email).Value);
 
-            modelWrapper.Errors = null;
-
             return JsonResponse(modelWrapper);
         }
 
+        /// <summary>
+        /// Handles HTTP requests for the bill management view.
+        /// </summary>
+        /// <returns>The bill management view.</returns>
         [HttpGet]
         [Route("manage")]
         public async Task<ActionResult> Manage()
@@ -112,7 +145,7 @@
 
             var modelWrapper =
                 await
-                orchestrator.GetBillInformation(Guid.Parse(userIdClaim.Value), GetUserClaim(ClaimTypes.Email).Value);
+                orchestrator.GetBillsForUser(Guid.Parse(userIdClaim.Value), GetUserClaim(ClaimTypes.Email).Value);
 
             AddModelErrors(modelWrapper.Errors);
             AddModelWarnings(modelWrapper.Warnings);

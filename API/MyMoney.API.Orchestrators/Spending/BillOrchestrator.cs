@@ -7,7 +7,6 @@
 
     using Assemblers.Spending.Interfaces;
 
-    using DataAccess.Authentication.Interfaces;
     using DataAccess.Spending.Interfaces;
 
     using DTO.Request.Spending;
@@ -22,7 +21,7 @@
     #endregion
 
     /// <summary>
-    /// Handles actions regarding bills.
+    ///     Handles actions regarding bills.
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Spending.Interfaces.IBillOrchestrator" />
     [UsedImplicitly]
@@ -31,12 +30,12 @@
         #region Fields
 
         /// <summary>
-        /// The assembler
+        ///     The assembler
         /// </summary>
         private readonly IBillAssembler assembler;
 
         /// <summary>
-        /// The repository
+        ///     The repository
         /// </summary>
         private readonly IBillRepository repository;
 
@@ -45,12 +44,12 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BillOrchestrator"/> class.
+        ///     Initializes a new instance of the <see cref="BillOrchestrator" /> class.
         /// </summary>
         /// <param name="assembler">The assembler.</param>
         /// <param name="repository">The repository.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown when either the assembler or repository are null.
+        ///     Exception thrown when either the assembler or repository are null.
         /// </exception>
         public BillOrchestrator(IBillAssembler assembler, IBillRepository repository)
         {
@@ -73,12 +72,12 @@
         #region  Public Methods
 
         /// <summary>
-        /// Adds a bill.
+        ///     Adds a bill.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<AddBillResponse> AddBill(AddBillRequest request, string username)
         {
@@ -101,30 +100,10 @@
         }
 
         /// <summary>
-        ///     Gets a user's bill information.
+        /// Deletes a bill.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        public async Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request)
-        {
-            var response = new GetBillInformationResponse();
-
-            try
-            {
-                var bills = await repository.GetBillsForUser(request.UserId);
-
-                response = assembler.NewGetBillInformationResponse(bills, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(
-                    ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "GetBillInformation");
-                response.AddError(err);
-            }
-
-            return response;
-        }
-
         public async Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request)
         {
             var response = new DeleteBillResponse();
@@ -138,13 +117,21 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(
-                    ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "DeleteBill");
+                    ex, 
+                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    GetType(), 
+                    "DeleteBill");
                 response.AddError(err);
             }
 
             return response;
         }
 
+        /// <summary>
+        /// Edits a bill.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
         public async Task<EditBillResponse> EditBill(EditBillRequest request)
         {
             var response = new EditBillResponse();
@@ -160,7 +147,10 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(
-                    ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "EditBill");
+                    ex, 
+                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    GetType(), 
+                    "EditBill");
                 response.AddError(err);
             }
 
@@ -168,9 +158,9 @@
         }
 
         /// <summary>
-        /// Gets the bill.
+        ///     Gets the bill.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         public async Task<GetBillResponse> GetBill(GetBillRequest request)
         {
@@ -184,7 +174,39 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username.Replace(";", "@").Replace(",", "."), GetType(), "GetBill");
+                var err = ErrorHelper.Create(
+                    ex, 
+                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    GetType(), 
+                    "GetBill");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        ///     Gets a user's bill information.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
+        public async Task<GetBillsForUserResponse> GetBillsForUser(GetBillsForUserRequest request)
+        {
+            var response = new GetBillsForUserResponse();
+
+            try
+            {
+                var bills = await repository.GetBillsForUser(request.UserId);
+
+                response = assembler.NewGetBillsForUserResponse(bills, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(
+                    ex, 
+                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    GetType(), 
+                    "GetBillsForUser");
                 response.AddError(err);
             }
 

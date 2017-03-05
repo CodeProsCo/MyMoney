@@ -25,6 +25,20 @@
         Task<BillDataModel> AddBill(BillDataModel dataModel);
 
         /// <summary>
+        /// Deletes a bill from the database.
+        /// </summary>
+        /// <param name="billId">The bill identifier.</param>
+        /// <returns>If successful, true. Otherwise, false.</returns>
+        Task<bool> DeleteBill(Guid billId);
+
+        /// <summary>
+        /// Edits a bill in the database.
+        /// </summary>
+        /// <param name="bill">The bill.</param>
+        /// <returns>The updated bill data mode.</returns>
+        Task<BillDataModel> EditBill(BillDataModel bill);
+
+        /// <summary>
         ///     Gets a bill.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
@@ -39,9 +53,5 @@
         Task<IList<BillDataModel>> GetBillsForUser(Guid userId);
 
         #endregion
-
-        Task<bool> DeleteBill(Guid billId);
-
-        Task<BillDataModel> EditBill(BillDataModel bill);
     }
 }

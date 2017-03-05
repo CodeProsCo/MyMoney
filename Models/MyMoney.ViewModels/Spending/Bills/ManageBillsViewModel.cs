@@ -4,7 +4,6 @@
 
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
 
     using Enum;
 
@@ -20,7 +19,7 @@
 
         public int BillCount => Bills?.Count ?? 0;
 
-        public IEnumerable<IGrouping<TimePeriod, BillViewModel>> BillPeriods => Bills.GroupBy(x => x.ReoccuringPeriod);
+        public IEnumerable<IGrouping<TimePeriod, BillViewModel>> BillPeriods => Bills.GroupBy(x => x.ReoccurringPeriod);
 
         public IList<BillViewModel> Bills { get; set; }
 

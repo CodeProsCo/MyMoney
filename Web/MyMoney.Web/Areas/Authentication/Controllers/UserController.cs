@@ -56,9 +56,10 @@
         #region  Public Methods
 
         /// <summary>
-        ///     Handles a request for the log in view.
+        /// Handles a request for the login view.
         /// </summary>
-        /// <returns>The log in view.</returns>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns>If not logged in, the login view. If logged in, the main dashboard.</returns>
         [Route("login")]
         [AllowAnonymous]
         [HttpGet]
@@ -127,14 +128,28 @@
             return RedirectToAction("Login");
         }
 
+        /// <summary>
+        /// Handles a request for the register view
+        /// </summary>
+        /// <returns>If logged in, the main dashboard. If not, the register view.</returns>
         [Route("register")]
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("BudgetOverview", "Budget", new { area = "Dashboard" });
+            }
+
             return View("Register");
         }
 
+        /// <summary>
+        /// Handles a registration request from a user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>If the user is registered, the main dashboard. If not, the register view with errors.</returns>
         [Route("register")]
         [HttpPost]
         [AllowAnonymous]

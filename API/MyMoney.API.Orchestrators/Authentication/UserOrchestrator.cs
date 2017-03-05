@@ -71,6 +71,13 @@
 
         #region  Public Methods
 
+        /// <summary>
+        /// Obtains a claim for the given user.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request)
         {
             var response = new GetClaimForUserResponse();
@@ -92,11 +99,11 @@
         }
 
         /// <summary>
-        /// Registers a user.
+        ///     Registers a user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request)
         {

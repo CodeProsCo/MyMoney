@@ -8,15 +8,30 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="CategoryDataModel"/> class represents an entry in the "Category" table.
+    /// </summary>
     [Table("Category")]
     public class CategoryDataModel
     {
         #region  Properties
 
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public string Name { get; set; }
 
         #endregion

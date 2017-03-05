@@ -147,7 +147,7 @@
   <data name="Header_Description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="Header_ReocurringPeriod" xml:space="preserve">
+  <data name="Header_ReoccurringPeriod" xml:space="preserve">
     <value>Reocurring Period</value>
   </data>
   <data name="Header_Summary" xml:space="preserve">

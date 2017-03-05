@@ -18,7 +18,7 @@ function BillModel(dataObj) {
         var dateRow = $("<td>").text(this.startDate.toLocaleDateString());
         var descRow = $("<td>").text(this.name);
         var catRow = $("<td>").text(this.category);
-        var periodRow = $("<td>").text(this.reoccuringPeriod); 
+        var periodRow = $("<td>").text(this.reoccuringPeriod);
         var amountRow = $("<td>").addClass("right").addClass("aligned").text("£" + this.amount);
 
         row.attr("data-get", "/spending/bill/get/" + this.id);

@@ -11,22 +11,15 @@
         {
             <div class="description">
                 @{
-                    Html.RenderPartial(
-                        "Editors/_BillEditor",
-                        Model.Bill,
-                        new ViewDataDictionary
-                        {
-                            { "CategoryOptions", Model.CategoryOptions },
-                            { "TimePeriodOptions", Model.TimePeriodOptions },
-                        });
+                    Html.RenderPartial("Editors/_BillEditor", Model.Bill, new ViewDataDictionary { { "CategoryOptions", Model.CategoryOptions }, { "TimePeriodOptions", Model.TimePeriodOptions } });
                 }
             </div>
-                    }
+        }
     </div>
     <div class="actions">
         <div class="ui red right labeled left floated icon button"
-             id="delete-bill" 
-             data-url="@Url.Action("Delete", "Bill", new { billId = Model.Bill.Id})">
+             id="delete-bill"
+             data-url="@Url.Action("Delete", "Bill", new { billId = Model.Bill.Id })">
             Delete
             <i class="trash icon"></i>
         </div>

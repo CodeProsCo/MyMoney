@@ -7,6 +7,6 @@ $(function() {
 
             introJs().addHints();
 
-            
+
         });
 });

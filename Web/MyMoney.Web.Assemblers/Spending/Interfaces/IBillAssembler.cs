@@ -18,41 +18,108 @@
     {
         #region  Public Methods
 
+        /// <summary>
+        /// Creates an instance of the <see cref="AddBillRequest"/>. class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>The request object.</returns>
         AddBillRequest NewAddBillRequest(BillViewModel model, string username);
 
+        /// <summary>
+        /// Creates an instance of the <see cref="BillViewModel"/>. class.
+        /// </summary>
+        /// <param name="apiResponse">
+        /// The API Response.
+        /// </param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
         BillViewModel NewBillViewModel(AddBillResponse apiResponse);
 
+        /// <summary>
+        /// Creates an instance of the <see cref="BillViewModel"/>. class.
+        /// </summary>
+        /// <param name="apiResponse">
+        /// The API Response.
+        /// </param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
         BillViewModel NewBillViewModel(GetBillResponse apiResponse);
 
         /// <summary>
-        ///     Assembles an instance of the <see cref="GetBillInformationRequest" /> class based on the given
+        /// Creates an instance of the <see cref="BillViewModel"/>. class.
+        /// </summary>
+        /// <param name="apiResponse">
+        /// The API Response.
+        /// </param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
+        BillViewModel NewBillViewModel(EditBillResponse apiResponse);
+
+        /// <summary>
+        /// Creates an instance of the <see cref="DeleteBillRequest"/>. class.
+        /// </summary>
+        /// <param name="billId">
+        /// The bill Id.
+        /// </param>
+        /// <param name="username">
+        /// The username.
+        /// </param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        DeleteBillRequest NewDeleteBillRequest(Guid billId, string username);
+
+        /// <summary>
+        /// Creates an instance of the <see cref="EditBillRequest"/>. class.
+        /// </summary>
+        /// <param name="model">
+        /// The model.
+        /// </param>
+        /// <param name="username">
+        /// The username.
+        /// </param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        EditBillRequest NewEditBillRequest(BillViewModel model, string username);
+
+        /// <summary>
+        ///     Assembles an instance of the <see cref="GetBillsForUserRequest" /> class based on the given
         ///     <see cref="string" />.
         /// </summary>
         /// <param name="email">The user's email address.</param>
-        /// <param name="username"></param>
+        /// <param name="username">The username.</param>
         /// <returns>
         ///     The request object.
         /// </returns>
-        GetBillInformationRequest NewGetBillInformationRequest(Guid email, string username);
+        GetBillsForUserRequest NewGetBillsForUserRequest(Guid email, string username);
 
+        /// <summary>
+        /// Creates an instance of the <see cref="GetBillRequest"/>. class.
+        /// </summary>
+        /// <param name="billId">The bill identifier.</param>
+        /// <param name="username">
+        /// The username.
+        /// </param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
         GetBillRequest NewGetBillRequest(Guid billId, string username);
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ManageBillsViewModel" /> class based on the given
-        ///     <see cref="GetBillInformationResponse" />.
+        ///     <see cref="GetBillsForUserResponse" />.
         /// </summary>
         /// <param name="apiResponse">The response object.</param>
         /// <returns>
         ///     The view model.
         /// </returns>
-        ManageBillsViewModel NewManageBillsViewModel(GetBillInformationResponse apiResponse);
+        ManageBillsViewModel NewManageBillsViewModel(GetBillsForUserResponse apiResponse);
 
         #endregion
-
-        DeleteBillRequest NewDeleteBillRequest(Guid billId, string username);
-
-        EditBillRequest NewEditBillRequest(BillViewModel model, string username);
-
-        BillViewModel NewBillViewModel(EditBillResponse apiResponse);
     }
 }

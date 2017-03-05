@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.DTO.Request.Interfaces
+﻿namespace MyMoney.DTO.Request.Interfaces
 {
-    using System.Security.Cryptography.X509Certificates;
-
+    /// <summary>
+    /// The interface for any HTTP GET request objects.
+    /// </summary>
     public interface IGetRequest
     {
+        #region  Public Methods
+
+        /// <summary>
+        /// Formats the request URI.
+        /// </summary>
+        /// <returns>The formatted uri.</returns>
         string FormatRequestUri();
+
+        #endregion
     }
 }

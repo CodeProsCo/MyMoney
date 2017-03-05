@@ -30,38 +30,83 @@
     {
         #region  Public Methods
 
+        /// <summary>
+        /// Creates an instance of the <see cref="AddBillRequest" />. class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
         public AddBillRequest NewAddBillRequest(BillViewModel model, string username)
         {
-            return new AddBillRequest { Bill = BillViewModelToProxy(model), Username = username};
+            return new AddBillRequest { Bill = BillViewModelToProxy(model), Username = username };
         }
 
+        /// <summary>
+        /// Creates an instance of the <see cref="BillViewModel" />. class.
+        /// </summary>
+        /// <param name="apiResponse">The API Response.</param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
         public BillViewModel NewBillViewModel(AddBillResponse apiResponse)
         {
             return BillProxyToViewModel(apiResponse.Bill);
         }
 
+        /// <summary>
+        /// Creates an instance of the <see cref="BillViewModel" />. class.
+        /// </summary>
+        /// <param name="apiResponse">The API Response.</param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
         public BillViewModel NewBillViewModel(GetBillResponse apiResponse)
         {
             return BillProxyToViewModel(apiResponse.Bill);
         }
 
+        /// <summary>
+        /// Creates an instance of the <see cref="BillViewModel" />. class.
+        /// </summary>
+        /// <param name="apiResponse">The API Response.</param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
         public BillViewModel NewBillViewModel(EditBillResponse apiResponse)
         {
             return BillProxyToViewModel(apiResponse.Bill);
         }
 
+        /// <summary>
+        /// Creates an instance of the <see cref="DeleteBillRequest" />. class.
+        /// </summary>
+        /// <param name="billId">The bill Id.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
         public DeleteBillRequest NewDeleteBillRequest(Guid billId, string username)
         {
             return new DeleteBillRequest { BillId = billId, Username = username };
         }
 
+        /// <summary>
+        /// Creates an instance of the <see cref="EditBillRequest" />. class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
         public EditBillRequest NewEditBillRequest(BillViewModel model, string username)
         {
             return new EditBillRequest { Username = username, Bill = BillViewModelToProxy(model) };
         }
 
         /// <summary>
-        ///     Assembles an instance of the <see cref="GetBillInformationRequest" /> class based on the given
+        ///     Assembles an instance of the <see cref="GetBillsForUserRequest" /> class based on the given
         ///     <see cref="Guid" />.
         /// </summary>
         /// <param name="id">The user identifier.</param>
@@ -69,11 +114,19 @@
         /// <returns>
         ///     The request object.
         /// </returns>
-        public GetBillInformationRequest NewGetBillInformationRequest(Guid id, string username)
+        public GetBillsForUserRequest NewGetBillsForUserRequest(Guid id, string username)
         {
-            return new GetBillInformationRequest { UserId = id, Username = username};
+            return new GetBillsForUserRequest { UserId = id, Username = username };
         }
 
+        /// <summary>
+        /// Creates an instance of the <see cref="GetBillRequest" />. class.
+        /// </summary>
+        /// <param name="billId">The bill identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
         public GetBillRequest NewGetBillRequest(Guid billId, string username)
         {
             return new GetBillRequest { BillId = billId, Username = username };
@@ -81,13 +134,13 @@
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ManageBillsViewModel" /> class based on the given
-        ///     <see cref="GetBillInformationResponse" />.
+        ///     <see cref="GetBillsForUserResponse" />.
         /// </summary>
         /// <param name="apiResponse">The response object.</param>
         /// <returns>
         ///     The view model.
         /// </returns>
-        public ManageBillsViewModel NewManageBillsViewModel(GetBillInformationResponse apiResponse)
+        public ManageBillsViewModel NewManageBillsViewModel(GetBillsForUserResponse apiResponse)
         {
             return new ManageBillsViewModel
             {
@@ -133,6 +186,11 @@
 
         #region Private Methods
 
+        /// <summary>
+        /// Converts an instance of the <see cref="BillProxy"/> class to a <see cref="BillViewModel"/> class.
+        /// </summary>
+        /// <param name="proxy">The proxy.</param>
+        /// <returns>The view model.</returns>
         private static BillViewModel BillProxyToViewModel(BillProxy proxy)
         {
             return new BillViewModel
@@ -140,12 +198,17 @@
                 Amount = proxy.Amount,
                 Category = proxy.Category.Name,
                 Name = proxy.Name,
-                ReoccuringPeriod = (TimePeriod)proxy.ReocurringPeriod,
+                ReoccurringPeriod = (TimePeriod)proxy.ReoccurringPeriod,
                 StartDate = proxy.StartDate,
                 Id = proxy.Id
             };
         }
 
+        /// <summary>
+        /// Converts an instance of the <see cref="BillViewModel"/> class to a <see cref="BillProxy"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>The proxy.</returns>
         private static BillProxy BillViewModelToProxy(BillViewModel model)
         {
             return new BillProxy
@@ -153,7 +216,7 @@
                 Amount = model.Amount,
                 Category = new CategoryProxy { Name = model.Category },
                 Name = model.Name,
-                ReocurringPeriod = (int)model.ReoccuringPeriod,
+                ReoccurringPeriod = (int)model.ReoccurringPeriod,
                 StartDate = model.StartDate,
                 UserId = model.UserId,
                 Id = model.Id

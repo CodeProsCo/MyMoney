@@ -7,6 +7,10 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="AjaxOnlyAttribute"/> attribute validates a request and ensures that it is using AJAX.
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.ActionMethodSelectorAttribute" />
     public class AjaxOnlyAttribute : ActionMethodSelectorAttribute
     {
         #region  Public Methods

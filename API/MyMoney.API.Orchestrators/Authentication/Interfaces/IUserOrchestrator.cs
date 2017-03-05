@@ -1,12 +1,15 @@
 ﻿namespace MyMoney.API.Orchestrators.Authentication.Interfaces
 {
-    using System;
+    #region Usings
+
     #region Usings
 
     using System.Threading.Tasks;
 
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
+
+    #endregion
 
     #endregion
 
@@ -18,13 +21,18 @@
         #region  Public Methods
 
         /// <summary>
-        /// Registers a user.
+        /// Obtains a claim for the given user.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
+        Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request);
+
+        /// <summary>
+        ///     Registers a user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request);
-
-        Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request);
 
         #endregion
     }

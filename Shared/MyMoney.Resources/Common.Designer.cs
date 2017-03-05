@@ -153,9 +153,9 @@ namespace MyMoney.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Reocurring Period.
         /// </summary>
-        public static string Header_ReocurringPeriod {
+        public static string Header_ReoccurringPeriod {
             get {
-                return ResourceManager.GetString("Header_ReocurringPeriod", resourceCulture);
+                return ResourceManager.GetString("Header_ReoccurringPeriod", resourceCulture);
             }
         }
         

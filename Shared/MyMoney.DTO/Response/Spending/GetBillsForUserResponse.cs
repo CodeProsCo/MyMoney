@@ -9,7 +9,7 @@
 
     #endregion
 
-    public class GetBillInformationResponse : BaseResponse
+    public class GetBillsForUserResponse : BaseResponse
     {
         #region  Properties
 

@@ -128,9 +128,9 @@
                 foreach (var error in modelState.Errors)
                 {
                     var errorWrapper = ErrorHelper.Create(
-                        error.ErrorMessage,
-                        GetUserClaim(ClaimTypes.Email).Value,
-                        GetType(),
+                        error.ErrorMessage, 
+                        GetUserClaim(ClaimTypes.Email).Value, 
+                        GetType(), 
                         "InvalidModelState");
 
                     response.AddError(errorWrapper);

@@ -25,9 +25,9 @@ function addBillSuccessCallback(data) {
         table.find("tbody").append(row);
         row.addClass("positive");
 
-        setTimeout(function () {
-            row.removeClass("positive");
-        },
+        setTimeout(function() {
+                row.removeClass("positive");
+            },
             5000);
 
         $("#bill-table").find("#table-warning").remove();
@@ -52,9 +52,10 @@ function editBillSuccessCallback(data) {
             table.find(".selected").replaceWith(row);
             row.addClass("warning");
 
-            setTimeout(function () {
-                row.removeClass("warning");
-            }, 5000);
+            setTimeout(function() {
+                    row.removeClass("warning");
+                },
+                5000);
         }
 
     }
@@ -127,7 +128,7 @@ function addBillsToCalendar(data) {
     $(".calendar").removeAttr("tabindex");
 
     $(calendarItems)
-        .each(function (i, elem) {
+        .each(function(i, elem) {
             if ($(elem).hasClass("disabled") || $(elem).is("span")) {
                 return;
             }
@@ -195,7 +196,7 @@ function getBillCallback(data) {
     var inputs = $(modal).find("input");
 
     $(inputs)
-        .each(function (i, elem) {
+        .each(function(i, elem) {
             var prop = elem.id.replace("#", "").toCamelCase();
 
             if ($(elem).attr("type") === "date") {

@@ -44,6 +44,32 @@
         #region Private Methods
 
         /// <summary>
+        /// Sends an HTTP DELETE request to the given uri.
+        /// </summary>
+        /// <typeparam name="T">The response type.</typeparam>
+        /// <param name="uri">The URI.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>The response object.</returns>
+        protected async Task<T> Delete<T>(string uri, string username) where T : BaseResponse
+        {
+            var response = (T)Activator.CreateInstance(typeof(T));
+
+            var httpResponse = await client.DeleteAsync(uri);
+
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                var err = ErrorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Delete");
+                response.AddError(err);
+
+                return response;
+            }
+
+            response = await httpResponse.Content.ReadAsAsync<T>();
+
+            return response;
+        }
+
+        /// <summary>
         ///     Sends a get request.
         /// </summary>
         /// <typeparam name="T">The response type.</typeparam>
@@ -84,25 +110,6 @@
             if (!httpResponse.IsSuccessStatusCode)
             {
                 var err = ErrorHelper.Create(GetHttpError(httpResponse), request.Username, GetType(), "Post");
-                response.AddError(err);
-
-                return response;
-            }
-
-            response = await httpResponse.Content.ReadAsAsync<T>();
-
-            return response;
-        }
-
-        protected async Task<T> Delete<T>(string uri, string username) where T : BaseResponse
-        {
-            var response = (T)Activator.CreateInstance(typeof(T));
-
-            var httpResponse = await client.DeleteAsync(uri);
-
-            if (!httpResponse.IsSuccessStatusCode)
-            {
-                var err = ErrorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Delete");
                 response.AddError(err);
 
                 return response;

@@ -9,19 +9,19 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GetBillRequest"/> class is used for obtaining a bill from the database.
+    /// The<see cref="GetBillsForUserRequest"/> class is used for obtaining the list of bills for a user.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
     /// <seealso cref="MyMoney.DTO.Request.Interfaces.IGetRequest" />
-    public class GetBillRequest : BaseRequest, IGetRequest
+    public class GetBillsForUserRequest : BaseRequest, IGetRequest
     {
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GetBillRequest" /> class.
+        ///     Initializes a new instance of the <see cref="GetBillsForUserRequest" /> class.
         /// </summary>
-        public GetBillRequest()
-            : base("spending/bills/get/{0}/{1}/{2}")
+        public GetBillsForUserRequest()
+            : base("spending/bills/user/{0}/{1}/{2}")
         {
         }
 
@@ -30,12 +30,12 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the bill identifier.
+        /// Gets or sets the user identifier.
         /// </summary>
         /// <value>
-        /// The bill identifier.
+        /// The user identifier.
         /// </value>
-        public Guid BillId { get; set; }
+        public Guid UserId { get; set; }
 
         #endregion
 
@@ -49,7 +49,7 @@
         /// </returns>
         public string FormatRequestUri()
         {
-            return string.Format(GetAction(), BillId, RequestReference, Username.Replace("@", ";").Replace(".", ","));
+            return string.Format(GetAction(), UserId, RequestReference, Username.Replace("@", ";").Replace(".", ","));
         }
 
         #endregion

@@ -28,13 +28,19 @@
         #region  Properties
 
         /// <summary>
-        ///     Gets or sets the request reference.
+        ///     Gets the request reference.
         /// </summary>
         /// <value>
         ///     The request reference.
         /// </value>
-        public Guid RequestReference { get; set; }
+        public Guid RequestReference { get; }
 
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>
+        /// The username.
+        /// </value>
         public string Username { get; set; }
 
         /// <summary>

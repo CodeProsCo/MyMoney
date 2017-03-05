@@ -1,5 +1,4 @@
-﻿
-#pragma warning disable 169
+﻿#pragma warning disable 169
 #pragma warning disable 649
 
 namespace MyMoney.Extensions.Assembly
@@ -12,10 +11,19 @@ namespace MyMoney.Extensions.Assembly
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="AssemblyExtensions"/> class contains extension methods for the <see cref="Assembly"/> class.
+    /// </summary>
     public static class AssemblyExtensions
     {
         #region  Public Methods
 
+        /// <summary>
+        /// Gets the linker time.
+        /// </summary>
+        /// <param name="assembly">The assembly.</param>
+        /// <param name="target">The target.</param>
+        /// <returns>The time at which the assembly was built.</returns>
         public static DateTime GetLinkerTime(this Assembly assembly, TimeZoneInfo target = null)
         {
             var filePath = assembly.Location;

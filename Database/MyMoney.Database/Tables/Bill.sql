@@ -4,7 +4,7 @@
 	[Amount] FLOAT NOT NULL,
 	[StartDate] date NOT NULL,
 	[UserId] uniqueidentifier NOT NULL,
-	[ReocurringPeriod] int NOT NULL,
+	[ReoccurringPeriod] int NOT NULL,
 	[CategoryId] uniqueidentifier NOT NULL, 
     [Name] NVARCHAR(256) NOT NULL, 
 

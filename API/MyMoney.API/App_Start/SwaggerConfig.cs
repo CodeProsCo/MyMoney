@@ -44,9 +44,10 @@ namespace MyMoney.API
 
                         c.PrettyPrint();
 
-                        c.RootUrl(req =>
-                                req.RequestUri.GetLeftPart(UriPartial.Authority) +
-                                req.GetRequestContext().VirtualPathRoot.TrimEnd('/'));
+                        c.RootUrl(
+                            req =>
+                            req.RequestUri.GetLeftPart(UriPartial.Authority)
+                            + req.GetRequestContext().VirtualPathRoot.TrimEnd('/'));
 
                         var doc = Path.Combine(HttpRuntime.AppDomainAppPath, "docs.xml");
 

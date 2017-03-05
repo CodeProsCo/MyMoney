@@ -7,6 +7,10 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="ComplexPasswordAttribute"/> attribute forces a password to have a certain level of complexity.
+    /// </summary>
+    /// <seealso cref="System.ComponentModel.DataAnnotations.ValidationAttribute" />
     public class ComplexPasswordAttribute : ValidationAttribute
     {
         #region  Public Methods

@@ -7,6 +7,10 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="OverEighteenOnlyAttribute"/> attribute validates a <see cref="DateTime"/> object to ensure at least 18 years have passed since that date.
+    /// </summary>
+    /// <seealso cref="System.ComponentModel.DataAnnotations.ValidationAttribute" />
     public class OverEighteenOnlyAttribute : ValidationAttribute
     {
         #region  Public Methods

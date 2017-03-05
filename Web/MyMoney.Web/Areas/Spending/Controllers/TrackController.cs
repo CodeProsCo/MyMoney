@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace MyMoney.Web.Areas.Spending.Controllers
+﻿namespace MyMoney.Web.Areas.Spending.Controllers
 {
-    public class TrackController : Controller
+    #region Usings
+
+    using System.Web.Mvc;
+
+    using Web.Controllers;
+
+    #endregion
+
+    /// <summary>
+    /// The <see cref="TrackController"/> controller handles HTTP requests regarding tracking.
+    /// </summary>
+    /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
+    public class TrackController : BaseController
     {
-        // GET: Spending/Track
-        public ActionResult Index()
-        {
-            return View();
-        }
+        #region  Public Methods
+
+
+
+        #endregion
     }
 }

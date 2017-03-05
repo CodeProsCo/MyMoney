@@ -1,12 +1,15 @@
 ﻿namespace MyMoney.API.Orchestrators.Spending.Interfaces
 {
-    using System;
+    #region Usings
+
     #region Usings
 
     using System.Threading.Tasks;
 
     using DTO.Request.Spending;
     using DTO.Response.Spending;
+
+    #endregion
 
     #endregion
 
@@ -26,23 +29,33 @@
         Task<AddBillResponse> AddBill(AddBillRequest request, string username);
 
         /// <summary>
-        /// Gets the bill.
+        /// Deletes a bill.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
+        Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request);
+
+        /// <summary>
+        /// Edits a bill.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
+        Task<EditBillResponse> EditBill(EditBillRequest request);
+
+        /// <summary>
+        ///     Gets the bill.
+        /// </summary>
+        /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<GetBillResponse> GetBill(GetBillRequest request);
-
-        #endregion
 
         /// <summary>
         ///     Gets a user's bill information.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        Task<GetBillInformationResponse> GetBillInformation(GetBillInformationRequest request);
+        Task<GetBillsForUserResponse> GetBillsForUser(GetBillsForUserRequest request);
 
-        Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request);
-
-        Task<EditBillResponse> EditBill(EditBillRequest request);
+        #endregion
     }
 }

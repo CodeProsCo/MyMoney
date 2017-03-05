@@ -50,9 +50,14 @@
         #region  Public Methods
 
         /// <summary>
-        ///     Gets a claim for the given user.
+        /// Gets a claim for the given user.
         /// </summary>
-        /// <returns>The response object.</returns>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         [HttpGet]
         [Route("get/{emailAddress}/{password}/{requestRef:Guid}")]
         public async Task<IHttpActionResult> GetClaimForUser([FromUri] GetClaimForUserRequest request)
@@ -63,7 +68,7 @@
         }
 
         /// <summary>
-        /// Registers a user.
+        ///     Registers a user.
         /// </summary>
         /// <param name="request">The request object.</param>
         /// <returns>The response object.</returns>

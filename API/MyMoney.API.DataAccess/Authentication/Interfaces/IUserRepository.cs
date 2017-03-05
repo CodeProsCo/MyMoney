@@ -25,6 +25,13 @@
         Task<UserDataModel> GetUser(string email, string password);
 
         /// <summary>
+        /// Gets the user identifier by their email.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <returns>The user identifier.</returns>
+        Task<Guid> GetUserIdByEmail(string username);
+
+        /// <summary>
         ///     Registers a user.
         /// </summary>
         /// <param name="model">The registration model.</param>
@@ -32,7 +39,5 @@
         Task<UserDataModel> RegisterUser(UserDataModel model);
 
         #endregion
-
-        Task<Guid> GetUserIdByEmail(string username);
     }
 }

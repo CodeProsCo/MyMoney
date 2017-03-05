@@ -33,7 +33,7 @@ window.submitForm = function(formId, successCallback, errorCallback) {
     }
 
     var managedSuccessCallback = AjaxResponse(successCallback);
-    var data = $(form).serialize(); 
+    var data = $(form).serialize();
 
     $.ajax({
         url: url,

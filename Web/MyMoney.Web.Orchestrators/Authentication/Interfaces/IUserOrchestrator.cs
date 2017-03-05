@@ -25,6 +25,11 @@
         /// <returns>The user's claim.</returns>
         Task<OrchestratorResponseWrapper<ClaimsIdentity>> GetClaimForUser(LoginViewModel model);
 
+        /// <summary>
+        /// Registers a user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>The response object.</returns>
         Task<OrchestratorResponseWrapper<bool>> RegisterUser(RegisterViewModel model);
 
         #endregion

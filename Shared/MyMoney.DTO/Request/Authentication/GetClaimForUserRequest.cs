@@ -1,6 +1,10 @@
 ﻿namespace MyMoney.DTO.Request.Authentication
 {
+    #region Usings
+
     using Interfaces;
+
+    #endregion
 
     /// <summary>
     ///     Request used for obtaining user claim information from the database.
@@ -40,11 +44,19 @@
 
         #endregion
 
-        #region Implementation of IGetRequest
+        #region  Public Methods
 
+        /// <summary>
+        /// Formats the request URI.
+        /// </summary>
+        /// <returns>The formatted uri.</returns>
         public string FormatRequestUri()
         {
-            return string.Format(GetAction(), EmailAddress.Replace("@", ";").Replace(".", ","), Password, RequestReference);
+            return string.Format(
+                GetAction(), 
+                EmailAddress.Replace("@", ";").Replace(".", ","), 
+                Password, 
+                RequestReference);
         }
 
         #endregion
