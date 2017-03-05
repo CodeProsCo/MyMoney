@@ -2,11 +2,12 @@
 /// <reference path="~/Scripts/Toastr/toastr.js"/>
 /// <reference path="~/Scripts/Common/MyMoney.Initialize.js" />
 
-toastr.options.closeButton = true;
-toastr.options.timeOut = 60000;
-toastr.options.extendedTimeOut = 120000;
-toastr.options.closeButton = true;
-toastr.options.tapToDismiss = false;
+toastr.options.closeButton = false;
+toastr.options.timeOut = 10000;
+toastr.options.extendedTimeOut = 20000;
+toastr.options.tapToDismiss = true;
+toastr.options.preventDuplicates = true;
+toastr.options.progressBar = true;
 
 window.showError = function(error) {
     var message = "";

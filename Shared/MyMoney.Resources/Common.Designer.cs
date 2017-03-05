@@ -88,6 +88,15 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add some bills to see visualisations.
+        /// </summary>
+        public static string Error_NoDataForChart {
+            get {
+                return ResourceManager.GetString("Error_NoDataForChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error_Title {

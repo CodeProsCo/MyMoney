@@ -126,6 +126,9 @@
   <data name="Button_Report" xml:space="preserve">
     <value>Report</value>
   </data>
+  <data name="Error_NoDataForChart" xml:space="preserve">
+    <value>Add some bills to see visualisations</value>
+  </data>
   <data name="Error_Title" xml:space="preserve">
     <value>Error</value>
   </data>

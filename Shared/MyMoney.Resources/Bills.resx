@@ -132,6 +132,21 @@
   <data name="Heading_BillBreakdown" xml:space="preserve">
     <value>Bill Breakdown</value>
   </data>
+  <data name="Label_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Label_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Label_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Label_ReoccuringPeriod" xml:space="preserve">
+    <value>Reoccuring Period</value>
+  </data>
+  <data name="Label_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
   <data name="Label_TotalBills" xml:space="preserve">
     <value>Total Bills:</value>
   </data>

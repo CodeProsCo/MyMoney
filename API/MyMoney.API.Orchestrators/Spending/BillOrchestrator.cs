@@ -7,6 +7,7 @@
 
     using Assemblers.Spending.Interfaces;
 
+    using DataAccess.Authentication.Interfaces;
     using DataAccess.Spending.Interfaces;
 
     using DTO.Request.Spending;

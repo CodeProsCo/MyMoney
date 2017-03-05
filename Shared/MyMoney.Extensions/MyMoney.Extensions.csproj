@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</ProjectGuid>
+    <ProjectGuid>{AD13EEF3-D27B-4F89-B230-456575D5A0F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyMoney.Helpers</RootNamespace>
-    <AssemblyName>MyMoney.Helpers</AssemblyName>
+    <RootNamespace>MyMoney.Extensions</RootNamespace>
+    <AssemblyName>MyMoney.Extensions</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Error\ErrorHelper.cs" />
+    <Compile Include="Assembly\AssemblyExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
-      <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
-      <Name>MyMoney.Wrappers</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

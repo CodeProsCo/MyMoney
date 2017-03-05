@@ -68,6 +68,21 @@
             }
         }
 
+        public async Task<Guid> GetUserIdByEmail(string username)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == username);
+
+                if (result == null)
+                {
+                    throw new Exception(Authentication.Error_CouldNotFindUser);
+                }
+
+                return result.Id;
+            }
+        }
+
         #endregion
     }
 }

@@ -12,7 +12,7 @@ function BillModel(dataObj) {
     this.period = dataObj.reoccuringPeriod;
     this.id = dataObj.id;
 
-    this.createTableRow = function() {
+    this.createTableRow = function(clickCallback) {
         var row = $("<tr>");
 
         var dateRow = $("<td>").text(this.startDate.toLocaleDateString());
@@ -21,14 +21,20 @@ function BillModel(dataObj) {
         var periodRow = $("<td>").text(this.period);
         var amountRow = $("<td>").addClass("right").addClass("aligned").text("£" + this.amount);
 
+        row.attr("data-get", "/spending/bill/get/" + this.id);
+        row.attr("data-delete", "/spending/bill/delete/" + this.id);
+
         row.append(dateRow);
         row.append(descRow);
         row.append(catRow);
         row.append(periodRow);
         row.append(amountRow);
-        row.addClass("positive");
 
         row.data("bill", this.id);
+
+        if (typeof(clickCallback) !== "undefined" && typeof (clickCallback) == "function") {
+            $(row).click(clickCallback);
+        }
 
         return row;
     };

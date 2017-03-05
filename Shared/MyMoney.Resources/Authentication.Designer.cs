@@ -61,6 +61,15 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find user..
+        /// </summary>
+        public static string Error_CouldNotFindUser {
+            get {
+                return ResourceManager.GetString("Error_CouldNotFindUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username or password is invalid.
         /// </summary>
         public static string Error_UsernameOrPasswordInvalid {

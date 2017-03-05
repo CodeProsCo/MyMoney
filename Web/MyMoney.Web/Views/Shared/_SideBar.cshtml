@@ -1,4 +1,7 @@
-﻿<div class="ui left vertical inverted sidebar menu" id="sidebar">
+﻿@using System.Globalization
+@using System.Reflection
+@using MyMoney.Extensions.Assembly;
+<div class="ui left vertical inverted sidebar menu" id="sidebar">
     <div class="item logo">
         Menu
     </div>
@@ -29,7 +32,8 @@
     </div>
     <div class="item fixed-bottom-item disabled">
         <p>
-            myMoney v@(typeof(MvcApplication).Assembly.GetName().Version)
+            v@(typeof(MvcApplication).Assembly.GetName().Version)<br/>
+            @Assembly.GetExecutingAssembly().GetLinkerTime().ToString(CultureInfo.InvariantCulture)
         </p>
     </div>
 </div>

@@ -11,7 +11,7 @@ namespace MyMoney.DTO.Request.Spending
     public class EditBillRequest : BaseRequest
     {
         public EditBillRequest()
-            : base("/spending/bills/edit")
+            : base("spending/bills/edit")
         {
             
         }

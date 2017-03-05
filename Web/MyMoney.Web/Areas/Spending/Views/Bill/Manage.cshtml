@@ -21,7 +21,7 @@
                 <i class="delete calendar icon"></i>
                 @Bills.Title_Bills
             </div>
-            @{ Html.RenderPartial("Bill/Tables/_BillTable", Model.Bills); }
+            @{ Html.RenderPartial("Tables/_BillTable", Model.Bills); }
         </div>
     </div>
     <div class="four wide column">
@@ -33,14 +33,11 @@
             <div class="ui divided items">
 
                 <div class="item">
-                    <div class="ui active inverted dimmer">
-                        <div class="ui text loader">Loading</div>
-                    </div>
                     <div id="category-chart"></div>
                 </div>
                 <div class="item">
                     <div class="ui active inverted dimmer">
-                        <div class="ui text loader">Loading</div>
+                        <div class="ui text loader" id="chart-loading-text">Loading</div>
                     </div>
                     <div id="period-chart"></div>
                 </div>
@@ -51,13 +48,16 @@
 </div>
 
 @section Modals{
-    @{ Html.RenderPartial("Bill/Modals/_AddBillModal", Model.AddModel); }
-    @{ Html.RenderPartial("Bill/Modals/_EditBillModal", Model.EditModel); }
+    @{ Html.RenderPartial("Modals/_AddBillModal", Model.AddModel); }
+    @{ Html.RenderPartial("Modals/_EditBillModal", Model.EditModel); }
 }
 
 @section Scripts{
     <script type="text/javascript">
-        createBillCategoryChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillCategories)));
-        createBillPeriodChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillPeriods)));
+        $(document)
+            .ready(function() {
+                createBillCategoryChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillCategories)));
+                createBillPeriodChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillPeriods)));
+            });
     </script>
 }

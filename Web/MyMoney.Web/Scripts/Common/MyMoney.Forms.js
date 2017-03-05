@@ -33,12 +33,13 @@ window.submitForm = function(formId, successCallback, errorCallback) {
     }
 
     var managedSuccessCallback = AjaxResponse(successCallback);
+    var data = $(form).serialize(); 
 
     $.ajax({
         url: url,
         async: true,
         method: $(form).attr("method"),
-        data: $(form).serialize(),
+        data: data,
         success: managedSuccessCallback,
         error: errorCallback
     });

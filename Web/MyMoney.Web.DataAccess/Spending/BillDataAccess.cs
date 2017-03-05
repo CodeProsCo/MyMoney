@@ -25,7 +25,7 @@
 
         public async Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request)
         {
-            return await Post<DeleteBillResponse>(request);
+            return await Delete<DeleteBillResponse>(request.FormatRequestUri(), request.Username);
         }
 
         public async Task<EditBillResponse> EditBill(EditBillRequest request)

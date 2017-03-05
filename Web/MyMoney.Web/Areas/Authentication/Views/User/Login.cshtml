@@ -20,6 +20,7 @@
                         </h2>
 
                         @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x =>x.ReturnUrl)
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="at icon"></i>

@@ -1,0 +1,47 @@
+﻿@using MyMoney.Resources
+@model IList<MyMoney.ViewModels.Spending.Bills.BillViewModel>
+<table class="ui celled selectable table" id="bill-table">
+    <thead>
+        <tr data-hint="This is the table where all your bills are shown. Click on a bill to view or edit it.">
+            <th>@Common.Header_Date</th>
+            <th>@Common.Header_Description</th>
+            <th>@Common.Header_Category</th>
+            <th>@Common.Header_ReocurringPeriod</th>
+            <th>@Common.Header_Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bill in Model)
+        {
+            <tr data-get="@Url.Action("Get", "Bill", new { billId = bill.Id.ToString() })"
+                data-delete="@Url.Action("Delete", "Bill", new { billId = bill.Id.ToString() })">
+                
+                <td>
+                    @bill.StartDate.ToShortDateString()
+                </td>
+                <td>@bill.Name</td>
+                <td>@bill.Category</td>
+                <td>@bill.ReoccuringPeriod</td>
+                <td class="right aligned">@bill.Amount.ToString("C")</td>
+            </tr>
+        }
+
+        @if (Model.Count == 0)
+        {
+            <tr id="table-warning">
+                <td colspan="5">
+                    @Bills.Warning_NoBills
+                </td>
+            </tr>
+        }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="5">
+                    <div class="ui left floated small primary button" id="add" data-hint="Click here to record a new bill">
+                        <i class="add icon"></i> New
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+    </table>

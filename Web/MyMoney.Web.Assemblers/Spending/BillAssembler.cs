@@ -155,7 +155,8 @@
                 Name = model.Name,
                 ReocurringPeriod = (int)model.ReoccuringPeriod,
                 StartDate = model.StartDate,
-                UserId = model.Id
+                UserId = model.UserId,
+                Id = model.Id
             };
         }
 

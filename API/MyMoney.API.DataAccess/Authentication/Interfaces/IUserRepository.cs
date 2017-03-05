@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using System;
     using System.Threading.Tasks;
 
     using DataModels.Authentication;
@@ -31,5 +32,7 @@
         Task<UserDataModel> RegisterUser(UserDataModel model);
 
         #endregion
+
+        Task<Guid> GetUserIdByEmail(string username);
     }
 }

@@ -13,12 +13,15 @@
 
     using Interfaces;
 
+    using JetBrains.Annotations;
+
     using ViewModels.Spending.Bills;
 
     using Wrappers;
 
     #endregion
 
+    [UsedImplicitly]
     public class BillOrchestrator : IBillOrchestrator
     {
         #region Fields
@@ -151,7 +154,7 @@
 
                 var apiResponse = await dataAccess.DeleteBill(request);
 
-                if (!apiResponse.Success)
+                if (!apiResponse.Success || !apiResponse.DeleteSuccess)
                 {
                     response.AddErrors(apiResponse.Errors);
 

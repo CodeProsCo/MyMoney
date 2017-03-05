@@ -94,6 +94,25 @@
             return response;
         }
 
+        protected async Task<T> Delete<T>(string uri, string username) where T : BaseResponse
+        {
+            var response = (T)Activator.CreateInstance(typeof(T));
+
+            var httpResponse = await client.DeleteAsync(uri);
+
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                var err = ErrorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Delete");
+                response.AddError(err);
+
+                return response;
+            }
+
+            response = await httpResponse.Content.ReadAsAsync<T>();
+
+            return response;
+        }
+
         /// <summary>
         ///     Gets the HTTP error from the <see cref="HttpResponseMessage" />.
         /// </summary>

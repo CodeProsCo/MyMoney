@@ -84,6 +84,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\MyMoney.Resources\MyMoney.Resources.csproj">
+      <Project>{48b3b8d0-7999-4022-b2bb-a77bcb18228b}</Project>
+      <Name>MyMoney.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

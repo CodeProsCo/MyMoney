@@ -106,6 +106,51 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Label_Amount {
+            get {
+                return ResourceManager.GetString("Label_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string Label_Category {
+            get {
+                return ResourceManager.GetString("Label_Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Label_Name {
+            get {
+                return ResourceManager.GetString("Label_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reoccuring Period.
+        /// </summary>
+        public static string Label_ReoccuringPeriod {
+            get {
+                return ResourceManager.GetString("Label_ReoccuringPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        public static string Label_StartDate {
+            get {
+                return ResourceManager.GetString("Label_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Bills:.
         /// </summary>
         public static string Label_TotalBills {

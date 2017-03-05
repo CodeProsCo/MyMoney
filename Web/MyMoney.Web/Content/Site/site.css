@@ -6,6 +6,21 @@ body {
     background-color: #EFEFEF;
 }
 
+tr {
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    transition: all 1.5s ease;
+}
+
+.no-pseudo:before {
+    content: none !important;
+}
+
+.no-pseudo:after {
+    content: none !important;
+}
+
 .validation-summary-errors {
     background-color: #FFF6F6;
     color: #9F3A38;
@@ -127,8 +142,8 @@ th:hover {
     }
 
         .error-button-container button:hover {
-        background-color: #8f2924 !important;
-    }
+            background-color: #8f2924 !important;
+        }
 
 .ct-label {
     fill: white !important;
@@ -177,3 +192,24 @@ th:hover {
 .selectable:hover {
     cursor: pointer !important;
 }
+
+.introjs-button {
+    margin-left: auto;
+    text-align: center;
+    margin-right: auto;
+    width: 90%;
+    margin-top: 5px !important;
+}
+
+.introjs-tooltiptext {
+    text-align: center;
+}
+
+.introjs-tooltiptext p {
+    margin-bottom: 0;
+}
+
+.introjs-tooltip {
+    left: -15px !important;
+}
+

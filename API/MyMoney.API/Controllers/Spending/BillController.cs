@@ -61,7 +61,7 @@
         }
 
         [HttpGet]
-        [Route("user/{userId:Guid}/{requestRef:Guid}/{username}")]
+        [Route("user/{userId:Guid}/{requestReference:Guid}/{username}")]
         public async Task<IHttpActionResult> GetBillInformation([FromUri] GetBillInformationRequest request)
         {
             var response = await orchestrator.GetBillInformation(request);
@@ -70,7 +70,7 @@
         }
 
         [HttpGet]
-        [Route("get/{billId:Guid}/{requestRef:Guid}/{username}")]
+        [Route("get/{billId:Guid}/{requestReference:Guid}/{username}")]
         public async Task<IHttpActionResult> GetBill([FromUri] GetBillRequest request)
         {
             var response = await orchestrator.GetBill(request);
@@ -79,7 +79,7 @@
         }
 
         [HttpDelete]
-        [Route("delete/{billId:Guid}/{requestRef:Guid}/{username}")]
+        [Route("delete/{billId:Guid}/{requestReference:Guid}/{username}")]
         public async Task<IHttpActionResult> DeleteBill([FromUri] DeleteBillRequest request)
         {
             var response = await orchestrator.DeleteBill(request);

@@ -62,14 +62,14 @@
         [Route("login")]
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("BudgetOverview", "Budget", new { area = "Dashboard" });
             }
 
-            return View("Login");
+            return View("Login", new LoginViewModel { ReturnUrl = returnUrl });
         }
 
         /// <summary>

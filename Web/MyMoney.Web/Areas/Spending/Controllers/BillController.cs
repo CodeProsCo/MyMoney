@@ -57,7 +57,7 @@
             }
 
             var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
-            model.Id = Guid.Parse(userIdClaim.Value);
+            model.UserId = Guid.Parse(userIdClaim.Value);
 
             var response =
                 await orchestrator.AddBill(model, GetUserClaim(ClaimTypes.Email).Value);
@@ -84,6 +84,8 @@
             {
                 return InvalidModelState(ModelState);
             }
+
+            model.UserId = Guid.Parse(GetUserClaim(ClaimTypes.NameIdentifier).Value);
 
             var response = await orchestrator.EditBill(model, GetUserClaim(ClaimTypes.Email).Value);
 

@@ -12,8 +12,6 @@
 
         public string ClassName { get; set; }
 
-        public Exception Exception { get; set; }
-
         public string Message { get; set; }
 
         public string MethodName { get; set; }

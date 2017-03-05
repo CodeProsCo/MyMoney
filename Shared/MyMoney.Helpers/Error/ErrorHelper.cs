@@ -14,11 +14,18 @@
 
         public static ResponseErrorWrapper Create(Exception ex, string username, Type className, string methodName)
         {
+            var message = string.Empty;
+
+            while (ex != null)
+            {
+                message += $"{ex.Message} ";
+                ex = ex.InnerException;
+            }
+
             return new ResponseErrorWrapper
             {
                 ClassName = className.FullName,
-                Exception = ex,
-                Message = ex.Message,
+                Message = message,
                 MethodName = methodName,
                 Occurred = DateTime.Now,
                 Username = username
@@ -30,7 +37,6 @@
             return new ResponseErrorWrapper
             {
                 ClassName = className.FullName,
-                Exception = null,
                 Message = message,
                 MethodName = methodName,
                 Occurred = DateTime.Now,

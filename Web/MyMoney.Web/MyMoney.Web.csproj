@@ -4,6 +4,8 @@
   <Import Project="..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MvcBuildViews>true</MvcBuildViews>
+    <EnableUpdateable>false</EnableUpdateable>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>
@@ -158,6 +160,8 @@
   <ItemGroup>
     <Content Include="Areas\Authentication\Content\user.css" />
     <Content Include="Content\Chartist\chartist.css" />
+    <Content Include="Content\Intro\introjs-modern.css" />
+    <Content Include="Content\Intro\introjs.css" />
     <Content Include="Content\Semantic\semantic.css" />
     <Content Include="Content\Semantic\themes\default\assets\fonts\icons.svg" />
     <Content Include="Content\Semantic\themes\default\assets\images\flags.png" />
@@ -167,11 +171,13 @@
     <Content Include="Areas\Spending\Scripts\Bill\MyMoney.ManageBills.js" />
     <Content Include="Scripts\Chartist\chartist-plugin-tooltip.js" />
     <Content Include="Scripts\Chartist\chartist.js" />
+    <Content Include="Scripts\Common\MyMoney.Hints.js" />
     <Content Include="Scripts\Extensions\MyMoney.DateExtensions.js" />
     <Content Include="Scripts\Extensions\MyMoney.StringExtensions.js" />
     <Content Include="Scripts\Common\MyMoney.ErrorHandling.js" />
     <Content Include="Scripts\Common\MyMoney.Initialize.js" />
     <Content Include="Scripts\Common\MyMoney.Localization.js" />
+    <Content Include="Scripts\Intro\intro.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.js" />
     <Content Include="Scripts\jQuery\jquery.cookie.js" />
     <Content Include="Scripts\jQuery\jquery.inputmask.bundle.js" />
@@ -193,6 +199,7 @@
     <Compile Include="Areas\Dashboard\Controllers\BudgetController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Spending\Controllers\BillController.cs" />
+    <Compile Include="Areas\Spending\Controllers\TrackController.cs" />
     <Compile Include="Areas\Spending\SpendingAreaRegistration.cs" />
     <Compile Include="Attributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -229,8 +236,7 @@
     <Content Include="Areas\Spending\Views\web.config" />
     <Content Include="Areas\Spending\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Spending\Views\Bill\Manage.cshtml" />
-    <Content Include="Areas\Spending\Views\Shared\Bill\Modals\_AddBillModal.cshtml" />
-    <Content Include="Areas\Spending\Views\Shared\Bill\_BillEditor.cshtml" />
+    <Content Include="Areas\Spending\Views\Bill\Modals\_AddBillModal.cshtml" />
     <Content Include="Scripts\Common\MyMoney.Forms.js" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
@@ -244,8 +250,9 @@
     <Content Include="Scripts\Common\MyMoney.Cookies.js" />
     <Content Include="Areas\Spending\Scripts\Bill\MyMoney.Bill.js" />
     <Content Include="Scripts\Common\MyMoney.Charts.js" />
-    <Content Include="Areas\Spending\Views\Shared\Bill\Tables\_BillTable.cshtml" />
-    <Content Include="Areas\Spending\Views\Shared\Bill\Modals\_EditBillModal.cshtml" />
+    <Content Include="Areas\Spending\Views\Bill\Tables\_BillTable.cshtml" />
+    <Content Include="Areas\Spending\Views\Bill\Modals\_EditBillModal.cshtml" />
+    <Content Include="Areas\Spending\Views\Bill\Editors\_BillEditor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -259,11 +266,17 @@
     <Folder Include="Areas\Common\Views\Resource\" />
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
+    <Folder Include="Areas\Spending\Views\Shared\" />
+    <Folder Include="Areas\Spending\Views\Track\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\myMoney.Helpers\MyMoney.Helpers.csproj">
+    <ProjectReference Include="..\..\Shared\MyMoney.Extensions\MyMoney.Extensions.csproj">
+      <Project>{AD13EEF3-D27B-4F89-B230-456575D5A0F2}</Project>
+      <Name>MyMoney.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Helpers\MyMoney.Helpers.csproj">
       <Project>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</Project>
       <Name>MyMoney.Helpers</Name>
     </ProjectReference>
@@ -320,11 +333,9 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <!--<Target Name="BeforeBuild">
+  </Target>-->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

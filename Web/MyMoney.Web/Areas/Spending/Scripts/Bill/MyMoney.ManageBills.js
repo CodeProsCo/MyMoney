@@ -7,6 +7,7 @@
 /// <reference path="~/Scripts/Chartist/chartist.js" />
 /// <reference path="~/Scripts/Common/MyMoney.Charts.js" />
 /// <reference path="~/Scripts/Extensions/MyMoney.StringExtensions.js"/>
+/// <reference path="~/Scripts/Common/MyMoney.Localization.js"/>
 
 function addBillSuccessCallback(data) {
     if (data.success) {
@@ -18,9 +19,17 @@ function addBillSuccessCallback(data) {
 
         var table = $("#bill-table");
 
-        var row = bill.createTableRow();
+        var row = bill.createTableRow(viewBillClick);
 
         table.find("tbody").append(row);
+        row.addClass("positive");
+
+        setTimeout(function () {
+            row.removeClass("positive");
+        },
+            5000);
+
+        $("#bill-table").find("#table-warning").remove();
     }
 
     $("#add-bill-modal").modal("hide");
@@ -37,10 +46,14 @@ function editBillSuccessCallback(data) {
 
             var table = $("#bill-table");
 
-            var row = bill.createTableRow();
+            var row = bill.createTableRow(viewBillClick);
 
-            table.find("[data-get=" + bill.id + "]").remove();
-            table.find("tbody").append(row);
+            table.find(".selected").replaceWith(row);
+            row.addClass("warning");
+
+            setTimeout(function () {
+                row.removeClass("warning");
+            }, 5000);
         }
 
     }
@@ -66,7 +79,18 @@ function showAddModal(event) {
     $("#add-bill-modal").modal("show");
 }
 
+var chartFailed = false;
+
 function createBillCategoryChart(data) {
+    if ((data.length <= 1 && !chartFailed) || chartFailed) {
+        chartFailed = true;
+        var text = myMoney.strings.get("Common", "Error_NoDataForChart");
+        $("#chart-loading-text").text(text);
+        $("#chart-loading-text").closest(".segment").css("height", "230px");
+        $("#chart-loading-text").addClass("no-pseudo");
+        return;
+    }
+
     var chartGenerator = new ChartGenerator(data);
     chartGenerator.createBillCategoryChart("#category-chart");
 
@@ -74,6 +98,15 @@ function createBillCategoryChart(data) {
 }
 
 function createBillPeriodChart(data) {
+    if ((data.length <= 1 && !chartFailed) || chartFailed) {
+        chartFailed = true;
+        var text = myMoney.strings.get("Common", "Error_NoDataForChart");
+        $("#chart-loading-text").text(text);
+        $("#chart-loading-text").closest(".segment").css("height", "230px");
+        $("#chart-loading-text").addClass("no-pseudo");
+        return;
+    }
+
     var chartGenerator = new ChartGenerator(data);
     chartGenerator.createBillPeriodChart("#period-chart");
 
@@ -104,7 +137,7 @@ function getBillCallback(data) {
     var inputs = $(modal).find("input");
 
     $(inputs)
-        .each(function(i, elem) {
+        .each(function (i, elem) {
             var prop = elem.id.replace("#", "").toCamelCase();
 
             if ($(elem).attr("type") === "date") {
@@ -153,6 +186,16 @@ function deleteBillCallback(data) {
 
         showSuccess(successMsg);
         $("tr.selected").remove();
+
+        var table = $("#bill-table");
+
+        if (table.find("tbody").find("tr").length === 0) {
+            var row = $("<tr>").attr("id", "table-warning");
+            var cellText = myMoney.strings.get("Bills", "Warning_NoBills");
+            var cell = $("<td>").attr("colspan", 5).text(cellText);
+
+            table.append(row.append(cell));
+        }
     }
 
     $("#edit-bill-modal").modal("hide");
