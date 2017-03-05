@@ -45,6 +45,15 @@
 
         </div>
     </div>
+    <div class="twelve wide column">
+        <div class="ui styled segment">
+            <div class="ui block header">
+                <i class="clock icon"></i>
+                Upcoming Bills
+            </div>
+            <div class="ui calendar" id="bill-calendar"></div>
+        </div>
+    </div>
 </div>
 
 @section Modals{
@@ -58,6 +67,7 @@
             .ready(function() {
                 createBillCategoryChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillCategories)));
                 createBillPeriodChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillPeriods)));
+                addBillsToCalendar(@Html.Raw(JsonConvert.SerializeObject(Model.Bills)));
             });
     </script>
 }

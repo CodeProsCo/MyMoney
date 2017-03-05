@@ -71,7 +71,6 @@ function ChartGenerator(data) {
             donut: true,
             plugins: [
                 Chartist.plugins.tooltip({
-                    class: "class1 class2",
                     appendToBody: true
                 })
             ]
@@ -94,17 +93,17 @@ function ChartGenerator(data) {
 
     function addDonutAnimation(chart) {
         chart.on("draw",
-            function(data) {
-                if (data.type === "slice") {
-                    var pathLength = data.element._node.getTotalLength();
+            function(chartData) {
+                if (chartData.type === "slice") {
+                    var pathLength = chartData.element._node.getTotalLength();
 
-                    data.element.attr({
+                    chartData.element.attr({
                         'stroke-dasharray': pathLength + "px " + pathLength + "px"
                     });
 
                     var animationDefinition = {
                         'stroke-dashoffset': {
-                            id: "anim" + data.index,
+                            id: "anim" + chartData.index,
                             dur: 500,
                             from: -pathLength + "px",
                             to: "0px",
@@ -113,15 +112,15 @@ function ChartGenerator(data) {
                         }
                     };
 
-                    if (data.index !== 0) {
-                        animationDefinition["stroke-dashoffset"].begin = "anim" + (data.index - 1) + ".end";
+                    if (chartData.index !== 0) {
+                        animationDefinition["stroke-dashoffset"].begin = "anim" + (chartData.index - 1) + ".end";
                     }
 
-                    data.element.attr({
+                    chartData.element.attr({
                         'stroke-dashoffset': -pathLength + "px"
                     });
 
-                    data.element.animate(animationDefinition, false);
+                    chartData.element.animate(animationDefinition, false);
                 }
             });
     }

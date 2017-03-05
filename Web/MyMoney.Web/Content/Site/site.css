@@ -213,3 +213,12 @@ th:hover {
     left: -15px !important;
 }
 
+.prev.link {
+    display: none !important;
+}
+
+.next.link {
+    display: none !important;
+}
+
+

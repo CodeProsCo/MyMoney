@@ -162,6 +162,7 @@
     <Content Include="Content\Chartist\chartist.css" />
     <Content Include="Content\Intro\introjs-modern.css" />
     <Content Include="Content\Intro\introjs.css" />
+    <Content Include="Content\Semantic\calendar.css" />
     <Content Include="Content\Semantic\semantic.css" />
     <Content Include="Content\Semantic\themes\default\assets\fonts\icons.svg" />
     <Content Include="Content\Semantic\themes\default\assets\images\flags.png" />
@@ -184,6 +185,7 @@
     <Content Include="Scripts\jQuery\jquery.tablesorter.js" />
     <Content Include="Scripts\jQuery\jquery.validate.js" />
     <Content Include="Scripts\jQuery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\Semantic\calendar.js" />
     <Content Include="Scripts\Semantic\semantic.js" />
     <Content Include="Scripts\Toastr\toastr.js" />
     <Content Include="Web.config" />

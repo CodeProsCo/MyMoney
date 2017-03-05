@@ -39,8 +39,8 @@ $(".ui.accordion").accordion();
 $(".ui.dropdown").dropdown();
 
 $("[data-input-mask=currency]").inputmask("currency", { rightAlign: false, prefix: "", groupSeparator: "" });
-$("table").tablesorter();
-$("th")
+$("table[data-sort=true]").tablesorter();
+$("table[data-sort=true] th")
     .on("click",
         function(e) {
             e.stopPropagation();
