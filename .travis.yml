@@ -1,0 +1,4 @@
+language: csharp
+solution: MyMoney.sln
+install:
+  - nuget restore MyMoney.sln
