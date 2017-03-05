@@ -30,6 +30,7 @@ The API folder contains the following projects:
 - MyMoney.API
 
 ### Web
+The Web folder contains the following projects:
 - MyMoney.Web.Assemblers.Tests
 - MyMoney.Web.Assemblers	
 - MyMoney.Web.DataAccess	
@@ -39,6 +40,7 @@ The API folder contains the following projects:
 - MyMoney.Web
 
 ### Shared
+The Shared folder contains the following projects:
 - MyMoney.DTO	
 - MyMoney.Extensions	
 - MyMoney.Helpers	
@@ -47,6 +49,7 @@ The API folder contains the following projects:
 - MyMoney.Wrappers
 
 ### Models
+The Models folder contains the following projects:
 - MyMoney.DataModels	
 - MyMoney.Proxies
 - MyMoney.ViewModels
