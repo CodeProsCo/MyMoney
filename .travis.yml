@@ -3,4 +3,5 @@ solution: MyMoney.sln
 install:
  - nuget restore MyMoney.sln
 before_install:
- - apt-get install mono-complete
+ - sudo apt-get install mono-complete
+sudo: required
