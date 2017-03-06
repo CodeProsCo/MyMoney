@@ -1,9 +1,5 @@
 language: csharp
 solution: MyMoney.sln
-
-before_install:
- - nuget restore MyMoney.sln
- - grep IncludeRoslynCompilerFilesToItemGroup * -R
  
 script:
  - xbuild /p:Configuration=Debug MyMoney.sln
