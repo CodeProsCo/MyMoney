@@ -2,7 +2,6 @@
 A personal finance planner written in .NET.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.com/davidsbond/MyMoney.svg?token=Q3KZxnzWtTCL45ppyXFV&branch=master)](https://travis-ci.com/davidsbond/MyMoney)
 
 ## Libraries Used
 ### JavaScript & CSS

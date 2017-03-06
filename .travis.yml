@@ -1,5 +1,0 @@
-language: csharp
-solution: MyMoney.sln
- 
-script:
- - xbuild /p:Configuration=Debug MyMoney.sln
