@@ -2,5 +2,6 @@ language: csharp
 solution: MyMoney.sln
 install:
  - nuget restore MyMoney.sln
+ - nuget install-package Fody
 script:
  - xbuild /p:Configuration=Debug MyMoney.sln
