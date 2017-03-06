@@ -4,5 +4,3 @@ install:
  - nuget restore MyMoney.sln
 script:
  - xbuild /p:Configuration=Debug MyMoney.sln
-mono: none
-dotnet: 1.0.0-preview2-003121
