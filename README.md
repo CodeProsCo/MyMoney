@@ -45,8 +45,7 @@ The Web folder contains the following projects:
 The Shared folder contains the following projects:
 - MyMoney.DTO	
 - MyMoney.Extensions	
-- MyMoney.Helpers	
-- MyMoney.Proxies
+- MyMoney.Helpers
 - MyMoney.Resources	
 - MyMoney.Wrappers
 
