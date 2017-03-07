@@ -12,12 +12,11 @@ A personal finance planner written in .NET.
 - [Toastr](https://github.com/CodeSeven/toastr)
 
 ### .NET/C# #
-- [Cassette.Aspnet](https://github.com/andrewdavey/cassette)
-- [Castle.Windsor](https://github.com/castleproject/Windsor)
-- [JetBrains.Annotations](https://www.nuget.org/packages/JetBrains.Annotations)
-- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
-- [EntityFramework](https://github.com/aspnet/EntityFramework6)
-- [Swashbuckle.Core](https://github.com/domaindrivendev/Swashbuckle)
+- [Cassette.Aspnet](https://github.com/andrewdavey/cassette) - Manages .NET web application assets (scripts, css and templates) 
+- [Castle.Windsor](https://github.com/castleproject/Windsor) - Mature Inversion of Control container available for .NET
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) - High-performance JSON framework for .NET 
+- [EntityFramework](https://github.com/aspnet/EntityFramework) - A lightweight and extensible version of the popular Entity Framework data access technology
+- [Swashbuckle.Core](https://github.com/domaindrivendev/Swashbuckle) - Seamlessly adds a swagger to WebApi projects!
 
 ## Project Structure
 Explained below is the structure of the Visual Studio project.
