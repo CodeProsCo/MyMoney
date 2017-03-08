@@ -291,8 +291,6 @@ function loadCalendarDataCallback(data) {
                 }
             });
         }
-
-        console.log(monthCells);
     }
 }
 
