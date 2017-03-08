@@ -91,6 +91,10 @@
       <Project>{4FC33969-3E6B-4B9B-8F30-5F47DEF0AC49}</Project>
       <Name>MyMoney.DataModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyMoney.API.DataTransformers\MyMoney.API.DataTransformers.csproj">
+      <Project>{74ED1566-509F-4080-8ACA-07F248F76FAF}</Project>
+      <Name>MyMoney.API.DataTransformers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -9,6 +9,8 @@
 
     using DataAccess.Spending.Interfaces;
 
+    using DataTransformers.Spending.Bills.Interfaces;
+
     using DTO.Request.Spending;
     using DTO.Response.Spending;
 
@@ -39,6 +41,11 @@
         /// </summary>
         private readonly IBillRepository repository;
 
+        /// <summary>
+        /// The data transformer
+        /// </summary>
+        private readonly IBillDataTransformer dataTransformer;
+
         #endregion
 
         #region Constructor
@@ -48,10 +55,11 @@
         /// </summary>
         /// <param name="assembler">The assembler.</param>
         /// <param name="repository">The repository.</param>
+        /// <param name="dataTransformer">The data transformer.</param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown when either the assembler or repository are null.
+        ///     Exception thrown when either the assembler, repository or data transformer are null.
         /// </exception>
-        public BillOrchestrator(IBillAssembler assembler, IBillRepository repository)
+        public BillOrchestrator(IBillAssembler assembler, IBillRepository repository, IBillDataTransformer dataTransformer)
         {
             if (assembler == null)
             {
@@ -63,7 +71,13 @@
                 throw new ArgumentNullException(nameof(repository));
             }
 
+            if (dataTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(dataTransformer));
+            }
+
             this.assembler = assembler;
+            this.dataTransformer = dataTransformer;
             this.repository = repository;
         }
 
@@ -100,7 +114,7 @@
         }
 
         /// <summary>
-        /// Deletes a bill.
+        ///     Deletes a bill.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
@@ -116,11 +130,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(
-                    ex, 
-                    request.Username, 
-                    GetType(), 
-                    "DeleteBill");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteBill");
                 response.AddError(err);
             }
 
@@ -128,7 +138,7 @@
         }
 
         /// <summary>
-        /// Edits a bill.
+        ///     Edits a bill.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
@@ -146,11 +156,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(
-                    ex, 
-                    request.Username, 
-                    GetType(), 
-                    "EditBill");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditBill");
                 response.AddError(err);
             }
 
@@ -174,11 +180,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(
-                    ex, 
-                    request.Username, 
-                    GetType(), 
-                    "GetBill");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBill");
                 response.AddError(err);
             }
 
@@ -202,11 +204,28 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(
-                    ex, 
-                    request.Username, 
-                    GetType(), 
-                    "GetBillsForUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillsForUser");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        public async Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(
+            GetBillsForUserForMonthRequest request)
+        {
+            var response = new GetBillsForUserForMonthResponse();
+
+            try
+            {
+                var bills = await repository.GetBillsForUser(request.UserId);
+                var data = dataTransformer.GetOutgoingBillsForMonth(request.MonthNumber, bills);
+
+                response = assembler.NewGetBillsForUserForMonthResponse(data, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillsForUserForMonth");
                 response.AddError(err);
             }
 

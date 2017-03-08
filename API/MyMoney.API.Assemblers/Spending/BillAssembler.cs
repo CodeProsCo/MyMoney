@@ -83,14 +83,14 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         public GetBillsForUserResponse NewGetBillsForUserResponse(
-            IList<BillDataModel> bills, 
+            IList<BillDataModel> bills,
             Guid requestReference)
         {
             return new GetBillsForUserResponse
-                       {
-                           RequestReference = requestReference, 
-                           Bills = bills.Select(BillDataModelToProxy).ToList()
-                       };
+            {
+                RequestReference = requestReference,
+                Bills = bills.Select(BillDataModelToProxy).ToList()
+            };
         }
 
         /// <summary>
@@ -102,6 +102,11 @@
         public GetBillResponse NewGetBillResponse(BillDataModel bill, Guid requestReference)
         {
             return new GetBillResponse { RequestReference = requestReference, Bill = BillDataModelToProxy(bill) };
+        }
+
+        public GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(Dictionary<DateTime, double> data, Guid requestReference)
+        {
+            return new GetBillsForUserForMonthResponse { Data = data, RequestReference = requestReference };
         }
 
         #endregion
@@ -116,17 +121,17 @@
         private static BillProxy BillDataModelToProxy(BillDataModel model)
         {
             return new BillProxy
-                       {
-                           Amount = model.Amount, 
-                           Category =
-                               new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name }, 
-                           CategoryId = model.CategoryId, 
-                           Id = model.Id, 
-                           Name = model.Name, 
-                           ReoccurringPeriod = model.ReoccurringPeriod, 
-                           StartDate = model.StartDate, 
-                           UserId = model.UserId
-                       };
+            {
+                Amount = model.Amount,
+                Category =
+                               new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name },
+                CategoryId = model.CategoryId,
+                Id = model.Id,
+                Name = model.Name,
+                ReoccurringPeriod = model.ReoccurringPeriod,
+                StartDate = model.StartDate,
+                UserId = model.UserId
+            };
         }
 
         /// <summary>
@@ -137,21 +142,21 @@
         private static BillDataModel BillProxyToDataModel(BillProxy proxy)
         {
             return new BillDataModel
-                       {
-                           Amount = proxy.Amount, 
-                           Category =
+            {
+                Amount = proxy.Amount,
+                Category =
                                new CategoryDataModel
-                                   {
-                                       Id = proxy.Category.Id, 
-                                       Name = proxy.Category.Name
-                                   }, 
-                           CategoryId = proxy.CategoryId, 
-                           Id = proxy.Id, 
-                           Name = proxy.Name, 
-                           ReoccurringPeriod = proxy.ReoccurringPeriod, 
-                           StartDate = proxy.StartDate, 
-                           UserId = proxy.UserId
-                       };
+                               {
+                                   Id = proxy.Category.Id,
+                                   Name = proxy.Category.Name
+                               },
+                CategoryId = proxy.CategoryId,
+                Id = proxy.Id,
+                Name = proxy.Name,
+                ReoccurringPeriod = proxy.ReoccurringPeriod,
+                StartDate = proxy.StartDate,
+                UserId = proxy.UserId
+            };
         }
 
         #endregion

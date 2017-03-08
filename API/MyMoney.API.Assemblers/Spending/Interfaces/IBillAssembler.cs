@@ -68,5 +68,7 @@
         GetBillResponse NewGetBillResponse(BillDataModel bill, Guid requestReference);
 
         #endregion
+
+        GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(Dictionary<DateTime, double> data, Guid requestReference);
     }
 }

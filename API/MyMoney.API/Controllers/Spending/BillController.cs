@@ -125,7 +125,9 @@
         [Route("get/{userId:Guid}/month/{monthNumber:int}/{requestReference:Guid}/")]
         public async Task<IHttpActionResult> GetBillsForUserForMonth([FromUri] GetBillsForUserForMonthRequest request)
         {
-            return Ok();
+            var response = await orchestrator.GetBillsForUserForMonth(request);
+
+            return Ok(response);
         }
 
         #endregion

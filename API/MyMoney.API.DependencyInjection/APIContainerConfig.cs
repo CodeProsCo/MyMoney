@@ -6,8 +6,6 @@
 
     using Installers;
 
-    using MyMoney.DependencyInjection.API.Installers;
-
     #endregion
 
     /// <summary>
@@ -26,6 +24,7 @@
             container.Install(new OrchestratorsInstaller());
             container.Install(new AssemblersInstaller());
             container.Install(new DataAccessInstaller());
+            container.Install(new DataTransformersInstaller());
         }
 
         #endregion

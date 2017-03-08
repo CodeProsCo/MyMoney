@@ -63,6 +63,7 @@
     <Compile Include="APIContainerConfig.cs" />
     <Compile Include="Installers\AssemblersInstaller.cs" />
     <Compile Include="Installers\DataAccessInstaller.cs" />
+    <Compile Include="Installers\DataTransformersInstaller.cs" />
     <Compile Include="Installers\OrchestratorsInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\MyMoney.API.DataAccess\MyMoney.API.DataAccess.csproj">
       <Project>{D6D57E85-BB99-4F50-A86B-5B943836E684}</Project>
       <Name>MyMoney.API.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyMoney.API.DataTransformers\MyMoney.API.DataTransformers.csproj">
+      <Project>{74ED1566-509F-4080-8ACA-07F248F76FAF}</Project>
+      <Name>MyMoney.API.DataTransformers</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyMoney.API.Orchestrators\MyMoney.API.Orchestrators.csproj">
       <Project>{F9B6C518-D6A9-4411-9503-27FA9129015F}</Project>

@@ -1,10 +1,13 @@
-﻿namespace MyMoney.DependencyInjection.API.Installers
+﻿namespace MyMoney.API.DependencyInjection.Installers
 {
     #region Usings
 
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
+
+    using DataTransformers.Spending.Bills;
+    using DataTransformers.Spending.Bills.Interfaces;
 
     using MyMoney.API.Assemblers.Authentication;
     using MyMoney.API.Assemblers.Authentication.Interfaces;
@@ -50,7 +53,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IBillAssembler, BillAssembler>(), 
-                        Dependency.OnComponent<IBillRepository, BillRepository>()));
+                        Dependency.OnComponent<IBillRepository, BillRepository>(),
+                        Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>()));
         }
 
         #endregion
