@@ -22,19 +22,19 @@
 
                         <div class="two fields">
                             <div class="field">
-                                @Html.EditorFor(m => m.FirstName, new { placeholder = "First Name" })
+                                @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name" })
                             </div>
                             <div class="field">
-                                @Html.EditorFor(m => m.LastName, new { placeholder = "Last Name" })
+                                @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name" })
                             </div>
                         </div>
                         <div class="field" data-tooltip="You must be over 18 to use this website" data-position="right center">
-                            @Html.EditorFor(m => m.DateOfBirth, new { placeholder = "Date of Birth", type = "date" })
+                            @Html.TextBoxFor(m => m.DateOfBirth, new { placeholder = "Date of Birth", type = "date" })
                         </div>
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="at icon"></i>
-                                @Html.EditorFor(m => m.EmailAddress, new { placeholder = "Email Address" })
+                                @Html.TextBoxFor(m => m.EmailAddress, new { placeholder = "Email Address" })
                             </div>
                         </div>
                         <div class="field">

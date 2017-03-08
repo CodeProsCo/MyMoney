@@ -11,16 +11,13 @@
         date = Model.Value.ToString("yyyy-MM-dd");
     }
 
+    var attrString = string.Empty;
+    var validationAttributes = Html.GetUnobtrusiveValidationAttributes(Html.NameForModel().ToString(), ViewData.ModelMetadata);
+
+    attrString = validationAttributes.Aggregate(attrString, (current, attrib) => current + $"{attrib.Key}=\"{attrib.Value}\" ");
 }
 
 <div class="field">
     @Html.LabelForModel()
-    @Html.TextBoxFor(x => x, new { type = "date" })
+    <input type="date" name="@Html.NameForModel()" id="@Html.IdForModel()" value="@date" @Html.Raw(attrString)/>
 </div>
-
-<script type="text/javascript">
-    (function() {
-        var elem = document.getElementById("@Html.IdForModel()");
-        elem.value = "@date";
-    })();
-</script>
