@@ -10,6 +10,6 @@ namespace MyMoney.DTO.Response.Spending
 
     public class GetBillsForUserForMonthResponse : BaseResponse
     {
-        public Dictionary<DateTime, double> Data { get; set; }
+        public IList<KeyValuePair<DateTime, double>> Data { get; set; }
     }
 }

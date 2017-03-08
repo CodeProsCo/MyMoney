@@ -69,6 +69,6 @@
 
         #endregion
 
-        GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(Dictionary<DateTime, double> data, Guid requestReference);
+        GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(IList<KeyValuePair<DateTime, double>> data, Guid requestReference);
     }
 }

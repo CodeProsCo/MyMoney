@@ -25,15 +25,16 @@ function addBillSuccessCallback(data) {
         table.find("tbody").append(row);
         row.addClass("positive");
 
-        setTimeout(function() {
-                row.removeClass("positive");
-            },
+        setTimeout(function () {
+            row.removeClass("positive");
+        },
             5000);
 
         $("#bill-table").find("#table-warning").remove();
     }
 
     $("#add-bill-modal").modal("hide");
+    loadCalendarData("#bill-calendar");
 }
 
 function editBillSuccessCallback(data) {
@@ -52,15 +53,16 @@ function editBillSuccessCallback(data) {
             table.find(".selected").replaceWith(row);
             row.addClass("warning");
 
-            setTimeout(function() {
-                    row.removeClass("warning");
-                },
+            setTimeout(function () {
+                row.removeClass("warning");
+            },
                 5000);
         }
 
     }
 
     $("#edit-bill-modal").modal("hide");
+    loadCalendarData("#bill-calendar");
 }
 
 function addBillClick(event) {
@@ -143,7 +145,7 @@ function getBillCallback(data) {
     var inputs = $(modal).find("input");
 
     $(inputs)
-        .each(function(i, elem) {
+        .each(function (i, elem) {
             var prop = elem.id.replace("#", "").toCamelCase();
 
             if ($(elem).attr("type") === "date") {
@@ -177,7 +179,7 @@ function confirmDeleteBillClick(event) {
 
     var url = $("tr.selected").data("delete");
 
-    var callback = AjaxResponse(deleteBillCallback);
+    var callback = AjaxResponse(deleteBillSuccessCallback);
 
     $.ajax(url,
     {
@@ -188,7 +190,7 @@ function confirmDeleteBillClick(event) {
     });
 }
 
-function deleteBillCallback(data) {
+function deleteBillSuccessCallback(data) {
     if (data.success) {
         var successMsg = myMoney.strings.get("Bills", "Message_DeleteBill");
 
@@ -217,12 +219,35 @@ function deleteBillCallback(data) {
     $(btn).append(icon);
     $(btn).off("click");
     $(btn).click(deleteBillClick);
+    loadCalendarData("#bill-calendar");
 }
 
 function loadCalendarData(selector) {
     var calendar = $(selector);
     var url = calendar.data("url");
     var callback = AjaxResponse(loadCalendarDataCallback);
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+    $(selector).empty();
+    $(selector).calendar({
+        type: "date",
+        inline: true,
+        disableYear: true,
+        disableMinute: true,
+        disableMonth: true,
+        minDate: firstDay,
+        maxDate: lastDay
+    });
+
+    $(selector)
+        .children()
+        .unbind("mousedown")
+        .unbind("mouseup")
+        .unbind("touchstart")
+        .unbind("touchend")
+        .unbind("keydown");
 
     $.ajax(url,
     {
@@ -235,40 +260,52 @@ function loadCalendarData(selector) {
 
 function loadCalendarDataCallback(data) {
     if (data.success) {
-        
+        var calendarCells = $(".link");
+        var monthCells = [];
+
+        $(calendarCells)
+            .each(function (i, elem) {
+                elem = $(elem);
+
+                if (elem.hasClass("disabled") || elem.hasClass("adjacent") || elem.is("span")) {
+                    return;
+                }
+
+                monthCells.push({
+                    element: elem,
+                    date: parseInt($(elem).text())
+                });
+            });
+
+        for (var i = 0; i < data.model.length; i++) {
+            var billDay = data.model[i];
+            var date = new Date(billDay.key);
+
+            $.each(monthCells, function (i, cell) {
+                if (cell.date === date.getDate()) {
+                    cell.element.addClass("negative");
+                    cell.element.text(billDay.value.asCurrency());
+                }
+            });
+        }
+
+        console.log(monthCells);
     }
 }
 
-$(function() {
+$(function () {
     $("#add").click(showAddModal);
     $("#add-bill").click(addBillClick);
     $("#edit-bill").click(editBillClick);
     $("#delete-bill").click(deleteBillClick);
 
-    var date = new Date();
-    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-    $("#bill-calendar")
-        .calendar({
-            type: "date",
-            inline: true,
-            disableYear: true,
-            disableMinute: true,
-            disableMonth: true,
-            minDate: firstDay,
-            maxDate: lastDay
-        });
+
+
 
     loadCalendarData("#bill-calendar");
 
-    $("#bill-calendar")
-    .children()
-    .unbind("mousedown")
-    .unbind("mouseup")
-    .unbind("touchstart")
-    .unbind("touchend")
-    .unbind("keydown");
+
 
     $("tr[data-get]").click(viewBillClick);
 });

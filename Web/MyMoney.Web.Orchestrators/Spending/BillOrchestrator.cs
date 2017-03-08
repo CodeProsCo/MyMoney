@@ -262,9 +262,9 @@
             return response;
         }
 
-        public async Task<OrchestratorResponseWrapper<IList<BillViewModel>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail)
+        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail)
         {
-            var response = new OrchestratorResponseWrapper<IList<BillViewModel>>();
+            var response = new OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>();
 
             try
             {
@@ -277,6 +277,8 @@
 
                     return response;
                 }
+
+                response.Model = apiResponse.Data;
             }
             catch (Exception ex)
             {

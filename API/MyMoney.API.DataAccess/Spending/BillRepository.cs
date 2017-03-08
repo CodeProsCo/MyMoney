@@ -80,6 +80,12 @@
             {
                 var toDelete = await GetBill(billId);
 
+                if (toDelete == null)
+                {
+                    throw new Exception(Bills.Error_CouldNotFindBill);
+                }
+
+                toDelete = context.Bills.Attach(toDelete);
                 context.Bills.Remove(toDelete);
 
                 var rows = await context.SaveChangesAsync();
@@ -98,6 +104,11 @@
             using (var context = new DatabaseContext())
             {
                 var toEdit = await GetBill(bill.Id);
+
+                if (toEdit == null)
+                {
+                    throw new Exception(Bills.Error_CouldNotFindBill);
+                }
 
                 context.Bills.Remove(toEdit);
                 context.Bills.Add(bill);

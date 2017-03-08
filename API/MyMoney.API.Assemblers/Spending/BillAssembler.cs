@@ -104,7 +104,7 @@
             return new GetBillResponse { RequestReference = requestReference, Bill = BillDataModelToProxy(bill) };
         }
 
-        public GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(Dictionary<DateTime, double> data, Guid requestReference)
+        public GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(IList<KeyValuePair<DateTime, double>> data, Guid requestReference)
         {
             return new GetBillsForUserForMonthResponse { Data = data, RequestReference = requestReference };
         }

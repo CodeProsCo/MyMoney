@@ -79,6 +79,6 @@
 
         #endregion
 
-        Task<OrchestratorResponseWrapper<IList<BillViewModel>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail);
+        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail);
     }
 }

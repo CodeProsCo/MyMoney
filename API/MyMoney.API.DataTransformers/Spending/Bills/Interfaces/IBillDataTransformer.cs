@@ -10,6 +10,6 @@ namespace MyMoney.API.DataTransformers.Spending.Bills.Interfaces
 
     public interface IBillDataTransformer
     {
-        Dictionary<DateTime, double> GetOutgoingBillsForMonth(int monthNumber, IList<BillDataModel> bills);
+        IList<KeyValuePair<DateTime, double>> GetOutgoingBillsForMonth(int monthNumber, IList<BillDataModel> bills);
     }
 }

@@ -16,13 +16,13 @@
     {
         #region  Public Methods
 
-        public Dictionary<DateTime, double> GetOutgoingBillsForMonth(int monthNumber, IList<BillDataModel> bills)
+        public IList<KeyValuePair<DateTime, double>> GetOutgoingBillsForMonth(int monthNumber, IList<BillDataModel> bills)
         {
             var dailyBills = bills.Where(x => x.ReoccurringPeriod == 0).ToList();
             var weeklyBills = bills.Where(x => x.ReoccurringPeriod == 1).ToList();
             var monthlyBills = bills.Where(x => x.ReoccurringPeriod == 2).ToList();
             var yearlyBills = bills.Where(x => x.ReoccurringPeriod == 3).ToList();
-            var retVal = new Dictionary<DateTime, double>();
+            var retVal = new List<KeyValuePair<DateTime, double>>();
 
             for (var date = new DateTime(DateTime.Now.Year, monthNumber, 1);
                  date < new DateTime(DateTime.Now.Year, monthNumber + 1, 1);
@@ -53,7 +53,7 @@
 
                 if (amount > 0)
                 {
-                    retVal.Add(date, amount);
+                    retVal.Add(new KeyValuePair<DateTime, double>(date, amount));
                 }
             }
 
