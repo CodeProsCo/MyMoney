@@ -110,6 +110,7 @@
                     throw new Exception(Bills.Error_CouldNotFindBill);
                 }
 
+                toEdit = context.Bills.Attach(toEdit);
                 context.Bills.Remove(toEdit);
                 context.Bills.Add(bill);
 

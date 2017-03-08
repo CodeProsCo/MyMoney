@@ -298,14 +298,7 @@ $(function () {
     $("#add-bill").click(addBillClick);
     $("#edit-bill").click(editBillClick);
     $("#delete-bill").click(deleteBillClick);
-
-
-
-
+    $("tr[data-get]").click(viewBillClick);
 
     loadCalendarData("#bill-calendar");
-
-
-
-    $("tr[data-get]").click(viewBillClick);
 });
