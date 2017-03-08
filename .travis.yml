@@ -1,0 +1,8 @@
+language: csharp
+solution: MyMoney.sln
+
+before_script:
+ - nuget restore MyMoney.sln
+script:
+ - xbuild Web/MyMoney.Web/MyMoney.Web.csproj
+ - xbuild Web/MyMoney.API/MyMoney.API.csproj
