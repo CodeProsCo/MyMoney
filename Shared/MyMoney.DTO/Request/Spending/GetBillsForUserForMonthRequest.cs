@@ -11,7 +11,7 @@ namespace MyMoney.DTO.Request.Spending
     {
 
         public GetBillsForUserForMonthRequest()
-            : base("spending/bills/get/{0}/month/{1}")
+            : base("spending/bills/get/{0}/month/{1}/{2}")
         {
         }
 
@@ -23,7 +23,7 @@ namespace MyMoney.DTO.Request.Spending
         /// <returns>The formatted uri.</returns>
         public string FormatRequestUri()
         {
-            return string.Format(GetAction(), UserId, MonthNumber);
+            return string.Format(GetAction(), UserId, MonthNumber, RequestReference);
         }
 
         public int MonthNumber { get; set; }

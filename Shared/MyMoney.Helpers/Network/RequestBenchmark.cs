@@ -11,7 +11,7 @@
     {
         #region Constants
 
-        private const string TraceFormat = "===============================\n{0}\nUri:\t\t\t{1}\nTime Taken:\t\t{2}s\n===============================";
+        private const string TraceFormat = "Request Start:\t{0}\nUri:\t\t\t{1}\nTime Taken:\t\t{2}s\n===============================";
 
         #endregion
 

@@ -121,6 +121,13 @@
             return Ok(response);
         }
 
+        [HttpGet]
+        [Route("get/{userId:Guid}/month/{monthNumber:int}/{requestReference:Guid}/")]
+        public async Task<IHttpActionResult> GetBillsForUserForMonth([FromUri] GetBillsForUserForMonthRequest request)
+        {
+            return Ok();
+        }
+
         #endregion
     }
 }
