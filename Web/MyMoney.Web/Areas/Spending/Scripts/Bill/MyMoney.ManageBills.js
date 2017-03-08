@@ -283,8 +283,11 @@ function loadCalendarDataCallback(data) {
 
             $.each(monthCells, function (i, cell) {
                 if (cell.date === date.getDate()) {
-                    cell.element.addClass("negative");
-                    cell.element.text(billDay.value.asCurrency());
+                    cell.element.addClass("negative").text(billDay.value.asCurrency());
+                }
+
+                if (cell.date < new Date().getDate()) {
+                    cell.element.addClass("disabled").removeClass("negative");
                 }
             });
         }
