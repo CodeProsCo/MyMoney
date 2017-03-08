@@ -41,6 +41,21 @@
         /// <summary>
         ///     The bill is in the "Vehicle" category.
         /// </summary>
-        Vehicle
+        Vehicle,
+
+        /// <summary>
+        ///     The bill is in the "Mortgage" category.
+        /// </summary>
+        Mortgage,
+
+        /// <summary>
+        ///     The bill is in the "Credit" category.
+        /// </summary>
+        Credit,
+
+        /// <summary>
+        ///     The bill is in the "Other" category.
+        /// </summary>
+        Other
     }
 }

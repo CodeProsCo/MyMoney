@@ -58,13 +58,11 @@
         /// </value>
         public string LastName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
-        public string Password { get; set; }
+        public byte[] Salt { get; set; }
+
+        public byte[] Hash { get; set; }
+
+        public int Iterations { get; set; }
 
         #endregion
     }

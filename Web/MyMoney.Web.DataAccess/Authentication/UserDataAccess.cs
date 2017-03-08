@@ -30,9 +30,9 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request)
+        public async Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request)
         {
-            return await Get<GetClaimForUserResponse>(request.FormatRequestUri(), request.Username);
+            return await Post<ValidateUserResponse>(request);
         }
 
         /// <summary>

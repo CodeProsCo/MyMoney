@@ -21,7 +21,7 @@
         ///     Initializes a new instance of the <see cref="GetBillsForUserRequest" /> class.
         /// </summary>
         public GetBillsForUserRequest()
-            : base("spending/bills/user/{0}/{1}/{2}")
+            : base("spending/bills/user/{0}/{1}/")
         {
         }
 
@@ -49,7 +49,7 @@
         /// </returns>
         public string FormatRequestUri()
         {
-            return string.Format(GetAction(), UserId, RequestReference, Username.Replace("@", ";").Replace(".", ","));
+            return string.Format(GetAction(), UserId, RequestReference);
         }
 
         #endregion

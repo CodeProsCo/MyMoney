@@ -3,6 +3,7 @@
     #region Usings
 
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using ViewModels.Spending.Bills;
@@ -77,5 +78,7 @@
         Task<OrchestratorResponseWrapper<ManageBillsViewModel>> GetBillsForUser(Guid userId, string username);
 
         #endregion
+
+        Task<OrchestratorResponseWrapper<IList<BillViewModel>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail);
     }
 }

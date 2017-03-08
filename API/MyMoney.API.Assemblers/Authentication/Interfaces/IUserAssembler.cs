@@ -19,12 +19,12 @@
         #region  Public Methods
 
         /// <summary>
-        ///     Creates a new instance of the <see cref="GetClaimForUserResponse" /> class.
+        ///     Creates a new instance of the <see cref="ValidateUserResponse" /> class.
         /// </summary>
         /// <param name="userDataModel">The user data model.</param>
         /// <param name="reqReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        GetClaimForUserResponse NewGetClaimForUserResponse(UserDataModel userDataModel, Guid reqReference);
+        ValidateUserResponse NewGetClaimForUserResponse(UserDataModel userDataModel, Guid reqReference);
 
         /// <summary>
         ///     Creates a new instance of the <see cref="RegisterUserResponse" /> class.

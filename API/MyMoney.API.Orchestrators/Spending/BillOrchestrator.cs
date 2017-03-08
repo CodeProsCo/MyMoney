@@ -118,7 +118,7 @@
             {
                 var err = ErrorHelper.Create(
                     ex, 
-                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    request.Username, 
                     GetType(), 
                     "DeleteBill");
                 response.AddError(err);
@@ -148,7 +148,7 @@
             {
                 var err = ErrorHelper.Create(
                     ex, 
-                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    request.Username, 
                     GetType(), 
                     "EditBill");
                 response.AddError(err);
@@ -176,7 +176,7 @@
             {
                 var err = ErrorHelper.Create(
                     ex, 
-                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    request.Username, 
                     GetType(), 
                     "GetBill");
                 response.AddError(err);
@@ -204,7 +204,7 @@
             {
                 var err = ErrorHelper.Create(
                     ex, 
-                    request.Username.Replace(";", "@").Replace(",", "."), 
+                    request.Username, 
                     GetType(), 
                     "GetBillsForUser");
                 response.AddError(err);

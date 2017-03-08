@@ -10,15 +10,15 @@
     ///     Request used for obtaining user claim information from the database.
     /// </summary>
     /// <seealso cref="BaseRequest" />
-    public class GetClaimForUserRequest : BaseRequest, IGetRequest
+    public class ValidateUserRequest : BaseRequest
     {
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GetClaimForUserRequest" /> class.
+        ///     Initializes a new instance of the <see cref="ValidateUserRequest" /> class.
         /// </summary>
-        public GetClaimForUserRequest()
-            : base("auth/user/get/{0}/{1}/{2}")
+        public ValidateUserRequest()
+            : base("auth/user/validate/")
         {
         }
 
@@ -45,19 +45,6 @@
         #endregion
 
         #region  Public Methods
-
-        /// <summary>
-        /// Formats the request URI.
-        /// </summary>
-        /// <returns>The formatted uri.</returns>
-        public string FormatRequestUri()
-        {
-            return string.Format(
-                GetAction(), 
-                EmailAddress.Replace("@", ";").Replace(".", ","), 
-                Password, 
-                RequestReference);
-        }
 
         #endregion
     }

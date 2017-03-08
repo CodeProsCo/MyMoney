@@ -9,7 +9,7 @@
 /// <reference path="~/Scripts/Extensions/MyMoney.StringExtensions.js"/>
 /// <reference path="~/Scripts/Common/MyMoney.Localization.js"/>
 /// <reference path="~/Scripts/Semantic/calendar.js"/>
-
+/// <reference path="~/Scripts/Extensions/MyMoney.NumberExtensions.js" />
 function addBillSuccessCallback(data) {
     if (data.success) {
         var successMsg = myMoney.strings.get("Bills", "Message_RecordedBill");
@@ -119,59 +119,6 @@ function createBillPeriodChart(data) {
     $("#period-chart").siblings(".dimmer").addClass("disabled").removeClass("active");
 }
 
-function addBillsToCalendar(data) {
-    var calendarItems = $("#bill-calendar").find(".link");
-    var dateElems = [];
-    var date = new Date();
-    var day = 1;
-
-    $(".calendar").removeAttr("tabindex");
-
-    $(calendarItems)
-        .each(function(i, elem) {
-            if ($(elem).hasClass("disabled") || $(elem).is("span")) {
-                return;
-            }
-
-            var elemDate = new Date(date.getFullYear(), date.getMonth(), day);
-            day++;
-
-            var elemObj = {
-                "element": elem,
-                "date": elemDate
-            };
-
-            dateElems.push(elemObj);
-        });
-
-    for (var b = 0; b < data.length; b++) {
-        var bill = data[b];
-
-        for (var d = 0; d < dateElems.length; d++) {
-            var dateElem = dateElems[d];
-
-            var billDay = new Date(bill.StartDate).getTime();
-            var calendarDay = dateElem.date.getTime();
-
-            $(dateElem.element).off("click");
-
-            if (billDay === calendarDay) {
-                $(dateElem.element).addClass("negative");
-                break;
-            }
-        }
-    }
-
-    $("#bill-calendar")
-        .children()
-        .unbind("mousedown")
-        .unbind("mouseup")
-        .unbind("touchstart")
-        .unbind("touchend")
-        .unbind("keydown");
-
-}
-
 function viewBillClick(event) {
     event.stopPropagation();
 
@@ -183,7 +130,7 @@ function viewBillClick(event) {
     $.ajax(url,
     {
         method: "GET",
-        async: false,
+        async: true,
         dataType: "json",
         success: callback
     });
@@ -235,7 +182,7 @@ function confirmDeleteBillClick(event) {
     $.ajax(url,
     {
         method: "GET",
-        async: false,
+        async: true,
         dataType: "json",
         success: callback
     });
@@ -272,29 +219,56 @@ function deleteBillCallback(data) {
     $(btn).click(deleteBillClick);
 }
 
-function cancelClick(event) {
-    $("tr").removeClass("selected");
+function loadCalendarData(selector) {
+    var calendar = $(selector);
+    var url = calendar.data("url");
+    var callback = AjaxResponse(loadCalendarDataCallback);
+
+    $.ajax(url,
+    {
+        method: "GET",
+        async: true,
+        dataType: "json",
+        success: callback
+    });
 }
 
-$("#add").click(showAddModal);
-$("#add-bill").click(addBillClick);
-$("#edit-bill").click(editBillClick);
-$("#delete-bill").click(deleteBillClick);
-$("#cancel").click(cancelClick);
+function loadCalendarDataCallback(data) {
+    if (data.success) {
+        
+    }
+}
 
-var date = new Date();
-var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+$(function() {
+    $("#add").click(showAddModal);
+    $("#add-bill").click(addBillClick);
+    $("#edit-bill").click(editBillClick);
+    $("#delete-bill").click(deleteBillClick);
 
-$("#bill-calendar")
-    .calendar({
-        type: "date",
-        inline: true,
-        disableYear: true,
-        disableMinute: true,
-        disableMonth: true,
-        minDate: firstDay,
-        maxDate: lastDay
-    });
+    var date = new Date();
+    var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-$("tr[data-get]").click(viewBillClick);
+    $("#bill-calendar")
+        .calendar({
+            type: "date",
+            inline: true,
+            disableYear: true,
+            disableMinute: true,
+            disableMonth: true,
+            minDate: firstDay,
+            maxDate: lastDay
+        });
+
+    loadCalendarData("#bill-calendar");
+
+    $("#bill-calendar")
+    .children()
+    .unbind("mousedown")
+    .unbind("mouseup")
+    .unbind("touchstart")
+    .unbind("touchend")
+    .unbind("keydown");
+
+    $("tr[data-get]").click(viewBillClick);
+});

@@ -263,6 +263,7 @@
     <Content Include="Areas\Spending\Views\Bill\Tables\_BillTable.cshtml" />
     <Content Include="Areas\Spending\Views\Bill\Modals\_EditBillModal.cshtml" />
     <Content Include="Areas\Spending\Views\Bill\Editors\_BillEditor.cshtml" />
+    <Content Include="Scripts\Extensions\MyMoney.NumberExtensions.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

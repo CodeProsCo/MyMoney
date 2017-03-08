@@ -45,7 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Error\ErrorHelper.cs" />
+    <Compile Include="Network\RequestBenchmark.cs" />
+    <Compile Include="Network\RequestBenchmarkHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\EncryptionHelper.cs" />
+    <Compile Include="Security\EncryptedPasswordModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyMoney.Wrappers\MyMoney.Wrappers.csproj">

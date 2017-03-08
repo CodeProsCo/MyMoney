@@ -26,13 +26,13 @@
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ClaimsIdentity" /> class based on the given
-        ///     <see cref="GetClaimForUserResponse" />.
+        ///     <see cref="ValidateUserResponse" />.
         /// </summary>
         /// <param name="response">The response object.</param>
         /// <returns>
         ///     The claims identity.
         /// </returns>
-        public ClaimsIdentity NewClaimsIdentity(GetClaimForUserResponse response)
+        public ClaimsIdentity NewClaimsIdentity(ValidateUserResponse response)
         {
             return
                 new ClaimsIdentity(
@@ -48,16 +48,16 @@
         }
 
         /// <summary>
-        ///     Assembles an instance of the <see cref="GetClaimForUserRequest" /> class based on the given
+        ///     Assembles an instance of the <see cref="ValidateUserRequest" /> class based on the given
         ///     <see cref="LoginViewModel" />.
         /// </summary>
         /// <param name="model">The login model.</param>
         /// <returns>
         ///     The request object.
         /// </returns>
-        public GetClaimForUserRequest NewGetClaimForUserRequest(LoginViewModel model)
+        public ValidateUserRequest NewValidateUserRequest(LoginViewModel model)
         {
-            return new GetClaimForUserRequest { EmailAddress = model.EmailAddress, Password = model.Password };
+            return new ValidateUserRequest { EmailAddress = model.EmailAddress, Password = model.Password };
         }
 
         /// <summary>

@@ -78,20 +78,20 @@
         /// <returns>
         /// The response object.
         /// </returns>
-        public async Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request)
+        public async Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request)
         {
-            var response = new GetClaimForUserResponse();
+            var response = new ValidateUserResponse();
 
             try
             {
                 var userDataModel =
-                    await repository.GetUser(request.EmailAddress.Replace(";", "@").Replace(",", "."), request.Password);
+                    await repository.GetUser(request.EmailAddress, request.Password);
 
                 response = assembler.NewGetClaimForUserResponse(userDataModel, request.RequestReference);
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetClaimForUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

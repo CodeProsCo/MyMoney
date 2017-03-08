@@ -58,11 +58,11 @@
         /// <returns>
         /// The response object.
         /// </returns>
-        [HttpGet]
-        [Route("get/{emailAddress}/{password}/{requestRef:Guid}")]
-        public async Task<IHttpActionResult> GetClaimForUser([FromUri] GetClaimForUserRequest request)
+        [HttpPost]
+        [Route("validate")]
+        public async Task<IHttpActionResult> ValidateUser([FromBody] ValidateUserRequest request)
         {
-            var response = await orchestrator.GetClaimForUser(request);
+            var response = await orchestrator.ValidateUser(request);
 
             return Ok(response);
         }

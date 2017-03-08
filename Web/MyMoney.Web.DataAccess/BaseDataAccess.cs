@@ -12,6 +12,7 @@
     using DTO.Response;
 
     using Helpers.Error;
+    using Helpers.Network;
 
     #endregion
 
@@ -23,9 +24,15 @@
         #region Fields
 
         /// <summary>
-        ///     The client
+        ///     The Client
         /// </summary>
-        private readonly HttpClient client;
+        private static readonly HttpClient Client = new HttpClient
+        {
+            BaseAddress =
+                    new Uri(
+                    WebConfigurationManager.AppSettings.Get(
+                        "ApiUri"))
+        };
 
         #endregion
 
@@ -36,7 +43,6 @@
         /// </summary>
         protected BaseDataAccess()
         {
-            client = new HttpClient { BaseAddress = new Uri(WebConfigurationManager.AppSettings.Get("ApiUri")) };
         }
 
         #endregion
@@ -44,7 +50,7 @@
         #region Private Methods
 
         /// <summary>
-        /// Sends an HTTP DELETE request to the given uri.
+        ///     Sends an HTTP DELETE request to the given uri.
         /// </summary>
         /// <typeparam name="T">The response type.</typeparam>
         /// <param name="uri">The URI.</param>
@@ -54,7 +60,12 @@
         {
             var response = (T)Activator.CreateInstance(typeof(T));
 
-            var httpResponse = await client.DeleteAsync(uri);
+            HttpResponseMessage httpResponse;
+
+            using (RequestBenchmarkHelper.Create(uri))
+            {               
+                httpResponse = await Client.DeleteAsync(uri);
+            }
 
             if (!httpResponse.IsSuccessStatusCode)
             {
@@ -80,7 +91,12 @@
         {
             var response = (T)Activator.CreateInstance(typeof(T));
 
-            var httpResponse = await client.GetAsync(uri);
+            HttpResponseMessage httpResponse;
+
+            using (RequestBenchmarkHelper.Create(uri))
+            {
+                httpResponse = await Client.GetAsync(uri);
+            }
 
             if (!httpResponse.IsSuccessStatusCode)
             {
@@ -105,7 +121,12 @@
         {
             var response = (T)Activator.CreateInstance(typeof(T));
 
-            var httpResponse = await client.PostAsJsonAsync(request.GetAction(), request);
+            HttpResponseMessage httpResponse;
+
+            using (RequestBenchmarkHelper.Create(request.GetAction()))
+            {
+                httpResponse = await Client.PostAsJsonAsync(request.GetAction(), request);
+            }
 
             if (!httpResponse.IsSuccessStatusCode)
             {

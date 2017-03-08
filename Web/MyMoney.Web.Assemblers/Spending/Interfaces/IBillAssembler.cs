@@ -121,5 +121,7 @@
         ManageBillsViewModel NewManageBillsViewModel(GetBillsForUserResponse apiResponse);
 
         #endregion
+
+        GetBillsForUserForMonthRequest NewGetBillsForUserForMonthRequest(int monthNumber, Guid userId, string userEmail);
     }
 }

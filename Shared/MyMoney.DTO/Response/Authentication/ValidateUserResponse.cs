@@ -10,7 +10,7 @@
     ///     The response object when obtaining user claim information from the database.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
-    public class GetClaimForUserResponse : BaseResponse
+    public class ValidateUserResponse : BaseResponse
     {
         #region  Properties
 

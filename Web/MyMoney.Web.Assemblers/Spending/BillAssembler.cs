@@ -182,6 +182,16 @@
             };
         }
 
+        public GetBillsForUserForMonthRequest NewGetBillsForUserForMonthRequest(int monthNumber, Guid userId, string userEmail)
+        {
+            return new GetBillsForUserForMonthRequest
+            {
+                UserId = userId,
+                MonthNumber = monthNumber,
+                Username = userEmail
+            }; 
+        }
+
         #endregion
 
         #region Private Methods

@@ -20,19 +20,19 @@
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ClaimsIdentity" /> class based on the given
-        ///     <see cref="GetClaimForUserResponse" />.
+        ///     <see cref="ValidateUserResponse" />.
         /// </summary>
         /// <param name="response">The response object.</param>
         /// <returns>The claims identity.</returns>
-        ClaimsIdentity NewClaimsIdentity(GetClaimForUserResponse response);
+        ClaimsIdentity NewClaimsIdentity(ValidateUserResponse response);
 
         /// <summary>
-        ///     Assembles an instance of the <see cref="GetClaimForUserRequest" /> class based on the given
+        ///     Assembles an instance of the <see cref="ValidateUserRequest" /> class based on the given
         ///     <see cref="LoginViewModel" />.
         /// </summary>
         /// <param name="model">The login model.</param>
         /// <returns>The request object.</returns>
-        GetClaimForUserRequest NewGetClaimForUserRequest(LoginViewModel model);
+        ValidateUserRequest NewValidateUserRequest(LoginViewModel model);
 
         /// <summary>
         ///     Assembles an instance of the <see cref="RegisterUserRequest" /> class based on the given

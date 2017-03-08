@@ -53,5 +53,7 @@
         Task<GetBillsForUserResponse> GetBillsForUser(GetBillsForUserRequest request);
 
         #endregion
+
+        Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(GetBillsForUserForMonthRequest request);
     }
 }

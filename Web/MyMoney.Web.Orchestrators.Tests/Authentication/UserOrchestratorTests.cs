@@ -39,11 +39,11 @@
             dataAccess = Substitute.For<IUserDataAccess>();
             assembler = Substitute.For<IUserAssembler>();
 
-            dataAccess.GetClaimForUser(Arg.Any<GetClaimForUserRequest>())
-                .ReturnsForAnyArgs(new GetClaimForUserResponse());
-            assembler.NewClaimsIdentity(Arg.Any<GetClaimForUserResponse>()).ReturnsForAnyArgs(new ClaimsIdentity());
-            assembler.NewGetClaimForUserRequest(Arg.Any<LoginViewModel>())
-                .ReturnsForAnyArgs(new GetClaimForUserRequest());
+            dataAccess.ValidateUser(Arg.Any<ValidateUserRequest>())
+                .ReturnsForAnyArgs(new ValidateUserResponse());
+            assembler.NewClaimsIdentity(Arg.Any<ValidateUserResponse>()).ReturnsForAnyArgs(new ClaimsIdentity());
+            assembler.NewValidateUserRequest(Arg.Any<LoginViewModel>())
+                .ReturnsForAnyArgs(new ValidateUserRequest());
 
             orchestrator = new UserOrchestrator(assembler, dataAccess);
         }
@@ -81,7 +81,7 @@
         [Test]
         public void GetClaimForUser_ValidParams_ReturnsWrappedClaimsIdentity()
         {
-            var test = orchestrator.GetClaimForUser(new LoginViewModel()).Result;
+            var test = orchestrator.ValidateUser(new LoginViewModel()).Result;
 
             Assert.IsInstanceOf<OrchestratorResponseWrapper<ClaimsIdentity>>(test);
             Assert.IsInstanceOf<ClaimsIdentity>(test.Model);

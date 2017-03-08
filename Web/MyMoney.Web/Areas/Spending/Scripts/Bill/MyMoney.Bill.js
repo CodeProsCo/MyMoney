@@ -5,12 +5,12 @@ function BillModel(dataObj) {
         return undefined;
     }
 
-    this.name = dataObj.name;
-    this.amount = dataObj.amount;
-    this.startDate = new Date(dataObj.startDate);
-    this.category = dataObj.category;
-    this.reoccuringPeriod = dataObj.reoccuringPeriod;
-    this.id = dataObj.id;
+    this.name = dataObj.name || dataObj.Name;
+    this.amount = dataObj.amount || dataObj.Amount;
+    this.startDate = dataObj.startDate ? new Date(dataObj.startDate) : new Date(dataObj.StartDate);
+    this.category = dataObj.category || dataObj.Category;
+    this.reoccurringPeriod = dataObj.reoccurringPeriod || dataObj.ReoccurringPeriod;
+    this.id = dataObj.id || dataObj.Id;
 
     this.createTableRow = function(clickCallback) {
         var row = $("<tr>");
@@ -18,7 +18,7 @@ function BillModel(dataObj) {
         var dateRow = $("<td>").text(this.startDate.toLocaleDateString());
         var descRow = $("<td>").text(this.name);
         var catRow = $("<td>").text(this.category);
-        var periodRow = $("<td>").text(this.reoccuringPeriod);
+        var periodRow = $("<td>").text(this.reoccurringPeriod);
         var amountRow = $("<td>").addClass("right").addClass("aligned").text("£" + this.amount);
 
         row.attr("data-get", "/spending/bill/get/" + this.id);

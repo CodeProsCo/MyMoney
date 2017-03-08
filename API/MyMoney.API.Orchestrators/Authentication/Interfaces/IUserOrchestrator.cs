@@ -25,7 +25,7 @@
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        Task<GetClaimForUserResponse> GetClaimForUser(GetClaimForUserRequest request);
+        Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request);
 
         /// <summary>
         ///     Registers a user.

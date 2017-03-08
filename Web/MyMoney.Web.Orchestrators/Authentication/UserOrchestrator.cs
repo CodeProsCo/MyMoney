@@ -76,14 +76,14 @@
         /// </summary>
         /// <param name="model">The log in model.</param>
         /// <returns>If successful, the <see cref="ClaimsIdentity" /> for the user. If not, errors are returned.</returns>
-        public async Task<OrchestratorResponseWrapper<ClaimsIdentity>> GetClaimForUser(LoginViewModel model)
+        public async Task<OrchestratorResponseWrapper<ClaimsIdentity>> ValidateUser(LoginViewModel model)
         {
             var response = new OrchestratorResponseWrapper<ClaimsIdentity>();
 
             try
             {
-                var request = assembler.NewGetClaimForUserRequest(model);
-                var apiResponse = await dataAccess.GetClaimForUser(request);
+                var request = assembler.NewValidateUserRequest(model);
+                var apiResponse = await dataAccess.ValidateUser(request);
 
                 if (!apiResponse.Success || !apiResponse.LoginSuccess)
                 {
@@ -98,7 +98,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "GetClaimForUser");
+                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

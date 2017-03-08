@@ -4,9 +4,12 @@
 
     using System;
     using System.Data.Entity;
+    using System.Text;
     using System.Threading.Tasks;
 
     using DataModels.Authentication;
+
+    using Helpers.Security;
 
     using Interfaces;
 
@@ -38,14 +41,23 @@
             using (var context = new DatabaseContext())
             {
                 var result =
-                    await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email && x.Password == password);
+                    await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
 
                 if (result == null)
                 {
                     throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
                 }
 
-                return result;
+                if (EncryptionHelper.ValidatePassword(
+                    password,
+                    result.Salt,
+                    result.Hash,
+                    result.Iterations))
+                {
+                    return result;
+                }
+
+                throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
             }
         }
 
@@ -85,6 +97,8 @@
         {
             using (var context = new DatabaseContext())
             {
+                model.Id = Guid.NewGuid();
+
                 var result = context.Users.Add(model);
 
                 var rowsChanged = await context.SaveChangesAsync();

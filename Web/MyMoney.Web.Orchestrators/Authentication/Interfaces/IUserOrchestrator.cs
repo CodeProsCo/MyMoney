@@ -23,7 +23,7 @@
         /// </summary>
         /// <param name="model">The login model.</param>
         /// <returns>The user's claim.</returns>
-        Task<OrchestratorResponseWrapper<ClaimsIdentity>> GetClaimForUser(LoginViewModel model);
+        Task<OrchestratorResponseWrapper<ClaimsIdentity>> ValidateUser(LoginViewModel model);
 
         /// <summary>
         /// Registers a user.

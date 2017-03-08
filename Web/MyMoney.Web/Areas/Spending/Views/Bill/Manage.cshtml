@@ -2,6 +2,7 @@
 @using Cassette.Stylesheets
 @using Cassette.Views
 @using MyMoney.Resources
+@using MyMoney.ViewModels.Spending.Bills.Enum
 @using Newtonsoft.Json
 @model MyMoney.ViewModels.Spending.Bills.ManageBillsViewModel
 
@@ -50,7 +51,7 @@
                 <i class="clock icon"></i>
                 Upcoming Bills
             </div>
-            <div class="ui calendar" id="bill-calendar"></div>
+            <div class="ui calendar" id="bill-calendar" data-url="@Url.Action("GetBillsForMonth", "Bill", new { monthNumber = DateTime.Now.Month })"></div>
         </div>
     </div>
 </div>
@@ -63,10 +64,9 @@
 @section Scripts{
     <script type="text/javascript">
         $(document)
-            .ready(function() {
+            .ready(function () {
                 createBillCategoryChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillCategories)));
                 createBillPeriodChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillPeriods)));
-                addBillsToCalendar(@Html.Raw(JsonConvert.SerializeObject(Model.Bills)));
             });
     </script>
 }

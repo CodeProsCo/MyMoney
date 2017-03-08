@@ -89,7 +89,7 @@
                 return View(model);
             }
 
-            var loginResponse = await orchestrator.GetClaimForUser(model);
+            var loginResponse = await orchestrator.ValidateUser(model);
 
             if (!loginResponse.Success)
             {

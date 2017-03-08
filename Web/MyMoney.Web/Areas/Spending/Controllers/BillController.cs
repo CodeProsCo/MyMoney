@@ -73,10 +73,9 @@
                 return InvalidModelState(ModelState);
             }
 
-            var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
-            model.UserId = Guid.Parse(userIdClaim.Value);
+            model.UserId = UserId;
 
-            var response = await orchestrator.AddBill(model, GetUserClaim(ClaimTypes.Email).Value);
+            var response = await orchestrator.AddBill(model, UserEmail);
 
             return JsonResponse(response);
         }
@@ -91,7 +90,7 @@
         [AjaxOnly]
         public async Task<ActionResult> Delete(Guid billId)
         {
-            var response = await orchestrator.DeleteBill(billId, GetUserClaim(ClaimTypes.Email).Value);
+            var response = await orchestrator.DeleteBill(billId, UserEmail);
 
             return JsonResponse(response);
         }
@@ -111,9 +110,9 @@
                 return InvalidModelState(ModelState);
             }
 
-            model.UserId = Guid.Parse(GetUserClaim(ClaimTypes.NameIdentifier).Value);
+            model.UserId = UserId;
 
-            var response = await orchestrator.EditBill(model, GetUserClaim(ClaimTypes.Email).Value);
+            var response = await orchestrator.EditBill(model, UserEmail);
 
             return JsonResponse(response);
         }
@@ -128,7 +127,7 @@
         [Route("get/{billId:Guid}")]
         public async Task<ActionResult> Get(Guid billId)
         {
-            var modelWrapper = await orchestrator.GetBill(billId, GetUserClaim(ClaimTypes.Email).Value);
+            var modelWrapper = await orchestrator.GetBill(billId, UserEmail);
 
             return JsonResponse(modelWrapper);
         }
@@ -141,16 +140,24 @@
         [Route("manage")]
         public async Task<ActionResult> Manage()
         {
-            var userIdClaim = GetUserClaim(ClaimTypes.NameIdentifier);
-
             var modelWrapper =
                 await
-                orchestrator.GetBillsForUser(Guid.Parse(userIdClaim.Value), GetUserClaim(ClaimTypes.Email).Value);
+                orchestrator.GetBillsForUser(UserId, UserEmail);
 
             AddModelErrors(modelWrapper.Errors);
             AddModelWarnings(modelWrapper.Warnings);
 
             return View("Manage", modelWrapper.Model);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        [Route("get/month/{monthNumber:int}")]
+        public async Task<ActionResult> GetBillsForMonth(int monthNumber)
+        {
+            var modelWrapper = await orchestrator.GetBillsForUserForMonth(monthNumber, UserId, UserEmail);
+
+            return JsonResponse(modelWrapper);
         }
 
         #endregion

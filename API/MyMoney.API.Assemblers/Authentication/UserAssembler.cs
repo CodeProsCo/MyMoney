@@ -9,6 +9,8 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
+    using Helpers.Security;
+
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -26,46 +28,50 @@
     {
         #region  Public Methods
 
-        public GetClaimForUserResponse NewGetClaimForUserResponse(UserDataModel userDataModel, Guid reqReference)
+        public ValidateUserResponse NewGetClaimForUserResponse(UserDataModel userDataModel, Guid reqReference)
         {
             var success = userDataModel != null;
 
-            return new GetClaimForUserResponse
-                       {
-                           LoginSuccess = success, 
-                           User =
+            return new ValidateUserResponse
+            {
+                LoginSuccess = success,
+                User =
                                new UserProxy
-                                   {
-                                       FirstName = userDataModel?.FirstName, 
-                                       LastName = userDataModel?.LastName, 
-                                       EmailAddress = userDataModel?.EmailAddress, 
-                                       DateOfBirth =
-                                           userDataModel?.DateOfBirth ?? DateTime.MinValue, 
-                                       Id = userDataModel?.Id ?? Guid.Empty
-                                   }, 
-                           RequestReference = reqReference
-                       };
+                               {
+                                   FirstName = userDataModel?.FirstName,
+                                   LastName = userDataModel?.LastName,
+                                   EmailAddress = userDataModel?.EmailAddress,
+                                   DateOfBirth =
+                                           userDataModel?.DateOfBirth ?? DateTime.MinValue,
+                                   Id = userDataModel?.Id ?? Guid.Empty
+                               },
+                RequestReference = reqReference
+            };
         }
 
         public RegisterUserResponse NewRegisterUserResponse(UserDataModel registerResult, Guid reqReference)
         {
             return new RegisterUserResponse
-                       {
-                           RegisterSuccess = registerResult != null, 
-                           RequestReference = reqReference
-                       };
+            {
+                RegisterSuccess = registerResult != null,
+                RequestReference = reqReference
+            };
         }
 
         public UserDataModel NewUserDataModel(RegisterUserRequest request)
         {
+            var encryptionModel = EncryptionHelper.EncryptPassword(request.Password);
+
             return new UserDataModel
-                       {
-                           DateOfBirth = request.DateOfBirth, 
-                           EmailAddress = request.EmailAddress, 
-                           FirstName = request.FirstName, 
-                           LastName = request.LastName, 
-                           Password = request.Password
-                       };
+            {
+                DateOfBirth = request.DateOfBirth,
+                EmailAddress = request.EmailAddress,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Salt = encryptionModel.Salt,
+                Hash = encryptionModel.Hash,
+                Iterations = encryptionModel.Iterations
+            };
         }
 
         #endregion

@@ -83,6 +83,11 @@
             return await Get<GetBillsForUserResponse>(request.FormatRequestUri(), request.Username);
         }
 
+        public async Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(GetBillsForUserForMonthRequest request)
+        {
+            return await Get<GetBillsForUserForMonthResponse>(request.FormatRequestUri(), request.Username);
+        }
+
         #endregion
     }
 }

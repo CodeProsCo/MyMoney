@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
@@ -29,6 +30,22 @@
     /// <seealso cref="System.Web.Mvc.Controller" />
     public class BaseController : Controller
     {
+        /// <summary>
+        /// Gets the user identifier.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public Guid UserId => Guid.Parse(GetUserClaim(ClaimTypes.NameIdentifier).Value);
+
+        /// <summary>
+        /// Gets the user email.
+        /// </summary>
+        /// <value>
+        /// The user email.
+        /// </value>
+        public string UserEmail => GetUserClaim(ClaimTypes.Email).Value;
+
         #region  Public Methods
 
         /// <summary>
@@ -129,7 +146,7 @@
                 {
                     var errorWrapper = ErrorHelper.Create(
                         error.ErrorMessage, 
-                        GetUserClaim(ClaimTypes.Email).Value, 
+                        UserEmail, 
                         GetType(), 
                         "InvalidModelState");
 

@@ -71,7 +71,7 @@
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
         [HttpDelete]
-        [Route("delete/{billId:Guid}/{requestReference:Guid}/{username}")]
+        [Route("delete/{billId:Guid}/{requestReference:Guid}")]
         public async Task<IHttpActionResult> DeleteBill([FromUri] DeleteBillRequest request)
         {
             var response = await orchestrator.DeleteBill(request);
@@ -99,7 +99,7 @@
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
         [HttpGet]
-        [Route("get/{billId:Guid}/{requestReference:Guid}/{username}")]
+        [Route("get/{billId:Guid}/{requestReference:Guid}")]
         public async Task<IHttpActionResult> GetBill([FromUri] GetBillRequest request)
         {
             var response = await orchestrator.GetBill(request);
@@ -113,7 +113,7 @@
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
         [HttpGet]
-        [Route("user/{userId:Guid}/{requestReference:Guid}/{username}")]
+        [Route("user/{userId:Guid}/{requestReference:Guid}/")]
         public async Task<IHttpActionResult> GetBillsForUser([FromUri] GetBillsForUserRequest request)
         {
             var response = await orchestrator.GetBillsForUser(request);

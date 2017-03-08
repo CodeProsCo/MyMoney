@@ -3,6 +3,7 @@
     #region Usings
 
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Assemblers.Spending.Interfaces;
@@ -255,6 +256,31 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(ex, username, GetType(), "GetBillsForUser");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        public async Task<OrchestratorResponseWrapper<IList<BillViewModel>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail)
+        {
+            var response = new OrchestratorResponseWrapper<IList<BillViewModel>>();
+
+            try
+            {
+                var request = assembler.NewGetBillsForUserForMonthRequest(monthNumber, userId, userEmail);
+                var apiResponse = await dataAccess.GetBillsForUserForMonth(request);
+
+                if (!apiResponse.Success)
+                {
+                    response.AddErrors(apiResponse.Errors);
+
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, userEmail, GetType(), "GetBillsForUserForMonth");
                 response.AddError(err);
             }
 
