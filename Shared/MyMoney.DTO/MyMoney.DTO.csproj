@@ -60,6 +60,8 @@
     <Compile Include="Request\Authentication\ValidateUserRequest.cs" />
     <Compile Include="Request\Authentication\RegisterUserRequest.cs" />
     <Compile Include="Request\BaseRequest.cs" />
+    <Compile Include="Request\Chart\Bill\GetBillCategoryChartDataRequest.cs" />
+    <Compile Include="Request\Chart\Bill\GetBillPeriodChartDataRequest.cs" />
     <Compile Include="Request\Interfaces\IDeleteRequest.cs" />
     <Compile Include="Request\Interfaces\IGetRequest.cs" />
     <Compile Include="Request\Spending\AddBillRequest.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="Response\Authentication\ValidateUserResponse.cs" />
     <Compile Include="Response\Authentication\RegisterUserResponse.cs" />
     <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\Chart\GetBillCategoryChartDataResponse.cs" />
+    <Compile Include="Response\Chart\GetBillPeriodChartDataResponse.cs" />
     <Compile Include="Response\Spending\AddBillResponse.cs" />
     <Compile Include="Response\Spending\DeleteBillResponse.cs" />
     <Compile Include="Response\Spending\EditBillResponse.cs" />

@@ -4,6 +4,8 @@
 
     using System.Web.Mvc;
 
+    using Web.Controllers;
+
     #endregion
 
     /// <summary>
@@ -13,7 +15,7 @@
     [RouteArea("Dashboard", AreaPrefix = "dash")]
     [RoutePrefix("budget")]
     [Authorize]
-    public class BudgetController : Controller
+    public class BudgetController : BaseController
     {
         #region  Public Methods
 

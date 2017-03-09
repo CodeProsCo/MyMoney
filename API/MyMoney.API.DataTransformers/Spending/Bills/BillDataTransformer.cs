@@ -15,7 +15,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="BillDataTransformer"/> class converts raw bill data models into other data formats.
+    ///     The <see cref="BillDataTransformer" /> class converts raw bill data models into other data formats.
     /// </summary>
     /// <seealso cref="MyMoney.API.DataTransformers.Spending.Bills.Interfaces.IBillDataTransformer" />
     [UsedImplicitly]
@@ -24,14 +24,16 @@
         #region  Public Methods
 
         /// <summary>
-        /// Gets the user's outgoing bills for the given month.
+        ///     Gets the user's outgoing bills for the given month.
         /// </summary>
         /// <param name="monthNumber">The month number.</param>
         /// <param name="bills">The bills.</param>
         /// <returns>
-        /// A list of key value pairs of the date and the amount spent on bills on that date.
+        ///     A list of key value pairs of the date and the amount spent on bills on that date.
         /// </returns>
-        public IList<KeyValuePair<DateTime, double>> GetOutgoingBillsForMonth(int monthNumber, IList<BillDataModel> bills)
+        public IList<KeyValuePair<DateTime, double>> GetOutgoingBillsForMonth(
+            int monthNumber, 
+            IList<BillDataModel> bills)
         {
             // var weeklyBills = bills.Where(x => x.ReoccurringPeriod == 1).ToList();
             var dailyBills = bills.Where(x => x.ReoccurringPeriod == 0).ToList();

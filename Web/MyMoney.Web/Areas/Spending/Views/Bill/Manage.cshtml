@@ -2,7 +2,6 @@
 @using Cassette.Stylesheets
 @using Cassette.Views
 @using MyMoney.Resources
-@using Newtonsoft.Json
 @model MyMoney.ViewModels.Spending.Bills.ManageBillsViewModel
 
 @{
@@ -39,7 +38,7 @@
             <div class="ui divided items">
 
                 <div class="item">
-                    <div id="category-chart"  data-url="@Url.Action("GetCategoryChartData", "Bill")"></div>
+                    <div id="category-chart" data-url="@Url.Action("GetCategoryChartData", "Bill")"></div>
                 </div>
                 <div class="item">
                     <div class="ui active inverted dimmer">

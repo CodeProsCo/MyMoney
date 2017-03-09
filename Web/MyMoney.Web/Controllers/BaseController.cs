@@ -148,10 +148,10 @@
         }
 
         /// <summary>
-        /// Adds model state errors to the JSON response.
+        ///     Adds model state errors to the JSON response.
         /// </summary>
         /// <param name="state">The model state.</param>
-        /// <returns>The <see cref="ContentResult"/>.</returns>
+        /// <returns>The <see cref="ContentResult" />.</returns>
         protected ContentResult InvalidModelState(ModelStateDictionary state)
         {
             var response = new OrchestratorResponseWrapper<bool>();
@@ -170,7 +170,7 @@
         }
 
         /// <summary>
-        /// Gets the given user claim.
+        ///     Gets the given user claim.
         /// </summary>
         /// <param name="type">The claim type.</param>
         /// <returns>The claim</returns>

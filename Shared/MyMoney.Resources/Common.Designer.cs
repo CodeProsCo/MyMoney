@@ -88,16 +88,16 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The resource you requested could not be found..
+        ///   Looks up a localized string similar to An error has occurred making a request to the server. Some features may not function properly. Please refresh the page and try again. If the problem persists, please report it..
         /// </summary>
-        public static string Error_CouldNotFindResource {
+        public static string Error_AjaxFailure {
             get {
-                return ResourceManager.GetString("Error_CouldNotFindResource", resourceCulture);
+                return ResourceManager.GetString("Error_AjaxFailure", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add some bills to see visualisations.
+        ///   Looks up a localized string similar to Failed to load charts..
         /// </summary>
         public static string Error_NoDataForChart {
             get {

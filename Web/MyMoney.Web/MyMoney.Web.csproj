@@ -276,7 +276,6 @@
     <Folder Include="Areas\Dashboard\Views\Shared\" />
     <Folder Include="Areas\Spending\Views\Shared\" />
     <Folder Include="Areas\Spending\Views\Track\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>

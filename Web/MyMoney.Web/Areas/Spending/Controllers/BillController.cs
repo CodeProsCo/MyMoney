@@ -8,6 +8,7 @@
 
     using Attributes;
 
+    using Orchestrators.Chart.Interfaces;
     using Orchestrators.Spending.Interfaces;
 
     using ViewModels.Spending.Bills;
@@ -32,6 +33,11 @@
         /// </summary>
         private readonly IBillOrchestrator orchestrator;
 
+        /// <summary>
+        ///     The chart orchestrator
+        /// </summary>
+        private readonly IChartOrchestrator chartOrchestrator;
+
         #endregion
 
         #region Constructor
@@ -40,17 +46,24 @@
         ///     Initializes a new instance of the <see cref="BillController" /> class.
         /// </summary>
         /// <param name="orchestrator">The orchestrator.</param>
+        /// <param name="chartOrchestrator">The chart orchestrator.</param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown if the orchestrator is null.
+        ///     Exception thrown if the chart or bill orchestrator are null.
         /// </exception>
-        public BillController(IBillOrchestrator orchestrator)
+        public BillController(IBillOrchestrator orchestrator, IChartOrchestrator chartOrchestrator)
         {
             if (orchestrator == null)
             {
                 throw new ArgumentNullException(nameof(orchestrator));
             }
 
+            if (chartOrchestrator == null)
+            {
+                throw new ArgumentNullException(nameof(chartOrchestrator));
+            }
+
             this.orchestrator = orchestrator;
+            this.chartOrchestrator = chartOrchestrator;
         }
 
         #endregion
@@ -142,6 +155,35 @@
         public async Task<ActionResult> GetBillsForMonth(int monthNumber)
         {
             var modelWrapper = await orchestrator.GetBillsForUserForMonth(monthNumber, UserId, UserEmail);
+
+            return JsonResponse(modelWrapper);
+        }
+
+
+        /// <summary>
+        ///     Handles HTTP requests to obtain the data required for the bill category chart.
+        /// </summary>
+        /// <returns>The response object.</returns>
+        [HttpGet]
+        [Route("chart/category")]
+        [AjaxOnly]
+        public async Task<ActionResult> GetCategoryChartData()
+        {
+            var modelWrapper = await chartOrchestrator.GetBillCategoryChartData(UserId, UserEmail);
+
+            return JsonResponse(modelWrapper);
+        }
+
+        /// <summary>
+        ///     Handles HTTP requests to obtain the data required for the bill period chart.
+        /// </summary>
+        /// <returns>The response object.</returns>
+        [HttpGet]
+        [Route("chart/period")]
+        [AjaxOnly]
+        public async Task<ActionResult> GetPeriodChartData()
+        {
+            var modelWrapper = await chartOrchestrator.GetBillPeriodChartData(UserId, UserEmail);
 
             return JsonResponse(modelWrapper);
         }

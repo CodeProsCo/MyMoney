@@ -4,6 +4,8 @@
 
     using Assemblers.Authentication;
     using Assemblers.Authentication.Interfaces;
+    using Assemblers.Chart;
+    using Assemblers.Chart.Interfaces;
     using Assemblers.Spending;
     using Assemblers.Spending.Interfaces;
 
@@ -13,11 +15,15 @@
 
     using DataAccess.Authentication;
     using DataAccess.Authentication.Interfaces;
+    using DataAccess.Chart;
+    using DataAccess.Chart.Interfaces;
     using DataAccess.Spending;
     using DataAccess.Spending.Interfaces;
 
     using Orchestrators.Authentication;
     using Orchestrators.Authentication.Interfaces;
+    using Orchestrators.Chart;
+    using Orchestrators.Chart.Interfaces;
     using Orchestrators.Spending;
     using Orchestrators.Spending.Interfaces;
 
@@ -53,6 +59,14 @@
                     .DependsOn(
                         Dependency.OnComponent<IBillAssembler, BillAssembler>(), 
                         Dependency.OnComponent<IBillDataAccess, BillDataAccess>()));
+
+            container.Register(
+                Component.For<IChartOrchestrator>()
+                    .ImplementedBy<ChartOrchestrator>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IChartAssembler, ChartAssembler>(),
+                        Dependency.OnComponent<IChartDataAccess, ChartDataAccess>()));
         }
 
         #endregion

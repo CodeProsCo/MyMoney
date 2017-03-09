@@ -8,6 +8,8 @@
 
     using DataAccess.Authentication;
     using DataAccess.Authentication.Interfaces;
+    using DataAccess.Chart;
+    using DataAccess.Chart.Interfaces;
     using DataAccess.Spending;
     using DataAccess.Spending.Interfaces;
 
@@ -33,6 +35,9 @@
 
             container.Register(
                 Component.For<IBillDataAccess>().ImplementedBy<BillDataAccess>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IChartDataAccess>().ImplementedBy<ChartDataAccess>().LifestylePerWebRequest());
         }
 
         #endregion

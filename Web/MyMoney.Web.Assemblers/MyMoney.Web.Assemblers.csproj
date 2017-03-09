@@ -59,6 +59,8 @@
   <ItemGroup>
     <Compile Include="Authentication\Interfaces\IUserAssembler.cs" />
     <Compile Include="Authentication\UserAssembler.cs" />
+    <Compile Include="Chart\ChartAssembler.cs" />
+    <Compile Include="Chart\Interfaces\IChartAssembler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spending\BillAssembler.cs" />
     <Compile Include="Spending\Interfaces\IBillAssembler.cs" />
