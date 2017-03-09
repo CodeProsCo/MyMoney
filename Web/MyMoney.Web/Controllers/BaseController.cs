@@ -12,8 +12,10 @@
     using System.Threading;
     using System.Web;
     using System.Web.Mvc;
+    using System.Web.Routing;
 
     using Helpers.Error;
+    using Helpers.Network;
 
     using Microsoft.Owin.Security;
 
@@ -38,7 +40,7 @@
         /// <value>
         ///     The user email.
         /// </value>
-        public string UserEmail => GetUserClaim(ClaimTypes.Email).Value;
+        protected static string UserEmail => GetUserClaim(ClaimTypes.Email).Value;
 
         /// <summary>
         ///     Gets the user identifier.
@@ -46,7 +48,7 @@
         /// <value>
         ///     The user identifier.
         /// </value>
-        public Guid UserId => Guid.Parse(GetUserClaim(ClaimTypes.NameIdentifier).Value);
+        protected static Guid UserId => Guid.Parse(GetUserClaim(ClaimTypes.NameIdentifier).Value);
 
         #endregion
 
@@ -111,17 +113,6 @@
             return string.Empty;
         }
 
-        protected static Claim GetUserClaim(string type)
-        {
-            // Get the current claims principal
-            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
-
-            // Get the claims values
-            var value = identity.Claims.FirstOrDefault(c => c.Type == type);
-
-            return value;
-        }
-
         protected static ContentResult JsonResponse<T>(OrchestratorResponseWrapper<T> response)
         {
             return new ContentResult
@@ -140,6 +131,27 @@
                        };
         }
 
+        /// <summary>Begins execution of the specified request context</summary>
+        /// <returns>Returns an IAsyncController instance.</returns>
+        /// <param name="requestContext">The request context.</param>
+        /// <param name="callback">The asynchronous callback.</param>
+        /// <param name="state">The state.</param>
+        protected override IAsyncResult BeginExecute(
+            RequestContext requestContext, 
+            AsyncCallback callback, 
+            object state)
+        {
+            using (BenchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl))
+            {
+                return base.BeginExecute(requestContext, callback, state);
+            }
+        }
+
+        /// <summary>
+        /// Adds model state errors to the JSON response.
+        /// </summary>
+        /// <param name="state">The model state.</param>
+        /// <returns>The <see cref="ContentResult"/>.</returns>
         protected ContentResult InvalidModelState(ModelStateDictionary state)
         {
             var response = new OrchestratorResponseWrapper<bool>();
@@ -155,6 +167,22 @@
             }
 
             return JsonResponse(response);
+        }
+
+        /// <summary>
+        /// Gets the given user claim.
+        /// </summary>
+        /// <param name="type">The claim type.</param>
+        /// <returns>The claim</returns>
+        private static Claim GetUserClaim(string type)
+        {
+            // Get the current claims principal
+            var identity = (ClaimsPrincipal)Thread.CurrentPrincipal;
+
+            // Get the claims values
+            var value = identity.Claims.FirstOrDefault(c => c.Type == type);
+
+            return value;
         }
 
         #endregion

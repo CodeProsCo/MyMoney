@@ -43,23 +43,23 @@
             <param name="orchestrator">The orchestrator.</param>
             <exception cref="T:System.ArgumentNullException">Exception thrown if the orchestrator is null.</exception>
         </member>
-        <member name="M:MyMoney.API.Controllers.Authentication.UserController.ValidateUser(MyMoney.DTO.Request.Authentication.ValidateUserRequest)">
-            <summary>
-            Gets a claim for the given user.
-            </summary>
-            <param name="request">
-            The request.
-            </param>
-            <returns>
-            The response object.
-            </returns>
-        </member>
         <member name="M:MyMoney.API.Controllers.Authentication.UserController.RegisterUser(MyMoney.DTO.Request.Authentication.RegisterUserRequest)">
             <summary>
                 Registers a user.
             </summary>
             <param name="request">The request object.</param>
             <returns>The response object.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Authentication.UserController.ValidateUser(MyMoney.DTO.Request.Authentication.ValidateUserRequest)">
+            <summary>
+                Gets a claim for the given user.
+            </summary>
+            <param name="request">
+                The request.
+            </param>
+            <returns>
+                The response object.
+            </returns>
         </member>
         <member name="T:MyMoney.API.Controllers.Spending.BillController">
             <summary>
@@ -83,35 +83,42 @@
         </member>
         <member name="M:MyMoney.API.Controllers.Spending.BillController.AddBill(MyMoney.DTO.Request.Spending.AddBillRequest)">
             <summary>
-            Handles an HTTP POST request to add a bill to the database.
+                Handles an HTTP POST request to add a bill to the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
         <member name="M:MyMoney.API.Controllers.Spending.BillController.DeleteBill(MyMoney.DTO.Request.Spending.DeleteBillRequest)">
             <summary>
-            Handles an HTTP DELETE request to remove a bill from the database.
+                Handles an HTTP DELETE request to remove a bill from the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
         <member name="M:MyMoney.API.Controllers.Spending.BillController.EditBill(MyMoney.DTO.Request.Spending.EditBillRequest)">
             <summary>
-            Handles an HTTP POST request to edit a bill in the database.
+                Handles an HTTP POST request to edit a bill in the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
         <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBill(MyMoney.DTO.Request.Spending.GetBillRequest)">
             <summary>
-            Handles an HTTP GET request to obtain a bill from the database.
+                Handles an HTTP GET request to obtain a bill from the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
         <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBillsForUser(MyMoney.DTO.Request.Spending.GetBillsForUserRequest)">
             <summary>
-            Handles an HTTP GET request for obtaining the bills for a given user from the database.
+                Handles an HTTP GET request for obtaining the bills for a given user from the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBillsForUserForMonth(MyMoney.DTO.Request.Spending.GetBillsForUserForMonthRequest)">
+            <summary>
+                GHandles an HTTP GET request for obtaining the bills for a given user in a given month.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
@@ -142,52 +149,52 @@
         </member>
         <member name="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator">
             <summary>
-            The <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator"/> class installs dependencies for controllers used in the API.
+                The <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator" /> class installs dependencies for controllers used in the API.
             </summary>
             <seealso cref="T:System.Web.Http.Dispatcher.IHttpControllerActivator" />
         </member>
         <member name="F:MyMoney.API.Plumbing.WindsorWebApiControllerActivator._container">
             <summary>
-            The container
+                The container
             </summary>
         </member>
         <member name="M:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.#ctor(Castle.Windsor.IWindsorContainer)">
             <summary>
-            Initializes a new instance of the <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator"/> class.
+                Initializes a new instance of the <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator" /> class.
             </summary>
             <param name="container">The container.</param>
         </member>
         <member name="M:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Create(System.Net.Http.HttpRequestMessage,System.Web.Http.Controllers.HttpControllerDescriptor,System.Type)">
             <summary>
-            Creates an <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
+                Creates an <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
             </summary>
             <param name="request">The message request.</param>
             <param name="controllerDescriptor">The HTTP controller descriptor.</param>
             <param name="controllerType">The type of the controller.</param>
             <returns>
-            An <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
+                An <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
             </returns>
         </member>
         <member name="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release">
             <summary>
-            The <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release"/> class releases controllers.
+                The <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release" /> class releases controllers.
             </summary>
             <seealso cref="T:System.IDisposable" />
         </member>
         <member name="F:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release._release">
             <summary>
-            The release
+                The release
             </summary>
         </member>
         <member name="M:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release.#ctor(System.Action)">
             <summary>
-            Initializes a new instance of the <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release"/> class.
+                Initializes a new instance of the <see cref="T:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release" /> class.
             </summary>
             <param name="release">The release.</param>
         </member>
         <member name="M:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release.Dispose">
             <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+                Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             </summary>
         </member>
     </members>
