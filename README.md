@@ -6,6 +6,7 @@ A personal finance planner written in .NET.
 ## Libraries Used
 ### JavaScript & CSS
 - [Semantic UI](https://github.com/semantic-org/semantic-ui/)
+- [Semantic UI Calendar](https://github.com/mdehoog/Semantic-UI-Calendar)
 - [jQuery](https://github.com/jquery/jquery)
 - [IntroJS](https://github.com/usablica/intro.js/)
 - [Chartist](https://github.com/gionkunz/chartist-js)
