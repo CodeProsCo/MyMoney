@@ -25,11 +25,7 @@ window.submitForm = function(formId, successCallback, errorCallback) {
     }
 
     if (typeof (errorCallback) == "undefined" || errorCallback == null) {
-        errorCallback = function() {
-            var errMsg = myMoney.strings.get("Common", "Error_FailedToPerformAction");
-
-            showError(errMsg);
-        };
+        errorCallback = ajaxFail;
     }
 
     var managedSuccessCallback = AjaxResponse(successCallback);

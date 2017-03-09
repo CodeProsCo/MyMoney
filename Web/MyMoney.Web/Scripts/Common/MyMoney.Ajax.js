@@ -2,12 +2,12 @@
 /// <reference path="MyMoney.ErrorHandling.js"/>
 
 
-window.AjaxResponse = function(callback) {
+window.AjaxResponse = function (callback) {
     if (typeof (callback) !== "function") {
         showError("Given callback is not a function.");
     }
 
-    var handler = function(data) {
+    var handler = function (data) {
         if (checkResponseFormat(data)) {
 
             if (!data.success) {
@@ -20,3 +20,10 @@ window.AjaxResponse = function(callback) {
     };
     return handler;
 };
+
+
+window.ajaxFail = function () {
+    var errMsg = myMoney.strings.get("Common", "Error_CouldNotFindResource");
+
+    showError(errMsg);
+}

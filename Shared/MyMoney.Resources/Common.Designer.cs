@@ -88,6 +88,15 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The resource you requested could not be found..
+        /// </summary>
+        public static string Error_CouldNotFindResource {
+            get {
+                return ResourceManager.GetString("Error_CouldNotFindResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add some bills to see visualisations.
         /// </summary>
         public static string Error_NoDataForChart {

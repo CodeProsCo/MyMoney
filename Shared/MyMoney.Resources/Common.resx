@@ -126,6 +126,9 @@
   <data name="Button_Report" xml:space="preserve">
     <value>Report</value>
   </data>
+  <data name="Error_CouldNotFindResource" xml:space="preserve">
+    <value>The resource you requested could not be found.</value>
+  </data>
   <data name="Error_NoDataForChart" xml:space="preserve">
     <value>Add some bills to see visualisations</value>
   </data>

@@ -39,13 +39,13 @@
             <div class="ui divided items">
 
                 <div class="item">
-                    <div id="category-chart"></div>
+                    <div id="category-chart"  data-url="@Url.Action("GetCategoryChartData", "Bill")"></div>
                 </div>
                 <div class="item">
                     <div class="ui active inverted dimmer">
                         <div class="ui text loader" id="chart-loading-text">Loading</div>
                     </div>
-                    <div id="period-chart"></div>
+                    <div id="period-chart" data-url="@Url.Action("GetPeriodChartData", "Bill")"></div>
                 </div>
             </div>
 
@@ -56,14 +56,4 @@
 @section Modals{
     @{ Html.RenderPartial("Modals/_AddBillModal", Model.AddModel); }
     @{ Html.RenderPartial("Modals/_EditBillModal", Model.EditModel); }
-}
-
-@section Scripts{
-    <script type="text/javascript">
-        $(document)
-            .ready(function() {
-                createBillCategoryChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillCategories)));
-                createBillPeriodChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillPeriods)));
-            });
-    </script>
 }
