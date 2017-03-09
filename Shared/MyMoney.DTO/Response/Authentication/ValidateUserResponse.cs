@@ -23,10 +23,10 @@
         public bool LoginSuccess { get; set; }
 
         /// <summary>
-        /// Gets or sets the user.
+        ///     Gets or sets the user.
         /// </summary>
         /// <value>
-        /// The user.
+        ///     The user.
         /// </value>
         public UserProxy User { get; set; }
 

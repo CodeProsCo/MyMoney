@@ -14,7 +14,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="BillDataAccess"/> class sends requests to the API for information regarding bills.
+    ///     The <see cref="BillDataAccess" /> class sends requests to the API for information regarding bills.
     /// </summary>
     /// <seealso cref="MyMoney.Web.DataAccess.BaseDataAccess" />
     /// <seealso cref="MyMoney.Web.DataAccess.Spending.Interfaces.IBillDataAccess" />
@@ -24,11 +24,11 @@
         #region  Public Methods
 
         /// <summary>
-        /// Sends an HTTP POST request to add a bill to the database.
+        ///     Sends an HTTP POST request to add a bill to the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<AddBillResponse> AddBill(AddBillRequest request)
         {
@@ -36,11 +36,11 @@
         }
 
         /// <summary>
-        /// Sends an HTTP DELETE request to remove a bill from the database.
+        ///     Sends an HTTP DELETE request to remove a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request)
         {
@@ -48,11 +48,11 @@
         }
 
         /// <summary>
-        /// Sends an HTTP POST request to edit a bill from the database.
+        ///     Sends an HTTP POST request to edit a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<EditBillResponse> EditBill(EditBillRequest request)
         {
@@ -60,11 +60,11 @@
         }
 
         /// <summary>
-        /// Sends an HTTP GET request to obtain a bill from the database.
+        ///     Sends an HTTP GET request to obtain a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetBillResponse> GetBill(GetBillRequest request)
         {
@@ -72,18 +72,26 @@
         }
 
         /// <summary>
-        /// Sends an HTTP GET request to obtain a user's bills from the database.
+        ///     Sends an HTTP GET request to obtain a user's bills from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetBillsForUserResponse> GetBillsForUser(GetBillsForUserRequest request)
         {
             return await Get<GetBillsForUserResponse>(request.FormatRequestUri(), request.Username);
         }
 
-        public async Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(GetBillsForUserForMonthRequest request)
+        /// <summary>
+        ///     Sends an HTTP GET request to obtain a user's bills for a given month from the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public async Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(
+            GetBillsForUserForMonthRequest request)
         {
             return await Get<GetBillsForUserForMonthResponse>(request.FormatRequestUri(), request.Username);
         }

@@ -9,7 +9,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="UserDataModel"/> class is a mapping of an entry in the "User" table.
+    ///     The <see cref="UserDataModel" /> class is a mapping of an entry in the "User" table.
     /// </summary>
     [Table("User")]
     public class UserDataModel
@@ -17,52 +17,70 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the date of birth.
+        ///     Gets or sets the date of birth.
         /// </summary>
         /// <value>
-        /// The date of birth.
+        ///     The date of birth.
         /// </value>
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
-        /// Gets or sets the email address.
+        ///     Gets or sets the email address.
         /// </summary>
         /// <value>
-        /// The email address.
+        ///     The email address.
         /// </value>
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// Gets or sets the first name.
+        ///     Gets or sets the first name.
         /// </summary>
         /// <value>
-        /// The first name.
+        ///     The first name.
         /// </value>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or sets the identifier.
+        ///     Gets or sets the hash.
         /// </summary>
         /// <value>
-        /// The identifier.
+        ///     The hash.
+        /// </value>
+        public byte[] Hash { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        ///     The identifier.
         /// </value>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the last name.
+        ///     Gets or sets the iterations.
         /// </summary>
         /// <value>
-        /// The last name.
+        ///     The iterations.
+        /// </value>
+        public int Iterations { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the last name.
+        /// </summary>
+        /// <value>
+        ///     The last name.
         /// </value>
         public string LastName { get; set; }
 
+        /// <summary>
+        ///     Gets or sets the salt.
+        /// </summary>
+        /// <value>
+        ///     The salt.
+        /// </value>
         public byte[] Salt { get; set; }
-
-        public byte[] Hash { get; set; }
-
-        public int Iterations { get; set; }
 
         #endregion
     }

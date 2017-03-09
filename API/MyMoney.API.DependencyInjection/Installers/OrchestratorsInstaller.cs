@@ -2,25 +2,27 @@
 {
     #region Usings
 
+    using Assemblers.Authentication;
+    using Assemblers.Authentication.Interfaces;
+    using Assemblers.Spending;
+    using Assemblers.Spending.Interfaces;
+
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
+    using DataAccess.Authentication;
+    using DataAccess.Authentication.Interfaces;
+    using DataAccess.Spending;
+    using DataAccess.Spending.Interfaces;
+
     using DataTransformers.Spending.Bills;
     using DataTransformers.Spending.Bills.Interfaces;
 
-    using MyMoney.API.Assemblers.Authentication;
-    using MyMoney.API.Assemblers.Authentication.Interfaces;
-    using MyMoney.API.Assemblers.Spending;
-    using MyMoney.API.Assemblers.Spending.Interfaces;
-    using MyMoney.API.DataAccess.Authentication;
-    using MyMoney.API.DataAccess.Authentication.Interfaces;
-    using MyMoney.API.DataAccess.Spending;
-    using MyMoney.API.DataAccess.Spending.Interfaces;
-    using MyMoney.API.Orchestrators.Authentication;
-    using MyMoney.API.Orchestrators.Authentication.Interfaces;
-    using MyMoney.API.Orchestrators.Spending;
-    using MyMoney.API.Orchestrators.Spending.Interfaces;
+    using Orchestrators.Authentication;
+    using Orchestrators.Authentication.Interfaces;
+    using Orchestrators.Spending;
+    using Orchestrators.Spending.Interfaces;
 
     #endregion
 
@@ -53,7 +55,7 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IBillAssembler, BillAssembler>(), 
-                        Dependency.OnComponent<IBillRepository, BillRepository>(),
+                        Dependency.OnComponent<IBillRepository, BillRepository>(), 
                         Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>()));
         }
 

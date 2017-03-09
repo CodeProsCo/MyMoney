@@ -4,7 +4,6 @@
 
     using System;
     using System.Data.Entity;
-    using System.Text;
     using System.Threading.Tasks;
 
     using DataModels.Authentication;
@@ -40,19 +39,14 @@
         {
             using (var context = new DatabaseContext())
             {
-                var result =
-                    await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
+                var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
 
                 if (result == null)
                 {
                     throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
                 }
 
-                if (EncryptionHelper.ValidatePassword(
-                    password,
-                    result.Salt,
-                    result.Hash,
-                    result.Iterations))
+                if (EncryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
                 {
                     return result;
                 }
@@ -62,14 +56,14 @@
         }
 
         /// <summary>
-        /// Gets the user identifier by their email.
+        ///     Gets the user identifier by their email.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The user identifier.
+        ///     The user identifier.
         /// </returns>
         /// <exception cref="System.Exception">
-        /// Exception thrown if the user is not found.
+        ///     Exception thrown if the user is not found.
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {

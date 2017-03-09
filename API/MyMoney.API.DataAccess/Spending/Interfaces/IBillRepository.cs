@@ -25,14 +25,14 @@
         Task<BillDataModel> AddBill(BillDataModel dataModel);
 
         /// <summary>
-        /// Deletes a bill from the database.
+        ///     Deletes a bill from the database.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
         /// <returns>If successful, true. Otherwise, false.</returns>
         Task<bool> DeleteBill(Guid billId);
 
         /// <summary>
-        /// Edits a bill in the database.
+        ///     Edits a bill in the database.
         /// </summary>
         /// <param name="bill">The bill.</param>
         /// <returns>The updated bill data mode.</returns>

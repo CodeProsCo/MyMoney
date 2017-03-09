@@ -24,18 +24,6 @@
         #region  Public Methods
 
         /// <summary>
-        ///     Sends a request to obtain the claims identity information for the given user.
-        /// </summary>
-        /// <param name="request">The request object.</param>
-        /// <returns>
-        ///     The response object.
-        /// </returns>
-        public async Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request)
-        {
-            return await Post<ValidateUserResponse>(request);
-        }
-
-        /// <summary>
         ///     Sends a request to register the given user.
         /// </summary>
         /// <param name="request">The request object.</param>
@@ -45,6 +33,18 @@
         public async Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request)
         {
             return await Post<RegisterUserResponse>(request);
+        }
+
+        /// <summary>
+        ///     Sends a request to obtain the claims identity information for the given user.
+        /// </summary>
+        /// <param name="request">The request object.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public async Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request)
+        {
+            return await Post<ValidateUserResponse>(request);
         }
 
         #endregion

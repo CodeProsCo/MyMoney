@@ -9,7 +9,7 @@
     #endregion
 
     /// <summary>
-    /// The<see cref="GetBillsForUserRequest"/> class is used for obtaining the list of bills for a user.
+    ///     The<see cref="GetBillsForUserRequest" /> class is used for obtaining the list of bills for a user.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
     /// <seealso cref="MyMoney.DTO.Request.Interfaces.IGetRequest" />
@@ -30,10 +30,10 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the user identifier.
+        ///     Gets or sets the user identifier.
         /// </summary>
         /// <value>
-        /// The user identifier.
+        ///     The user identifier.
         /// </value>
         public Guid UserId { get; set; }
 
@@ -42,10 +42,10 @@
         #region  Public Methods
 
         /// <summary>
-        /// Formats the request URI.
+        ///     Formats the request URI.
         /// </summary>
         /// <returns>
-        /// The formatted uri.
+        ///     The formatted uri.
         /// </returns>
         public string FormatRequestUri()
         {

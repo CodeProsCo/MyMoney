@@ -21,18 +21,18 @@
         #region  Public Methods
 
         /// <summary>
-        /// Obtains a claim for the given user.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns>The response object.</returns>
-        Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request);
-
-        /// <summary>
         ///     Registers a user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request);
+
+        /// <summary>
+        ///     Obtains a claim for the given user.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
+        Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request);
 
         #endregion
     }

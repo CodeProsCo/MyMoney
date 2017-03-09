@@ -3,7 +3,6 @@
     #region Usings
 
     using System;
-    using System.Security.Claims;
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
@@ -18,7 +17,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="BillController"/> controller handles HTTP requests regarding bills.
+    ///     The <see cref="BillController" /> controller handles HTTP requests regarding bills.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [RouteArea("Spending", AreaPrefix = "spending")]
@@ -29,7 +28,7 @@
         #region Fields
 
         /// <summary>
-        /// The orchestrator
+        ///     The orchestrator
         /// </summary>
         private readonly IBillOrchestrator orchestrator;
 
@@ -38,11 +37,11 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BillController"/> class.
+        ///     Initializes a new instance of the <see cref="BillController" /> class.
         /// </summary>
         /// <param name="orchestrator">The orchestrator.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the orchestrator is null.
+        ///     Exception thrown if the orchestrator is null.
         /// </exception>
         public BillController(IBillOrchestrator orchestrator)
         {
@@ -59,7 +58,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// Handles a HTTP request to add a bill to the database.
+        ///     Handles a HTTP request to add a bill to the database.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>The response object.</returns>
@@ -81,7 +80,7 @@
         }
 
         /// <summary>
-        /// Handles a HTTP request to delete a specified bill.
+        ///     Handles a HTTP request to delete a specified bill.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
         /// <returns>The response object.</returns>
@@ -96,7 +95,7 @@
         }
 
         /// <summary>
-        /// Handles HTTP requests to edit a specified bill.
+        ///     Handles HTTP requests to edit a specified bill.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>The response object.</returns>
@@ -118,7 +117,7 @@
         }
 
         /// <summary>
-        /// Handles HTTP requests to get a specified bill.
+        ///     Handles HTTP requests to get a specified bill.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
         /// <returns>The response object.</returns>
@@ -133,23 +132,10 @@
         }
 
         /// <summary>
-        /// Handles HTTP requests for the bill management view.
+        ///     Handles HTTP requests to obtain the user's bills in a certain month.
         /// </summary>
-        /// <returns>The bill management view.</returns>
-        [HttpGet]
-        [Route("manage")]
-        public async Task<ActionResult> Manage()
-        {
-            var modelWrapper =
-                await
-                orchestrator.GetBillsForUser(UserId, UserEmail);
-
-            AddModelErrors(modelWrapper.Errors);
-            AddModelWarnings(modelWrapper.Warnings);
-
-            return View("Manage", modelWrapper.Model);
-        }
-
+        /// <param name="monthNumber">The month number.</param>
+        /// <returns>The response object.</returns>
         [HttpGet]
         [AjaxOnly]
         [Route("get/month/{monthNumber:int}")]
@@ -158,6 +144,22 @@
             var modelWrapper = await orchestrator.GetBillsForUserForMonth(monthNumber, UserId, UserEmail);
 
             return JsonResponse(modelWrapper);
+        }
+
+        /// <summary>
+        ///     Handles HTTP requests for the bill management view.
+        /// </summary>
+        /// <returns>The bill management view.</returns>
+        [HttpGet]
+        [Route("manage")]
+        public async Task<ActionResult> Manage()
+        {
+            var modelWrapper = await orchestrator.GetBillsForUser(UserId, UserEmail);
+
+            AddModelErrors(modelWrapper.Errors);
+            AddModelWarnings(modelWrapper.Warnings);
+
+            return View("Manage", modelWrapper.Model);
         }
 
         #endregion

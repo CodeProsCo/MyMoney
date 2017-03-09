@@ -1,34 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.DTO.Request.Spending
+﻿namespace MyMoney.DTO.Request.Spending
 {
+    #region Usings
+
+    using System;
+
     using Interfaces;
+
+    #endregion
+
+    /// <summary>
+    ///     The HTTP GET response object for obtaining a user's monthly bills from the API.
+    /// </summary>
+    /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
+    /// <seealso cref="MyMoney.DTO.Request.Interfaces.IGetRequest" />
     public class GetBillsForUserForMonthRequest : BaseRequest, IGetRequest
     {
+        #region Constructor
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="GetBillsForUserForMonthRequest" /> class.
+        /// </summary>
         public GetBillsForUserForMonthRequest()
             : base("spending/bills/get/{0}/month/{1}/{2}")
         {
         }
 
-        #region Implementation of IGetRequest
+        #endregion
+
+        #region  Properties
 
         /// <summary>
-        /// Formats the request URI.
+        ///     Gets or sets the month number.
+        /// </summary>
+        /// <value>
+        ///     The month number.
+        /// </value>
+        public int MonthNumber { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the user identifier.
+        /// </summary>
+        /// <value>
+        ///     The user identifier.
+        /// </value>
+        public Guid UserId { get; set; }
+
+        #endregion
+
+        #region  Public Methods
+
+        /// <summary>
+        ///     Formats the request URI.
         /// </summary>
         /// <returns>The formatted uri.</returns>
         public string FormatRequestUri()
         {
             return string.Format(GetAction(), UserId, MonthNumber, RequestReference);
         }
-
-        public int MonthNumber { get; set; }
-
-        public Guid UserId { get; set; }
 
         #endregion
     }

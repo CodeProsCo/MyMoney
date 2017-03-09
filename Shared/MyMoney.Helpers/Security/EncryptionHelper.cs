@@ -9,10 +9,18 @@
 
     #endregion
 
+    /// <summary>
+    ///     The <see cref="EncryptionHelper" /> class contains helper functions for performing encryption tasks.
+    /// </summary>
     public static class EncryptionHelper
     {
         #region  Public Methods
 
+        /// <summary>
+        ///     Creates an instance of the <see cref="EncryptedPasswordModel" /> class based on the given password.
+        /// </summary>
+        /// <param name="password">The password.</param>
+        /// <returns>The model.</returns>
         public static EncryptedPasswordModel EncryptPassword(string password)
         {
             var rnd = new Random(DateTime.Now.Millisecond);
@@ -23,14 +31,17 @@
             var iterations = rnd.Next(100);
             var hash = GenerateHash(passwordBytes, salt, iterations, password.Length);
 
-            return new EncryptedPasswordModel
-            {
-                Salt = salt,
-                Hash = hash,
-                Iterations = iterations
-            };
+            return new EncryptedPasswordModel { Salt = salt, Hash = hash, Iterations = iterations };
         }
 
+        /// <summary>
+        ///     Validates the given password by creating a new hash for it and comparing it with the given hash.
+        /// </summary>
+        /// <param name="givenPassword">The given password.</param>
+        /// <param name="salt">The salt.</param>
+        /// <param name="hash">The hash.</param>
+        /// <param name="iterations">The iterations.</param>
+        /// <returns>If the password is valid, true. Otherwise, false.</returns>
         public static bool ValidatePassword(string givenPassword, byte[] salt, byte[] hash, int iterations)
         {
             var passwordBytes = Encoding.ASCII.GetBytes(givenPassword);
@@ -43,6 +54,14 @@
 
         #region Private Methods
 
+        /// <summary>
+        ///     Generates a hash using the <see cref="Rfc2898DeriveBytes" /> class.
+        /// </summary>
+        /// <param name="password">The password.</param>
+        /// <param name="salt">The salt.</param>
+        /// <param name="iterations">The iterations.</param>
+        /// <param name="length">The length.</param>
+        /// <returns>The hash.</returns>
         private static byte[] GenerateHash(byte[] password, byte[] salt, int iterations, int length)
         {
             using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, iterations))
@@ -51,6 +70,11 @@
             }
         }
 
+        /// <summary>
+        ///     Generates a salt using the <see cref="RNGCryptoServiceProvider" /> class.
+        /// </summary>
+        /// <param name="length">The length.</param>
+        /// <returns>The salt.</returns>
         private static byte[] GenerateSalt(int length)
         {
             var bytes = new byte[length];

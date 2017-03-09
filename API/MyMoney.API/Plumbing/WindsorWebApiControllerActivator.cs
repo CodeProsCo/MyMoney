@@ -12,14 +12,15 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="WindsorWebApiControllerActivator"/> class installs dependencies for controllers used in the API.
+    ///     The <see cref="WindsorWebApiControllerActivator" /> class installs dependencies for controllers used in the API.
     /// </summary>
     /// <seealso cref="System.Web.Http.Dispatcher.IHttpControllerActivator" />
     public class WindsorWebApiControllerActivator : IHttpControllerActivator
     {
-        #region Fields        
+        #region Fields
+
         /// <summary>
-        /// The container
+        ///     The container
         /// </summary>
         private readonly IWindsorContainer _container;
 
@@ -28,7 +29,7 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WindsorWebApiControllerActivator"/> class.
+        ///     Initializes a new instance of the <see cref="WindsorWebApiControllerActivator" /> class.
         /// </summary>
         /// <param name="container">The container.</param>
         public WindsorWebApiControllerActivator(IWindsorContainer container)
@@ -41,13 +42,13 @@
         #region  Public Methods
 
         /// <summary>
-        /// Creates an <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
+        ///     Creates an <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
         /// </summary>
         /// <param name="request">The message request.</param>
         /// <param name="controllerDescriptor">The HTTP controller descriptor.</param>
         /// <param name="controllerType">The type of the controller.</param>
         /// <returns>
-        /// An <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
+        ///     An <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
         /// </returns>
         public IHttpController Create(
             HttpRequestMessage request, 
@@ -64,7 +65,7 @@
         #endregion
 
         /// <summary>
-        /// The <see cref="Release"/> class releases controllers.
+        ///     The <see cref="Release" /> class releases controllers.
         /// </summary>
         /// <seealso cref="System.IDisposable" />
         private class Release : IDisposable
@@ -72,7 +73,7 @@
             #region Fields
 
             /// <summary>
-            /// The release
+            ///     The release
             /// </summary>
             private readonly Action _release;
 
@@ -81,7 +82,7 @@
             #region Constructor
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Release"/> class.
+            ///     Initializes a new instance of the <see cref="Release" /> class.
             /// </summary>
             /// <param name="release">The release.</param>
             public Release(Action release)
@@ -94,7 +95,7 @@
             #region  Public Methods
 
             /// <summary>
-            /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             /// </summary>
             public void Dispose()
             {

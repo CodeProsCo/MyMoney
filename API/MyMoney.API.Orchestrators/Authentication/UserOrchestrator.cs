@@ -72,33 +72,6 @@
         #region  Public Methods
 
         /// <summary>
-        /// Obtains a claim for the given user.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns>
-        /// The response object.
-        /// </returns>
-        public async Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request)
-        {
-            var response = new ValidateUserResponse();
-
-            try
-            {
-                var userDataModel =
-                    await repository.GetUser(request.EmailAddress, request.Password);
-
-                response = assembler.NewGetClaimForUserResponse(userDataModel, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
-                response.AddError(err);
-            }
-
-            return response;
-        }
-
-        /// <summary>
         ///     Registers a user.
         /// </summary>
         /// <param name="request">The request.</param>
@@ -119,6 +92,32 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(ex, request.EmailAddress, GetType(), "RegisterUser");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        ///     Obtains a claim for the given user.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public async Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request)
+        {
+            var response = new ValidateUserResponse();
+
+            try
+            {
+                var userDataModel = await repository.GetUser(request.EmailAddress, request.Password);
+
+                response = assembler.NewGetClaimForUserResponse(userDataModel, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

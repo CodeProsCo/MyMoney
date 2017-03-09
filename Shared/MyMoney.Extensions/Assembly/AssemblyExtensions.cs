@@ -1,4 +1,5 @@
-﻿#pragma warning disable 169
+﻿
+#pragma warning disable 169
 #pragma warning disable 649
 
 namespace MyMoney.Extensions.Assembly
@@ -12,14 +13,14 @@ namespace MyMoney.Extensions.Assembly
     #endregion
 
     /// <summary>
-    /// The <see cref="AssemblyExtensions"/> class contains extension methods for the <see cref="Assembly"/> class.
+    ///     The <see cref="AssemblyExtensions" /> class contains extension methods for the <see cref="Assembly" /> class.
     /// </summary>
     public static class AssemblyExtensions
     {
         #region  Public Methods
 
         /// <summary>
-        /// Gets the linker time.
+        ///     Gets the linker time.
         /// </summary>
         /// <param name="assembly">The assembly.</param>
         /// <param name="target">The target.</param>

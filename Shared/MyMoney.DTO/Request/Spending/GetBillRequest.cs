@@ -9,7 +9,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GetBillRequest"/> class is used for obtaining a bill from the database.
+    ///     The <see cref="GetBillRequest" /> class is used for obtaining a bill from the database.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
     /// <seealso cref="MyMoney.DTO.Request.Interfaces.IGetRequest" />
@@ -30,10 +30,10 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the bill identifier.
+        ///     Gets or sets the bill identifier.
         /// </summary>
         /// <value>
-        /// The bill identifier.
+        ///     The bill identifier.
         /// </value>
         public Guid BillId { get; set; }
 
@@ -42,10 +42,10 @@
         #region  Public Methods
 
         /// <summary>
-        /// Formats the request URI.
+        ///     Formats the request URI.
         /// </summary>
         /// <returns>
-        /// The formatted uri.
+        ///     The formatted uri.
         /// </returns>
         public string FormatRequestUri()
         {

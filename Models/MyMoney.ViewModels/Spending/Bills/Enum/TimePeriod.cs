@@ -8,28 +8,28 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="TimePeriod"/> enumeration determines a period of time.
+    ///     The <see cref="TimePeriod" /> enumeration determines a period of time.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TimePeriod
     {
         /// <summary>
-        /// The event happens daily.
+        ///     The event happens daily.
         /// </summary>
-        Daily = 0,
+        Daily = 0, 
 
         /// <summary>
-        /// The event happens weekly.
+        ///     The event happens weekly.
         /// </summary>
-        Weekly,
+        Weekly, 
 
         /// <summary>
-        /// The event happens monthly.
+        ///     The event happens monthly.
         /// </summary>
-        Monthly,
+        Monthly, 
 
         /// <summary>
-        /// The event happens yearly.
+        ///     The event happens yearly.
         /// </summary>
         Yearly
     }

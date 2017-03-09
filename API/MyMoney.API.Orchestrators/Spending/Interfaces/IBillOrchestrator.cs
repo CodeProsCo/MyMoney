@@ -29,14 +29,14 @@
         Task<AddBillResponse> AddBill(AddBillRequest request, string username);
 
         /// <summary>
-        /// Deletes a bill.
+        ///     Deletes a bill.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request);
 
         /// <summary>
-        /// Edits a bill.
+        ///     Edits a bill.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
@@ -56,8 +56,13 @@
         /// <returns>The response object.</returns>
         Task<GetBillsForUserResponse> GetBillsForUser(GetBillsForUserRequest request);
 
-        #endregion
-
+        /// <summary>
+        ///     Gets the bills for the given user for the given month.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
         Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(GetBillsForUserForMonthRequest request);
+
+        #endregion
     }
 }

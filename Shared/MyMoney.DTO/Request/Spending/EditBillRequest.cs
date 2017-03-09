@@ -7,7 +7,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="EditBillRequest"/> class is used for editing a bill in the database.
+    ///     The <see cref="EditBillRequest" /> class is used for editing a bill in the database.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
     public class EditBillRequest : BaseRequest
@@ -15,7 +15,7 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditBillRequest"/> class.
+        ///     Initializes a new instance of the <see cref="EditBillRequest" /> class.
         /// </summary>
         public EditBillRequest()
             : base("spending/bills/edit")
@@ -27,10 +27,10 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the bill.
+        ///     Gets or sets the bill.
         /// </summary>
         /// <value>
-        /// The bill.
+        ///     The bill.
         /// </value>
         public BillProxy Bill { get; set; }
 

@@ -25,9 +25,9 @@ function addBillSuccessCallback(data) {
         table.find("tbody").append(row);
         row.addClass("positive");
 
-        setTimeout(function () {
-            row.removeClass("positive");
-        },
+        setTimeout(function() {
+                row.removeClass("positive");
+            },
             5000);
 
         $("#bill-table").find("#table-warning").remove();
@@ -53,9 +53,9 @@ function editBillSuccessCallback(data) {
             table.find(".selected").replaceWith(row);
             row.addClass("warning");
 
-            setTimeout(function () {
-                row.removeClass("warning");
-            },
+            setTimeout(function() {
+                    row.removeClass("warning");
+                },
                 5000);
         }
 
@@ -145,7 +145,7 @@ function getBillCallback(data) {
     var inputs = $(modal).find("input");
 
     $(inputs)
-        .each(function (i, elem) {
+        .each(function(i, elem) {
             var prop = elem.id.replace("#", "").toCamelCase();
 
             if ($(elem).attr("type") === "date") {
@@ -231,15 +231,16 @@ function loadCalendarData(selector) {
     var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
     $(selector).empty();
-    $(selector).calendar({
-        type: "date",
-        inline: true,
-        disableYear: true,
-        disableMinute: true,
-        disableMonth: true,
-        minDate: firstDay,
-        maxDate: lastDay
-    });
+    $(selector)
+        .calendar({
+            type: "date",
+            inline: true,
+            disableYear: true,
+            disableMinute: true,
+            disableMonth: true,
+            minDate: firstDay,
+            maxDate: lastDay
+        });
 
     $(selector)
         .children()
@@ -264,7 +265,7 @@ function loadCalendarDataCallback(data) {
         var monthCells = [];
 
         $(calendarCells)
-            .each(function (i, elem) {
+            .each(function(i, elem) {
                 elem = $(elem);
 
                 if (elem.hasClass("disabled") || elem.hasClass("adjacent") || elem.is("span")) {
@@ -277,11 +278,13 @@ function loadCalendarDataCallback(data) {
                 });
             });
 
-        for (var i = 0; i < data.model.length; i++) {
-            var billDay = data.model[i];
+        for (var j = 0; j < data.model.length; j++) {
+            var billDay = data.model[j];
             var date = new Date(billDay.key);
 
-            $.each(monthCells, function (i, cell) {
+            for (var k = 0; k < monthCells.length; k++) {
+                var cell = monthCells[k];
+
                 if (cell.date === date.getDate()) {
                     cell.element.addClass("negative").text(billDay.value.asCurrency());
                 }
@@ -289,12 +292,12 @@ function loadCalendarDataCallback(data) {
                 if (cell.date < new Date().getDate()) {
                     cell.element.addClass("disabled").removeClass("negative");
                 }
-            });
+            }
         }
     }
 }
 
-$(function () {
+$(function() {
     $("#add").click(showAddModal);
     $("#add-bill").click(addBillClick);
     $("#edit-bill").click(editBillClick);

@@ -10,50 +10,54 @@
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="BillDataAccess"/> class.
+    ///     Interface for the <see cref="BillDataAccess" /> class.
     /// </summary>
     public interface IBillDataAccess
     {
         #region  Public Methods
 
         /// <summary>
-        /// Sends an HTTP POST request to add a bill to the database.
+        ///     Sends an HTTP POST request to add a bill to the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<AddBillResponse> AddBill(AddBillRequest request);
 
         /// <summary>
-        /// Sends an HTTP DELETE request to remove a bill from the database.
+        ///     Sends an HTTP DELETE request to remove a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request);
 
         /// <summary>
-        /// Sends an HTTP POST request to edit a bill from the database.
+        ///     Sends an HTTP POST request to edit a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<EditBillResponse> EditBill(EditBillRequest request);
 
         /// <summary>
-        /// Sends an HTTP GET request to obtain a bill from the database.
+        ///     Sends an HTTP GET request to obtain a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<GetBillResponse> GetBill(GetBillRequest request);
 
-
         /// <summary>
-        /// Sends an HTTP GET request to obtain a user's bills from the database.
+        ///     Sends an HTTP GET request to obtain a user's bills from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<GetBillsForUserResponse> GetBillsForUser(GetBillsForUserRequest request);
 
-        #endregion
-
+        /// <summary>
+        ///     Sends an HTTP GET request to obtain a user's bills for a given month from the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
         Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(GetBillsForUserForMonthRequest request);
+
+        #endregion
     }
 }

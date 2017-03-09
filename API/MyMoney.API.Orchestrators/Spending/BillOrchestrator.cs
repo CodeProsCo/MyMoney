@@ -37,14 +37,14 @@
         private readonly IBillAssembler assembler;
 
         /// <summary>
+        ///     The data transformer
+        /// </summary>
+        private readonly IBillDataTransformer dataTransformer;
+
+        /// <summary>
         ///     The repository
         /// </summary>
         private readonly IBillRepository repository;
-
-        /// <summary>
-        /// The data transformer
-        /// </summary>
-        private readonly IBillDataTransformer dataTransformer;
 
         #endregion
 
@@ -59,7 +59,10 @@
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown when either the assembler, repository or data transformer are null.
         /// </exception>
-        public BillOrchestrator(IBillAssembler assembler, IBillRepository repository, IBillDataTransformer dataTransformer)
+        public BillOrchestrator(
+            IBillAssembler assembler, 
+            IBillRepository repository, 
+            IBillDataTransformer dataTransformer)
         {
             if (assembler == null)
             {
@@ -211,6 +214,13 @@
             return response;
         }
 
+        /// <summary>
+        ///     Gets the bills for the given user for the given month.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
         public async Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(
             GetBillsForUserForMonthRequest request)
         {

@@ -17,18 +17,18 @@
         #region  Public Methods
 
         /// <summary>
-        ///     Sends a request to obtain the claims identity information for the given user.
-        /// </summary>
-        /// <param name="request">The request object.</param>
-        /// <returns>The response object.</returns>
-        Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request);
-
-        /// <summary>
         ///     Sends a request to register the given user.
         /// </summary>
         /// <param name="request">The request object.</param>
         /// <returns>The response object.</returns>
         Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request);
+
+        /// <summary>
+        ///     Sends a request to obtain the claims identity information for the given user.
+        /// </summary>
+        /// <param name="request">The request object.</param>
+        /// <returns>The response object.</returns>
+        Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request);
 
         #endregion
     }

@@ -50,24 +50,6 @@
         #region  Public Methods
 
         /// <summary>
-        /// Gets a claim for the given user.
-        /// </summary>
-        /// <param name="request">
-        /// The request.
-        /// </param>
-        /// <returns>
-        /// The response object.
-        /// </returns>
-        [HttpPost]
-        [Route("validate")]
-        public async Task<IHttpActionResult> ValidateUser([FromBody] ValidateUserRequest request)
-        {
-            var response = await orchestrator.ValidateUser(request);
-
-            return Ok(response);
-        }
-
-        /// <summary>
         ///     Registers a user.
         /// </summary>
         /// <param name="request">The request object.</param>
@@ -77,6 +59,24 @@
         public async Task<IHttpActionResult> RegisterUser([FromBody] RegisterUserRequest request)
         {
             var response = await orchestrator.RegisterUser(request);
+
+            return Ok(response);
+        }
+
+        /// <summary>
+        ///     Gets a claim for the given user.
+        /// </summary>
+        /// <param name="request">
+        ///     The request.
+        /// </param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        [HttpPost]
+        [Route("validate")]
+        public async Task<IHttpActionResult> ValidateUser([FromBody] ValidateUserRequest request)
+        {
+            var response = await orchestrator.ValidateUser(request);
 
             return Ok(response);
         }

@@ -27,12 +27,12 @@
         ///     The Client
         /// </summary>
         private static readonly HttpClient Client = new HttpClient
-        {
-            BaseAddress =
-                    new Uri(
-                    WebConfigurationManager.AppSettings.Get(
-                        "ApiUri"))
-        };
+                                                        {
+                                                            BaseAddress =
+                                                                new Uri(
+                                                                WebConfigurationManager.AppSettings.Get(
+                                                                    "ApiUri"))
+                                                        };
 
         #endregion
 
@@ -62,8 +62,8 @@
 
             HttpResponseMessage httpResponse;
 
-            using (RequestBenchmarkHelper.Create(uri))
-            {               
+            using (BenchmarkHelper.Create(uri))
+            {
                 httpResponse = await Client.DeleteAsync(uri);
             }
 
@@ -93,7 +93,7 @@
 
             HttpResponseMessage httpResponse;
 
-            using (RequestBenchmarkHelper.Create(uri))
+            using (BenchmarkHelper.Create(uri))
             {
                 httpResponse = await Client.GetAsync(uri);
             }
@@ -123,7 +123,7 @@
 
             HttpResponseMessage httpResponse;
 
-            using (RequestBenchmarkHelper.Create(request.GetAction()))
+            using (BenchmarkHelper.Create(request.GetAction()))
             {
                 httpResponse = await Client.PostAsJsonAsync(request.GetAction(), request);
             }

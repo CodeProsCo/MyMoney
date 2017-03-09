@@ -19,7 +19,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="BillRepository"/> class performs CRUD operations regarding bills.
+    ///     The <see cref="BillRepository" /> class performs CRUD operations regarding bills.
     /// </summary>
     /// <seealso cref="MyMoney.API.DataAccess.Spending.Interfaces.IBillRepository" />
     [UsedImplicitly]
@@ -28,11 +28,11 @@
         #region  Public Methods
 
         /// <summary>
-        /// Adds a bill to the database.
+        ///     Adds a bill to the database.
         /// </summary>
         /// <param name="dataModel">The data model.</param>
         /// <returns>
-        /// The bill data model.
+        ///     The bill data model.
         /// </returns>
         public async Task<BillDataModel> AddBill(BillDataModel dataModel)
         {
@@ -70,7 +70,7 @@
         }
 
         /// <summary>
-        /// Deletes a bill from the database.
+        ///     Deletes a bill from the database.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
         /// <returns>If successful, true. Otherwise, false.</returns>
@@ -95,7 +95,7 @@
         }
 
         /// <summary>
-        /// Edits a bill in the database.
+        ///     Edits a bill in the database.
         /// </summary>
         /// <param name="bill">The edited bill.</param>
         /// <returns>The updated bill data model.</returns>
@@ -126,14 +126,14 @@
         }
 
         /// <summary>
-        /// Obtains a bill from the database.
+        ///     Obtains a bill from the database.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
         /// <returns>
-        /// The bill data model.
+        ///     The bill data model.
         /// </returns>
         /// <exception cref="System.Exception">
-        /// Exception thrown if the bill is not found.
+        ///     Exception thrown if the bill is not found.
         /// </exception>
         public async Task<BillDataModel> GetBill(Guid billId)
         {
@@ -151,11 +151,11 @@
         }
 
         /// <summary>
-        /// Gets the bills for the given user.
+        ///     Gets the bills for the given user.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>
-        /// The list of bills.
+        ///     The list of bills.
         /// </returns>
         public async Task<IList<BillDataModel>> GetBillsForUser(Guid userId)
         {

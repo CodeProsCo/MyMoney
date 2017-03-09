@@ -52,7 +52,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// Handles an HTTP POST request to add a bill to the database.
+        ///     Handles an HTTP POST request to add a bill to the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
@@ -66,7 +66,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP DELETE request to remove a bill from the database.
+        ///     Handles an HTTP DELETE request to remove a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
@@ -80,7 +80,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP POST request to edit a bill in the database.
+        ///     Handles an HTTP POST request to edit a bill in the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
@@ -94,7 +94,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP GET request to obtain a bill from the database.
+        ///     Handles an HTTP GET request to obtain a bill from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
@@ -108,7 +108,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP GET request for obtaining the bills for a given user from the database.
+        ///     Handles an HTTP GET request for obtaining the bills for a given user from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
@@ -121,6 +121,11 @@
             return Ok(response);
         }
 
+        /// <summary>
+        ///     GHandles an HTTP GET request for obtaining the bills for a given user in a given month.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object. Wrapped in a 200 response.</returns>
         [HttpGet]
         [Route("get/{userId:Guid}/month/{monthNumber:int}/{requestReference:Guid}/")]
         public async Task<IHttpActionResult> GetBillsForUserForMonth([FromUri] GetBillsForUserForMonthRequest request)

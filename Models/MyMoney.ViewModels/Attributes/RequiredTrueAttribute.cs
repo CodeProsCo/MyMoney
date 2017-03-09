@@ -7,7 +7,8 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="RequiredTrueAttribute"/> attribute validates a <see cref="bool"/> and ensures that it is set to true.
+    ///     The <see cref="RequiredTrueAttribute" /> attribute validates a <see cref="bool" /> and ensures that it is set to
+    ///     true.
     /// </summary>
     /// <seealso cref="System.ComponentModel.DataAnnotations.ValidationAttribute" />
     public class RequiredTrueAttribute : ValidationAttribute

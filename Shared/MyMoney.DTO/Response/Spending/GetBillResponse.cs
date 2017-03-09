@@ -9,7 +9,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GetBillResponse"/> class is the response object for a <see cref="GetBillRequest"/> request.
+    ///     The <see cref="GetBillResponse" /> class is the response object for a <see cref="GetBillRequest" /> request.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class GetBillResponse : BaseResponse
@@ -17,10 +17,10 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the bill.
+        ///     Gets or sets the bill.
         /// </summary>
         /// <value>
-        /// The bill.
+        ///     The bill.
         /// </value>
         public BillProxy Bill { get; set; }
 

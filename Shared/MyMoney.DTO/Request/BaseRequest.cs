@@ -36,10 +36,10 @@
         public Guid RequestReference { get; }
 
         /// <summary>
-        /// Gets or sets the username.
+        ///     Gets or sets the username.
         /// </summary>
         /// <value>
-        /// The username.
+        ///     The username.
         /// </value>
         public string Username { get; set; }
 

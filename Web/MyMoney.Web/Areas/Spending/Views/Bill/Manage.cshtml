@@ -2,7 +2,6 @@
 @using Cassette.Stylesheets
 @using Cassette.Views
 @using MyMoney.Resources
-@using MyMoney.ViewModels.Spending.Bills.Enum
 @using Newtonsoft.Json
 @model MyMoney.ViewModels.Spending.Bills.ManageBillsViewModel
 
@@ -62,7 +61,7 @@
 @section Scripts{
     <script type="text/javascript">
         $(document)
-            .ready(function () {
+            .ready(function() {
                 createBillCategoryChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillCategories)));
                 createBillPeriodChart(@Html.Raw(JsonConvert.SerializeObject(Model.BillPeriods)));
             });

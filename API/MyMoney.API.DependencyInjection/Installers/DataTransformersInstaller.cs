@@ -11,6 +11,10 @@
 
     #endregion
 
+    /// <summary>
+    ///     The IOC installer for data transformation classes.
+    /// </summary>
+    /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class DataTransformersInstaller : IWindsorInstaller
     {
         #region  Public Methods

@@ -1,11 +1,5 @@
 ﻿namespace MyMoney.DTO.Request.Authentication
 {
-    #region Usings
-
-    using Interfaces;
-
-    #endregion
-
     /// <summary>
     ///     Request used for obtaining user claim information from the database.
     /// </summary>
@@ -41,10 +35,6 @@
         ///     The password.
         /// </value>
         public string Password { get; set; }
-
-        #endregion
-
-        #region  Public Methods
 
         #endregion
     }

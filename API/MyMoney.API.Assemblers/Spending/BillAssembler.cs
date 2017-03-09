@@ -77,23 +77,6 @@
         }
 
         /// <summary>
-        ///     Creates a new instance of the <see cref="GetBillsForUserResponse" /> class.
-        /// </summary>
-        /// <param name="bills">The bills.</param>
-        /// <param name="requestReference">The request reference.</param>
-        /// <returns>The response object.</returns>
-        public GetBillsForUserResponse NewGetBillsForUserResponse(
-            IList<BillDataModel> bills,
-            Guid requestReference)
-        {
-            return new GetBillsForUserResponse
-            {
-                RequestReference = requestReference,
-                Bills = bills.Select(BillDataModelToProxy).ToList()
-            };
-        }
-
-        /// <summary>
         ///     Creates a new instance of the <see cref="GetBillResponse" />class.
         /// </summary>
         /// <param name="bill">The bill.</param>
@@ -104,9 +87,34 @@
             return new GetBillResponse { RequestReference = requestReference, Bill = BillDataModelToProxy(bill) };
         }
 
-        public GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(IList<KeyValuePair<DateTime, double>> data, Guid requestReference)
+        /// <summary>
+        ///     Creates an instance of the <see cref="GetBillsForUserForMonthResponse" /> class.
+        /// </summary>
+        /// <param name="data">The bill data.</param>
+        /// <param name="requestReference">The request reference.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(
+            IList<KeyValuePair<DateTime, double>> data, 
+            Guid requestReference)
         {
             return new GetBillsForUserForMonthResponse { Data = data, RequestReference = requestReference };
+        }
+
+        /// <summary>
+        ///     Creates a new instance of the <see cref="GetBillsForUserResponse" /> class.
+        /// </summary>
+        /// <param name="bills">The bills.</param>
+        /// <param name="requestReference">The request reference.</param>
+        /// <returns>The response object.</returns>
+        public GetBillsForUserResponse NewGetBillsForUserResponse(IList<BillDataModel> bills, Guid requestReference)
+        {
+            return new GetBillsForUserResponse
+                       {
+                           RequestReference = requestReference, 
+                           Bills = bills.Select(BillDataModelToProxy).ToList()
+                       };
         }
 
         #endregion
@@ -121,17 +129,16 @@
         private static BillProxy BillDataModelToProxy(BillDataModel model)
         {
             return new BillProxy
-            {
-                Amount = model.Amount,
-                Category =
-                               new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name },
-                CategoryId = model.CategoryId,
-                Id = model.Id,
-                Name = model.Name,
-                ReoccurringPeriod = model.ReoccurringPeriod,
-                StartDate = model.StartDate,
-                UserId = model.UserId
-            };
+                       {
+                           Amount = model.Amount, 
+                           Category = new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name }, 
+                           CategoryId = model.CategoryId, 
+                           Id = model.Id, 
+                           Name = model.Name, 
+                           ReoccurringPeriod = model.ReoccurringPeriod, 
+                           StartDate = model.StartDate, 
+                           UserId = model.UserId
+                       };
         }
 
         /// <summary>
@@ -142,21 +149,17 @@
         private static BillDataModel BillProxyToDataModel(BillProxy proxy)
         {
             return new BillDataModel
-            {
-                Amount = proxy.Amount,
-                Category =
-                               new CategoryDataModel
-                               {
-                                   Id = proxy.Category.Id,
-                                   Name = proxy.Category.Name
-                               },
-                CategoryId = proxy.CategoryId,
-                Id = proxy.Id,
-                Name = proxy.Name,
-                ReoccurringPeriod = proxy.ReoccurringPeriod,
-                StartDate = proxy.StartDate,
-                UserId = proxy.UserId
-            };
+                       {
+                           Amount = proxy.Amount, 
+                           Category =
+                               new CategoryDataModel { Id = proxy.Category.Id, Name = proxy.Category.Name }, 
+                           CategoryId = proxy.CategoryId, 
+                           Id = proxy.Id, 
+                           Name = proxy.Name, 
+                           ReoccurringPeriod = proxy.ReoccurringPeriod, 
+                           StartDate = proxy.StartDate, 
+                           UserId = proxy.UserId
+                       };
         }
 
         #endregion

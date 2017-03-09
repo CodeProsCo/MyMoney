@@ -23,7 +23,7 @@
     #endregion
 
     /// <summary>
-    /// The bill orchestrator assembles and sends requests regarding bills and returns their responses.
+    ///     The bill orchestrator assembles and sends requests regarding bills and returns their responses.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Orchestrators.Spending.Interfaces.IBillOrchestrator" />
     [UsedImplicitly]
@@ -32,12 +32,12 @@
         #region Fields
 
         /// <summary>
-        /// The assembler
+        ///     The assembler
         /// </summary>
         private readonly IBillAssembler assembler;
 
         /// <summary>
-        /// The data access
+        ///     The data access
         /// </summary>
         private readonly IBillDataAccess dataAccess;
 
@@ -46,12 +46,12 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BillOrchestrator"/> class.
+        ///     Initializes a new instance of the <see cref="BillOrchestrator" /> class.
         /// </summary>
         /// <param name="assembler">The assembler.</param>
         /// <param name="dataAccess">The data access.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown when the assembler or data access objects are null.
+        ///     Exception thrown when the assembler or data access objects are null.
         /// </exception>
         public BillOrchestrator(IBillAssembler assembler, IBillDataAccess dataAccess)
         {
@@ -74,12 +74,12 @@
         #region  Public Methods
 
         /// <summary>
-        /// Builds and sends a request to add a bill to the database.
+        ///     Builds and sends a request to add a bill to the database.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<BillViewModel>> AddBill(BillViewModel model, string username)
         {
@@ -111,12 +111,12 @@
         }
 
         /// <summary>
-        /// Builds and sends a request to delete a bill from the database.
+        ///     Builds and sends a request to delete a bill from the database.
         /// </summary>
         /// <param name="billId">The bill Id.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<bool>> DeleteBill(Guid billId, string username)
         {
@@ -149,12 +149,12 @@
         }
 
         /// <summary>
-        /// Builds and sends a request to edit a bill from the database.
+        ///     Builds and sends a request to edit a bill from the database.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<BillViewModel>> EditBill(BillViewModel model, string username)
         {
@@ -186,12 +186,12 @@
         }
 
         /// <summary>
-        /// Builds and sends a request to obtain a bill from the database.
+        ///     Builds and sends a request to obtain a bill from the database.
         /// </summary>
         /// <param name="billId">The bill Id.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<BillViewModel>> GetBill(Guid billId, string username)
         {
@@ -224,12 +224,12 @@
         }
 
         /// <summary>
-        /// Builds and sends a request to obtain bills for a specific user from the database.
+        ///     Builds and sends a request to obtain bills for a specific user from the database.
         /// </summary>
         /// <param name="userId">The user Id.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<ManageBillsViewModel>> GetBillsForUser(
             Guid userId, 
@@ -262,13 +262,25 @@
             return response;
         }
 
-        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail)
+        /// <summary>
+        ///     Builds and sends a request to obtain bills for a specific user for a given month from the database.
+        /// </summary>
+        /// <param name="monthNumber">The month number.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetBillsForUserForMonth(
+            int monthNumber, 
+            Guid userId, 
+            string username)
         {
             var response = new OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>();
 
             try
             {
-                var request = assembler.NewGetBillsForUserForMonthRequest(monthNumber, userId, userEmail);
+                var request = assembler.NewGetBillsForUserForMonthRequest(monthNumber, userId, username);
                 var apiResponse = await dataAccess.GetBillsForUserForMonth(request);
 
                 if (!apiResponse.Success)
@@ -282,7 +294,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, userEmail, GetType(), "GetBillsForUserForMonth");
+                var err = ErrorHelper.Create(ex, username, GetType(), "GetBillsForUserForMonth");
                 response.AddError(err);
             }
 

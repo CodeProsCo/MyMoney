@@ -72,6 +72,40 @@
         #region  Public Methods
 
         /// <summary>
+        ///     Registers a user.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public async Task<OrchestratorResponseWrapper<bool>> RegisterUser(RegisterViewModel model)
+        {
+            var response = new OrchestratorResponseWrapper<bool>();
+
+            try
+            {
+                var request = assembler.NewRegisterUserRequest(model);
+                var apiResponse = await dataAccess.RegisterUser(request);
+
+                if (!apiResponse.Success || !apiResponse.RegisterSuccess)
+                {
+                    response.AddErrors(apiResponse.Errors);
+                }
+
+                response.AddWarnings(apiResponse.Warnings);
+
+                response.Model = apiResponse.RegisterSuccess;
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "RegisterUser");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        /// <summary>
         ///     Gets the claim for the given user.
         /// </summary>
         /// <param name="model">The log in model.</param>
@@ -99,40 +133,6 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "ValidateUser");
-                response.AddError(err);
-            }
-
-            return response;
-        }
-
-        /// <summary>
-        /// Registers a user.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>
-        /// The response object.
-        /// </returns>
-        public async Task<OrchestratorResponseWrapper<bool>> RegisterUser(RegisterViewModel model)
-        {
-            var response = new OrchestratorResponseWrapper<bool>();
-
-            try
-            {
-                var request = assembler.NewRegisterUserRequest(model);
-                var apiResponse = await dataAccess.RegisterUser(request);
-
-                if (!apiResponse.Success || !apiResponse.RegisterSuccess)
-                {
-                    response.AddErrors(apiResponse.Errors);
-                }
-
-                response.AddWarnings(apiResponse.Warnings);
-
-                response.Model = apiResponse.RegisterSuccess;
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "RegisterUser");
                 response.AddError(err);
             }
 

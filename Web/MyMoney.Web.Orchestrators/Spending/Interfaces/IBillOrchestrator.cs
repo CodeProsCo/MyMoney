@@ -13,14 +13,14 @@
     #endregion
 
     /// <summary>
-    /// The interface for the <see cref="BillOrchestrator"/> class.
+    ///     The interface for the <see cref="BillOrchestrator" /> class.
     /// </summary>
     public interface IBillOrchestrator
     {
         #region  Public Methods
 
         /// <summary>
-        /// Builds and sends a request to add a bill to the database.
+        ///     Builds and sends a request to add a bill to the database.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
@@ -28,21 +28,21 @@
         Task<OrchestratorResponseWrapper<BillViewModel>> AddBill(BillViewModel model, string username);
 
         /// <summary>
-        /// Builds and sends a request to delete a bill from the database.
+        ///     Builds and sends a request to delete a bill from the database.
         /// </summary>
         /// <param name="billId">
-        /// The bill Id.
+        ///     The bill Id.
         /// </param>
         /// <param name="username">
-        /// The username.
+        ///     The username.
         /// </param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         Task<OrchestratorResponseWrapper<bool>> DeleteBill(Guid billId, string username);
 
         /// <summary>
-        /// Builds and sends a request to edit a bill from the database.
+        ///     Builds and sends a request to edit a bill from the database.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
@@ -50,35 +50,45 @@
         Task<OrchestratorResponseWrapper<BillViewModel>> EditBill(BillViewModel model, string username);
 
         /// <summary>
-        /// Builds and sends a request to obtain a bill from the database.
+        ///     Builds and sends a request to obtain a bill from the database.
         /// </summary>
         /// <param name="billId">
-        /// The bill Id.
+        ///     The bill Id.
         /// </param>
         /// <param name="username">
-        /// The username.
+        ///     The username.
         /// </param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         Task<OrchestratorResponseWrapper<BillViewModel>> GetBill(Guid billId, string username);
 
         /// <summary>
-        /// Builds and sends a request to obtain bills for a specific user from the database.
+        ///     Builds and sends a request to obtain bills for a specific user from the database.
         /// </summary>
         /// <param name="userId">
-        /// The user Id.
+        ///     The user Id.
         /// </param>
         /// <param name="username">
-        /// The username.
+        ///     The username.
         /// </param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         Task<OrchestratorResponseWrapper<ManageBillsViewModel>> GetBillsForUser(Guid userId, string username);
 
-        #endregion
+        /// <summary>
+        ///     Builds and sends a request to obtain bills for a specific user for a given month from the database.
+        /// </summary>
+        /// <param name="monthNumber">The month number.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>The response object.</returns>
+        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetBillsForUserForMonth(
+            int monthNumber, 
+            Guid userId, 
+            string username);
 
-        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetBillsForUserForMonth(int monthNumber, Guid userId, string userEmail);
+        #endregion
     }
 }

@@ -30,21 +30,25 @@
     /// <seealso cref="System.Web.Mvc.Controller" />
     public class BaseController : Controller
     {
+        #region  Properties
+
         /// <summary>
-        /// Gets the user identifier.
+        ///     Gets the user email.
         /// </summary>
         /// <value>
-        /// The user identifier.
+        ///     The user email.
+        /// </value>
+        public string UserEmail => GetUserClaim(ClaimTypes.Email).Value;
+
+        /// <summary>
+        ///     Gets the user identifier.
+        /// </summary>
+        /// <value>
+        ///     The user identifier.
         /// </value>
         public Guid UserId => Guid.Parse(GetUserClaim(ClaimTypes.NameIdentifier).Value);
 
-        /// <summary>
-        /// Gets the user email.
-        /// </summary>
-        /// <value>
-        /// The user email.
-        /// </value>
-        public string UserEmail => GetUserClaim(ClaimTypes.Email).Value;
+        #endregion
 
         #region  Public Methods
 
@@ -144,11 +148,7 @@
             {
                 foreach (var error in modelState.Errors)
                 {
-                    var errorWrapper = ErrorHelper.Create(
-                        error.ErrorMessage, 
-                        UserEmail, 
-                        GetType(), 
-                        "InvalidModelState");
+                    var errorWrapper = ErrorHelper.Create(error.ErrorMessage, UserEmail, GetType(), "InvalidModelState");
 
                     response.AddError(errorWrapper);
                 }

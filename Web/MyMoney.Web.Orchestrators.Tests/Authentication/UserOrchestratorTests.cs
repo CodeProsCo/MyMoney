@@ -39,11 +39,9 @@
             dataAccess = Substitute.For<IUserDataAccess>();
             assembler = Substitute.For<IUserAssembler>();
 
-            dataAccess.ValidateUser(Arg.Any<ValidateUserRequest>())
-                .ReturnsForAnyArgs(new ValidateUserResponse());
+            dataAccess.ValidateUser(Arg.Any<ValidateUserRequest>()).ReturnsForAnyArgs(new ValidateUserResponse());
             assembler.NewClaimsIdentity(Arg.Any<ValidateUserResponse>()).ReturnsForAnyArgs(new ClaimsIdentity());
-            assembler.NewValidateUserRequest(Arg.Any<LoginViewModel>())
-                .ReturnsForAnyArgs(new ValidateUserRequest());
+            assembler.NewValidateUserRequest(Arg.Any<LoginViewModel>()).ReturnsForAnyArgs(new ValidateUserRequest());
 
             orchestrator = new UserOrchestrator(assembler, dataAccess);
         }

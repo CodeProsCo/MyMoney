@@ -56,7 +56,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// Handles a request for the login view.
+        ///     Handles a request for the login view.
         /// </summary>
         /// <param name="returnUrl">The return URL.</param>
         /// <returns>If not logged in, the login view. If logged in, the main dashboard.</returns>
@@ -129,7 +129,7 @@
         }
 
         /// <summary>
-        /// Handles a request for the register view
+        ///     Handles a request for the register view
         /// </summary>
         /// <returns>If logged in, the main dashboard. If not, the register view.</returns>
         [Route("register")]
@@ -146,7 +146,7 @@
         }
 
         /// <summary>
-        /// Handles a registration request from a user.
+        ///     Handles a registration request from a user.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>If the user is registered, the main dashboard. If not, the register view with errors.</returns>

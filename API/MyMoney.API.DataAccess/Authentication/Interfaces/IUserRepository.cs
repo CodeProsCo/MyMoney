@@ -25,7 +25,7 @@
         Task<UserDataModel> GetUser(string email, string password);
 
         /// <summary>
-        /// Gets the user identifier by their email.
+        ///     Gets the user identifier by their email.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <returns>The user identifier.</returns>

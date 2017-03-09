@@ -9,7 +9,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="RegisterUserRequest"/> class is used to register a user.
+    ///     The <see cref="RegisterUserRequest" /> class is used to register a user.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
     public class RegisterUserRequest : BaseRequest
@@ -29,42 +29,42 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the date of birth.
+        ///     Gets or sets the date of birth.
         /// </summary>
         /// <value>
-        /// The date of birth.
+        ///     The date of birth.
         /// </value>
         public DateTime DateOfBirth { get; [UsedImplicitly] set; }
 
         /// <summary>
-        /// Gets or sets the email address.
+        ///     Gets or sets the email address.
         /// </summary>
         /// <value>
-        /// The email address.
+        ///     The email address.
         /// </value>
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// Gets or sets the first name.
+        ///     Gets or sets the first name.
         /// </summary>
         /// <value>
-        /// The first name.
+        ///     The first name.
         /// </value>
         public string FirstName { get; [UsedImplicitly] set; }
 
         /// <summary>
-        /// Gets or sets the last name.
+        ///     Gets or sets the last name.
         /// </summary>
         /// <value>
-        /// The last name.
+        ///     The last name.
         /// </value>
         public string LastName { get; [UsedImplicitly] set; }
 
         /// <summary>
-        /// Gets or sets the password.
+        ///     Gets or sets the password.
         /// </summary>
         /// <value>
-        /// The password.
+        ///     The password.
         /// </value>
         public string Password { get; set; }
 

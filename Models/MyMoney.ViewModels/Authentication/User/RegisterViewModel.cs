@@ -10,26 +10,26 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="RegisterViewModel"/> class contains view information for registering a user.
+    ///     The <see cref="RegisterViewModel" /> class contains view information for registering a user.
     /// </summary>
     public class RegisterViewModel
     {
         #region  Properties
 
         /// <summary>
-        /// Gets or sets a value indicating whether [accept terms and conditions].
+        ///     Gets or sets a value indicating whether [accept terms and conditions].
         /// </summary>
         /// <value>
-        /// <c>true</c> if [accept terms and conditions]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [accept terms and conditions]; otherwise, <c>false</c>.
         /// </value>
         [RequiredTrue]
         public bool AcceptTermsAndConditions { get; set; }
 
         /// <summary>
-        /// Gets or sets the confirm password.
+        ///     Gets or sets the confirm password.
         /// </summary>
         /// <value>
-        /// The confirm password.
+        ///     The confirm password.
         /// </value>
         [Required]
         [DataType(DataType.Password)]
@@ -37,10 +37,10 @@
         public string ConfirmPassword { get; set; }
 
         /// <summary>
-        /// Gets or sets the date of birth.
+        ///     Gets or sets the date of birth.
         /// </summary>
         /// <value>
-        /// The date of birth.
+        ///     The date of birth.
         /// </value>
         [Required]
         [OverEighteenOnly]
@@ -49,40 +49,40 @@
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
-        /// Gets or sets the email address.
+        ///     Gets or sets the email address.
         /// </summary>
         /// <value>
-        /// The email address.
+        ///     The email address.
         /// </value>
         [Required]
         [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// Gets or sets the first name.
+        ///     Gets or sets the first name.
         /// </summary>
         /// <value>
-        /// The first name.
+        ///     The first name.
         /// </value>
         [Required]
         [UIHint("String")]
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Gets or sets the last name.
+        ///     Gets or sets the last name.
         /// </summary>
         /// <value>
-        /// The last name.
+        ///     The last name.
         /// </value>
         [Required]
         [UIHint("String")]
         public string LastName { get; set; }
 
         /// <summary>
-        /// Gets or sets the password.
+        ///     Gets or sets the password.
         /// </summary>
         /// <value>
-        /// The password.
+        ///     The password.
         /// </value>
         [Required]
         [DataType(DataType.Password)]

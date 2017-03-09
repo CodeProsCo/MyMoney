@@ -19,7 +19,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// Creates an instance of the <see cref="AddBillRequest"/>. class.
+        ///     Creates an instance of the <see cref="AddBillRequest" />. class.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
@@ -27,65 +27,88 @@
         AddBillRequest NewAddBillRequest(BillViewModel model, string username);
 
         /// <summary>
-        /// Creates an instance of the <see cref="BillViewModel"/>. class.
+        ///     Creates an instance of the <see cref="BillViewModel" />. class.
         /// </summary>
         /// <param name="apiResponse">
-        /// The API Response.
+        ///     The API Response.
         /// </param>
         /// <returns>
-        /// The view model.
+        ///     The view model.
         /// </returns>
         BillViewModel NewBillViewModel(AddBillResponse apiResponse);
 
         /// <summary>
-        /// Creates an instance of the <see cref="BillViewModel"/>. class.
+        ///     Creates an instance of the <see cref="BillViewModel" />. class.
         /// </summary>
         /// <param name="apiResponse">
-        /// The API Response.
+        ///     The API Response.
         /// </param>
         /// <returns>
-        /// The view model.
+        ///     The view model.
         /// </returns>
         BillViewModel NewBillViewModel(GetBillResponse apiResponse);
 
         /// <summary>
-        /// Creates an instance of the <see cref="BillViewModel"/>. class.
+        ///     Creates an instance of the <see cref="BillViewModel" />. class.
         /// </summary>
         /// <param name="apiResponse">
-        /// The API Response.
+        ///     The API Response.
         /// </param>
         /// <returns>
-        /// The view model.
+        ///     The view model.
         /// </returns>
         BillViewModel NewBillViewModel(EditBillResponse apiResponse);
 
         /// <summary>
-        /// Creates an instance of the <see cref="DeleteBillRequest"/>. class.
+        ///     Creates an instance of the <see cref="DeleteBillRequest" />. class.
         /// </summary>
         /// <param name="billId">
-        /// The bill Id.
+        ///     The bill Id.
         /// </param>
         /// <param name="username">
-        /// The username.
+        ///     The username.
         /// </param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         DeleteBillRequest NewDeleteBillRequest(Guid billId, string username);
 
         /// <summary>
-        /// Creates an instance of the <see cref="EditBillRequest"/>. class.
+        ///     Creates an instance of the <see cref="EditBillRequest" />. class.
         /// </summary>
         /// <param name="model">
-        /// The model.
+        ///     The model.
         /// </param>
         /// <param name="username">
-        /// The username.
+        ///     The username.
         /// </param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         EditBillRequest NewEditBillRequest(BillViewModel model, string username);
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="GetBillRequest" />. class.
+        /// </summary>
+        /// <param name="billId">The bill identifier.</param>
+        /// <param name="username">
+        ///     The username.
+        /// </param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        GetBillRequest NewGetBillRequest(Guid billId, string username);
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="GetBillsForUserForMonthRequest" />. class.
+        /// </summary>
+        /// <param name="monthNumber">The month number.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        GetBillsForUserForMonthRequest NewGetBillsForUserForMonthRequest(int monthNumber, Guid userId, string userEmail);
 
         /// <summary>
         ///     Assembles an instance of the <see cref="GetBillsForUserRequest" /> class based on the given
@@ -99,18 +122,6 @@
         GetBillsForUserRequest NewGetBillsForUserRequest(Guid email, string username);
 
         /// <summary>
-        /// Creates an instance of the <see cref="GetBillRequest"/>. class.
-        /// </summary>
-        /// <param name="billId">The bill identifier.</param>
-        /// <param name="username">
-        /// The username.
-        /// </param>
-        /// <returns>
-        /// The request object.
-        /// </returns>
-        GetBillRequest NewGetBillRequest(Guid billId, string username);
-
-        /// <summary>
         ///     Assembles an instance of the <see cref="ManageBillsViewModel" /> class based on the given
         ///     <see cref="GetBillsForUserResponse" />.
         /// </summary>
@@ -121,7 +132,5 @@
         ManageBillsViewModel NewManageBillsViewModel(GetBillsForUserResponse apiResponse);
 
         #endregion
-
-        GetBillsForUserForMonthRequest NewGetBillsForUserForMonthRequest(int monthNumber, Guid userId, string userEmail);
     }
 }

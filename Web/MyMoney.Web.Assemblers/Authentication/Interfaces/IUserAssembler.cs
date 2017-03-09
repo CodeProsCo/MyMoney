@@ -27,20 +27,20 @@
         ClaimsIdentity NewClaimsIdentity(ValidateUserResponse response);
 
         /// <summary>
-        ///     Assembles an instance of the <see cref="ValidateUserRequest" /> class based on the given
-        ///     <see cref="LoginViewModel" />.
-        /// </summary>
-        /// <param name="model">The login model.</param>
-        /// <returns>The request object.</returns>
-        ValidateUserRequest NewValidateUserRequest(LoginViewModel model);
-
-        /// <summary>
         ///     Assembles an instance of the <see cref="RegisterUserRequest" /> class based on the given
         ///     <see cref="RegisterViewModel" />.
         /// </summary>
         /// <param name="model">The register model.</param>
         /// <returns>The request object.</returns>
         RegisterUserRequest NewRegisterUserRequest(RegisterViewModel model);
+
+        /// <summary>
+        ///     Assembles an instance of the <see cref="ValidateUserRequest" /> class based on the given
+        ///     <see cref="LoginViewModel" />.
+        /// </summary>
+        /// <param name="model">The login model.</param>
+        /// <returns>The request object.</returns>
+        ValidateUserRequest NewValidateUserRequest(LoginViewModel model);
 
         #endregion
     }

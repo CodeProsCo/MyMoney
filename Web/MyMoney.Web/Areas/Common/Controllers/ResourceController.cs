@@ -11,7 +11,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="ResourceController"/> handles HTTP requests for resources such as localized strings.
+    ///     The <see cref="ResourceController" /> handles HTTP requests for resources such as localized strings.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [RouteArea("Common", AreaPrefix = "common")]
@@ -21,7 +21,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// Gets the resource string.
+        ///     Gets the resource string.
         /// </summary>
         /// <param name="nameSpace">The resource file's namespace.</param>
         /// <param name="key">The resource key.</param>

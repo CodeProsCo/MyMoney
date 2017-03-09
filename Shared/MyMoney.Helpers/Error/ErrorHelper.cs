@@ -11,9 +11,14 @@
 
     public static class ErrorHelper
     {
-        #region  Public Methods
+        #region Constants
 
-        private const string TraceFormat = "Error Time:\t\t{0}\nMessage:\t\t{1}\nClass Name:\t\t{2}\nMethod Name:\t{3}\n===============================";
+        private const string TraceFormat =
+            "Error Time:\t\t{0}\nMessage:\t\t{1}\nClass Name:\t\t{2}\nMethod Name:\t{3}\n===============================";
+
+        #endregion
+
+        #region  Public Methods
 
         public static ResponseErrorWrapper Create(Exception ex, string username, Type className, string methodName)
         {
@@ -31,18 +36,22 @@
         public static ResponseErrorWrapper Create(string message, string username, Type className, string methodName)
         {
             var retVal = new ResponseErrorWrapper
-            {
-                ClassName = className.FullName,
-                Message = message,
-                MethodName = methodName,
-                Occurred = DateTime.Now,
-                Username = username
-            };
+                             {
+                                 ClassName = className.FullName, 
+                                 Message = message, 
+                                 MethodName = methodName, 
+                                 Occurred = DateTime.Now, 
+                                 Username = username
+                             };
 
             WriteTrace(retVal);
 
             return retVal;
         }
+
+        #endregion
+
+        #region Private Methods
 
         private static void WriteTrace(ResponseErrorWrapper error)
         {
