@@ -35,7 +35,13 @@ $(function() {
         }
 
         $("#add-bill-modal").modal("hide");
+        loadAjaxComponents();
+    }
+
+    function loadAjaxComponents() {
         loadCalendarData("#bill-calendar");
+        loadChart("#period-chart", getPeriodChartDataSuccessCallback);
+        loadChart("#category-chart", getCategoryChartDataSuccessCallback);
     }
 
     function editBillSuccessCallback(data) {
@@ -63,7 +69,7 @@ $(function() {
         }
 
         $("#edit-bill-modal").modal("hide");
-        loadCalendarData("#bill-calendar");
+        loadAjaxComponents();
     }
 
     function addBillClick(event) {
@@ -86,31 +92,33 @@ $(function() {
 
     function hideChart(selector) {
         var text = myMoney.strings.get("Common", "Error_NoDataForChart");
-        $(selector).text(text);
+        var loader = $(selector).parent().find(".loader");
+
+        loader.text(text);
         $(selector).closest(".segment").css("height", "230px");
-        $(selector).addClass("no-pseudo");
+        loader.addClass("no-pseudo");
     }
 
 
     function getCategoryChartDataSuccessCallback(data) {
-        if (data.length <= 1) {
+        if (data.model.length <= 1) {
             hideChart("#category-chart");
             return;
         }
 
-        var chartGenerator = new ChartGenerator(data);
+        var chartGenerator = new ChartGenerator(data.model);
         chartGenerator.createBillCategoryChart("#category-chart");
 
         $("#category-chart").siblings(".dimmer").addClass("disabled").removeClass("active");
     }
 
     function getPeriodChartDataSuccessCallback(data) {
-        if (data.length <= 1) {
+        if (data.model.length <= 1) {
             hideChart("#period-chart");
             return;
         }
 
-        var chartGenerator = new ChartGenerator(data);
+        var chartGenerator = new ChartGenerator(data.model);
         chartGenerator.createBillPeriodChart("#period-chart");
 
         $("#period-chart").siblings(".dimmer").addClass("disabled").removeClass("active");
@@ -121,6 +129,7 @@ $(function() {
         var chartContainer = $(selector);
         var url = chartContainer.data("url");
 
+        chartContainer.empty();
         callback = AjaxResponse(callback);
 
         $.ajax(url,
@@ -233,7 +242,8 @@ $(function() {
         $(btn).append(icon);
         $(btn).off("click");
         $(btn).click(deleteBillClick);
-        loadCalendarData("#bill-calendar");
+
+        loadAjaxComponents();
     }
 
     function loadCalendarData(selector) {
@@ -319,8 +329,6 @@ $(function() {
         $("#delete-bill").click(deleteBillClick);
         $("tr[data-get]").click(viewBillClick);
 
-        loadCalendarData("#bill-calendar");
-        loadChart("#period-chart", getPeriodChartDataSuccessCallback);
-        loadChart("#category-chart", getCategoryChartDataSuccessCallback);
+        loadAjaxComponents();
     });
 })

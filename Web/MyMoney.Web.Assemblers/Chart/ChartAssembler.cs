@@ -3,6 +3,8 @@
     #region Usings
 
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     using DTO.Request.Chart.Bill;
 
@@ -10,10 +12,13 @@
 
     using JetBrains.Annotations;
 
+    using ViewModels.Spending.Bills.Enum;
+
     #endregion
 
     /// <summary>
-    /// The <see cref="ChartAssembler"/> class creates request objects and extracts data from response objects regarding charts.
+    ///     The <see cref="ChartAssembler" /> class creates request objects and extracts data from response objects regarding
+    ///     charts.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Assemblers.Chart.Interfaces.IChartAssembler" />
     [UsedImplicitly]
@@ -22,12 +27,12 @@
         #region  Public Methods
 
         /// <summary>
-        /// Creates an instance of the <see cref="GetBillCategoryChartDataRequest" /> class.
+        ///     Creates an instance of the <see cref="GetBillCategoryChartDataRequest" /> class.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         public GetBillCategoryChartDataRequest NewGetBillCategoryChartDataRequest(Guid userId, string username)
         {
@@ -35,16 +40,23 @@
         }
 
         /// <summary>
-        /// Creates an instance of the <see cref="NewGetBillPeriodChartDataRequest" /> class.
+        ///     Creates an instance of the <see cref="NewGetBillPeriodChartDataRequest" /> class.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         public GetBillPeriodChartDataRequest NewGetBillPeriodChartDataRequest(Guid userId, string username)
         {
             return new GetBillPeriodChartDataRequest { UserId = userId, Username = username };
+        }
+
+        public IList<KeyValuePair<TimePeriod, int>> AssembleTimePeriodList(IEnumerable<KeyValuePair<string, int>> data)
+        {
+            return (from item in data
+                    let enumeration = (TimePeriod)int.Parse(item.Key)
+                    select new KeyValuePair<TimePeriod, int>(enumeration, item.Value)).ToList();
         }
 
         #endregion

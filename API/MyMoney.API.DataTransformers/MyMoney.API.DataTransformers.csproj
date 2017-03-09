@@ -39,8 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spending\Bills\BillDataTransformer.cs" />
-    <Compile Include="Spending\Bills\Interfaces\IBillDataTransformer.cs" />
+    <Compile Include="Spending\BillDataTransformer.cs" />
+    <Compile Include="Spending\Interfaces\IBillDataTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Models\MyMoney.DataModels\MyMoney.DataModels.csproj">

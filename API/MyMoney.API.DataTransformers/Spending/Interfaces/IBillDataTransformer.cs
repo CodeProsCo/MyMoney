@@ -1,4 +1,4 @@
-﻿namespace MyMoney.API.DataTransformers.Spending.Bills.Interfaces
+﻿namespace MyMoney.API.DataTransformers.Spending.Interfaces
 {
     #region Usings
 
@@ -15,6 +15,10 @@
     public interface IBillDataTransformer
     {
         #region  Public Methods
+
+        IList<KeyValuePair<string, int>> GetBillCategoryChartData(IList<BillDataModel> bills);
+
+        IList<KeyValuePair<string, int>> GetBillPeriodChartData(IList<BillDataModel> bills);
 
         /// <summary>
         ///     Gets the user's outgoing bills for the given month.

@@ -6,8 +6,8 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using DataTransformers.Spending.Bills;
-    using DataTransformers.Spending.Bills.Interfaces;
+    using DataTransformers.Spending;
+    using DataTransformers.Spending.Interfaces;
 
     #endregion
 

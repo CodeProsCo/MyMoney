@@ -1,4 +1,4 @@
-﻿namespace MyMoney.DTO.Response.Chart
+﻿namespace MyMoney.DTO.Response.Chart.Bill
 {
     #region Usings
 
@@ -9,18 +9,18 @@
     #endregion
 
     /// <summary>
-    /// The response object for the <see cref="GetBillPeriodChartDataRequest"/> request.
+    ///     The response object for the <see cref="GetBillCategoryChartDataRequest" /> request.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
-    public class GetBillPeriodChartDataResponse : BaseResponse
+    public class GetBillCategoryChartDataResponse : BaseResponse
     {
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the data.
+        ///     Gets or sets the data.
         /// </summary>
         /// <value>
-        /// The data.
+        ///     The data.
         /// </value>
         public IList<KeyValuePair<string, int>> Data { get; set; }
 

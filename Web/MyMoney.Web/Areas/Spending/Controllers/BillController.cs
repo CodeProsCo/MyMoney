@@ -29,14 +29,14 @@
         #region Fields
 
         /// <summary>
-        ///     The orchestrator
-        /// </summary>
-        private readonly IBillOrchestrator orchestrator;
-
-        /// <summary>
         ///     The chart orchestrator
         /// </summary>
         private readonly IChartOrchestrator chartOrchestrator;
+
+        /// <summary>
+        ///     The orchestrator
+        /// </summary>
+        private readonly IBillOrchestrator orchestrator;
 
         #endregion
 
@@ -158,7 +158,6 @@
 
             return JsonResponse(modelWrapper);
         }
-
 
         /// <summary>
         ///     Handles HTTP requests to obtain the data required for the bill category chart.

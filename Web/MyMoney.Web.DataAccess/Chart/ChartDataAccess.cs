@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
 
     using DTO.Request.Chart.Bill;
-    using DTO.Response.Chart;
+    using DTO.Response.Chart.Bill;
 
     using Interfaces;
 
@@ -14,7 +14,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="ChartDataAccess"/> class sends requests to the API regarding charts.
+    ///     The <see cref="ChartDataAccess" /> class sends requests to the API regarding charts.
     /// </summary>
     /// <seealso cref="MyMoney.Web.DataAccess.BaseDataAccess" />
     /// <seealso cref="MyMoney.Web.DataAccess.Chart.Interfaces.IChartDataAccess" />
@@ -24,11 +24,11 @@
         #region  Public Methods
 
         /// <summary>
-        /// Sends an HTTP GET request to obtain data for the bill category chart.
+        ///     Sends an HTTP GET request to obtain data for the bill category chart.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetBillCategoryChartDataResponse> GetBillCategoryChartData(
             GetBillCategoryChartDataRequest request)
@@ -37,11 +37,11 @@
         }
 
         /// <summary>
-        /// Sends an HTTP GET request to obtain data for the bill period chart.
+        ///     Sends an HTTP GET request to obtain data for the bill period chart.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetBillPeriodChartDataResponse> GetBillPeriodChartData(GetBillPeriodChartDataRequest request)
         {

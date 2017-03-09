@@ -65,7 +65,7 @@
                     .ImplementedBy<ChartOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IChartAssembler, ChartAssembler>(),
+                        Dependency.OnComponent<IChartAssembler, ChartAssembler>(), 
                         Dependency.OnComponent<IChartDataAccess, ChartDataAccess>()));
         }
 

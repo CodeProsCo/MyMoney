@@ -10,6 +10,8 @@
 
     using DependencyInjection;
 
+    using JetBrains.Annotations;
+
     using Plumbing;
     using Plumbing.Installers;
 
@@ -19,6 +21,7 @@
     ///     The start up class for the API application.
     /// </summary>
     /// <seealso cref="System.Web.HttpApplication" />
+    [UsedImplicitly]
     public class WebApiApplication : HttpApplication
     {
         #region Private Methods

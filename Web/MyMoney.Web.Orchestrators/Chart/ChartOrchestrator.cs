@@ -16,12 +16,14 @@
 
     using JetBrains.Annotations;
 
+    using ViewModels.Spending.Bills.Enum;
+
     using Wrappers;
 
     #endregion
 
     /// <summary>
-    /// The <see cref="ChartOrchestrator"/> class performs actions for obtaining chart data.
+    ///     The <see cref="ChartOrchestrator" /> class performs actions for obtaining chart data.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Orchestrators.Chart.Interfaces.IChartOrchestrator" />
     [UsedImplicitly]
@@ -30,12 +32,12 @@
         #region Fields
 
         /// <summary>
-        /// The assembler
+        ///     The assembler
         /// </summary>
         private readonly IChartAssembler assembler;
 
         /// <summary>
-        /// The data access
+        ///     The data access
         /// </summary>
         private readonly IChartDataAccess dataAccess;
 
@@ -44,12 +46,12 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChartOrchestrator"/> class.
+        ///     Initializes a new instance of the <see cref="ChartOrchestrator" /> class.
         /// </summary>
         /// <param name="assembler">The assembler.</param>
         /// <param name="dataAccess">The data access.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the assembler or data access are null.
+        ///     Exception thrown if the assembler or data access are null.
         /// </exception>
         public ChartOrchestrator(IChartAssembler assembler, IChartDataAccess dataAccess)
         {
@@ -72,12 +74,12 @@
         #region  Public Methods
 
         /// <summary>
-        /// Builds and sends an HTTP request for the data required to produce the bill category chart.
+        ///     Builds and sends an HTTP request for the data required to produce the bill category chart.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<string, int>>>> GetBillCategoryChartData(
             Guid userId, 
@@ -108,18 +110,18 @@
         }
 
         /// <summary>
-        /// Builds and sends an HTTP request for the data required to produce the bill period chart.
+        ///     Builds and sends an HTTP request for the data required to produce the bill period chart.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
-        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<string, int>>>> GetBillPeriodChartData(
+        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<TimePeriod, int>>>> GetBillPeriodChartData(
             Guid userId, 
             string username)
         {
-            var response = new OrchestratorResponseWrapper<IList<KeyValuePair<string, int>>>();
+            var response = new OrchestratorResponseWrapper<IList<KeyValuePair<TimePeriod, int>>>();
 
             try
             {
@@ -132,7 +134,7 @@
                     return response;
                 }
 
-                response.Model = apiResponse.Data;
+                response.Model = assembler.AssembleTimePeriodList(apiResponse.Data);
             }
             catch (Exception ex)
             {

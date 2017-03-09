@@ -226,7 +226,7 @@
                 case HttpStatusCode.UpgradeRequired:
                     break;
                 case HttpStatusCode.InternalServerError:
-                    break;
+                    return "An internal server error has occurred in the API.";
                 case HttpStatusCode.NotImplemented:
                     break;
                 case HttpStatusCode.BadGateway:

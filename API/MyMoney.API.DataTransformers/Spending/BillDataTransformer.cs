@@ -1,4 +1,4 @@
-﻿namespace MyMoney.API.DataTransformers.Spending.Bills
+﻿namespace MyMoney.API.DataTransformers.Spending
 {
     #region Usings
 
@@ -17,11 +17,25 @@
     /// <summary>
     ///     The <see cref="BillDataTransformer" /> class converts raw bill data models into other data formats.
     /// </summary>
-    /// <seealso cref="MyMoney.API.DataTransformers.Spending.Bills.Interfaces.IBillDataTransformer" />
+    /// <seealso cref="IBillDataTransformer" />
     [UsedImplicitly]
     public class BillDataTransformer : IBillDataTransformer
     {
         #region  Public Methods
+
+        public IList<KeyValuePair<string, int>> GetBillCategoryChartData(IList<BillDataModel> bills)
+        {
+            var grouping = bills.GroupBy(x => x.Category.Name);
+
+            return grouping.Select(group => new KeyValuePair<string, int>(group.Key.ToString(), group.Count())).ToList();
+        }
+
+        public IList<KeyValuePair<string, int>> GetBillPeriodChartData(IList<BillDataModel> bills)
+        {
+            var grouping = bills.GroupBy(x => x.ReoccurringPeriod);
+
+            return grouping.Select(group => new KeyValuePair<string, int>(group.Key.ToString(), group.Count())).ToList();
+        }
 
         /// <summary>
         ///     Gets the user's outgoing bills for the given month.

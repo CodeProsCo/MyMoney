@@ -4,11 +4,14 @@
 
     using System.Web.Mvc;
 
+    using JetBrains.Annotations;
+
     #endregion
 
     /// <summary>
     ///     Contains filter information for web application controllers.
     /// </summary>
+    [UsedImplicitly]
     public class FilterConfig
     {
         #region  Public Methods

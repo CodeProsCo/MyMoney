@@ -25,15 +25,17 @@
 
             config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
 
-            config.MessageHandlers.Add(new ThrottlingHandler
-            {
-                Policy = new ThrottlePolicy(1, 30)
-                {
-                    IpThrottling = true,
-                    EndpointThrottling = true
-                },
-                Repository = new CacheRepository()
-            });
+            config.MessageHandlers.Add(
+                new ThrottlingHandler
+                    {
+                        Policy =
+                            new ThrottlePolicy(1, 30, 200)
+                                {
+                                    IpThrottling = true, 
+                                    EndpointThrottling = true
+                                }, 
+                        Repository = new CacheRepository()
+                    });
         }
 
         #endregion

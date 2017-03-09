@@ -9,7 +9,7 @@
     #endregion
 
     /// <summary>
-    /// The HTTP GET request object for obtaining the data for the bill period chart.
+    ///     The HTTP GET request object for obtaining the data for the bill period chart.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
     /// <seealso cref="MyMoney.DTO.Request.Interfaces.IGetRequest" />
@@ -30,10 +30,10 @@
         #region  Properties
 
         /// <summary>
-        /// Gets or sets the user identifier.
+        ///     Gets or sets the user identifier.
         /// </summary>
         /// <value>
-        /// The user identifier.
+        ///     The user identifier.
         /// </value>
         public Guid UserId { get; set; }
 

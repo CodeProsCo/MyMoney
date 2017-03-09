@@ -3,20 +3,13 @@
 function ChartGenerator(data) {
     this.data = data;
 
-    var groupTypes = {
-        sum: 0,
-        count: 1
-    };
     var self = this;
 
     this.createBillCategoryChart = function(containerId) {
         var options = {
             container: containerId,
             data: this.data,
-            groupProperty: "Category",
-            groupType: groupTypes.count,
-            animated: true,
-            sumProperty: "Amount"
+            animated:true
         };
         return createDonutChart(options);
     };
@@ -24,10 +17,7 @@ function ChartGenerator(data) {
         var options = {
             container: containerId,
             data: this.data,
-            groupProperty: "ReoccurringPeriod",
-            groupType: groupTypes.count,
-            animated: true,
-            sumProperty: "Amount"
+            animated: true
         };
         return createDonutChart(options);
     };
@@ -37,32 +27,14 @@ function ChartGenerator(data) {
         var series = [];
 
         var chartData = options.data;
-        var groupType = options.groupType;
-        var groupProperty = options.groupProperty;
 
         for (var i = 0; i < chartData.length; i++) {
             var item = chartData[i];
-            var label = item[0][groupProperty];
+            var label = item.key;
+            var value = item.value;
 
             labels.push(label);
-
-            if (groupType === groupTypes.count) {
-                var value = item.length.toString();
-
-                series.push(new ChartSeries(label, value));
-                continue;
-            }
-
-            if (groupType === groupTypes.sum) {
-                var total = 0;
-                var sumProperty = options.sumProperty;
-
-                for (var j = 0; j < item.length; item++) {
-                    total += item[j][sumProperty];
-                }
-
-                series.push(new ChartSeries(label, total));
-            }
+            series.push(new ChartSeries(label, value));
         }
 
         var chartOptions = {
@@ -78,8 +50,7 @@ function ChartGenerator(data) {
 
         var fullData = {
             labels: labels,
-            series: series,
-            colors: self.colours
+            series: series
         };
 
         var chart = new Chartist.Pie(options.container, fullData, chartOptions);

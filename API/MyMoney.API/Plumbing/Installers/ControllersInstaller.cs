@@ -7,10 +7,13 @@
     using Castle.Windsor;
 
     using Controllers.Authentication;
+    using Controllers.Chart;
     using Controllers.Spending;
 
     using Orchestrators.Authentication;
     using Orchestrators.Authentication.Interfaces;
+    using Orchestrators.Chart;
+    using Orchestrators.Chart.Interfaces;
     using Orchestrators.Spending;
     using Orchestrators.Spending.Interfaces;
 
@@ -40,6 +43,11 @@
                 Component.For<BillController>()
                     .LifestylePerWebRequest()
                     .DependsOn(Dependency.OnComponent<IBillOrchestrator, BillOrchestrator>()));
+
+            container.Register(
+                Component.For<BillChartController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
         }
 
         #endregion

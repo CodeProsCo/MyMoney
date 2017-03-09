@@ -9,7 +9,7 @@
 
     using DataAccess.Spending.Interfaces;
 
-    using DataTransformers.Spending.Bills.Interfaces;
+    using DataTransformers.Spending.Interfaces;
 
     using DTO.Request.Spending;
     using DTO.Response.Spending;

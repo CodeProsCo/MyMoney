@@ -5,26 +5,26 @@
     using System.Threading.Tasks;
 
     using DTO.Request.Chart.Bill;
-    using DTO.Response.Chart;
+    using DTO.Response.Chart.Bill;
 
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="ChartDataAccess"/> class.
+    ///     Interface for the <see cref="ChartDataAccess" /> class.
     /// </summary>
     public interface IChartDataAccess
     {
         #region  Public Methods
 
         /// <summary>
-        /// Sends an HTTP GET request to obtain data for the bill category chart.
+        ///     Sends an HTTP GET request to obtain data for the bill category chart.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<GetBillCategoryChartDataResponse> GetBillCategoryChartData(GetBillCategoryChartDataRequest request);
 
         /// <summary>
-        /// Sends an HTTP GET request to obtain data for the bill period chart.
+        ///     Sends an HTTP GET request to obtain data for the bill period chart.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
