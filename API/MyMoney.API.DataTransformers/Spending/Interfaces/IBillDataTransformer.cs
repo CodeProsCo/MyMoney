@@ -16,9 +16,19 @@
     {
         #region  Public Methods
 
-        IList<KeyValuePair<string, int>> GetBillCategoryChartData(IList<BillDataModel> bills);
+        /// <summary>
+        /// Gets the bill category chart data.
+        /// </summary>
+        /// <param name="bills">The bills.</param>
+        /// <returns>A list of key-value pairs for each category and the amount of bills under that category.</returns>
+        IList<KeyValuePair<string, int>> GetBillCategoryChartData(IEnumerable<BillDataModel> bills);
 
-        IList<KeyValuePair<string, int>> GetBillPeriodChartData(IList<BillDataModel> bills);
+        /// <summary>
+        /// Gets the bill period chart data.
+        /// </summary>
+        /// <param name="bills">The bills.</param>
+        /// <returns>A list of key-value pairs for each period and the amount of bills under that period.</returns>
+        IList<KeyValuePair<string, int>> GetBillPeriodChartData(IEnumerable<BillDataModel> bills);
 
         /// <summary>
         ///     Gets the user's outgoing bills for the given month.

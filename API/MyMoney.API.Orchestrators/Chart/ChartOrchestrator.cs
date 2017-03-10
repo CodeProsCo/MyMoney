@@ -22,21 +22,43 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="ChartOrchestrator"/> class performs actions in the API regarding charts.
+    /// </summary>
+    /// <seealso cref="MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator" />
     [UsedImplicitly]
     public class ChartOrchestrator : IChartOrchestrator
     {
         #region Fields
 
+        /// <summary>
+        /// The assembler
+        /// </summary>
         private readonly IChartAssembler assembler;
 
+        /// <summary>
+        /// The bill data transformer
+        /// </summary>
         private readonly IBillDataTransformer billDataTransformer;
 
+        /// <summary>
+        /// The bill repository
+        /// </summary>
         private readonly IBillRepository billRepository;
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartOrchestrator"/> class.
+        /// </summary>
+        /// <param name="assembler">The assembler.</param>
+        /// <param name="billRepository">The bill repository.</param>
+        /// <param name="billDataTransformer">The bill data transformer.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the assembler, repository or transformer are null.
+        /// </exception>
         public ChartOrchestrator(
             IChartAssembler assembler, 
             IBillRepository billRepository, 
@@ -66,6 +88,13 @@
 
         #region  Public Methods
 
+        /// <summary>
+        /// Obtains the bill category chart data from the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<GetBillCategoryChartDataResponse> GetBillCategoryChartData(
             GetBillCategoryChartDataRequest request)
         {
@@ -87,6 +116,13 @@
             return response;
         }
 
+        /// <summary>
+        /// Obtains the bill period chart data from the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<GetBillPeriodChartDataResponse> GetBillPeriodChartData(GetBillPeriodChartDataRequest request)
         {
             var response = new GetBillPeriodChartDataResponse();

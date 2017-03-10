@@ -95,7 +95,6 @@ $(function() {
         var loader = $(selector).parent().find(".loader");
 
         loader.text(text);
-        $(selector).closest(".segment").css("height", "230px");
         loader.addClass("no-pseudo");
     }
 

@@ -52,6 +52,13 @@
             return new GetBillPeriodChartDataRequest { UserId = userId, Username = username };
         }
 
+        /// <summary>
+        /// Converts the <see cref="string" /> object in the data list to an instance of the <see cref="TimePeriod" /> enumeration.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns>
+        /// The converted list.
+        /// </returns>
         public IList<KeyValuePair<TimePeriod, int>> AssembleTimePeriodList(IEnumerable<KeyValuePair<string, int>> data)
         {
             return (from item in data
