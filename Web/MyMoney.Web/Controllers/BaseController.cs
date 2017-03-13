@@ -116,19 +116,19 @@
         protected static ContentResult JsonResponse<T>(OrchestratorResponseWrapper<T> response)
         {
             return new ContentResult
-                       {
-                           ContentType = "application/json", 
-                           Content =
+            {
+                ContentType = "application/json",
+                Content =
                                JsonConvert.SerializeObject(
-                                   response, 
+                                   response,
                                    new JsonSerializerSettings
-                                       {
-                                           ContractResolver =
+                                   {
+                                       ContractResolver =
                                                new CamelCasePropertyNamesContractResolver
                                                ()
-                                       }), 
-                           ContentEncoding = Encoding.UTF8
-                       };
+                                   }),
+                ContentEncoding = Encoding.UTF8
+            };
         }
 
         /// <summary>Begins execution of the specified request context</summary>
@@ -137,8 +137,8 @@
         /// <param name="callback">The asynchronous callback.</param>
         /// <param name="state">The state.</param>
         protected override IAsyncResult BeginExecute(
-            RequestContext requestContext, 
-            AsyncCallback callback, 
+            RequestContext requestContext,
+            AsyncCallback callback,
             object state)
         {
             using (BenchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl))
@@ -146,6 +146,21 @@
                 return base.BeginExecute(requestContext, callback, state);
             }
         }
+
+        #region Overrides of Controller
+
+        /// <summary>Called when an unhandled exception occurs in the action.</summary>
+        /// <param name="filterContext">Information about the current request and action.</param>
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            filterContext.ExceptionHandled = true;
+
+            var error = ErrorHelper.Create(filterContext.Exception, UserEmail, GetType(), "OnException");
+
+            filterContext.Result = RedirectToAction("SystemError", "Error", new { area = "Common" });
+        }
+
+        #endregion
 
         /// <summary>
         ///     Adds model state errors to the JSON response.

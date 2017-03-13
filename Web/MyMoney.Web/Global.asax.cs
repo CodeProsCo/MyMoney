@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using System;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -10,6 +11,8 @@
     using Castle.Windsor;
 
     using DependencyInjection;
+
+    using Helpers.Error;
 
     using JetBrains.Annotations;
 
@@ -48,6 +51,15 @@
 
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var exception = Server.GetLastError();
+
+            ErrorHelper.Create(exception, "SYSTEM", GetType(), "Application_Error");
+
+            Server.ClearError();
         }
 
         #endregion

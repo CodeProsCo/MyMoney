@@ -50,6 +50,7 @@
                         Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
 
             container.Register(Component.For<ResourceController>().LifestylePerWebRequest());
+            container.Register(Component.For<ErrorController>().LifestylePerWebRequest());
         }
 
         #endregion

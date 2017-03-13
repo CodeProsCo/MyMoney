@@ -1,0 +1,17 @@
+﻿@using Cassette.Stylesheets
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_PlainLayout.cshtml";
+
+    Bundles.Reference<StylesheetBundle>("~/Areas/Common/Content/errors.css");
+}
+
+<div class="error-container">
+    <div class="ui styled segment">
+        <h3 class="ui block header">
+            <i class="exclamation triangle icon"></i>
+            A System Error Has Occurred
+        </h3>
+    </div>
+</div>

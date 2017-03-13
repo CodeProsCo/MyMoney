@@ -29,13 +29,7 @@
         /// <summary>
         ///     The Client
         /// </summary>
-        private static readonly HttpClient Client = new HttpClient
-                                                        {
-                                                            BaseAddress =
-                                                                new Uri(
-                                                                WebConfigurationManager.AppSettings.Get(
-                                                                    "ApiUri"))
-                                                        };
+        private readonly HttpClient client;
 
         #endregion
 
@@ -50,18 +44,16 @@
             var user = context.Authentication.User;
             var claim = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
 
-            if (Client.DefaultRequestHeaders.Any(x => x.Key == "USER_ID")
-                || Client.DefaultRequestHeaders.Any(x => x.Key == "API_KEY"))
-            {
-                Client.DefaultRequestHeaders.Clear();
-            }
+            client = new HttpClient { BaseAddress = new Uri(WebConfigurationManager.AppSettings.Get("ApiUri")) };
+
+            client.DefaultRequestHeaders.Clear();
 
             if (claim != null)
             {
-                Client.DefaultRequestHeaders.Add("USER_ID", claim.Value);
+                client.DefaultRequestHeaders.Add("USER_ID", claim.Value);
             }
 
-            Client.DefaultRequestHeaders.Add("API_KEY", WebConfigurationManager.AppSettings.Get("ApiKey"));
+            client.DefaultRequestHeaders.Add("API_KEY", WebConfigurationManager.AppSettings.Get("ApiKey"));
         }
 
         #endregion
@@ -83,7 +75,7 @@
 
             using (BenchmarkHelper.Create(uri))
             {
-                httpResponse = await Client.DeleteAsync(uri);
+                httpResponse = await client.DeleteAsync(uri);
             }
 
             if (!httpResponse.IsSuccessStatusCode)
@@ -114,7 +106,7 @@
 
             using (BenchmarkHelper.Create(uri))
             {
-                httpResponse = await Client.GetAsync(uri);
+                httpResponse = await client.GetAsync(uri);
             }
 
             if (!httpResponse.IsSuccessStatusCode)
@@ -144,7 +136,7 @@
 
             using (BenchmarkHelper.Create(request.GetAction()))
             {
-                httpResponse = await Client.PostAsJsonAsync(request.GetAction(), request);
+                httpResponse = await client.PostAsJsonAsync(request.GetAction(), request);
             }
 
             if (!httpResponse.IsSuccessStatusCode)
