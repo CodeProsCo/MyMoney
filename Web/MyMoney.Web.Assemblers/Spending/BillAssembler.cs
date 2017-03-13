@@ -40,6 +40,16 @@
         /// </returns>
         public AddBillRequest NewAddBillRequest(BillViewModel model, string username)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
             return new AddBillRequest { Bill = BillViewModelToProxy(model), Username = username };
         }
 
@@ -52,6 +62,11 @@
         /// </returns>
         public BillViewModel NewBillViewModel(AddBillResponse apiResponse)
         {
+            if (apiResponse == null)
+            {
+                throw new ArgumentNullException(nameof(apiResponse));
+            }
+
             return BillProxyToViewModel(apiResponse.Bill);
         }
 
@@ -64,6 +79,11 @@
         /// </returns>
         public BillViewModel NewBillViewModel(GetBillResponse apiResponse)
         {
+            if (apiResponse == null)
+            {
+                throw new ArgumentNullException(nameof(apiResponse));
+            }
+
             return BillProxyToViewModel(apiResponse.Bill);
         }
 
@@ -76,6 +96,11 @@
         /// </returns>
         public BillViewModel NewBillViewModel(EditBillResponse apiResponse)
         {
+            if (apiResponse == null)
+            {
+                throw new ArgumentNullException(nameof(apiResponse));
+            }
+
             return BillProxyToViewModel(apiResponse.Bill);
         }
 
@@ -89,6 +114,16 @@
         /// </returns>
         public DeleteBillRequest NewDeleteBillRequest(Guid billId, string username)
         {
+            if (billId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(billId));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
             return new DeleteBillRequest { BillId = billId, Username = username };
         }
 
@@ -102,6 +137,16 @@
         /// </returns>
         public EditBillRequest NewEditBillRequest(BillViewModel model, string username)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
             return new EditBillRequest { Username = username, Bill = BillViewModelToProxy(model) };
         }
 
@@ -115,6 +160,16 @@
         /// </returns>
         public GetBillRequest NewGetBillRequest(Guid billId, string username)
         {
+            if (billId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(billId));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
             return new GetBillRequest { BillId = billId, Username = username };
         }
 
@@ -128,16 +183,31 @@
         ///     The request object.
         /// </returns>
         public GetBillsForUserForMonthRequest NewGetBillsForUserForMonthRequest(
-            int monthNumber, 
-            Guid userId, 
+            int monthNumber,
+            Guid userId,
             string userEmail)
         {
+            if (monthNumber < 1 || monthNumber > 12)
+            {
+                throw new ArgumentOutOfRangeException(nameof(monthNumber));
+            }
+
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                throw new ArgumentNullException(nameof(userEmail));
+            }
+
+            if (userId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
             return new GetBillsForUserForMonthRequest
-                       {
-                           UserId = userId, 
-                           MonthNumber = monthNumber, 
-                           Username = userEmail
-                       };
+            {
+                UserId = userId,
+                MonthNumber = monthNumber,
+                Username = userEmail
+            };
         }
 
         /// <summary>
@@ -151,6 +221,16 @@
         /// </returns>
         public GetBillsForUserRequest NewGetBillsForUserRequest(Guid id, string username)
         {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
             return new GetBillsForUserRequest { UserId = id, Username = username };
         }
 
@@ -164,6 +244,14 @@
         /// </returns>
         public ManageBillsViewModel NewManageBillsViewModel(GetBillsForUserResponse apiResponse)
         {
+            if (apiResponse == null)
+            {
+                throw new ArgumentNullException(nameof(apiResponse));
+            }
+
+            var timePeriodOptions = new SelectList(Enum.GetNames(typeof(TimePeriod)));
+            var categoryOptions = new SelectList(Enum.GetNames(typeof(BillCategory)));
+
             return new ManageBillsViewModel
                        {
                            AddModel =
@@ -174,15 +262,10 @@
                                                {
                                                    StartDate =
                                                        DateTime.Now
-                                               }, 
-                                       TimePeriodOptions =
-                                           new SelectList(
-                                           Enum.GetNames(typeof(TimePeriod))), 
-                                       CategoryOptions =
-                                           new SelectList(
-                                           Enum.GetNames(typeof(BillCategory))
-                                           .OrderBy(x => x))
-                                   }, 
+                                               },
+                                       TimePeriodOptions = timePeriodOptions,
+                                       CategoryOptions = categoryOptions
+                                   },
                            EditModel =
                                new EditBillViewModel
                                    {
@@ -191,15 +274,10 @@
                                                {
                                                    StartDate =
                                                        DateTime.Now
-                                               }, 
-                                       TimePeriodOptions =
-                                           new SelectList(
-                                           Enum.GetNames(typeof(TimePeriod))), 
-                                       CategoryOptions =
-                                           new SelectList(
-                                           Enum.GetNames(typeof(BillCategory))
-                                           .OrderBy(x => x))
-                                   }, 
+                                               },
+                                       TimePeriodOptions = timePeriodOptions,
+                                       CategoryOptions = categoryOptions
+                                   },
                            Bills = apiResponse.Bills.Select(BillProxyToViewModel).ToList()
                        };
         }
@@ -216,14 +294,15 @@
         private static BillViewModel BillProxyToViewModel(BillProxy proxy)
         {
             return new BillViewModel
-                       {
-                           Amount = proxy.Amount, 
-                           Category = proxy.Category.Name, 
-                           Name = proxy.Name, 
-                           ReoccurringPeriod = (TimePeriod)proxy.ReoccurringPeriod, 
-                           StartDate = proxy.StartDate, 
-                           Id = proxy.Id
-                       };
+            {
+                Amount = proxy.Amount,
+                Category = proxy.Category.Name,
+                Name = proxy.Name,
+                ReoccurringPeriod = (TimePeriod)proxy.ReoccurringPeriod,
+                StartDate = proxy.StartDate,
+                Id = proxy.Id,
+                UserId = proxy.UserId
+            };
         }
 
         /// <summary>
@@ -234,15 +313,15 @@
         private static BillProxy BillViewModelToProxy(BillViewModel model)
         {
             return new BillProxy
-                       {
-                           Amount = model.Amount, 
-                           Category = new CategoryProxy { Name = model.Category }, 
-                           Name = model.Name, 
-                           ReoccurringPeriod = (int)model.ReoccurringPeriod, 
-                           StartDate = model.StartDate, 
-                           UserId = model.UserId, 
-                           Id = model.Id
-                       };
+            {
+                Amount = model.Amount,
+                Category = new CategoryProxy { Name = model.Category },
+                Name = model.Name,
+                ReoccurringPeriod = (int)model.ReoccurringPeriod,
+                StartDate = model.StartDate,
+                UserId = model.UserId,
+                Id = model.Id
+            };
         }
 
         #endregion

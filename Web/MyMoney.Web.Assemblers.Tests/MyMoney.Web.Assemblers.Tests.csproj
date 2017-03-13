@@ -57,7 +57,15 @@
       <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -72,9 +80,28 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Authentication\UserAssemblerTests.cs" />
+    <Compile Include="Chart\ChartAssemblerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spending\BillAssemblerTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
+      <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
+      <Name>MyMoney.Proxies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\MyMoney.ViewModels\MyMoney.ViewModels.csproj">
+      <Project>{7CEDB9FF-F121-49B0-A9EA-14C34CAB01F7}</Project>
+      <Name>MyMoney.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
+      <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
+      <Name>MyMoney.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
+      <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
+      <Name>MyMoney.Wrappers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyMoney.Web.Assemblers\MyMoney.Web.Assemblers.csproj">
       <Project>{03287d4c-906b-4fef-babc-27ac733f3878}</Project>
       <Name>MyMoney.Web.Assemblers</Name>
@@ -83,6 +110,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

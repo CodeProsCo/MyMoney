@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using System;
     using System.Security.Claims;
 
     using DTO.Request.Authentication;
@@ -34,16 +35,21 @@
         /// </returns>
         public ClaimsIdentity NewClaimsIdentity(ValidateUserResponse response)
         {
+            if (response == null)
+            {
+                throw new ArgumentNullException(nameof(response));
+            }
+
             return
                 new ClaimsIdentity(
                     new[]
                         {
-                            new Claim(ClaimTypes.Email, response.User.EmailAddress), 
-                            new Claim(ClaimTypes.Surname, response.User.LastName), 
-                            new Claim(ClaimTypes.GivenName, response.User.FirstName), 
-                            new Claim(ClaimTypes.NameIdentifier, response.User.Id.ToString()), 
+                            new Claim(ClaimTypes.Email, response.User.EmailAddress),
+                            new Claim(ClaimTypes.Surname, response.User.LastName),
+                            new Claim(ClaimTypes.GivenName, response.User.FirstName),
+                            new Claim(ClaimTypes.NameIdentifier, response.User.Id.ToString()),
                             new Claim(ClaimTypes.Name, response.User.FirstName)
-                        }, 
+                        },
                     "ApplicationCookie");
         }
 
@@ -57,7 +63,19 @@
         /// </returns>
         public RegisterUserRequest NewRegisterUserRequest(RegisterViewModel model)
         {
-            return new RegisterUserRequest { EmailAddress = model.EmailAddress, Password = model.Password };
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            return new RegisterUserRequest
+            {
+                EmailAddress = model.EmailAddress,
+                Password = model.Password,
+                DateOfBirth = model.DateOfBirth,
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
         }
 
         /// <summary>
@@ -70,6 +88,11 @@
         /// </returns>
         public ValidateUserRequest NewValidateUserRequest(LoginViewModel model)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
             return new ValidateUserRequest { EmailAddress = model.EmailAddress, Password = model.Password };
         }
 

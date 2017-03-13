@@ -36,6 +36,11 @@
         /// </returns>
         public IList<KeyValuePair<TimePeriod, int>> AssembleTimePeriodList(IEnumerable<KeyValuePair<string, int>> data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));    
+            }
+
             return (from item in data
                     let enumeration = (TimePeriod)int.Parse(item.Key)
                     select new KeyValuePair<TimePeriod, int>(enumeration, item.Value)).ToList();
@@ -51,6 +56,16 @@
         /// </returns>
         public GetBillCategoryChartDataRequest NewGetBillCategoryChartDataRequest(Guid userId, string username)
         {
+            if (userId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));    
+            }
+
             return new GetBillCategoryChartDataRequest { UserId = userId, Username = username };
         }
 
@@ -64,6 +79,16 @@
         /// </returns>
         public GetBillPeriodChartDataRequest NewGetBillPeriodChartDataRequest(Guid userId, string username)
         {
+            if (userId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
             return new GetBillPeriodChartDataRequest { UserId = userId, Username = username };
         }
 

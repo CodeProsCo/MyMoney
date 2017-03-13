@@ -114,12 +114,12 @@
         ///     Assembles an instance of the <see cref="GetBillsForUserRequest" /> class based on the given
         ///     <see cref="string" />.
         /// </summary>
-        /// <param name="email">The user's email address.</param>
+        /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
         ///     The request object.
         /// </returns>
-        GetBillsForUserRequest NewGetBillsForUserRequest(Guid email, string username);
+        GetBillsForUserRequest NewGetBillsForUserRequest(Guid userId, string username);
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ManageBillsViewModel" /> class based on the given
