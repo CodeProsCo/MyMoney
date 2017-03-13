@@ -221,4 +221,7 @@ th:hover {
     display: none !important;
 }
 
-
+td.link.negative:not(.disabled):hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
