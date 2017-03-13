@@ -9,7 +9,7 @@ function ChartGenerator(data) {
         var options = {
             container: containerId,
             data: this.data,
-            animated:true
+            animated: true
         };
         return createDonutChart(options);
     };

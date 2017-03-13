@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Net;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using System.Web;
@@ -31,12 +30,12 @@
         ///     The Client
         /// </summary>
         private static readonly HttpClient Client = new HttpClient
-        {
-            BaseAddress =
-                new Uri(
-                WebConfigurationManager.AppSettings.Get(
-                    "ApiUri")),
-        };
+                                                        {
+                                                            BaseAddress =
+                                                                new Uri(
+                                                                WebConfigurationManager.AppSettings.Get(
+                                                                    "ApiUri"))
+                                                        };
 
         #endregion
 
@@ -51,7 +50,8 @@
             var user = context.Authentication.User;
             var claim = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
 
-            if (Client.DefaultRequestHeaders.Any(x => x.Key == "USER_ID") || Client.DefaultRequestHeaders.Any(x => x.Key == "API_KEY"))
+            if (Client.DefaultRequestHeaders.Any(x => x.Key == "USER_ID")
+                || Client.DefaultRequestHeaders.Any(x => x.Key == "API_KEY"))
             {
                 Client.DefaultRequestHeaders.Clear();
             }

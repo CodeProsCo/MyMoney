@@ -67,8 +67,8 @@
                     .ImplementedBy<ChartOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>(),
-                        Dependency.OnComponent<IBillRepository, BillRepository>(),
+                        Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>(), 
+                        Dependency.OnComponent<IBillRepository, BillRepository>(), 
                         Dependency.OnComponent<IChartAssembler, ChartAssembler>()));
         }
 

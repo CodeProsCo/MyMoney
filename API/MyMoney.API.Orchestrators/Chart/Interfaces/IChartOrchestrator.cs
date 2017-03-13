@@ -10,21 +10,21 @@
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="ChartOrchestrator"/> class.
+    ///     Interface for the <see cref="ChartOrchestrator" /> class.
     /// </summary>
     public interface IChartOrchestrator
     {
         #region  Public Methods
 
         /// <summary>
-        /// Obtains the bill category chart data from the database.
+        ///     Obtains the bill category chart data from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<GetBillCategoryChartDataResponse> GetBillCategoryChartData(GetBillCategoryChartDataRequest request);
 
         /// <summary>
-        /// Obtains the bill period chart data from the database.
+        ///     Obtains the bill period chart data from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>

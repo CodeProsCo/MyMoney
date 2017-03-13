@@ -24,11 +24,11 @@
         #region  Public Methods
 
         /// <summary>
-        /// Gets the bill category chart data.
+        ///     Gets the bill category chart data.
         /// </summary>
         /// <param name="bills">The bills.</param>
         /// <returns>
-        /// A list of key-value pairs for each category and the amount of bills under that category.
+        ///     A list of key-value pairs for each category and the amount of bills under that category.
         /// </returns>
         public IList<KeyValuePair<string, int>> GetBillCategoryChartData(IEnumerable<BillDataModel> bills)
         {
@@ -38,11 +38,11 @@
         }
 
         /// <summary>
-        /// Gets the bill period chart data.
+        ///     Gets the bill period chart data.
         /// </summary>
         /// <param name="bills">The bills.</param>
         /// <returns>
-        /// A list of key-value pairs for each period and the amount of bills under that period.
+        ///     A list of key-value pairs for each period and the amount of bills under that period.
         /// </returns>
         public IList<KeyValuePair<string, int>> GetBillPeriodChartData(IEnumerable<BillDataModel> bills)
         {
@@ -131,8 +131,6 @@
 
             return retVal;
         }
-
-
 
         #endregion
     }

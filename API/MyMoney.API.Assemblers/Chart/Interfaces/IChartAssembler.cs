@@ -10,24 +10,32 @@
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="ChartAssembler"/> class.
+    ///     Interface for the <see cref="ChartAssembler" /> class.
     /// </summary>
     public interface IChartAssembler
     {
-        /// <summary>
-        /// Creates an instance of the <see cref="GetBillCategoryChartDataResponse"/> class.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param name="requestReference">The request reference.</param>
-        /// <returns>The response object.</returns>
-        GetBillCategoryChartDataResponse NewGetBillCategoryChartDataResponse(IList<KeyValuePair<string, int>> data, Guid requestReference);
+        #region  Public Methods
 
         /// <summary>
-        /// Creates an instance of the <see cref="GetBillPeriodChartDataResponse"/> class.
+        ///     Creates an instance of the <see cref="GetBillCategoryChartDataResponse" /> class.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        GetBillPeriodChartDataResponse NewGetBillPeriodChartDataResponse(IList<KeyValuePair<string, int>> data, Guid requestReference);
+        GetBillCategoryChartDataResponse NewGetBillCategoryChartDataResponse(
+            IList<KeyValuePair<string, int>> data, 
+            Guid requestReference);
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="GetBillPeriodChartDataResponse" /> class.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="requestReference">The request reference.</param>
+        /// <returns>The response object.</returns>
+        GetBillPeriodChartDataResponse NewGetBillPeriodChartDataResponse(
+            IList<KeyValuePair<string, int>> data, 
+            Guid requestReference);
+
+        #endregion
     }
 }

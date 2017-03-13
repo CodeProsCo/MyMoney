@@ -27,6 +27,21 @@
         #region  Public Methods
 
         /// <summary>
+        ///     Converts the <see cref="string" /> object in the data list to an instance of the <see cref="TimePeriod" />
+        ///     enumeration.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns>
+        ///     The converted list.
+        /// </returns>
+        public IList<KeyValuePair<TimePeriod, int>> AssembleTimePeriodList(IEnumerable<KeyValuePair<string, int>> data)
+        {
+            return (from item in data
+                    let enumeration = (TimePeriod)int.Parse(item.Key)
+                    select new KeyValuePair<TimePeriod, int>(enumeration, item.Value)).ToList();
+        }
+
+        /// <summary>
         ///     Creates an instance of the <see cref="GetBillCategoryChartDataRequest" /> class.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
@@ -50,20 +65,6 @@
         public GetBillPeriodChartDataRequest NewGetBillPeriodChartDataRequest(Guid userId, string username)
         {
             return new GetBillPeriodChartDataRequest { UserId = userId, Username = username };
-        }
-
-        /// <summary>
-        /// Converts the <see cref="string" /> object in the data list to an instance of the <see cref="TimePeriod" /> enumeration.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <returns>
-        /// The converted list.
-        /// </returns>
-        public IList<KeyValuePair<TimePeriod, int>> AssembleTimePeriodList(IEnumerable<KeyValuePair<string, int>> data)
-        {
-            return (from item in data
-                    let enumeration = (TimePeriod)int.Parse(item.Key)
-                    select new KeyValuePair<TimePeriod, int>(enumeration, item.Value)).ToList();
         }
 
         #endregion

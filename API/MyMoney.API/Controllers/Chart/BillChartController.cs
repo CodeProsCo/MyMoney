@@ -13,7 +13,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="BillChartController"/> class handles HTTP requests for the "chart/bill" route.
+    ///     The <see cref="BillChartController" /> class handles HTTP requests for the "chart/bill" route.
     /// </summary>
     /// <seealso cref="System.Web.Http.ApiController" />
     [RoutePrefix("chart/bill")]
@@ -22,7 +22,7 @@
         #region Fields
 
         /// <summary>
-        /// The orchestrator
+        ///     The orchestrator
         /// </summary>
         private readonly IChartOrchestrator orchestrator;
 
@@ -31,11 +31,11 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BillChartController"/> class.
+        ///     Initializes a new instance of the <see cref="BillChartController" /> class.
         /// </summary>
         /// <param name="orchestrator">The orchestrator.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the orchestrator is null.
+        ///     Exception thrown if the orchestrator is null.
         /// </exception>
         public BillChartController(IChartOrchestrator orchestrator)
         {
@@ -52,7 +52,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// Handles HTTP GET requests for the bill category chart data for a user.
+        ///     Handles HTTP GET requests for the bill category chart data for a user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>
@@ -66,7 +66,7 @@
         }
 
         /// <summary>
-        /// Handles HTTP GET requests for the bill period chart data for a user.
+        ///     Handles HTTP GET requests for the bill period chart data for a user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object. Wrapped in a 200 response.</returns>

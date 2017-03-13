@@ -10,6 +10,11 @@
 
     #endregion
 
+    /// <summary>
+    ///     The <see cref="ValidateAPIKeyAttribute" /> attribute ensures that an authorized request contains an API key that
+    ///     matches the one stored on the server.
+    /// </summary>
+    /// <seealso cref="System.Web.Http.AuthorizeAttribute" />
     public class ValidateAPIKeyAttribute : AuthorizeAttribute
     {
         #region Private Methods
