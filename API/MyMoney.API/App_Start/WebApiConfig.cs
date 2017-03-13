@@ -2,7 +2,10 @@
 {
     #region Usings
 
+    using System.Diagnostics;
     using System.Web.Http;
+
+    using Attributes;
 
     using WebApiThrottle;
 
@@ -36,6 +39,11 @@
                                 }, 
                         Repository = new CacheRepository()
                     });
+
+            if (!Debugger.IsAttached)
+            {
+                config.Filters.Add(new ValidateAPIKeyAttribute());
+            }
         }
 
         #endregion

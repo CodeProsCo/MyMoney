@@ -63,7 +63,7 @@
             int monthNumber, 
             IList<BillDataModel> bills)
         {
-            // var weeklyBills = bills.Where(x => x.ReoccurringPeriod == 1).ToList();
+            var weeklyBills = bills.Where(x => x.ReoccurringPeriod == 1).ToList();
             var dailyBills = bills.Where(x => x.ReoccurringPeriod == 0).ToList();
             var monthlyBills = bills.Where(x => x.ReoccurringPeriod == 2).ToList();
             var yearlyBills = bills.Where(x => x.ReoccurringPeriod == 3).ToList();
@@ -102,8 +102,37 @@
                 }
             }
 
+            foreach (var bill in weeklyBills)
+            {
+                var yearDiff = (DateTime.Now.Date - bill.StartDate).TotalDays / 365;
+                var time = bill.StartDate.AddYears((int)yearDiff);
+
+                while (time < new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1))
+                {
+                    time = time.AddDays(7);
+                }
+
+                while (time < new DateTime(DateTime.Now.Year, monthNumber + 1, 1))
+                {
+                    var weeklyAmount = bill.Amount;
+
+                    if (retVal.Any(x => x.Key == time.Date))
+                    {
+                        var pair = retVal.FirstOrDefault(x => x.Key == time.Date);
+                        weeklyAmount += pair.Value;
+                        retVal.Remove(pair);
+                    }
+
+                    retVal.Add(new KeyValuePair<DateTime, double>(time.Date, weeklyAmount));
+
+                    time = time.AddDays(7);
+                }
+            }
+
             return retVal;
         }
+
+
 
         #endregion
     }

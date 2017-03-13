@@ -3,9 +3,13 @@
     #region Usings
 
     using System;
+    using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Security.Claims;
     using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Configuration;
 
     using DTO.Request;
@@ -27,12 +31,12 @@
         ///     The Client
         /// </summary>
         private static readonly HttpClient Client = new HttpClient
-                                                        {
-                                                            BaseAddress =
-                                                                new Uri(
-                                                                WebConfigurationManager.AppSettings.Get(
-                                                                    "ApiUri"))
-                                                        };
+        {
+            BaseAddress =
+                new Uri(
+                WebConfigurationManager.AppSettings.Get(
+                    "ApiUri")),
+        };
 
         #endregion
 
@@ -43,6 +47,21 @@
         /// </summary>
         protected BaseDataAccess()
         {
+            var context = HttpContext.Current.GetOwinContext();
+            var user = context.Authentication.User;
+            var claim = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
+
+            if (Client.DefaultRequestHeaders.Any(x => x.Key == "USER_ID") || Client.DefaultRequestHeaders.Any(x => x.Key == "API_KEY"))
+            {
+                Client.DefaultRequestHeaders.Clear();
+            }
+
+            if (claim != null)
+            {
+                Client.DefaultRequestHeaders.Add("USER_ID", claim.Value);
+            }
+
+            Client.DefaultRequestHeaders.Add("API_KEY", WebConfigurationManager.AppSettings.Get("ApiKey"));
         }
 
         #endregion

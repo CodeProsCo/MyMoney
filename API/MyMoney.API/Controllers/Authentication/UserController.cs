@@ -17,6 +17,7 @@
     /// </summary>
     /// <seealso cref="System.Web.Http.ApiController" />
     [RoutePrefix("auth/user")]
+    [AllowAnonymous]
     public class UserController : ApiController
     {
         #region Fields
@@ -56,6 +57,7 @@
         /// <returns>The response object.</returns>
         [HttpPost]
         [Route("register")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> RegisterUser([FromBody] RegisterUserRequest request)
         {
             var response = await orchestrator.RegisterUser(request);
@@ -74,6 +76,7 @@
         /// </returns>
         [HttpPost]
         [Route("validate")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> ValidateUser([FromBody] ValidateUserRequest request)
         {
             var response = await orchestrator.ValidateUser(request);
