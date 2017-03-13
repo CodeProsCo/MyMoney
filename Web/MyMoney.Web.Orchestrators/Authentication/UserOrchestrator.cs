@@ -14,6 +14,8 @@
 
     using Interfaces;
 
+    using JetBrains.Annotations;
+
     using ViewModels.Authentication.User;
 
     using Wrappers;
@@ -24,6 +26,7 @@
     ///     Handles actions regarding users.
     /// </summary>
     /// <seealso cref="IUserOrchestrator" />
+    [UsedImplicitly]
     public class UserOrchestrator : IUserOrchestrator
     {
         #region Fields
@@ -98,7 +101,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "RegisterUser");
+                var err = ErrorHelper.Create(ex, model?.EmailAddress, GetType(), "RegisterUser");
                 response.AddError(err);
             }
 
@@ -132,7 +135,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, model.EmailAddress, GetType(), "ValidateUser");
+                var err = ErrorHelper.Create(ex, model?.EmailAddress, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

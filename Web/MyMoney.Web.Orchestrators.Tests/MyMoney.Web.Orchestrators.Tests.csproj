@@ -84,6 +84,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
+      <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
+      <Name>MyMoney.Proxies</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Models\MyMoney.ViewModels\MyMoney.ViewModels.csproj">
       <Project>{7CEDB9FF-F121-49B0-A9EA-14C34CAB01F7}</Project>
       <Name>MyMoney.ViewModels</Name>
@@ -112,6 +116,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Chart\" />
+    <Folder Include="Spending\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
