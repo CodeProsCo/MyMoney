@@ -22,14 +22,14 @@ namespace MyMoney.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Authentication {
+    public class Error {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Authentication() {
+        internal Error() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyMoney.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMoney.Resources.Authentication", typeof(Authentication).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMoney.Resources.Error", typeof(Error).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,11 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find user..
+        ///   Looks up a localized string similar to A system error has occurred..
         /// </summary>
-        public static string Error_CouldNotFindUser {
+        public static string Title_SystemError {
             get {
-                return ResourceManager.GetString("Error_CouldNotFindUser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Username or password is invalid.
-        /// </summary>
-        public static string Error_UsernameOrPasswordInvalid {
-            get {
-                return ResourceManager.GetString("Error_UsernameOrPasswordInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Already have an account? Log in .
-        /// </summary>
-        public static string Message_ExistingUser {
-            get {
-                return ResourceManager.GetString("Message_ExistingUser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to here.
-        /// </summary>
-        public static string Message_Here {
-            get {
-                return ResourceManager.GetString("Message_Here", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New user? Register .
-        /// </summary>
-        public static string Message_NewUser {
-            get {
-                return ResourceManager.GetString("Message_NewUser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Register.
-        /// </summary>
-        public static string Title_Register {
-            get {
-                return ResourceManager.GetString("Title_Register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sign in.
-        /// </summary>
-        public static string Title_SignIn {
-            get {
-                return ResourceManager.GetString("Title_SignIn", resourceCulture);
+                return ResourceManager.GetString("Title_SystemError", resourceCulture);
             }
         }
     }

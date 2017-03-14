@@ -4,7 +4,7 @@
 <div class="ui modal" id="edit-bill-modal">
     <div class="yellow header">
         <i class="edit icon"></i>
-        Edit Bill
+        @MyMoney.Resources.Bills.Title_EditBill
     </div>
     <div class="content">
         @using (Html.BeginForm("Edit", "Bill", FormMethod.Post, new { id = "edit-bill-form" }))
@@ -20,15 +20,15 @@
         <div class="ui red right labeled left floated icon button"
              id="delete-bill"
              data-url="@Url.Action("Delete", "Bill", new { billId = Model.Bill.Id })">
-            Delete
+            @MyMoney.Resources.Common.Button_Delete
             <i class="trash icon"></i>
         </div>
         <div class="ui black deny right labeled icon button" id="cancel">
-            Cancel
+            @MyMoney.Resources.Common.Button_Cancel
             <i class="cancel icon"></i>
         </div>
         <div class="ui yellow right labeled icon button" id="edit-bill">
-            Edit
+            @MyMoney.Resources.Common.Button_Edit
             <i class="edit icon"></i>
         </div>
     </div>

@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Button_Close" xml:space="preserve">
     <value>Close</value>
   </data>
   <data name="Button_Confirm" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
+  <data name="Button_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Button_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Button_New" xml:space="preserve">
+    <value>New</value>
+  </data>
   <data name="Button_Report" xml:space="preserve">
     <value>Report</value>
+  </data>
+  <data name="Button_Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="Error_AjaxFailure" xml:space="preserve">
     <value>An error has occurred making a request to the server. Some features may not function properly. Please refresh the page and try again. If the problem persists, please report it.</value>
@@ -159,8 +174,23 @@
   <data name="Information_Title" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Label_AcceptTermsAndConditions" xml:space="preserve">
+    <value>I accept the terms and conditions</value>
+  </data>
   <data name="Success_Title" xml:space="preserve">
     <value>Success</value>
+  </data>
+  <data name="Title_ManageBills" xml:space="preserve">
+    <value>Manage your bills</value>
+  </data>
+  <data name="Title_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Title_Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="Title_TrackSpending" xml:space="preserve">
+    <value>Track your spending</value>
   </data>
   <data name="Warning_Title" xml:space="preserve">
     <value>Warning</value>

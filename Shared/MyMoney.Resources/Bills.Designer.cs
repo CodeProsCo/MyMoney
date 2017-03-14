@@ -106,6 +106,24 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click here to record a new bill.
+        /// </summary>
+        public static string Hint_AddNewBill {
+            get {
+                return ResourceManager.GetString("Hint_AddNewBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the table where all your bills are shown. Click on a bill to view or edit it..
+        /// </summary>
+        public static string Hint_BillTable {
+            get {
+                return ResourceManager.GetString("Hint_BillTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount.
         /// </summary>
         public static string Label_Amount {
@@ -187,11 +205,29 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a new bill.
+        /// </summary>
+        public static string Title_AddBill {
+            get {
+                return ResourceManager.GetString("Title_AddBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bills.
         /// </summary>
         public static string Title_Bills {
             get {
                 return ResourceManager.GetString("Title_Bills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit a bill.
+        /// </summary>
+        public static string Title_EditBill {
+            get {
+                return ResourceManager.GetString("Title_EditBill", resourceCulture);
             }
         }
         

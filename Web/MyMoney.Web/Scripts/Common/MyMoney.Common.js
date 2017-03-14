@@ -29,7 +29,7 @@ for (var i = 0; i < menuItems.length; i++) {
     var url = $(item).attr("href");
 
     if (window.location.href.indexOf(url) >= 0) {
-        $(item).addClass("disabled");
+        $(item).addClass("selected");
     }
 }
 

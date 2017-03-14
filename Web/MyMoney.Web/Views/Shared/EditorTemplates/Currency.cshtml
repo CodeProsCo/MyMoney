@@ -2,5 +2,8 @@
 
 <div class="field">
     @Html.LabelForModel()
-    @Html.TextBoxFor(x => x, new { data_input_mask = "currency" })
+    <div class="ui left icon input">
+        @Html.TextBoxFor(x => x, new { data_input_mask = "currency" })
+        <i class="pound icon"></i>
+    </div>
 </div>

@@ -117,67 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Button_AddBill" xml:space="preserve">
-    <value>Add a new bill</value>
-  </data>
-  <data name="Button_DeleteBill" xml:space="preserve">
-    <value>Delete bill</value>
-  </data>
-  <data name="Button_EditBill" xml:space="preserve">
-    <value>Edit bill</value>
-  </data>
-  <data name="Error_CouldNotFindBill" xml:space="preserve">
-    <value>Could not find bill.</value>
-  </data>
-  <data name="Heading_BillBreakdown" xml:space="preserve">
-    <value>Bill Breakdown</value>
-  </data>
-  <data name="Hint_AddNewBill" xml:space="preserve">
-    <value>Click here to record a new bill</value>
-  </data>
-  <data name="Hint_BillTable" xml:space="preserve">
-    <value>This is the table where all your bills are shown. Click on a bill to view or edit it.</value>
-  </data>
-  <data name="Label_Amount" xml:space="preserve">
-    <value>Amount</value>
-  </data>
-  <data name="Label_Category" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="Label_Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Label_ReoccuringPeriod" xml:space="preserve">
-    <value>Reoccuring Period</value>
-  </data>
-  <data name="Label_StartDate" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="Label_TotalBills" xml:space="preserve">
-    <value>Total Bills:</value>
-  </data>
-  <data name="Message_DeleteBill" xml:space="preserve">
-    <value>Your bill was deleted.</value>
-  </data>
-  <data name="Message_RecordedBill" xml:space="preserve">
-    <value>Your bill was recorded.</value>
-  </data>
-  <data name="Message_UpdatedBill" xml:space="preserve">
-    <value>Your bill has been updated.</value>
-  </data>
-  <data name="Title_AddBill" xml:space="preserve">
-    <value>Add a new bill</value>
-  </data>
-  <data name="Title_Bills" xml:space="preserve">
-    <value>Bills</value>
-  </data>
-  <data name="Title_EditBill" xml:space="preserve">
-    <value>Edit a bill</value>
-  </data>
-  <data name="Title_ManageBills" xml:space="preserve">
-    <value>Manage Bills</value>
-  </data>
-  <data name="Warning_NoBills" xml:space="preserve">
-    <value>You have no bills recorded.</value>
+  <data name="Title_SystemError" xml:space="preserve">
+    <value>A system error has occurred.</value>
   </data>
 </root>

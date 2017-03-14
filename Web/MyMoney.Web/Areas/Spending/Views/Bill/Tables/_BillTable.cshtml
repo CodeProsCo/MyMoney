@@ -2,7 +2,7 @@
 @model IList<MyMoney.ViewModels.Spending.Bills.BillViewModel>
 <table class="ui celled selectable table" id="bill-table" data-sort="true">
     <thead>
-    <tr data-hint="This is the table where all your bills are shown. Click on a bill to view or edit it.">
+    <tr data-hint="@Bills.Hint_BillTable">
         <th>@Common.Header_Date</th>
         <th>@Common.Header_Description</th>
         <th>@Common.Header_Category</th>
@@ -38,8 +38,8 @@
     <tfoot>
     <tr>
         <th colspan="5">
-            <div class="ui left floated small primary button" id="add" data-hint="Click here to record a new bill">
-                <i class="add icon"></i> New
+            <div class="ui left floated small primary button" id="add" data-hint="@Bills.Hint_AddNewBill">
+                <i class="add icon"></i> @Common.Button_New
             </div>
         </th>
     </tr>
