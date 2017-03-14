@@ -11,6 +11,8 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
+    using Controllers;
+
     using Orchestrators.Authentication;
     using Orchestrators.Authentication.Interfaces;
     using Orchestrators.Chart;
@@ -51,6 +53,7 @@
 
             container.Register(Component.For<ResourceController>().LifestylePerWebRequest());
             container.Register(Component.For<ErrorController>().LifestylePerWebRequest());
+            container.Register(Component.For<HomeController>().LifestylePerWebRequest());
         }
 
         #endregion

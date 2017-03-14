@@ -24,14 +24,12 @@
 
             routes.MapMvcAttributeRoutes();
 
-            var route = routes.MapRoute(
-                "Default", 
-                "{area}/{controller}/{action}/{id}", 
-                new { controller = "User", action = "Login", id = UrlParameter.Optional });
-
-            route.DataTokens["area"] = "Authentication";
-
             routes.LowercaseUrls = true;
+
+            var route = routes.MapRoute(
+                "Default",
+                "{area}/{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional, area = UrlParameter.Optional });
         }
 
         #endregion
