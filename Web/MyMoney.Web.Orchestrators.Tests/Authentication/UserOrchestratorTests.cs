@@ -82,15 +82,14 @@
             {
                 LoginSuccess = true,
                 RequestReference = Guid.NewGuid(),
-                User =
-                                                    new UserProxy
-                                                    {
-                                                        EmailAddress = "TEST",
-                                                        DateOfBirth = DateTime.Now,
-                                                        FirstName = "TEST",
-                                                        Id = Guid.NewGuid(),
-                                                        LastName = "TEST"
-                                                    }
+                User = new UserProxy
+                {
+                    EmailAddress = "TEST",
+                    DateOfBirth = DateTime.Now,
+                    FirstName = "TEST",
+                    Id = Guid.NewGuid(),
+                    LastName = "TEST"
+                }
             };
 
             invalidValidateUserResponse = new ValidateUserResponse { Errors = { new ResponseErrorWrapper() } };
@@ -188,6 +187,18 @@
             orchestrator = null;
             assembler = null;
             dataAccess = null;
+            validRegisterViewModel = null;
+            validRegisterUserRequest = null;
+            invalidRegisterUserRequest = null;
+            validRegisterUserResponse = null;
+            invalidRegisterUserResponse = null;
+            invalidRegisterViewModel = null;
+            invalidLoginViewModel = null;
+            validLoginViewModel = null;
+            validValidateUserRequest = null;
+            invalidValidateUserRequest = null;
+            validValidateUserResponse = null;
+            invalidValidateUserResponse = null;
         }
 
         [Test]

@@ -81,6 +81,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Authentication\UserOrchestratorTests.cs" />
+    <Compile Include="Chart\ChartOrchestratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,7 +119,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Chart\" />
     <Folder Include="Spending\" />
   </ItemGroup>
   <Choose>
