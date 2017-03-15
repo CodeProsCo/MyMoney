@@ -226,13 +226,23 @@ td.link.negative:not(.disabled):hover {
     opacity: 0.8;
 }
 
-a.item.selected {
+.accordion > a.item.selected {
     pointer-events: none;
     color: black !important;
     background-color: white !important;
 }
 
-a.item:hover {
+.accordion > a.item:hover {
     border-right: 5px solid white !important;
     color: #D4D4D5 !important;
+}
+
+.mainmenu:first-child a:before {
+    position: absolute;
+    content: '';
+    top: 0%;
+    left: 0px;
+    height: 100%;
+    width: 1px;
+    background: rgba(34, 36, 38, 0.1);
 }

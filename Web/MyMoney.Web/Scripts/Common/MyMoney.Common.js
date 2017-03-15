@@ -3,6 +3,7 @@
 /// <reference path="~/Scripts/jQuery/jquery.tablesorter.js" />
 /// <reference path="~/Scripts/Semantic/semantic.js" />
 /// <reference path="~/Scripts/jQuery/jquery.validate.unobtrusive.js" />
+/// <reference path="~/Scripts/Intro/intro.js" />
 $("#menu-toggle")
     .click(function(e) {
         e.stopPropagation();
@@ -50,3 +51,22 @@ $("table[data-sort=true] th")
         });
 
 $(".modal").modal("setting", "closable", false);
+
+introJs().addHints();
+introJs().hideHints();
+
+var hintsEnabled = false;
+
+$("#hint-button").click(function(e) {
+    e.stopPropagation();
+
+    if (!hintsEnabled) {
+        $("#hint-button").html($("#hint-button").html().replace("Show", "Hide"));
+        introJs().showHints();
+        hintsEnabled = true;
+    } else {
+        introJs().hideHints();
+        $("#hint-button").html($("#hint-button").html().replace("Hide", "Show"));
+        hintsEnabled = false;
+    }
+})

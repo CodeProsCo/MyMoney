@@ -135,6 +135,12 @@
   <data name="Hint_AddNewBill" xml:space="preserve">
     <value>Click here to record a new bill</value>
   </data>
+  <data name="Hint_BillBreakdown" xml:space="preserve">
+    <value>Here you can see your bills visualised based on their period and category.</value>
+  </data>
+  <data name="Hint_BillCalendar" xml:space="preserve">
+    <value>On this calendar, you can see when your next bill payments are due, and how much you will pay in each day.</value>
+  </data>
   <data name="Hint_BillTable" xml:space="preserve">
     <value>This is the table where all your bills are shown. Click on a bill to view or edit it.</value>
   </data>
@@ -176,6 +182,9 @@
   </data>
   <data name="Title_ManageBills" xml:space="preserve">
     <value>Manage Bills</value>
+  </data>
+  <data name="Title_UpcomingBills" xml:space="preserve">
+    <value>Upcoming Bills</value>
   </data>
   <data name="Warning_NoBills" xml:space="preserve">
     <value>You have no bills recorded.</value>

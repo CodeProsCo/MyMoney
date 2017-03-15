@@ -9,24 +9,21 @@
             <i class="search icon"></i>
         </div>
     </div>
-    <div class="right item nav-item">
-        <div class="ui pointing dropdown user-dropdown">
-            <div class="text">
-                @User.Identity.Name
-            </div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item" href="@Url.Action("Logout", "User", new { area = "Authentication" })">
-                    <i class="sign out icon"></i>
-                    Sign out
-                </a>
-                <a class="item" id="show-hints">
-                    <i class="comments icon"></i>
-                    Show hints
-                </a>
-            </div>
-        </div>
-    </div>
+
+        <a class="item">
+            <i class="user icon"></i>
+            Account
+        </a>
+        <a class="item" id="hint-button">
+            <i class="comment icon"></i>
+            Show hints
+        </a>
+        <a class="item" href="@Url.Action("Logout", "User", new { area = "Authentication" })">
+            <i class="sign out icon"></i>
+            Sign out
+        </a> 
+
+
 
 
 </div>

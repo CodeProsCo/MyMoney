@@ -115,6 +115,24 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Here you can see your bills visualised based on their period and category..
+        /// </summary>
+        public static string Hint_BillBreakdown {
+            get {
+                return ResourceManager.GetString("Hint_BillBreakdown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On this calendar, you can see when your next bill payments are due, and how much you will pay in each day..
+        /// </summary>
+        public static string Hint_BillCalendar {
+            get {
+                return ResourceManager.GetString("Hint_BillCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the table where all your bills are shown. Click on a bill to view or edit it..
         /// </summary>
         public static string Hint_BillTable {
@@ -237,6 +255,15 @@ namespace MyMoney.Resources {
         public static string Title_ManageBills {
             get {
                 return ResourceManager.GetString("Title_ManageBills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upcoming Bills.
+        /// </summary>
+        public static string Title_UpcomingBills {
+            get {
+                return ResourceManager.GetString("Title_UpcomingBills", resourceCulture);
             }
         }
         

@@ -24,14 +24,14 @@
         <div class="ui styled segment">
             <div class="ui block header">
                 <i class="clock icon"></i>
-                Upcoming Bills
+                @Bills.Title_UpcomingBills
             </div>
-            <div class="ui calendar" id="bill-calendar" data-url="@Url.Action("GetBillsForMonth", "Bill", new { monthNumber = DateTime.Now.Month })"></div>
+            <div class="ui calendar" id="bill-calendar" data-url="@Url.Action("GetBillsForMonth", "Bill", new { monthNumber = DateTime.Now.Month })" data-hint="@Bills.Hint_BillCalendar"></div>
         </div>
     </div>
     <div class="four wide column">
         <div class="ui styled segment">
-            <div class="ui block header">
+            <div class="ui block header" data-hint="@Bills.Hint_BillBreakdown">
                 <i class="browser icon"></i>
                 @Bills.Heading_BillBreakdown
             </div>
