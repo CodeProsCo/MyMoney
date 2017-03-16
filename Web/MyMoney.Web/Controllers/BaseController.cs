@@ -14,8 +14,8 @@
     using System.Web.Mvc;
     using System.Web.Routing;
 
+    using Helpers.Benchmarking;
     using Helpers.Error;
-    using Helpers.Network;
 
     using Microsoft.Owin.Security;
 
@@ -131,6 +131,8 @@
             };
         }
 
+        private Benchmark controllerBenchmark;
+
         /// <summary>Begins execution of the specified request context</summary>
         /// <returns>Returns an IAsyncController instance.</returns>
         /// <param name="requestContext">The request context.</param>
@@ -141,11 +143,23 @@
             AsyncCallback callback,
             object state)
         {
-            using (BenchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl))
-            {
-                return base.BeginExecute(requestContext, callback, state);
-            }
+            controllerBenchmark = BenchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl);
+
+            return base.BeginExecute(requestContext, callback, state);
         }
+
+        #region Overrides of Controller
+
+        /// <summary>Ends the invocation of the action in the current controller context.</summary>
+        /// <param name="asyncResult">The asynchronous result.</param>
+        protected override void EndExecute(IAsyncResult asyncResult)
+        {
+            base.EndExecute(asyncResult);
+
+            controllerBenchmark.Dispose();
+        }
+
+        #endregion
 
         #region Overrides of Controller
 

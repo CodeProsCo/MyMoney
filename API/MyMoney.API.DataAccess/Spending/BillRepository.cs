@@ -8,6 +8,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Common.Interfaces;
+
     using DataModels.Spending;
 
     using Interfaces;
@@ -25,6 +27,28 @@
     [UsedImplicitly]
     public class BillRepository : IBillRepository
     {
+        /// <summary>
+        /// The category repository
+        /// </summary>
+        private readonly ICategoryRepository categoryRepository;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillRepository"/> class.
+        /// </summary>
+        /// <param name="categoryRepository">The category repository.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown when the category repository is null.
+        /// </exception>
+        public BillRepository(ICategoryRepository categoryRepository)
+        {
+            if (categoryRepository == null)
+            {
+                throw new ArgumentNullException(nameof(categoryRepository));
+            }
+
+            this.categoryRepository = categoryRepository;
+        }
+
         #region  Public Methods
 
         /// <summary>
@@ -40,19 +64,16 @@
             {
                 dataModel.Id = Guid.NewGuid();
 
-                if (!context.Categories.Any(x => x.Name == dataModel.Category.Name))
+                if (await categoryRepository.Exists(dataModel.Category.Name))
                 {
-                    dataModel.Category.Id = Guid.NewGuid();
-                    var categoryModel = context.Categories.Add(dataModel.Category);
+                    var category = await categoryRepository.GetCategory(dataModel.Category.Name);
 
-                    dataModel.Category = categoryModel;
-                    dataModel.CategoryId = dataModel.Category.Id;
+                    dataModel.Category = category;
+                    dataModel.CategoryId = category.Id;
                 }
                 else
                 {
-                    dataModel.Category =
-                        await context.Categories.FirstOrDefaultAsync(x => x.Name == dataModel.Category.Name);
-
+                    dataModel.Category = await categoryRepository.AddCategory(dataModel.Category);
                     dataModel.CategoryId = dataModel.Category.Id;
                 }
 
@@ -112,6 +133,20 @@
 
                 toEdit = context.Bills.Attach(toEdit);
                 context.Bills.Remove(toEdit);
+
+                if (await categoryRepository.Exists(bill.Category.Name))
+                {
+                    var category = await categoryRepository.GetCategory(bill.Category.Name);
+
+                    bill.Category = category;
+                    bill.CategoryId = category.Id;
+                }
+                else
+                {
+                    bill.Category = await categoryRepository.AddCategory(bill.Category);
+                    bill.CategoryId = bill.Category.Id;
+                }
+
                 context.Bills.Add(bill);
 
                 var rows = await context.SaveChangesAsync();

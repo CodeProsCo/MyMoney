@@ -1,4 +1,4 @@
-﻿namespace MyMoney.Helpers.Network
+﻿namespace MyMoney.Helpers.Benchmarking
 {
     /// <summary>
     ///     The <see cref="BenchmarkHelper" /> class is used to create instances of the <see cref="Benchmark" /> class. These

@@ -18,16 +18,16 @@
                 @MyMoney.Resources.Common.Title_ManageBills
             </span>
         </a>
-        <a class="ui item">
-            <span>
-                <i class="payment icon"></i>
-                @MyMoney.Resources.Common.Title_TrackSpending
-            </span>
+        <a class="ui item" href="@Url.Action("Track", "Expenditure", new { area = "Spending" })">
+        <span>
+        <i class="payment icon"></i>
+        @MyMoney.Resources.Common.Title_TrackSpending
+        </span>
         </a>
     </div>
     <div class="item fixed-bottom-item disabled">
         <p>
-            v@(typeof(MvcApplication).Assembly.GetName().Version)<br/>
+            v@(typeof(MvcApplication).Assembly.GetName().Version)<br />
             @Assembly.GetExecutingAssembly().GetLinkerTime().ToString(CultureInfo.InvariantCulture)
         </p>
     </div>

@@ -26,6 +26,7 @@
         public DatabaseContext()
             : base("DefaultConnection")
         {
+            Database.SetInitializer<DatabaseContext>(null);
         }
 
         #endregion
@@ -46,7 +47,7 @@
         /// <value>
         ///     The categories.
         /// </value>
-        public DbSet<CategoryDataModel> Categories { get; set; }
+        public DbSet<CategoryDataModel> Categories { get; [UsedImplicitly] set; }
 
         /// <summary>
         ///     Gets or sets the users.
@@ -55,6 +56,8 @@
         ///     The users.
         /// </value>
         public DbSet<UserDataModel> Users { get; [UsedImplicitly] set; }
+
+        public DbSet<ExpenditureDataModel> Expenditures { get; [UsedImplicitly] set; }
 
         #endregion
 
@@ -78,6 +81,7 @@
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BillDataModel>().HasRequired(x => x.Category);
+            modelBuilder.Entity<ExpenditureDataModel>().HasRequired(x => x.Category);
 
             base.OnModelCreating(modelBuilder);
         }

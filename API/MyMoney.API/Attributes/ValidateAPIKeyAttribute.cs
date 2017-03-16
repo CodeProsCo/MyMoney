@@ -27,7 +27,7 @@
             var givenKey = actionContext.Request.Headers.FirstOrDefault(x => x.Key == "API_KEY");
             var apiKey = WebConfigurationManager.AppSettings.Get("ApiKey");
 
-            if (!givenKey.Value.Any())
+            if (givenKey.Value == null || !givenKey.Value.Any())
             {
                 return false;
             }

@@ -1,4 +1,4 @@
-﻿namespace MyMoney.Helpers.Network
+﻿namespace MyMoney.Helpers.Benchmarking
 {
     #region Usings
 
@@ -80,9 +80,11 @@
         {
             EndTime = DateTime.Now;
 
+            var entry = string.Format(TraceFormat, StartTime, RequestUri, (EndTime - StartTime).TotalSeconds);
+
             if (Debugger.IsAttached)
             {
-                Trace.WriteLine(string.Format(TraceFormat, StartTime, RequestUri, (EndTime - StartTime).TotalSeconds));
+                Trace.WriteLine(entry);
             }
         }
 

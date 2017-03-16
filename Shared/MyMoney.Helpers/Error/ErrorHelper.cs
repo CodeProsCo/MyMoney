@@ -45,6 +45,7 @@
                              };
 
             WriteTrace(retVal);
+           
 
             return retVal;
         }
@@ -55,11 +56,12 @@
 
         private static void WriteTrace(ResponseErrorWrapper error)
         {
+            var logFormat = string.Format(TraceFormat, error.Occurred, error.Message, error.ClassName, error.MethodName);
+
             if (Debugger.IsAttached)
             {
-                Trace.WriteLine(
-                    string.Format(TraceFormat, error.Occurred, error.Message, error.ClassName, error.MethodName));
-            }
+                Trace.WriteLine(logFormat);
+            }         
         }
 
         #endregion

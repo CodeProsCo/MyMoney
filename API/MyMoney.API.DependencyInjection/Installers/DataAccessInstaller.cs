@@ -8,6 +8,8 @@
 
     using DataAccess.Authentication;
     using DataAccess.Authentication.Interfaces;
+    using DataAccess.Common;
+    using DataAccess.Common.Interfaces;
     using DataAccess.Spending;
     using DataAccess.Spending.Interfaces;
 
@@ -32,7 +34,19 @@
                 Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestylePerWebRequest());
 
             container.Register(
-                Component.For<IBillRepository>().ImplementedBy<BillRepository>().LifestylePerWebRequest());
+                Component.For<IBillRepository>()
+                    .ImplementedBy<BillRepository>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>()));
+
+            container.Register(
+                Component.For<ICategoryRepository>().ImplementedBy<CategoryRepository>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IExpenditureRepository>()
+                    .ImplementedBy<ExpenditureRepository>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>()));
         }
 
         #endregion

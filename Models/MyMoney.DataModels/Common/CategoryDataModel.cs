@@ -12,7 +12,7 @@
     ///     The <see cref="CategoryDataModel" /> class represents an entry in the "Category" table.
     /// </summary>
     [Table("Category")]
-    public class CategoryDataModel
+    public class CategoryDataModel : BaseDataModel
     {
         #region  Properties
 

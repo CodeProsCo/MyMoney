@@ -234,7 +234,7 @@ td.link.negative:not(.disabled):hover {
 
 .accordion > a.item:hover {
     border-right: 5px solid white !important;
-    color: #D4D4D5 !important;
+    color: white !important;
 }
 
 .mainmenu:first-child a:before {

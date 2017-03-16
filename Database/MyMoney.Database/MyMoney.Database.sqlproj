@@ -85,6 +85,7 @@
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Bill.sql" />
     <Build Include="Tables\Category.sql" />
+    <Build Include="Tables\Expenditure.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Compare.scmp" />

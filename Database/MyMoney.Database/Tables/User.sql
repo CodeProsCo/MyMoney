@@ -7,5 +7,6 @@
     [DateOfBirth] DATE NOT NULL, 
     [Salt] VARBINARY(50) NOT NULL, 
     [Hash] VARBINARY(50) NOT NULL, 
-    [Iterations] INT NOT NULL
+    [Iterations] INT NOT NULL, 
+    [CreationTime] DATETIME NOT NULL DEFAULT getdate()
 )

@@ -1,23 +1,14 @@
 ﻿namespace MyMoney.DataModels.Spending
 {
-    #region Usings
-
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using Common;
 
-    #endregion
-
-    /// <summary>
-    ///     The <see cref="BillDataModel" /> class represents an entry in the "Bill" table.
-    /// </summary>
-    [Table("Bill")]
-    public sealed class BillDataModel : BaseDataModel
+    [Table("Expenditure")]
+    public class ExpenditureDataModel : BaseDataModel
     {
-        #region  Properties
-
         /// <summary>
         ///     Gets or sets the amount.
         /// </summary>
@@ -53,30 +44,6 @@
         public Guid Id { get; set; }
 
         /// <summary>
-        ///     Gets or sets the name.
-        /// </summary>
-        /// <value>
-        ///     The name.
-        /// </value>
-        public string Name { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the reoccurring period.
-        /// </summary>
-        /// <value>
-        ///     The reoccurring period.
-        /// </value>
-        public int ReoccurringPeriod { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the start date.
-        /// </summary>
-        /// <value>
-        ///     The start date.
-        /// </value>
-        public DateTime StartDate { get; set; }
-
-        /// <summary>
         ///     Gets or sets the user identifier.
         /// </summary>
         /// <value>
@@ -84,6 +51,12 @@
         /// </value>
         public Guid UserId { get; set; }
 
-        #endregion
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
+        public string Description { get; set; }
     }
 }

@@ -12,7 +12,7 @@
     ///     The <see cref="UserDataModel" /> class is a mapping of an entry in the "User" table.
     /// </summary>
     [Table("User")]
-    public class UserDataModel
+    public class UserDataModel : BaseDataModel
     {
         #region  Properties
 
