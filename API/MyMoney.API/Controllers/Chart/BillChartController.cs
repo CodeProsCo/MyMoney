@@ -17,7 +17,7 @@
     /// </summary>
     /// <seealso cref="System.Web.Http.ApiController" />
     [RoutePrefix("chart/bill")]
-    public class BillChartController : ApiController
+    public class BillChartController : BaseController
     {
         #region Fields
 

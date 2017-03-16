@@ -18,7 +18,7 @@
     /// <seealso cref="System.Web.Http.ApiController" />
     [RoutePrefix("auth/user")]
     [AllowAnonymous]
-    public class UserController : ApiController
+    public class UserController : BaseController
     {
         #region Fields
 

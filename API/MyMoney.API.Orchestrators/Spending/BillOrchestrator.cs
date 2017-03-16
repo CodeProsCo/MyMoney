@@ -12,7 +12,9 @@
     using DataTransformers.Spending.Interfaces;
 
     using DTO.Request.Spending;
+    using DTO.Request.Spending.Bill;
     using DTO.Response.Spending;
+    using DTO.Response.Spending.Bills;
 
     using Helpers.Error;
 

@@ -1,4 +1,4 @@
-﻿namespace MyMoney.DTO.Request.Spending
+﻿namespace MyMoney.DTO.Request.Spending.Bill
 {
     #region Usings
 
@@ -9,19 +9,19 @@
     #endregion
 
     /// <summary>
-    ///     The <see cref="GetBillRequest" /> class is used for obtaining a bill from the database.
+    ///     The <see cref="DeleteBillRequest" /> class is used for deleting a bill from the database.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
-    /// <seealso cref="MyMoney.DTO.Request.Interfaces.IGetRequest" />
-    public class GetBillRequest : BaseRequest, IGetRequest
+    /// <seealso cref="MyMoney.DTO.Request.Interfaces.IDeleteRequest" />
+    public class DeleteBillRequest : BaseRequest, IDeleteRequest
     {
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GetBillRequest" /> class.
+        ///     Initializes a new instance of the <see cref="DeleteBillRequest" /> class.
         /// </summary>
-        public GetBillRequest()
-            : base("spending/bills/get/{0}/{1}/")
+        public DeleteBillRequest()
+            : base("spending/bills/delete/{0}/{1}/")
         {
         }
 

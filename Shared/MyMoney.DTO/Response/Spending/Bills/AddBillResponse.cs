@@ -1,10 +1,10 @@
-﻿namespace MyMoney.DTO.Response.Spending
+﻿namespace MyMoney.DTO.Response.Spending.Bills
 {
     #region Usings
 
     using Proxies.Spending;
 
-    using Request.Spending;
+    using Request.Spending.Bill;
 
     #endregion
 

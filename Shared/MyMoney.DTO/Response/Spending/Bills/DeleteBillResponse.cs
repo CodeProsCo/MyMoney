@@ -1,8 +1,8 @@
-﻿namespace MyMoney.DTO.Response.Spending
+﻿namespace MyMoney.DTO.Response.Spending.Bills
 {
     #region Usings
 
-    using Request.Spending;
+    using Request.Spending.Bill;
 
     #endregion
 

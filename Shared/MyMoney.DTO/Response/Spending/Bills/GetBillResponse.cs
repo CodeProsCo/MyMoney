@@ -1,18 +1,18 @@
-﻿namespace MyMoney.DTO.Response.Spending
+﻿namespace MyMoney.DTO.Response.Spending.Bills
 {
     #region Usings
 
     using Proxies.Spending;
 
-    using Request.Spending;
+    using Request.Spending.Bill;
 
     #endregion
 
     /// <summary>
-    ///     The <see cref="EditBillResponse" /> class is the response object for a <see cref="EditBillRequest" /> request.
+    ///     The <see cref="GetBillResponse" /> class is the response object for a <see cref="GetBillRequest" /> request.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
-    public class EditBillResponse : BaseResponse
+    public class GetBillResponse : BaseResponse
     {
         #region  Properties
 

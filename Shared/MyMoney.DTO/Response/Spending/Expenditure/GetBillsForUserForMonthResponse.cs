@@ -1,19 +1,19 @@
-﻿namespace MyMoney.DTO.Response.Spending
+﻿namespace MyMoney.DTO.Response.Spending.Expenditure
 {
     #region Usings
 
     using System;
     using System.Collections.Generic;
 
-    using Request.Spending;
+    using Request.Spending.Expenditure;
 
     #endregion
 
     /// <summary>
-    ///     The response object for the <see cref="GetBillsForUserForMonthRequest" /> class.
+    ///     The response object for the <see cref="GetExpendituresForUserForMonthRequest" /> class.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
-    public class GetBillsForUserForMonthResponse : BaseResponse
+    public class GetExpendituresForUserForMonthResponse : BaseResponse
     {
         #region  Properties
 
