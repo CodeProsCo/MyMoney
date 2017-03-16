@@ -6,6 +6,10 @@
 
     using Common;
 
+    /// <summary>
+    /// The <see cref="ExpenditureDataModel"/> class represents an entry in the "Expenditure" table.
+    /// </summary>
+    /// <seealso cref="MyMoney.DataModels.BaseDataModel" />
     [Table("Expenditure")]
     public class ExpenditureDataModel : BaseDataModel
     {

@@ -16,16 +16,10 @@
         #region  Public Methods
 
         /// <summary>
-        /// Adds a category to the database.
+        /// Checks the database if a given category exists. If not, it is added to the database. Otherwise, it is returned from the database.
         /// </summary>
         /// <param name="category">The category.</param>
-        /// <returns></returns>
-        Task<CategoryDataModel> AddCategory(CategoryDataModel category);
-
-        Task<bool> Exists(string name);
-
-        Task<CategoryDataModel> GetCategory(string name);
-
+        /// <returns>The category data model.</returns>
         Task<CategoryDataModel> GetOrAdd(CategoryDataModel category);
 
         #endregion

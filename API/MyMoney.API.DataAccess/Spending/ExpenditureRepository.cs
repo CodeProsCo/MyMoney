@@ -20,17 +20,31 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="ExpenditureRepository"/> class performs CRUD actions on <see cref="ExpenditureDataModel"/> instances.
+    /// </summary>
+    /// <seealso cref="MyMoney.API.DataAccess.Spending.Interfaces.IExpenditureRepository" />
     [UsedImplicitly]
     public class ExpenditureRepository : IExpenditureRepository
     {
         #region Fields
 
+        /// <summary>
+        /// The category repository
+        /// </summary>
         private readonly ICategoryRepository categoryRepository;
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpenditureRepository"/> class.
+        /// </summary>
+        /// <param name="categoryRepository">The category repository.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the category repository is null.
+        /// </exception>
         public ExpenditureRepository(ICategoryRepository categoryRepository)
         {
             if (categoryRepository == null)
@@ -138,6 +152,13 @@
             return null;
         }
 
+        /// <summary>
+        /// Obtains an expenditure from the database.
+        /// </summary>
+        /// <param name="expenditureId">The expenditure identifier.</param>
+        /// <returns>
+        /// The expenditure.
+        /// </returns>
         public async Task<ExpenditureDataModel> GetExpenditure(Guid expenditureId)
         {
             using (var context = new DatabaseContext())
@@ -148,6 +169,13 @@
             }
         }
 
+        /// <summary>
+        /// Gets the expenditures for the given user.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>
+        /// The list of expenditures.
+        /// </returns>
         public async Task<IList<ExpenditureDataModel>> GetExpendituresForUser(Guid userId)
         {
             using (var context = new DatabaseContext())
