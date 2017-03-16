@@ -72,6 +72,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.resx</DependentUpon>
     </Compile>
+    <Compile Include="Expenditure.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Expenditure.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spending.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -95,6 +100,10 @@
     <EmbeddedResource Include="Error.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenditure.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Expenditure.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Spending.resx">
       <Generator>ResXFileCodeGenerator</Generator>

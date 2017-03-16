@@ -64,19 +64,12 @@
             {
                 dataModel.Id = Guid.NewGuid();
 
-                if (await categoryRepository.Exists(dataModel.Category.Name))
-                {
-                    var category = await categoryRepository.GetCategory(dataModel.Category.Name);
+                var category = await categoryRepository.GetOrAdd(dataModel.Category);
 
-                    dataModel.Category = category;
-                    dataModel.CategoryId = category.Id;
-                }
-                else
-                {
-                    dataModel.Category = await categoryRepository.AddCategory(dataModel.Category);
-                    dataModel.CategoryId = dataModel.Category.Id;
-                }
+                dataModel.Category = category;
+                dataModel.CategoryId = category.Id;
 
+                dataModel.CreationTime = DateTime.Now;
                 context.Bills.Add(dataModel);
 
                 var rows = await context.SaveChangesAsync();
@@ -134,18 +127,10 @@
                 toEdit = context.Bills.Attach(toEdit);
                 context.Bills.Remove(toEdit);
 
-                if (await categoryRepository.Exists(bill.Category.Name))
-                {
-                    var category = await categoryRepository.GetCategory(bill.Category.Name);
+                var category = await categoryRepository.GetOrAdd(bill.Category);
 
-                    bill.Category = category;
-                    bill.CategoryId = category.Id;
-                }
-                else
-                {
-                    bill.Category = await categoryRepository.AddCategory(bill.Category);
-                    bill.CategoryId = bill.Category.Id;
-                }
+                bill.Category = category;
+                bill.CategoryId = category.Id;
 
                 context.Bills.Add(bill);
 

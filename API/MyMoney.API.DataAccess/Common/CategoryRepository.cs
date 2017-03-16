@@ -24,6 +24,7 @@
             using (var context = new DatabaseContext())
             {
                 category.Id = Guid.NewGuid();
+                category.CreationTime = DateTime.Now;
 
                 var addedModel = context.Categories.Add(category);
 
@@ -37,10 +38,15 @@
         {
             using (var context = new DatabaseContext())
             {
-                return
-                    await
-                    context.Categories.AnyAsync(
-                        x => string.Equals(x.Name, name, StringComparison.InvariantCultureIgnoreCase));
+                if (await context.Categories.CountAsync() > 0)
+                {
+                    return
+                     await
+                     context.Categories.AnyAsync(
+                         x => x.Name == name);
+                }
+
+                return false;
             }
         }
 
@@ -51,8 +57,18 @@
                 return
                     await
                     context.Categories.FirstOrDefaultAsync(
-                        x => string.Equals(x.Name, name, StringComparison.InvariantCultureIgnoreCase));
+                        x => x.Name == name);
             }
+        }
+
+        public async Task<CategoryDataModel> GetOrAdd(CategoryDataModel category)
+        {
+            if (await Exists(category.Name))
+            {
+                return await GetCategory(category.Name);
+            }
+
+            return await AddCategory(category);
         }
 
         #endregion
