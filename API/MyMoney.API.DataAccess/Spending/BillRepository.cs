@@ -27,17 +27,23 @@
     [UsedImplicitly]
     public class BillRepository : IBillRepository
     {
+        #region Fields
+
         /// <summary>
-        /// The category repository
+        ///     The category repository
         /// </summary>
         private readonly ICategoryRepository categoryRepository;
 
+        #endregion
+
+        #region Constructor
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="BillRepository"/> class.
+        ///     Initializes a new instance of the <see cref="BillRepository" /> class.
         /// </summary>
         /// <param name="categoryRepository">The category repository.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown when the category repository is null.
+        ///     Exception thrown when the category repository is null.
         /// </exception>
         public BillRepository(ICategoryRepository categoryRepository)
         {
@@ -48,6 +54,8 @@
 
             this.categoryRepository = categoryRepository;
         }
+
+        #endregion
 
         #region  Public Methods
 

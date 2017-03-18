@@ -57,16 +57,17 @@ introJs().hideHints();
 
 var hintsEnabled = false;
 
-$("#hint-button").click(function(e) {
-    e.stopPropagation();
+$("#hint-button")
+    .click(function(e) {
+        e.stopPropagation();
 
-    if (!hintsEnabled) {
-        $("#hint-button").html($("#hint-button").html().replace("Show", "Hide"));
-        introJs().showHints();
-        hintsEnabled = true;
-    } else {
-        introJs().hideHints();
-        $("#hint-button").html($("#hint-button").html().replace("Hide", "Show"));
-        hintsEnabled = false;
-    }
-})
+        if (!hintsEnabled) {
+            $("#hint-button").html($("#hint-button").html().replace("Show", "Hide"));
+            introJs().showHints();
+            hintsEnabled = true;
+        } else {
+            introJs().hideHints();
+            $("#hint-button").html($("#hint-button").html().replace("Hide", "Show"));
+            hintsEnabled = false;
+        }
+    });

@@ -9,14 +9,15 @@
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="CategoryRepository"/> class.
+    ///     Interface for the <see cref="CategoryRepository" /> class.
     /// </summary>
     public interface ICategoryRepository
     {
         #region  Public Methods
 
         /// <summary>
-        /// Checks the database if a given category exists. If not, it is added to the database. Otherwise, it is returned from the database.
+        ///     Checks the database if a given category exists. If not, it is added to the database. Otherwise, it is returned from
+        ///     the database.
         /// </summary>
         /// <param name="category">The category.</param>
         /// <returns>The category data model.</returns>

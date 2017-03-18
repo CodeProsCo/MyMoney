@@ -44,12 +44,12 @@
                 new ClaimsIdentity(
                     new[]
                         {
-                            new Claim(ClaimTypes.Email, response.User.EmailAddress),
-                            new Claim(ClaimTypes.Surname, response.User.LastName),
-                            new Claim(ClaimTypes.GivenName, response.User.FirstName),
-                            new Claim(ClaimTypes.NameIdentifier, response.User.Id.ToString()),
+                            new Claim(ClaimTypes.Email, response.User.EmailAddress), 
+                            new Claim(ClaimTypes.Surname, response.User.LastName), 
+                            new Claim(ClaimTypes.GivenName, response.User.FirstName), 
+                            new Claim(ClaimTypes.NameIdentifier, response.User.Id.ToString()), 
                             new Claim(ClaimTypes.Name, response.User.FirstName)
-                        },
+                        }, 
                     "ApplicationCookie");
         }
 
@@ -69,13 +69,13 @@
             }
 
             return new RegisterUserRequest
-            {
-                EmailAddress = model.EmailAddress,
-                Password = model.Password,
-                DateOfBirth = model.DateOfBirth,
-                FirstName = model.FirstName,
-                LastName = model.LastName
-            };
+                       {
+                           EmailAddress = model.EmailAddress, 
+                           Password = model.Password, 
+                           DateOfBirth = model.DateOfBirth, 
+                           FirstName = model.FirstName, 
+                           LastName = model.LastName
+                       };
         }
 
         /// <summary>

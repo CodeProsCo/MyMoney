@@ -50,20 +50,20 @@
         public DbSet<CategoryDataModel> Categories { get; [UsedImplicitly] set; }
 
         /// <summary>
+        ///     Gets or sets the expenditures.
+        /// </summary>
+        /// <value>
+        ///     The expenditures.
+        /// </value>
+        public DbSet<ExpenditureDataModel> Expenditures { get; [UsedImplicitly] set; }
+
+        /// <summary>
         ///     Gets or sets the users.
         /// </summary>
         /// <value>
         ///     The users.
         /// </value>
         public DbSet<UserDataModel> Users { get; [UsedImplicitly] set; }
-
-        /// <summary>
-        /// Gets or sets the expenditures.
-        /// </summary>
-        /// <value>
-        /// The expenditures.
-        /// </value>
-        public DbSet<ExpenditureDataModel> Expenditures { get; [UsedImplicitly] set; }
 
         #endregion
 

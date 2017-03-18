@@ -1,6 +1,10 @@
 ﻿namespace MyMoney.Helpers.Benchmarking
 {
+    #region Usings
+
     using System;
+
+    #endregion
 
     /// <summary>
     ///     The <see cref="BenchmarkHelper" /> class is used to create instances of the <see cref="Benchmark" /> class. These
@@ -27,8 +31,6 @@
             return new Benchmark(uri);
         }
 
-        #endregion
-
         /// <summary>
         ///     Creates an instance of the <see cref="Benchmark" /> class and starts its timer.
         /// </summary>
@@ -38,5 +40,7 @@
         {
             return Create(uri.AbsoluteUri);
         }
+
+        #endregion
     }
 }

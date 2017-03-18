@@ -20,14 +20,6 @@
     [TestFixture]
     public class ChartAssemblerTests
     {
-        private IChartAssembler assembler;
-
-        private IEnumerable<KeyValuePair<string, int>> validTimePeriodData;
-
-        private Guid validUserId;
-
-        private string validUsername;
-
         [SetUp]
         public void SetUp()
         {
@@ -44,6 +36,20 @@
             validTimePeriodData = null;
         }
 
+        private IChartAssembler assembler;
+
+        private IEnumerable<KeyValuePair<string, int>> validTimePeriodData;
+
+        private Guid validUserId;
+
+        private string validUsername;
+
+        [Test]
+        public void AssembleTimePeriodList_NullParams_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(delegate { assembler.AssembleTimePeriodList(null); });
+        }
+
         [Test]
         public void AssembleTimePeriodList_ValidParams_ReturnsPeriodList()
         {
@@ -55,13 +61,13 @@
         }
 
         [Test]
-        public void AssembleTimePeriodList_NullParams_ThrowsArgumentNullException()
+        public void NewGetBillCategoryChartDataRequest_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.AssembleTimePeriodList(null);
-                    });
+                delegate { assembler.NewGetBillCategoryChartDataRequest(Guid.Empty, validUsername); });
+
+            Assert.Throws<ArgumentNullException>(
+                delegate { assembler.NewGetBillCategoryChartDataRequest(validUserId, string.Empty); });
         }
 
         [Test]
@@ -76,19 +82,13 @@
         }
 
         [Test]
-        public void NewGetBillCategoryChartDataRequest_NullParams_ThrowsArgumentNullException()
+        public void NewGetBillPeriodChartDataRequest_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewGetBillCategoryChartDataRequest(Guid.Empty, validUsername);
-                    });
+                delegate { assembler.NewGetBillPeriodChartDataRequest(Guid.Empty, validUsername); });
 
             Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewGetBillCategoryChartDataRequest(validUserId, string.Empty);
-                    });
+                delegate { assembler.NewGetBillPeriodChartDataRequest(validUserId, string.Empty); });
         }
 
         [Test]
@@ -100,22 +100,6 @@
             Assert.IsInstanceOf<GetBillPeriodChartDataRequest>(test);
             Assert.AreEqual(test.UserId, validUserId);
             Assert.AreEqual(test.Username, validUsername);
-        }
-
-        [Test]
-        public void NewGetBillPeriodChartDataRequest_NullParams_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    assembler.NewGetBillPeriodChartDataRequest(Guid.Empty, validUsername);
-                });
-
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    assembler.NewGetBillPeriodChartDataRequest(validUserId, string.Empty);
-                });
         }
     }
 }

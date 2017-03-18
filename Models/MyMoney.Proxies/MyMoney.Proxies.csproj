@@ -60,6 +60,7 @@
     <Compile Include="Common\CategoryProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spending\BillProxy.cs" />
+    <Compile Include="Spending\ExpenditureProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

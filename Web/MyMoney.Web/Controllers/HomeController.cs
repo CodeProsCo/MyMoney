@@ -7,7 +7,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="HomeController"/> class handles the default route.
+    ///     The <see cref="HomeController" /> class handles the default route.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [AllowAnonymous]
@@ -16,7 +16,7 @@
         #region  Public Methods
 
         /// <summary>
-        /// The main endpoint for the application. Redirects based on authentication.
+        ///     The main endpoint for the application. Redirects based on authentication.
         /// </summary>
         /// <returns>If authenticated, the budget dashboard. Otherwise, returns to the login screen.</returns>
         [AllowAnonymous]

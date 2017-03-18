@@ -45,7 +45,6 @@
                              };
 
             WriteTrace(retVal);
-           
 
             return retVal;
         }
@@ -61,7 +60,7 @@
             if (Debugger.IsAttached)
             {
                 Trace.WriteLine(logFormat);
-            }         
+            }
         }
 
         #endregion

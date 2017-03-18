@@ -38,7 +38,7 @@
         {
             if (data == null)
             {
-                throw new ArgumentNullException(nameof(data));    
+                throw new ArgumentNullException(nameof(data));
             }
 
             return (from item in data
@@ -63,7 +63,7 @@
 
             if (string.IsNullOrEmpty(username))
             {
-                throw new ArgumentNullException(nameof(username));    
+                throw new ArgumentNullException(nameof(username));
             }
 
             return new GetBillCategoryChartDataRequest { UserId = userId, Username = username };

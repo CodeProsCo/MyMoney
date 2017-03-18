@@ -64,23 +64,35 @@
     <Compile Include="Request\Chart\Bill\GetBillPeriodChartDataRequest.cs" />
     <Compile Include="Request\Interfaces\IDeleteRequest.cs" />
     <Compile Include="Request\Interfaces\IGetRequest.cs" />
-    <Compile Include="Request\Spending\AddBillRequest.cs" />
-    <Compile Include="Request\Spending\DeleteBillRequest.cs" />
-    <Compile Include="Request\Spending\EditBillRequest.cs" />
-    <Compile Include="Request\Spending\GetBillsForUserForMonthRequest.cs" />
-    <Compile Include="Request\Spending\GetBillsForUserRequest.cs" />
-    <Compile Include="Request\Spending\GetBillRequest.cs" />
+    <Compile Include="Request\Spending\Bill\AddBillRequest.cs" />
+    <Compile Include="Request\Spending\Bill\DeleteBillRequest.cs" />
+    <Compile Include="Request\Spending\Bill\EditBillRequest.cs" />
+    <Compile Include="Request\Spending\Bill\GetBillsForUserForMonthRequest.cs" />
+    <Compile Include="Request\Spending\Bill\GetBillsForUserRequest.cs" />
+    <Compile Include="Request\Spending\Bill\GetBillRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\AddExpenditureRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\DeleteExpenditureRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\EditExpenditureRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\GetExpenditureRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\GetExpendituresForUserForMonthRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\GetExpendituresForUserRequest.cs" />
     <Compile Include="Response\Authentication\ValidateUserResponse.cs" />
     <Compile Include="Response\Authentication\RegisterUserResponse.cs" />
     <Compile Include="Response\BaseResponse.cs" />
     <Compile Include="Response\Chart\Bill\GetBillCategoryChartDataResponse.cs" />
     <Compile Include="Response\Chart\Bill\GetBillPeriodChartDataResponse.cs" />
-    <Compile Include="Response\Spending\AddBillResponse.cs" />
-    <Compile Include="Response\Spending\DeleteBillResponse.cs" />
-    <Compile Include="Response\Spending\EditBillResponse.cs" />
-    <Compile Include="Response\Spending\GetBillsForUserForMonthResponse.cs" />
-    <Compile Include="Response\Spending\GetBillsForUserResponse.cs" />
-    <Compile Include="Response\Spending\GetBillResponse.cs" />
+    <Compile Include="Response\Spending\Bills\AddBillResponse.cs" />
+    <Compile Include="Response\Spending\Bills\DeleteBillResponse.cs" />
+    <Compile Include="Response\Spending\Bills\EditBillResponse.cs" />
+    <Compile Include="Response\Spending\Bills\GetBillsForUserForMonthResponse.cs" />
+    <Compile Include="Response\Spending\Bills\GetBillsForUserResponse.cs" />
+    <Compile Include="Response\Spending\Bills\GetBillResponse.cs" />
+    <Compile Include="Response\Spending\Expenditure\AddBillResponse.cs" />
+    <Compile Include="Response\Spending\Expenditure\DeleteBillResponse.cs" />
+    <Compile Include="Response\Spending\Expenditure\EditBillResponse.cs" />
+    <Compile Include="Response\Spending\Expenditure\GetBillResponse.cs" />
+    <Compile Include="Response\Spending\Expenditure\GetBillsForUserForMonthResponse.cs" />
+    <Compile Include="Response\Spending\Expenditure\GetBillsForUserResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
@@ -95,6 +107,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

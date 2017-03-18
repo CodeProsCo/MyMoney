@@ -21,7 +21,8 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="ExpenditureRepository"/> class performs CRUD actions on <see cref="ExpenditureDataModel"/> instances.
+    ///     The <see cref="ExpenditureRepository" /> class performs CRUD actions on <see cref="ExpenditureDataModel" />
+    ///     instances.
     /// </summary>
     /// <seealso cref="MyMoney.API.DataAccess.Spending.Interfaces.IExpenditureRepository" />
     [UsedImplicitly]
@@ -30,7 +31,7 @@
         #region Fields
 
         /// <summary>
-        /// The category repository
+        ///     The category repository
         /// </summary>
         private readonly ICategoryRepository categoryRepository;
 
@@ -39,11 +40,11 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExpenditureRepository"/> class.
+        ///     Initializes a new instance of the <see cref="ExpenditureRepository" /> class.
         /// </summary>
         /// <param name="categoryRepository">The category repository.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the category repository is null.
+        ///     Exception thrown if the category repository is null.
         /// </exception>
         public ExpenditureRepository(ICategoryRepository categoryRepository)
         {
@@ -153,11 +154,11 @@
         }
 
         /// <summary>
-        /// Obtains an expenditure from the database.
+        ///     Obtains an expenditure from the database.
         /// </summary>
         /// <param name="expenditureId">The expenditure identifier.</param>
         /// <returns>
-        /// The expenditure.
+        ///     The expenditure.
         /// </returns>
         public async Task<ExpenditureDataModel> GetExpenditure(Guid expenditureId)
         {
@@ -170,11 +171,11 @@
         }
 
         /// <summary>
-        /// Gets the expenditures for the given user.
+        ///     Gets the expenditures for the given user.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>
-        /// The list of expenditures.
+        ///     The list of expenditures.
         /// </returns>
         public async Task<IList<ExpenditureDataModel>> GetExpendituresForUser(Guid userId)
         {

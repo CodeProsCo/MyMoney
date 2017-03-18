@@ -6,9 +6,7 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using DTO.Request.Spending;
     using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending;
     using DTO.Response.Spending.Bills;
 
     using Interfaces;
@@ -185,8 +183,8 @@
         ///     The request object.
         /// </returns>
         public GetBillsForUserForMonthRequest NewGetBillsForUserForMonthRequest(
-            int monthNumber,
-            Guid userId,
+            int monthNumber, 
+            Guid userId, 
             string userEmail)
         {
             if (monthNumber < 1 || monthNumber > 12)
@@ -205,11 +203,11 @@
             }
 
             return new GetBillsForUserForMonthRequest
-            {
-                UserId = userId,
-                MonthNumber = monthNumber,
-                Username = userEmail
-            };
+                       {
+                           UserId = userId, 
+                           MonthNumber = monthNumber, 
+                           Username = userEmail
+                       };
         }
 
         /// <summary>
@@ -264,10 +262,10 @@
                                                {
                                                    StartDate =
                                                        DateTime.Now
-                                               },
-                                       TimePeriodOptions = timePeriodOptions,
+                                               }, 
+                                       TimePeriodOptions = timePeriodOptions, 
                                        CategoryOptions = categoryOptions
-                                   },
+                                   }, 
                            EditModel =
                                new EditBillViewModel
                                    {
@@ -276,10 +274,10 @@
                                                {
                                                    StartDate =
                                                        DateTime.Now
-                                               },
-                                       TimePeriodOptions = timePeriodOptions,
+                                               }, 
+                                       TimePeriodOptions = timePeriodOptions, 
                                        CategoryOptions = categoryOptions
-                                   },
+                                   }, 
                            Bills = apiResponse.Bills.Select(BillProxyToViewModel).ToList()
                        };
         }
@@ -296,15 +294,15 @@
         private static BillViewModel BillProxyToViewModel(BillProxy proxy)
         {
             return new BillViewModel
-            {
-                Amount = proxy.Amount,
-                Category = proxy.Category.Name,
-                Name = proxy.Name,
-                ReoccurringPeriod = (TimePeriod)proxy.ReoccurringPeriod,
-                StartDate = proxy.StartDate,
-                Id = proxy.Id,
-                UserId = proxy.UserId
-            };
+                       {
+                           Amount = proxy.Amount, 
+                           Category = proxy.Category.Name, 
+                           Name = proxy.Name, 
+                           ReoccurringPeriod = (TimePeriod)proxy.ReoccurringPeriod, 
+                           StartDate = proxy.StartDate, 
+                           Id = proxy.Id, 
+                           UserId = proxy.UserId
+                       };
         }
 
         /// <summary>
@@ -315,15 +313,15 @@
         private static BillProxy BillViewModelToProxy(BillViewModel model)
         {
             return new BillProxy
-            {
-                Amount = model.Amount,
-                Category = new CategoryProxy { Name = model.Category },
-                Name = model.Name,
-                ReoccurringPeriod = (int)model.ReoccurringPeriod,
-                StartDate = model.StartDate,
-                UserId = model.UserId,
-                Id = model.Id
-            };
+                       {
+                           Amount = model.Amount, 
+                           Category = new CategoryProxy { Name = model.Category }, 
+                           Name = model.Name, 
+                           ReoccurringPeriod = (int)model.ReoccurringPeriod, 
+                           StartDate = model.StartDate, 
+                           UserId = model.UserId, 
+                           Id = model.Id
+                       };
         }
 
         #endregion

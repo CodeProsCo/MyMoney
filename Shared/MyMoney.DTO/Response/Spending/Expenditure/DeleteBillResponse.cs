@@ -7,7 +7,8 @@
     #endregion
 
     /// <summary>
-    ///     The <see cref="DeleteExpenditureResponse" /> class is the response object for a <see cref="DeleteExpenditureRequest" /> request.
+    ///     The <see cref="DeleteExpenditureResponse" /> class is the response object for a
+    ///     <see cref="DeleteExpenditureRequest" /> request.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class DeleteExpenditureResponse : BaseResponse

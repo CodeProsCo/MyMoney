@@ -1,5 +1,5 @@
 ﻿@using Cassette.Stylesheets
-
+@using MyMoney.Resources
 @{
     ViewBag.Title = "Error";
     Layout = "~/Views/Shared/_PlainLayout.cshtml";
@@ -11,7 +11,7 @@
     <div class="ui styled segment">
         <h3 class="ui block header">
             <i class="exclamation triangle icon"></i>
-            @MyMoney.Resources.Error.Title_SystemError
+            @Error.Title_SystemError
         </h3>
     </div>
 </div>

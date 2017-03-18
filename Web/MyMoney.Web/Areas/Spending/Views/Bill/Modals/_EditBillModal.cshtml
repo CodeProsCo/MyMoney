@@ -1,10 +1,11 @@
-﻿@model MyMoney.ViewModels.Spending.Bills.EditBillViewModel
+﻿@using MyMoney.Resources
+@model MyMoney.ViewModels.Spending.Bills.EditBillViewModel
 @{
 }
 <div class="ui modal" id="edit-bill-modal">
     <div class="yellow header">
         <i class="edit icon"></i>
-        @MyMoney.Resources.Bills.Title_EditBill
+        @Bills.Title_EditBill
     </div>
     <div class="content">
         @using (Html.BeginForm("Edit", "Bill", FormMethod.Post, new { id = "edit-bill-form" }))
@@ -20,15 +21,15 @@
         <div class="ui red right labeled left floated icon button"
              id="delete-bill"
              data-url="@Url.Action("Delete", "Bill", new { billId = Model.Bill.Id })">
-            @MyMoney.Resources.Common.Button_Delete
+            @Common.Button_Delete
             <i class="trash icon"></i>
         </div>
         <div class="ui black deny right labeled icon button" id="cancel">
-            @MyMoney.Resources.Common.Button_Cancel
+            @Common.Button_Cancel
             <i class="cancel icon"></i>
         </div>
         <div class="ui yellow right labeled icon button" id="edit-bill">
-            @MyMoney.Resources.Common.Button_Edit
+            @Common.Button_Edit
             <i class="edit icon"></i>
         </div>
     </div>

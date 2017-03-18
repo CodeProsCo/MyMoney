@@ -17,8 +17,10 @@
     [Authorize]
     public class ExpenditureController : BaseController
     {
+        #region  Public Methods
+
         /// <summary>
-        /// Returns the "Track Expenditure" view.
+        ///     Returns the "Track Expenditure" view.
         /// </summary>
         /// <returns>The view.</returns>
         [Route("track")]
@@ -27,5 +29,7 @@
         {
             return View();
         }
+
+        #endregion
     }
 }

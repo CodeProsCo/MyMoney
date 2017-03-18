@@ -5,14 +5,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
 
     using Assemblers.Spending;
     using Assemblers.Spending.Interfaces;
 
-    using DTO.Request.Spending;
     using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending;
     using DTO.Response.Spending.Bills;
 
     using NUnit.Framework;
@@ -29,6 +26,63 @@
     [TestFixture]
     public class BillAssemblerTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            assembler = new BillAssembler();
+            validUsername = "TEST";
+            validBillId = Guid.NewGuid();
+            validUserId = Guid.NewGuid();
+
+            validBillProxy = new BillProxy
+                                 {
+                                     Amount = 10, 
+                                     Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" }, 
+                                     CategoryId = Guid.NewGuid(), 
+                                     Id = Guid.NewGuid(), 
+                                     Name = "TEST", 
+                                     ReoccurringPeriod = 1, 
+                                     StartDate = DateTime.MaxValue, 
+                                     UserId = Guid.NewGuid()
+                                 };
+
+            validGetBillResponse = new GetBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
+
+            validBillViewModel = new BillViewModel
+                                     {
+                                         Amount = 10, 
+                                         Category = "TEST", 
+                                         Id = Guid.NewGuid(), 
+                                         Name = "TEST", 
+                                         ReoccurringPeriod = TimePeriod.Daily, 
+                                         StartDate = DateTime.MinValue, 
+                                         UserId = Guid.NewGuid()
+                                     };
+
+            validAddBillResponse = new AddBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
+
+            validEditBillResponse = new EditBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
+
+            validGetBillsForUserResponse = new GetBillsForUserResponse
+                                               {
+                                                   Bills = new List<BillProxy> { validBillProxy }, 
+                                                   RequestReference = Guid.NewGuid()
+                                               };
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            assembler = null;
+            validUsername = null;
+            validBillViewModel = null;
+            validAddBillResponse = null;
+            validGetBillResponse = null;
+            validEditBillResponse = null;
+            validBillProxy = null;
+            validBillId = Guid.Empty;
+        }
+
         private IBillAssembler assembler;
 
         private string validUsername;
@@ -49,70 +103,12 @@
 
         private Guid validUserId;
 
-        [SetUp]
-        public void SetUp()
+        [Test]
+        public void NewAddBillRequest_NullParams_ThrowsArgumentNullException()
         {
-            assembler = new BillAssembler();
-            validUsername = "TEST";
-            validBillId = Guid.NewGuid();
-            validUserId = Guid.NewGuid();
+            Assert.Throws<ArgumentNullException>(delegate { assembler.NewAddBillRequest(null, validUsername); });
 
-            validBillProxy = new BillProxy
-            {
-                Amount = 10,
-                Category =
-                             new CategoryProxy
-                             {
-                                 Id = Guid.NewGuid(),
-                                 Name = "TEST"
-                             },
-                CategoryId = Guid.NewGuid(),
-                Id = Guid.NewGuid(),
-                Name = "TEST",
-                ReoccurringPeriod = 1,
-                StartDate = DateTime.MaxValue,
-                UserId = Guid.NewGuid()
-            };
-
-            validGetBillResponse = new GetBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
-
-            validBillViewModel = new BillViewModel
-            {
-                Amount = 10,
-                Category = "TEST",
-                Id = Guid.NewGuid(),
-                Name = "TEST",
-                ReoccurringPeriod = TimePeriod.Daily,
-                StartDate = DateTime.MinValue,
-                UserId = Guid.NewGuid()
-            };
-
-            validAddBillResponse = new AddBillResponse
-            {
-                Bill = validBillProxy,
-                RequestReference = Guid.NewGuid()
-            };
-
-            validEditBillResponse = new EditBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
-
-            validGetBillsForUserResponse = new GetBillsForUserResponse
-            {
-                Bills = new List<BillProxy> { validBillProxy },
-                RequestReference = Guid.NewGuid()
-            };
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            assembler = null;
-            validUsername = null;
-            validBillViewModel = null;
-            validAddBillResponse = null;
-            validGetBillResponse = null;
-            validEditBillResponse = null;
-            validBillProxy = null;
-            validBillId = Guid.Empty;
+            Assert.Throws<ArgumentNullException>(delegate { assembler.NewAddBillRequest(validBillViewModel, null); });
         }
 
         [Test]
@@ -133,18 +129,15 @@
         }
 
         [Test]
-        public void NewAddBillRequest_NullParams_ThrowsArgumentNullException()
+        public void NewBillViewModel_AddBillResponse_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 delegate
                     {
-                        assembler.NewAddBillRequest(null, validUsername);
-                    });
+                        AddBillResponse response = null;
 
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewAddBillRequest(validBillViewModel, null);
+                        // ReSharper disable once ExpressionIsAlwaysNull
+                        assembler.NewBillViewModel(response);
                     });
         }
 
@@ -165,12 +158,41 @@
         }
 
         [Test]
-        public void NewBillViewModel_AddBillResponse_NullParams_ThrowsArgumentNullException()
+        public void NewBillViewModel_EditBillResponse_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
                 delegate
                     {
-                        AddBillResponse response = null;
+                        EditBillResponse response = null;
+
+                        // ReSharper disable once ExpressionIsAlwaysNull
+                        assembler.NewBillViewModel(response);
+                    });
+        }
+
+        [Test]
+        public void NewBillViewModel_EditBillResponse_ValidParams_ReturnsModel()
+        {
+            var test = assembler.NewBillViewModel(validEditBillResponse);
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<BillViewModel>(test);
+            Assert.AreEqual(test.UserId, validEditBillResponse.Bill.UserId);
+            Assert.AreEqual(test.Amount, validEditBillResponse.Bill.Amount);
+            Assert.AreEqual(test.Category, validEditBillResponse.Bill.Category.Name);
+            Assert.AreEqual(test.Id, validEditBillResponse.Bill.Id);
+            Assert.AreEqual(test.Name, validEditBillResponse.Bill.Name);
+            Assert.AreEqual((int)test.ReoccurringPeriod, validEditBillResponse.Bill.ReoccurringPeriod);
+            Assert.AreEqual(test.StartDate, validEditBillResponse.Bill.StartDate);
+        }
+
+        [Test]
+        public void NewBillViewModel_GetBillResponse_NullParams_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(
+                delegate
+                    {
+                        GetBillResponse response = null;
 
                         // ReSharper disable once ExpressionIsAlwaysNull
                         assembler.NewBillViewModel(response);
@@ -194,45 +216,13 @@
         }
 
         [Test]
-        public void NewBillViewModel_GetBillResponse_NullParams_ThrowsArgumentNullException()
+        public void NewDeleteBillRequest_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    GetBillResponse response = null;
+                delegate { assembler.NewDeleteBillRequest(Guid.Empty, validUsername); });
 
-                    // ReSharper disable once ExpressionIsAlwaysNull
-                    assembler.NewBillViewModel(response);
-                });
-        }
-
-        [Test]
-        public void NewBillViewModel_EditBillResponse_ValidParams_ReturnsModel()
-        {
-            var test = assembler.NewBillViewModel(validEditBillResponse);
-
-            Assert.IsNotNull(test);
-            Assert.IsInstanceOf<BillViewModel>(test);
-            Assert.AreEqual(test.UserId, validEditBillResponse.Bill.UserId);
-            Assert.AreEqual(test.Amount, validEditBillResponse.Bill.Amount);
-            Assert.AreEqual(test.Category, validEditBillResponse.Bill.Category.Name);
-            Assert.AreEqual(test.Id, validEditBillResponse.Bill.Id);
-            Assert.AreEqual(test.Name, validEditBillResponse.Bill.Name);
-            Assert.AreEqual((int)test.ReoccurringPeriod, validEditBillResponse.Bill.ReoccurringPeriod);
-            Assert.AreEqual(test.StartDate, validEditBillResponse.Bill.StartDate);
-        }
-
-        [Test]
-        public void NewBillViewModel_EditBillResponse_NullParams_ThrowsArgumentNullException()
-        {
             Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    EditBillResponse response = null;
-
-                    // ReSharper disable once ExpressionIsAlwaysNull
-                    assembler.NewBillViewModel(response);
-                });
+                delegate { assembler.NewDeleteBillRequest(validBillId, string.Empty); });
         }
 
         [Test]
@@ -248,47 +238,12 @@
         }
 
         [Test]
-        public void NewDeleteBillRequest_NullParams_ThrowsArgumentNullException()
+        public void NewEditBillRequest_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewDeleteBillRequest(Guid.Empty, validUsername);
-                    });
+            Assert.Throws<ArgumentNullException>(delegate { assembler.NewEditBillRequest(null, validUsername); });
 
             Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewDeleteBillRequest(validBillId, string.Empty);
-                    });
-        }
-
-        [Test]
-        public void NewGetBillRequest_ValidParams_ReturnsRequest()
-        {
-            var test = assembler.NewGetBillRequest(validBillId, validUsername);
-
-            Assert.IsNotNull(test);
-            Assert.IsInstanceOf<GetBillRequest>(test);
-            Assert.AreEqual(test.BillId, validBillId);
-            Assert.AreEqual(test.Username, validUsername);
-            Assert.AreNotEqual(Guid.Empty, test.RequestReference);
-        }
-
-        [Test]
-        public void NewGetBillRequest_NullParams_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    assembler.NewGetBillRequest(Guid.Empty, validUsername);
-                });
-
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    assembler.NewGetBillRequest(validBillId, string.Empty);
-                });
+                delegate { assembler.NewEditBillRequest(validBillViewModel, string.Empty); });
         }
 
         [Test]
@@ -305,19 +260,36 @@
         }
 
         [Test]
-        public void NewEditBillRequest_NullParams_ThrowsArgumentNullException()
+        public void NewGetBillRequest_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewEditBillRequest(null, validUsername);
-                    });
+            Assert.Throws<ArgumentNullException>(delegate { assembler.NewGetBillRequest(Guid.Empty, validUsername); });
+
+            Assert.Throws<ArgumentNullException>(delegate { assembler.NewGetBillRequest(validBillId, string.Empty); });
+        }
+
+        [Test]
+        public void NewGetBillRequest_ValidParams_ReturnsRequest()
+        {
+            var test = assembler.NewGetBillRequest(validBillId, validUsername);
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<GetBillRequest>(test);
+            Assert.AreEqual(test.BillId, validBillId);
+            Assert.AreEqual(test.Username, validUsername);
+            Assert.AreNotEqual(Guid.Empty, test.RequestReference);
+        }
+
+        [Test]
+        public void NewGetBillsForUserForMonthRequest_InvalidParams_ThrowsExceptions()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(
+                delegate { assembler.NewGetBillsForUserForMonthRequest(-1, validUserId, validUsername); });
 
             Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    assembler.NewEditBillRequest(validBillViewModel, string.Empty);
-                });
+                delegate { assembler.NewGetBillsForUserForMonthRequest(1, Guid.Empty, validUsername); });
+
+            Assert.Throws<ArgumentNullException>(
+                delegate { assembler.NewGetBillsForUserForMonthRequest(1, validUserId, string.Empty); });
         }
 
         [Test]
@@ -334,25 +306,13 @@
         }
 
         [Test]
-        public void NewGetBillsForUserForMonthRequest_InvalidParams_ThrowsExceptions()
+        public void NewGetBillsForUserRequest_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(
-                delegate
-                    {
-                        assembler.NewGetBillsForUserForMonthRequest(-1, validUserId, validUsername);
-                    });
+            Assert.Throws<ArgumentNullException>(
+                delegate { assembler.NewGetBillsForUserRequest(Guid.Empty, validUsername); });
 
             Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewGetBillsForUserForMonthRequest(1, Guid.Empty, validUsername);
-                    });
-
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewGetBillsForUserForMonthRequest(1, validUserId, string.Empty);
-                    });
+                delegate { assembler.NewGetBillsForUserRequest(validUserId, string.Empty); });
         }
 
         [Test]
@@ -368,19 +328,9 @@
         }
 
         [Test]
-        public void NewGetBillsForUserRequest_NullParams_ThrowsArgumentNullException()
+        public void NewManageBillsViewModel_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    assembler.NewGetBillsForUserRequest(Guid.Empty, validUsername);
-                });
-
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                {
-                    assembler.NewGetBillsForUserRequest(validUserId, string.Empty);
-                });
+            Assert.Throws<ArgumentNullException>(delegate { assembler.NewManageBillsViewModel(null); });
         }
 
         [Test]
@@ -395,16 +345,6 @@
             Assert.AreEqual(test.Bills.Count, 1);
             Assert.Greater(test.BillCategories.Count(), 0);
             Assert.Greater(test.BillPeriods.Count(), 0);
-        }
-
-        [Test]
-        public void NewManageBillsViewModel_NullParams_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        assembler.NewManageBillsViewModel(null);
-                    });
         }
     }
 }

@@ -32,6 +32,12 @@
     /// <seealso cref="System.Web.Mvc.Controller" />
     public class BaseController : Controller
     {
+        #region Fields
+
+        private Benchmark controllerBenchmark;
+
+        #endregion
+
         #region  Properties
 
         /// <summary>
@@ -116,22 +122,20 @@
         protected static ContentResult JsonResponse<T>(OrchestratorResponseWrapper<T> response)
         {
             return new ContentResult
-            {
-                ContentType = "application/json",
-                Content =
+                       {
+                           ContentType = "application/json", 
+                           Content =
                                JsonConvert.SerializeObject(
-                                   response,
+                                   response, 
                                    new JsonSerializerSettings
-                                   {
-                                       ContractResolver =
+                                       {
+                                           ContractResolver =
                                                new CamelCasePropertyNamesContractResolver
                                                ()
-                                   }),
-                ContentEncoding = Encoding.UTF8
-            };
+                                       }), 
+                           ContentEncoding = Encoding.UTF8
+                       };
         }
-
-        private Benchmark controllerBenchmark;
 
         /// <summary>Begins execution of the specified request context</summary>
         /// <returns>Returns an IAsyncController instance.</returns>
@@ -139,16 +143,14 @@
         /// <param name="callback">The asynchronous callback.</param>
         /// <param name="state">The state.</param>
         protected override IAsyncResult BeginExecute(
-            RequestContext requestContext,
-            AsyncCallback callback,
+            RequestContext requestContext, 
+            AsyncCallback callback, 
             object state)
         {
             controllerBenchmark = BenchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl);
 
             return base.BeginExecute(requestContext, callback, state);
         }
-
-        #region Overrides of Controller
 
         /// <summary>Ends the invocation of the action in the current controller context.</summary>
         /// <param name="asyncResult">The asynchronous result.</param>
@@ -158,23 +160,6 @@
 
             controllerBenchmark.Dispose();
         }
-
-        #endregion
-
-        #region Overrides of Controller
-
-        /// <summary>Called when an unhandled exception occurs in the action.</summary>
-        /// <param name="filterContext">Information about the current request and action.</param>
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            filterContext.ExceptionHandled = true;
-
-            var error = ErrorHelper.Create(filterContext.Exception, UserEmail, GetType(), "OnException");
-
-            filterContext.Result = RedirectToAction("SystemError", "Error", new { area = "Common" });
-        }
-
-        #endregion
 
         /// <summary>
         ///     Adds model state errors to the JSON response.
@@ -196,6 +181,17 @@
             }
 
             return JsonResponse(response);
+        }
+
+        /// <summary>Called when an unhandled exception occurs in the action.</summary>
+        /// <param name="filterContext">Information about the current request and action.</param>
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            filterContext.ExceptionHandled = true;
+
+            var error = ErrorHelper.Create(filterContext.Exception, UserEmail, GetType(), "OnException");
+
+            filterContext.Result = RedirectToAction("SystemError", "Error", new { area = "Common" });
         }
 
         /// <summary>

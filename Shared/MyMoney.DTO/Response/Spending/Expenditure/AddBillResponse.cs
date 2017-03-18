@@ -2,12 +2,15 @@
 {
     #region Usings
 
+    using Proxies.Spending;
+
     using Request.Spending.Expenditure;
 
     #endregion
 
     /// <summary>
-    ///     The <see cref="AddExpenditureResponse" /> class is the response object for a <see cref="AddExpenditureRequest" /> request.
+    ///     The <see cref="AddExpenditureResponse" /> class is the response object for a <see cref="AddExpenditureRequest" />
+    ///     request.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class AddExpenditureResponse : BaseResponse

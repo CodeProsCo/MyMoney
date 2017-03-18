@@ -7,7 +7,6 @@
 
     using DataModels.Spending;
 
-    using DTO.Response.Spending;
     using DTO.Response.Spending.Bills;
 
     using Proxies.Spending;

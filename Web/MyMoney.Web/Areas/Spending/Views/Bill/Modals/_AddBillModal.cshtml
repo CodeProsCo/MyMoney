@@ -1,10 +1,11 @@
-﻿@model MyMoney.ViewModels.Spending.Bills.AddBillViewModel
+﻿@using MyMoney.Resources
+@model MyMoney.ViewModels.Spending.Bills.AddBillViewModel
 @{
 }
 <div class="ui modal" id="add-bill-modal">
     <div class="header">
         <i class="add icon"></i>
-@MyMoney.Resources.Bills.Title_AddBill
+        @Bills.Title_AddBill
     </div>
     <div class="content">
         @using (Html.BeginForm("Add", "Bill", FormMethod.Post, new { id = "add-bill-form" }))
@@ -16,11 +17,11 @@
     </div>
     <div class="actions">
         <div class="ui black deny right labeled icon button">
-            @MyMoney.Resources.Common.Button_Cancel
+            @Common.Button_Cancel
             <i class="cancel icon"></i>
         </div>
         <div class="ui positive right labeled icon button" id="add-bill">
-            @MyMoney.Resources.Common.Button_Save
+            @Common.Button_Save
             <i class="save icon"></i>
         </div>
     </div>

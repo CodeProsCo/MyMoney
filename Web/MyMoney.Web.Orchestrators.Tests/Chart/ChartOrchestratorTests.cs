@@ -21,12 +21,6 @@
     [Category("Orchestrators")]
     public class ChartOrchestratorTests
     {
-        private IChartOrchestrator orchestrator;
-
-        private IChartAssembler assembler;
-
-        private IChartDataAccess dataAccess;
-
         [SetUp]
         public void SetUp()
         {
@@ -44,20 +38,18 @@
             dataAccess = null;
         }
 
+        private IChartOrchestrator orchestrator;
+
+        private IChartAssembler assembler;
+
+        private IChartDataAccess dataAccess;
+
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        orchestrator = new ChartOrchestrator(null, dataAccess);
-                    });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new ChartOrchestrator(null, dataAccess); });
 
-            Assert.Throws<ArgumentNullException>(
-                delegate
-                    {
-                        orchestrator = new ChartOrchestrator(assembler, null);
-                    });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new ChartOrchestrator(assembler, null); });
         }
     }
 }

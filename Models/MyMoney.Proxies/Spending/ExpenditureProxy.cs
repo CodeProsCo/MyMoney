@@ -1,21 +1,17 @@
-﻿namespace MyMoney.DataModels.Spending
+﻿namespace MyMoney.Proxies.Spending
 {
     #region Usings
 
     using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     using Common;
 
     #endregion
 
     /// <summary>
-    ///     The <see cref="ExpenditureDataModel" /> class represents an entry in the "Expenditure" table.
+    ///     The proxy class for expenditures.
     /// </summary>
-    /// <seealso cref="MyMoney.DataModels.BaseDataModel" />
-    [Table("Expenditure")]
-    public class ExpenditureDataModel : BaseDataModel
+    public class ExpenditureProxy
     {
         #region  Properties
 
@@ -33,7 +29,7 @@
         /// <value>
         ///     The category.
         /// </value>
-        public CategoryDataModel Category { get; set; }
+        public CategoryProxy Category { get; set; }
 
         /// <summary>
         ///     Gets or sets the category identifier.
@@ -57,8 +53,6 @@
         /// <value>
         ///     The identifier.
         /// </value>
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         /// <summary>

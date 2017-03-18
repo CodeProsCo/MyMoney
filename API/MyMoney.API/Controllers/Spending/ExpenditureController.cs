@@ -8,10 +8,12 @@
 
     using DTO.Request.Spending.Expenditure;
 
+    using Orchestrators.Spending.Interfaces;
+
     #endregion
 
     /// <summary>
-    /// The <see cref="ExpenditureController"/> class handles HTTP requests in the "spending/expenditure" route.
+    ///     The <see cref="ExpenditureController" /> class handles HTTP requests in the "spending/expenditure" route.
     /// </summary>
     /// <seealso cref="MyMoney.API.Controllers.BaseController" />
     [RoutePrefix("spending/expenditure")]
@@ -126,12 +128,15 @@
         /// <returns>The response object. Wrapped in a 200 response.</returns>
         [HttpGet]
         [Route("get/{userId:Guid}/month/{monthNumber:int}/{requestReference:Guid}/")]
-        public async Task<IHttpActionResult> GetExpendituresForUserForMonth([FromUri] GetExpendituresForUserForMonthRequest request)
+        public async Task<IHttpActionResult> GetExpendituresForUserForMonth(
+            [FromUri] GetExpendituresForUserForMonthRequest request)
         {
             var response = await orchestrator.GetExpendituresForUserForMonth(request);
 
             return Ok(response);
         }
+
+        #endregion
     }
 
     #endregion

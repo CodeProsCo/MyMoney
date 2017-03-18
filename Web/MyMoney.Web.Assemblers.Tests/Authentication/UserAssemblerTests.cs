@@ -29,29 +29,29 @@
         {
             assembler = new UserAssembler();
             validResponse = new ValidateUserResponse
-            {
-                LoginSuccess = true,
-                RequestReference = Guid.NewGuid(),
-                User =
+                                {
+                                    LoginSuccess = true, 
+                                    RequestReference = Guid.NewGuid(), 
+                                    User =
                                         new UserProxy
-                                        {
-                                            DateOfBirth = DateTime.MinValue,
-                                            EmailAddress = "TEST",
-                                            FirstName = "TEST",
-                                            Id = Guid.NewGuid(),
-                                            LastName = "TEST"
-                                        }
-            };
+                                            {
+                                                DateOfBirth = DateTime.MinValue, 
+                                                EmailAddress = "TEST", 
+                                                FirstName = "TEST", 
+                                                Id = Guid.NewGuid(), 
+                                                LastName = "TEST"
+                                            }
+                                };
             validRegisterViewModel = new RegisterViewModel
-            {
-                AcceptTermsAndConditions = true,
-                ConfirmPassword = "TEST",
-                DateOfBirth = DateTime.MinValue,
-                EmailAddress = "TEST",
-                FirstName = "TEST",
-                LastName = "TEST",
-                Password = "TEST"
-            };
+                                         {
+                                             AcceptTermsAndConditions = true, 
+                                             ConfirmPassword = "TEST", 
+                                             DateOfBirth = DateTime.MinValue, 
+                                             EmailAddress = "TEST", 
+                                             FirstName = "TEST", 
+                                             LastName = "TEST", 
+                                             Password = "TEST"
+                                         };
             validLoginViewModel = new LoginViewModel { EmailAddress = "TEST", Password = "TEST", ReturnUrl = "TEST" };
         }
 

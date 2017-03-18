@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using DTO.Request.Spending;
     using DTO.Request.Spending.Bill;
 
     using Orchestrators.Spending.Interfaces;

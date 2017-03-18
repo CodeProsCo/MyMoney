@@ -1,33 +1,34 @@
 ﻿@using System.Globalization
 @using System.Reflection
 @using MyMoney.Extensions.Assembly
+@using MyMoney.Resources
 <div class="ui left vertical inverted sidebar menu" id="sidebar">
     <div class="item logo">
-        @MyMoney.Resources.Common.Title_Menu
+        @Common.Title_Menu
     </div>
     <div class="ui accordion">
         <a class="item" href="@Url.Action("BudgetOverview", "Budget", new { area = "Dashboard" })">
             <span>
                 <i class="dashboard icon"></i>
-                @MyMoney.Resources.Common.Title_Overview
+                @Common.Title_Overview
             </span>
         </a>
         <a class="item" href="@Url.Action("Manage", "Bill", new { area = "Spending" })">
             <span>
                 <i class="delete calendar icon"></i>
-                @MyMoney.Resources.Common.Title_ManageBills
+                @Common.Title_ManageBills
             </span>
         </a>
         <a class="ui item" href="@Url.Action("Track", "Expenditure", new { area = "Spending" })">
-        <span>
+            <span>
         <i class="payment icon"></i>
-        @MyMoney.Resources.Common.Title_TrackSpending
+        @Common.Title_TrackSpending
         </span>
         </a>
     </div>
     <div class="item fixed-bottom-item disabled">
         <p>
-            v@(typeof(MvcApplication).Assembly.GetName().Version)<br />
+            v@(typeof(MvcApplication).Assembly.GetName().Version)<br/>
             @Assembly.GetExecutingAssembly().GetLinkerTime().ToString(CultureInfo.InvariantCulture)
         </p>
     </div>
