@@ -5,6 +5,8 @@
     using System;
     using System.Collections.Generic;
 
+    using Proxies.Spending;
+
     using Request.Spending.Expenditure;
 
     #endregion
@@ -23,7 +25,7 @@
         /// <value>
         ///     The data.
         /// </value>
-        public IList<KeyValuePair<DateTime, double>> Data { get; set; }
+        public IEnumerable<ExpenditureProxy> Data { get; set; }
 
         #endregion
     }

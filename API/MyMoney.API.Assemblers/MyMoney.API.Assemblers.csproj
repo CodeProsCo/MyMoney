@@ -62,7 +62,9 @@
     <Compile Include="Chart\Interfaces\IChartAssembler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spending\BillAssembler.cs" />
+    <Compile Include="Spending\ExpenditureAssembler.cs" />
     <Compile Include="Spending\Interfaces\IBillAssembler.cs" />
+    <Compile Include="Spending\Interfaces\IExpenditureAssembler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Models\MyMoney.DataModels\MyMoney.DataModels.csproj">

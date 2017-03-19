@@ -53,5 +53,12 @@
         Task<IList<ExpenditureDataModel>> GetExpendituresForUser(Guid userId);
 
         #endregion
+
+        /// <summary>
+        /// Gets the expenditures for the given user from this month.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>The list of expenditures.</returns>
+        Task<IEnumerable<ExpenditureDataModel>> GetExpendituresForUserForMonth(Guid userId);
     }
 }

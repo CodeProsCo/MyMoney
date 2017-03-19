@@ -32,6 +32,7 @@
         {
             container.Register(Component.For<IUserAssembler>().ImplementedBy<UserAssembler>().LifestylePerWebRequest());
             container.Register(Component.For<IBillAssembler>().ImplementedBy<BillAssembler>().LifestylePerWebRequest());
+            container.Register(Component.For<IExpenditureAssembler>().ImplementedBy<ExpenditureAssembler>().LifestylePerWebRequest());
             container.Register(
                 Component.For<IChartAssembler>().ImplementedBy<ChartAssembler>().LifestylePerWebRequest());
         }

@@ -187,6 +187,28 @@
             }
         }
 
+        /// <summary>
+        /// Gets the expenditures for the given user from this month.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>
+        /// The list of expenditures.
+        /// </returns>
+        public async Task<IEnumerable<ExpenditureDataModel>> GetExpendituresForUserForMonth(Guid userId)
+        {
+            using (var context = new DatabaseContext())
+            {
+                return
+                    await
+                    context.Expenditures.Include(x => x.Category)
+                        .Where(
+                            x =>
+                            x.DateOccurred.Month == DateTime.Now.Month && x.DateOccurred.Day == DateTime.Now.Day
+                            && x.UserId.Equals(userId))
+                        .ToListAsync();
+            }
+        }
+
         #endregion
     }
 }

@@ -69,6 +69,14 @@
         /// </value>
         public Guid UserId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the date occurred.
+        /// </summary>
+        /// <value>
+        /// The date occurred.
+        /// </value>
+        public DateTime DateOccurred { get; set; }
+
         #endregion
     }
 }

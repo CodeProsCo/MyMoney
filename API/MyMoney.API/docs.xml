@@ -73,6 +73,18 @@
                 The response object.
             </returns>
         </member>
+        <member name="T:MyMoney.API.Controllers.BaseController">
+            <summary>
+                The <see cref="T:MyMoney.API.Controllers.BaseController" /> is the base controller class for all controllers in the API.
+            </summary>
+            <seealso cref="T:System.Web.Http.ApiController" />
+        </member>
+        <member name="M:MyMoney.API.Controllers.BaseController.ExecuteAsync(System.Web.Http.Controllers.HttpControllerContext,System.Threading.CancellationToken)">
+            <summary>Executes asynchronously a single HTTP operation.</summary>
+            <returns>The newly started task.</returns>
+            <param name="controllerContext">The controller context for a single HTTP operation.</param>
+            <param name="cancellationToken">The cancellation token assigned for the HTTP operation.</param>
+        </member>
         <member name="T:MyMoney.API.Controllers.Chart.BillChartController">
             <summary>
                 The <see cref="T:MyMoney.API.Controllers.Chart.BillChartController" /> class handles HTTP requests for the "chart/bill" route.
@@ -127,44 +139,106 @@
                 Exception thrown when the orchestrator is null.
             </exception>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.BillController.AddBill(MyMoney.DTO.Request.Spending.AddBillRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.AddBill(MyMoney.DTO.Request.Spending.Bill.AddBillRequest)">
             <summary>
                 Handles an HTTP POST request to add a bill to the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.BillController.DeleteBill(MyMoney.DTO.Request.Spending.DeleteBillRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.DeleteBill(MyMoney.DTO.Request.Spending.Bill.DeleteBillRequest)">
             <summary>
                 Handles an HTTP DELETE request to remove a bill from the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.BillController.EditBill(MyMoney.DTO.Request.Spending.EditBillRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.EditBill(MyMoney.DTO.Request.Spending.Bill.EditBillRequest)">
             <summary>
                 Handles an HTTP POST request to edit a bill in the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBill(MyMoney.DTO.Request.Spending.GetBillRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBill(MyMoney.DTO.Request.Spending.Bill.GetBillRequest)">
             <summary>
                 Handles an HTTP GET request to obtain a bill from the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBillsForUser(MyMoney.DTO.Request.Spending.GetBillsForUserRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBillsForUser(MyMoney.DTO.Request.Spending.Bill.GetBillsForUserRequest)">
             <summary>
                 Handles an HTTP GET request for obtaining the bills for a given user from the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBillsForUserForMonth(MyMoney.DTO.Request.Spending.GetBillsForUserForMonthRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.GetBillsForUserForMonth(MyMoney.DTO.Request.Spending.Bill.GetBillsForUserForMonthRequest)">
             <summary>
-                GHandles an HTTP GET request for obtaining the bills for a given user in a given month.
+                Handles an HTTP GET request for obtaining the bills for a given user in a given month.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="T:MyMoney.API.Controllers.Spending.ExpenditureController">
+            <summary>
+                The <see cref="T:MyMoney.API.Controllers.Spending.ExpenditureController" /> class handles HTTP requests in the "spending/expenditure" route.
+            </summary>
+            <seealso cref="T:MyMoney.API.Controllers.BaseController" />
+        </member>
+        <member name="F:MyMoney.API.Controllers.Spending.ExpenditureController.orchestrator">
+            <summary>
+                The orchestrator
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.#ctor(MyMoney.API.Orchestrators.Spending.Interfaces.IExpenditureOrchestrator)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Spending.ExpenditureController" /> class.
+            </summary>
+            <param name="orchestrator">The orchestrator.</param>
+            <exception cref="T:System.ArgumentNullException">
+                Exception thrown when the orchestrator is null.
+            </exception>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.AddExpenditure(MyMoney.DTO.Request.Spending.Expenditure.AddExpenditureRequest)">
+            <summary>
+                Handles an HTTP POST request to add a expenditure to the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.DeleteExpenditure(MyMoney.DTO.Request.Spending.Expenditure.DeleteExpenditureRequest)">
+            <summary>
+                Handles an HTTP DELETE request to remove a expenditure from the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.EditExpenditure(MyMoney.DTO.Request.Spending.Expenditure.EditExpenditureRequest)">
+            <summary>
+                Handles an HTTP POST request to edit a expenditure in the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.GetExpenditure(MyMoney.DTO.Request.Spending.Expenditure.GetExpenditureRequest)">
+            <summary>
+                Handles an HTTP GET request to obtain a expenditure from the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.GetExpendituresForUser(MyMoney.DTO.Request.Spending.Expenditure.GetExpendituresForUserRequest)">
+            <summary>
+                Handles an HTTP GET request for obtaining the expenditures for a given user from the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.GetExpendituresForUserForMonth(MyMoney.DTO.Request.Spending.Expenditure.GetExpendituresForUserForMonthRequest)">
+            <summary>
+                Handles an HTTP GET request for obtaining the expenditures for a given user in a given month.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>

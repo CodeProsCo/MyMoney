@@ -70,6 +70,14 @@
                         Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>(), 
                         Dependency.OnComponent<IBillRepository, BillRepository>(), 
                         Dependency.OnComponent<IChartAssembler, ChartAssembler>()));
+
+            container.Register(
+                Component.For<IExpenditureOrchestrator>()
+                    .ImplementedBy<ExpenditureOrchestrator>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IExpenditureRepository, ExpenditureRepository>(),
+                        Dependency.OnComponent<IExpenditureAssembler, ExpenditureAssembler>()));
         }
 
         #endregion
