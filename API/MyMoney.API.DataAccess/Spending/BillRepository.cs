@@ -132,9 +132,10 @@
                     throw new Exception(Bills.Error_CouldNotFindBill);
                 }
 
+                bill.CreationTime = toEdit.CreationTime;
                 toEdit = context.Bills.Attach(toEdit);
                 context.Bills.Remove(toEdit);
-
+              
                 var category = await categoryRepository.GetOrAdd(bill.Category);
 
                 bill.Category = category;

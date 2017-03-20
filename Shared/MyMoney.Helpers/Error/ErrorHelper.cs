@@ -5,6 +5,8 @@
     using System;
     using System.Diagnostics;
 
+    using LLibrary;
+
     using Wrappers;
 
     #endregion
@@ -22,6 +24,8 @@
 
         public static ResponseErrorWrapper Create(Exception ex, string username, Type className, string methodName)
         {
+            L.Log("Exception", ex);
+
             var message = string.Empty;
 
             while (ex != null)
@@ -36,13 +40,13 @@
         public static ResponseErrorWrapper Create(string message, string username, Type className, string methodName)
         {
             var retVal = new ResponseErrorWrapper
-                             {
-                                 ClassName = className.FullName, 
-                                 Message = message, 
-                                 MethodName = methodName, 
-                                 Occurred = DateTime.Now, 
-                                 Username = username
-                             };
+            {
+                ClassName = className.FullName,
+                Message = message,
+                MethodName = methodName,
+                Occurred = DateTime.Now,
+                Username = username
+            };
 
             WriteTrace(retVal);
 
@@ -61,6 +65,8 @@
             {
                 Trace.WriteLine(logFormat);
             }
+
+            L.Log("Error", logFormat);
         }
 
         #endregion

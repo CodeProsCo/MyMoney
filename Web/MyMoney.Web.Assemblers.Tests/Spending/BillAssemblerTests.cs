@@ -22,7 +22,7 @@
 
     #endregion
 
-    [Category("Assemblers")]
+    [Category("Web Assemblers")]
     [TestFixture]
     public class BillAssemblerTests
     {

@@ -189,6 +189,10 @@ th:hover {
     border: 1px solid rgba(34, 36, 38, 0.15);
 }
 
+.ct-grids line {
+  color: steelblue !important;
+}
+
 .selectable:hover {
     cursor: pointer !important;
 }

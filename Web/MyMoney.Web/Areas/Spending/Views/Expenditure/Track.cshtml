@@ -1,15 +1,25 @@
-﻿@using MyMoney.Resources
+﻿@using Cassette.Scripts
+@using Cassette.Stylesheets
+@using Cassette.Views
+@using MyMoney.Resources
 @{
     ViewBag.Title = Expenditure.Title_Expenditure;
+    Bundles.Reference<ScriptBundle>("~/Areas/Spending/Scripts/Expenditure/MyMoney.TrackExpenditure.js");
+    Bundles.Reference<StylesheetBundle>("~/Content/Chartist/chartist.css");
 }
 <div class="ui grid">
+    <div class="sixteen wide column">
+        <div class="ui styled segment">
+            <div id="expenditure-chart"></div>
+        </div>
+    </div>
     <div class="eight wide column">
         <div class="ui styled segment">
             <h4 class="ui block header">
                 <i class="calendar icon"></i>
                 @Expenditure.Heading_ExpenditureThisMonth
             </h4>
-            <div id="expenditure-chart"></div>
+            <div id="expenditure-calendar"></div>
         </div>
     </div>
     <div class="eight wide column">

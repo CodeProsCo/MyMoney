@@ -2,6 +2,7 @@
 {
     #region Usings
 
+    using System.IO;
     using System.Web;
     using System.Web.Http;
     using System.Web.Http.Dispatcher;
@@ -11,6 +12,8 @@
     using DependencyInjection;
 
     using JetBrains.Annotations;
+
+    using LLibrary;
 
     using Plumbing;
     using Plumbing.Installers;
@@ -42,6 +45,11 @@
             APIContainerConfig.InstallForWebApi(container);
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            if (!Directory.Exists(L.Directory))
+            {
+                Directory.CreateDirectory(L.Directory);
+            }
         }
 
         #endregion

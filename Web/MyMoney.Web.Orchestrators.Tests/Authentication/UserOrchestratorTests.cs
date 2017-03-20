@@ -29,7 +29,7 @@
     #endregion
 
     [TestFixture]
-    [Category("Orchestrators")]
+    [Category("Web Orchestrators")]
     public class UserOrchestratorTests
     {
         [SetUp]

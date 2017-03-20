@@ -18,7 +18,7 @@
     #endregion
 
     [TestFixture]
-    [Category("Orchestrators")]
+    [Category("Web Orchestrators")]
     public class ChartOrchestratorTests
     {
         [SetUp]
