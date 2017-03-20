@@ -1,7 +1,7 @@
 ﻿@using MyMoney.Resources
 <table class="ui celled selectable table" id="bill-table" data-sort="true">
     <thead>
-    <tr data-hint="@Bills.Hint_BillTable">
+    <tr data-hint="@Expenditure.Hint_ExpenditureTable">
         <th>@Common.Header_Date</th>
         <th>@Common.Header_Description</th>
         <th>@Common.Header_Category</th>
@@ -14,7 +14,7 @@
     <tfoot>
     <tr>
         <th colspan="4">
-            <div class="ui left floated small primary button" id="add" data-hint="@Bills.Hint_AddNewBill">
+            <div class="ui left floated small primary button" id="add" data-hint="@Expenditure.Hint_AddNewExpenditure">
                 <i class="add icon"></i> @Common.Button_New
             </div>
         </th>

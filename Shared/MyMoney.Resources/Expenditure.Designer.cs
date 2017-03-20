@@ -68,5 +68,50 @@ namespace MyMoney.Resources {
                 return ResourceManager.GetString("Error_CouldNotFindExpenditure", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenditure this Month.
+        /// </summary>
+        public static string Heading_ExpenditureThisMonth {
+            get {
+                return ResourceManager.GetString("Heading_ExpenditureThisMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Expenditure.
+        /// </summary>
+        public static string Heading_LatestExpenditure {
+            get {
+                return ResourceManager.GetString("Heading_LatestExpenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to track a new expenditure..
+        /// </summary>
+        public static string Hint_AddNewExpenditure {
+            get {
+                return ResourceManager.GetString("Hint_AddNewExpenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can see a history of your expenditures..
+        /// </summary>
+        public static string Hint_ExpenditureTable {
+            get {
+                return ResourceManager.GetString("Hint_ExpenditureTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenditure.
+        /// </summary>
+        public static string Title_Expenditure {
+            get {
+                return ResourceManager.GetString("Title_Expenditure", resourceCulture);
+            }
+        }
     }
 }

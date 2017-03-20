@@ -1,9 +1,13 @@
-﻿<div class="ui grid">
+﻿@using MyMoney.Resources
+@{
+    ViewBag.Title = Expenditure.Title_Expenditure;
+}
+<div class="ui grid">
     <div class="eight wide column">
         <div class="ui styled segment">
             <h4 class="ui block header">
                 <i class="calendar icon"></i>
-                Expenditure this Month
+                @Expenditure.Heading_ExpenditureThisMonth
             </h4>
             <div id="expenditure-chart"></div>
         </div>
@@ -12,7 +16,7 @@
         <div class="ui styled segment">
             <h4 class="ui block header">
                 <i class="payment icon"></i>
-                Latest Expenditure
+                @Expenditure.Heading_LatestExpenditure
             </h4>
             @{ Html.RenderPartial("Tables/_ExpenditureTable"); }
         </div>

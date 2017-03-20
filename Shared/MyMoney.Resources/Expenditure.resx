@@ -120,4 +120,19 @@
   <data name="Error_CouldNotFindExpenditure" xml:space="preserve">
     <value>Could not find expenditure.</value>
   </data>
+  <data name="Heading_ExpenditureThisMonth" xml:space="preserve">
+    <value>Expenditure this Month</value>
+  </data>
+  <data name="Heading_LatestExpenditure" xml:space="preserve">
+    <value>Latest Expenditure</value>
+  </data>
+  <data name="Hint_AddNewExpenditure" xml:space="preserve">
+    <value>Click to track a new expenditure.</value>
+  </data>
+  <data name="Hint_ExpenditureTable" xml:space="preserve">
+    <value>Here you can see a history of your expenditures.</value>
+  </data>
+  <data name="Title_Expenditure" xml:space="preserve">
+    <value>Expenditure</value>
+  </data>
 </root>
