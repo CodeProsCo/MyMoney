@@ -4,6 +4,7 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Assemblers.Spending.Interfaces;
 
@@ -60,6 +61,8 @@
                 UserId = Guid.NewGuid()
             };
 
+            validManageBillsViewModel = new ManageBillsViewModel();
+
             validDeleteBillRequest = new DeleteBillRequest { BillId = validBillProxy.Id };
             validDeleteBillResponse = new DeleteBillResponse { DeleteSuccess = true };
             validAddBillRequest = new AddBillRequest { Bill = validBillProxy };
@@ -67,11 +70,19 @@
             validGetBillRequest = new GetBillRequest { BillId = validBillProxy.Id };
             validGetBillResponse = new GetBillResponse { Bill = validBillProxy };
             validGetBillsForUserRequest = new GetBillsForUserRequest { UserId = validBillProxy.Id };
-            validGetBillsForUserResponse = new GetBillsForUserResponse { Bills = new List<BillProxy> {validBillProxy} };
+            validGetBillsForUserResponse = new GetBillsForUserResponse
+            {
+                Bills = new List<BillProxy> { validBillProxy }
+            };
             validEditBillRequest = new EditBillRequest { Bill = validBillProxy };
             validEditBillResponse = new EditBillResponse { Bill = validBillProxy };
+            validGetBillsForUserForMonthRequest = new GetBillsForUserForMonthRequest { UserId = validBillProxy.Id };
+            validGetBillsForUserForMonthResponse = new GetBillsForUserForMonthResponse
+            {
+                Data = new List<KeyValuePair<DateTime, double>>()
+            };
 
-            invalidBillViewModel = new BillViewModel() { Id = Guid.NewGuid() };
+            invalidBillViewModel = new BillViewModel { Id = Guid.NewGuid() };
             invalidAddBillRequest = new AddBillRequest();
             invalidAddBillResponse = new AddBillResponse { Errors = { new ResponseErrorWrapper() } };
             invalidGetBillRequest = new GetBillRequest();
@@ -82,6 +93,8 @@
             invalidGetBillsForUserResponse = new GetBillsForUserResponse { Errors = { new ResponseErrorWrapper() } };
             invalidEditBillRequest = new EditBillRequest();
             invalidEditBillResponse = new EditBillResponse { Errors = { new ResponseErrorWrapper() } };
+            invalidGetBillsForUserForMonthRequest = new GetBillsForUserForMonthRequest();
+            invalidGetBillsForUserForMonthResponse = new GetBillsForUserForMonthResponse { Errors = { new ResponseErrorWrapper() } };
 
             assembler = Substitute.For<IBillAssembler>();
             dataAccess = Substitute.For<IBillDataAccess>();
@@ -98,11 +111,16 @@
             assembler.NewGetBillRequest(invalidBillViewModel.Id, validUsername).Returns(invalidGetBillRequest);
             assembler.NewGetBillRequest(Guid.Empty, validUsername).Throws(new Exception("TEST EXCEPTION"));
             assembler.NewGetBillsForUserRequest(validViewModel.Id, validUsername).Returns(validGetBillsForUserRequest);
-            assembler.NewGetBillsForUserRequest(invalidBillViewModel.Id, validUsername).Returns(invalidGetBillsForUserRequest);
+            assembler.NewGetBillsForUserRequest(invalidBillViewModel.Id, validUsername)
+                .Returns(invalidGetBillsForUserRequest);
             assembler.NewGetBillsForUserRequest(Guid.Empty, validUsername).Throws(new Exception("TEST EXCEPTION"));
             assembler.NewEditBillRequest(validViewModel, validUsername).Returns(validEditBillRequest);
             assembler.NewEditBillRequest(invalidBillViewModel, validUsername).Returns(invalidEditBillRequest);
             assembler.NewEditBillRequest(null, validUsername).Throws(new Exception("TEST EXCEPTION"));
+            assembler.NewGetBillsForUserForMonthRequest(1,validViewModel.Id, validUsername).Returns(validGetBillsForUserForMonthRequest);
+            assembler.NewGetBillsForUserForMonthRequest(1, invalidBillViewModel.Id, validUsername)
+                .Returns(invalidGetBillsForUserForMonthRequest);
+            assembler.NewManageBillsViewModel(validGetBillsForUserResponse).Returns(validManageBillsViewModel);
 
             dataAccess.AddBill(validAddBillRequest).Returns(validAddBillResponse);
             dataAccess.AddBill(invalidAddBillRequest).Returns(invalidAddBillResponse);
@@ -114,6 +132,8 @@
             dataAccess.GetBillsForUser(invalidGetBillsForUserRequest).Returns(invalidGetBillsForUserResponse);
             dataAccess.EditBill(validEditBillRequest).Returns(validEditBillResponse);
             dataAccess.EditBill(invalidEditBillRequest).Returns(invalidEditBillResponse);
+            dataAccess.GetBillsForUserForMonth(validGetBillsForUserForMonthRequest).Returns(validGetBillsForUserForMonthResponse);
+            dataAccess.GetBillsForUserForMonth(invalidGetBillsForUserForMonthRequest).Returns(invalidGetBillsForUserForMonthResponse);
 
             orchestrator = new BillOrchestrator(assembler, dataAccess);
         }
@@ -191,6 +211,16 @@
 
         private GetBillsForUserResponse invalidGetBillsForUserResponse;
 
+        private GetBillsForUserForMonthRequest validGetBillsForUserForMonthRequest;
+
+        private GetBillsForUserForMonthResponse validGetBillsForUserForMonthResponse;
+
+        private GetBillsForUserForMonthRequest invalidGetBillsForUserForMonthRequest;
+
+        private GetBillsForUserForMonthResponse invalidGetBillsForUserForMonthResponse;
+
+        private ManageBillsViewModel validManageBillsViewModel;
+
         private BillProxy validBillProxy;
 
         private BillViewModel invalidBillViewModel;
@@ -229,36 +259,11 @@
         }
 
         [Test]
-        public void EditBill_InvalidParams_ReturnsErrorResponse()
+        public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            var test = orchestrator.EditBill(invalidBillViewModel, validUsername).Result;
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(null, dataAccess); });
 
-            Assert.IsInstanceOf<OrchestratorResponseWrapper<BillViewModel>>(test);
-            Assert.IsNotNull(test);
-            Assert.IsNull(test.Model);
-            Assert.AreEqual(1, test.Errors.Count);
-        }
-
-        [Test]
-        public void EditBill_NullParams_ReturnsErrorResponse()
-        {
-            var test = orchestrator.EditBill(null, validUsername).Result;
-
-            Assert.IsInstanceOf<OrchestratorResponseWrapper<BillViewModel>>(test);
-            Assert.IsNotNull(test);
-            Assert.IsNull(test.Model);
-            Assert.AreEqual(1, test.Errors.Count);
-        }
-
-        [Test]
-        public void EditBill_ValidParams_ReturnsViewModel()
-        {
-            var test = orchestrator.EditBill(validViewModel, validUsername).Result;
-
-            Assert.IsInstanceOf<OrchestratorResponseWrapper<BillViewModel>>(test);
-            Assert.IsNotNull(test);
-            Assert.IsNotNull(test.Model);
-            Assert.AreEqual(0, test.Errors.Count);
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(assembler, null); });
         }
 
         [Test]
@@ -291,6 +296,39 @@
             Assert.IsInstanceOf<OrchestratorResponseWrapper<bool>>(test);
             Assert.IsNotNull(test);
             Assert.IsTrue(test.Model);
+            Assert.AreEqual(0, test.Errors.Count);
+        }
+
+        [Test]
+        public void EditBill_InvalidParams_ReturnsErrorResponse()
+        {
+            var test = orchestrator.EditBill(invalidBillViewModel, validUsername).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<BillViewModel>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNull(test.Model);
+            Assert.AreEqual(1, test.Errors.Count);
+        }
+
+        [Test]
+        public void EditBill_NullParams_ReturnsErrorResponse()
+        {
+            var test = orchestrator.EditBill(null, validUsername).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<BillViewModel>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNull(test.Model);
+            Assert.AreEqual(1, test.Errors.Count);
+        }
+
+        [Test]
+        public void EditBill_ValidParams_ReturnsViewModel()
+        {
+            var test = orchestrator.EditBill(validViewModel, validUsername).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<BillViewModel>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNotNull(test.Model);
             Assert.AreEqual(0, test.Errors.Count);
         }
 
@@ -356,16 +394,41 @@
 
             Assert.IsInstanceOf<OrchestratorResponseWrapper<ManageBillsViewModel>>(test);
             Assert.IsNotNull(test);
-            Assert.IsNull(test.Model);
+            Assert.IsNotNull(test.Model);
             Assert.AreEqual(0, test.Errors.Count);
         }
 
         [Test]
-        public void Constructor_NullParams_ThrowsArgumentNullException()
+        public void GetBillsForUserForMonth_InvalidParams_ReturnsErrorResponse()
         {
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(null, dataAccess); });
+            var test = orchestrator.GetBillsForUserForMonth(1, invalidBillViewModel.Id, validUsername).Result;
 
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(assembler, null); });
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNull(test.Model);
+            Assert.AreEqual(1, test.Errors.Count);
+        }
+
+        [Test]
+        public void GetBillsForUserForMonth_NullParams_ReturnsErrorResponse()
+        {
+            var test = orchestrator.GetBillsForUserForMonth(1, Guid.Empty, validUsername).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNull(test.Model);
+            Assert.AreEqual(1, test.Errors.Count);
+        }
+
+        [Test]
+        public void GetBillsForUserForMonth_ValidParams_ReturnsViewModel()
+        {
+            var test = orchestrator.GetBillsForUserForMonth(1, validViewModel.Id, validUsername).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNotNull(test.Model);
+            Assert.AreEqual(0, test.Errors.Count);
         }
     }
 }
