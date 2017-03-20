@@ -18,7 +18,9 @@
                 <i class="payment icon"></i>
                 @Expenditure.Heading_LatestExpenditure
             </h4>
-            @{ Html.RenderPartial("Tables/_ExpenditureTable"); }
+            @{
+                Html.RenderPartial("Tables/_ExpenditureTable"); 
+            }
         </div>
     </div>
 </div>
