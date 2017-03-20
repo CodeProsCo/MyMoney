@@ -9,6 +9,7 @@ A personal finance planner written in .NET.
 - [IntroJS](https://github.com/usablica/intro.js/)
 - [Chartist](https://github.com/gionkunz/chartist-js)
 - [Toastr](https://github.com/CodeSeven/toastr)
+- [Moment](https://github.com/moment/moment/)
 
 ### .NET/C# #
 - [Cassette.Aspnet](https://github.com/andrewdavey/cassette) - Manages .NET web application assets (scripts, css and templates) 
