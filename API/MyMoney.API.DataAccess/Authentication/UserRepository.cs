@@ -25,6 +25,28 @@
     [UsedImplicitly]
     public class UserRepository : IUserRepository
     {
+        /// <summary>
+        /// The context
+        /// </summary>
+        public readonly IDatabaseContext context;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserRepository"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the database context is null.
+        /// </exception>
+        public UserRepository(IDatabaseContext context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            this.context = context;
+        }
+
         #region  Public Methods
 
         /// <summary>
@@ -37,8 +59,6 @@
         /// </returns>
         public async Task<UserDataModel> GetUser(string email, string password)
         {
-            using (var context = new DatabaseContext())
-            {
                 var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
 
                 if (result == null)
@@ -52,7 +72,6 @@
                 }
 
                 throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
-            }
         }
 
         /// <summary>
@@ -67,8 +86,6 @@
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {
-            using (var context = new DatabaseContext())
-            {
                 var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == username);
 
                 if (result == null)
@@ -77,7 +94,6 @@
                 }
 
                 return result.Id;
-            }
         }
 
         /// <summary>
@@ -89,8 +105,6 @@
         /// </returns>
         public async Task<UserDataModel> RegisterUser(UserDataModel model)
         {
-            using (var context = new DatabaseContext())
-            {
                 model.Id = Guid.NewGuid();
 
                 var result = context.Users.Add(model);
@@ -98,7 +112,6 @@
                 var rowsChanged = await context.SaveChangesAsync();
 
                 return rowsChanged > 0 ? result : null;
-            }
         }
 
         #endregion

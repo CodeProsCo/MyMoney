@@ -69,6 +69,7 @@
     <Compile Include="Common\CategoryRepository.cs" />
     <Compile Include="Common\Interfaces\ICategoryRepository.cs" />
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="IDatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spending\BillRepository.cs" />
     <Compile Include="Spending\ExpenditureRepository.cs" />

@@ -22,6 +22,28 @@
     [UsedImplicitly]
     public class CategoryRepository : ICategoryRepository
     {
+        /// <summary>
+        /// The context
+        /// </summary>
+        private readonly IDatabaseContext context;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CategoryRepository"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the database context is null.
+        /// </exception>
+        public CategoryRepository(IDatabaseContext context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            this.context = context;
+        }
+
         #region  Public Methods
 
         /// <summary>
@@ -51,17 +73,14 @@
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns>If it exists, true. Otherwise, false.</returns>
-        private static async Task<bool> Exists(string name)
+        private async Task<bool> Exists(string name)
         {
-            using (var context = new DatabaseContext())
+            if (await context.Categories.CountAsync() > 0)
             {
-                if (await context.Categories.CountAsync() > 0)
-                {
-                    return await context.Categories.AnyAsync(x => x.Name == name);
-                }
-
-                return false;
+                return await context.Categories.AnyAsync(x => x.Name == name);
             }
+
+            return false;
         }
 
         /// <summary>
@@ -71,12 +90,9 @@
         /// <returns>
         ///     The category data model.
         /// </returns>
-        private static async Task<CategoryDataModel> GetCategory(string name)
+        private async Task<CategoryDataModel> GetCategory(string name)
         {
-            using (var context = new DatabaseContext())
-            {
-                return await context.Categories.FirstOrDefaultAsync(x => x.Name == name);
-            }
+            return await context.Categories.FirstOrDefaultAsync(x => x.Name == name);
         }
 
         /// <summary>
@@ -86,17 +102,14 @@
         /// <returns>The newly added category.</returns>
         private async Task<CategoryDataModel> AddCategory(CategoryDataModel category)
         {
-            using (var context = new DatabaseContext())
-            {
-                category.Id = Guid.NewGuid();
-                category.CreationTime = DateTime.Now;
+            category.Id = Guid.NewGuid();
+            category.CreationTime = DateTime.Now;
 
-                var addedModel = context.Categories.Add(category);
+            var addedModel = context.Categories.Add(category);
 
-                var rowsChanged = await context.SaveChangesAsync();
+            var rowsChanged = await context.SaveChangesAsync();
 
-                return rowsChanged > 0 ? addedModel : null;
-            }
+            return rowsChanged > 0 ? addedModel : null;
         }
 
         #endregion

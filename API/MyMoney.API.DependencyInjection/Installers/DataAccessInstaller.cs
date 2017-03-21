@@ -6,6 +6,7 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
+    using DataAccess;
     using DataAccess.Authentication;
     using DataAccess.Authentication.Interfaces;
     using DataAccess.Common;
@@ -31,22 +32,33 @@
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IUserRepository>().ImplementedBy<UserRepository>().LifestylePerWebRequest());
+                Component.For<IDatabaseContext>().ImplementedBy<DatabaseContext>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IUserRepository>()
+                    .ImplementedBy<UserRepository>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
 
             container.Register(
                 Component.For<IBillRepository>()
                     .ImplementedBy<BillRepository>()
                     .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>()));
+                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>())
+                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
 
             container.Register(
-                Component.For<ICategoryRepository>().ImplementedBy<CategoryRepository>().LifestylePerWebRequest());
+                Component.For<ICategoryRepository>()
+                    .ImplementedBy<CategoryRepository>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
 
             container.Register(
                 Component.For<IExpenditureRepository>()
                     .ImplementedBy<ExpenditureRepository>()
                     .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>()));
+                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>())
+                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
         }
 
         #endregion

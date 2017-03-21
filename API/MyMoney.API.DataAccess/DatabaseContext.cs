@@ -16,7 +16,7 @@
     ///     The <see cref="DatabaseContext" /> class represents the structure of the database and its tables.
     /// </summary>
     /// <seealso cref="System.Data.Entity.DbContext" />
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : DbContext, IDatabaseContext
     {
         #region Constructor
 

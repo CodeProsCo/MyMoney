@@ -206,6 +206,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\Controllers\AccountController.cs" />
     <Compile Include="Areas\Authentication\Controllers\UserController.cs" />
     <Compile Include="App_Start\CassetteConfig.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
@@ -274,6 +275,7 @@
     <Content Include="Areas\Spending\Views\Expenditure\Track.cshtml" />
     <Content Include="Areas\Spending\Views\Expenditure\Tables\_ExpenditureTable.cshtml" />
     <Content Include="Areas\Spending\Scripts\Expenditure\MyMoney.TrackExpenditure.js" />
+    <Content Include="Areas\Authentication\Views\Account\Manage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

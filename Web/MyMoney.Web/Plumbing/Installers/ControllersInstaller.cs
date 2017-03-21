@@ -55,6 +55,7 @@
             container.Register(Component.For<ErrorController>().LifestylePerWebRequest());
             container.Register(Component.For<HomeController>().LifestylePerWebRequest());
             container.Register(Component.For<ExpenditureController>().LifestylePerWebRequest());
+            container.Register(Component.For<AccountController>().LifestylePerWebRequest());
         }
 
         #endregion
