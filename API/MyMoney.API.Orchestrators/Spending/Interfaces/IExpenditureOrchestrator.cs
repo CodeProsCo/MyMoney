@@ -10,14 +10,14 @@
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="ExpenditureOrchestrator"/> class.
+    ///     Interface for the <see cref="ExpenditureOrchestrator" /> class.
     /// </summary>
     public interface IExpenditureOrchestrator
     {
         #region  Public Methods
 
         /// <summary>
-        /// Adds an expenditure to the database.
+        ///     Adds an expenditure to the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="username">The username.</param>
@@ -25,35 +25,35 @@
         Task<AddExpenditureResponse> AddExpenditure(AddExpenditureRequest request, string username);
 
         /// <summary>
-        /// Removes an expenditure from the database.
+        ///     Removes an expenditure from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<DeleteExpenditureResponse> DeleteExpenditure(DeleteExpenditureRequest request);
 
         /// <summary>
-        /// Updates an expenditure in the database.
+        ///     Updates an expenditure in the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<EditExpenditureResponse> EditExpenditure(EditExpenditureRequest request);
 
         /// <summary>
-        /// Obtains an expenditure from the database.
+        ///     Obtains an expenditure from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<GetExpenditureResponse> GetExpenditure(GetExpenditureRequest request);
 
         /// <summary>
-        /// Gets all the expenditures for a given user.
+        ///     Gets all the expenditures for a given user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
         Task<GetExpendituresForUserResponse> GetExpendituresForUser(GetExpendituresForUserRequest request);
 
         /// <summary>
-        /// Gets the expenditures for a given user for month.
+        ///     Gets the expenditures for a given user for month.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>

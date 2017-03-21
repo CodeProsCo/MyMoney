@@ -40,6 +40,14 @@
         public Guid CategoryId { get; set; }
 
         /// <summary>
+        ///     Gets or sets the date occurred.
+        /// </summary>
+        /// <value>
+        ///     The date occurred.
+        /// </value>
+        public DateTime DateOccurred { get; set; }
+
+        /// <summary>
         ///     Gets or sets the description.
         /// </summary>
         /// <value>
@@ -62,14 +70,6 @@
         ///     The user identifier.
         /// </value>
         public Guid UserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the date occurred.
-        /// </summary>
-        /// <value>
-        /// The date occurred.
-        /// </value>
-        public DateTime DateOccurred { get; set; }
 
         #endregion
     }

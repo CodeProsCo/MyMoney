@@ -21,7 +21,7 @@
     #endregion
 
     /// <summary>
-    /// Creates instances of response objects, data models and proxies regarding expenditures.
+    ///     Creates instances of response objects, data models and proxies regarding expenditures.
     /// </summary>
     /// <seealso cref="MyMoney.API.Assemblers.Spending.Interfaces.IExpenditureAssembler" />
     [UsedImplicitly]
@@ -111,7 +111,11 @@
             IEnumerable<ExpenditureDataModel> data, 
             Guid requestReference)
         {
-            return new GetExpendituresForUserForMonthResponse { Data = data.Select(ExpenditureDataModelToProxy), RequestReference = requestReference };
+            return new GetExpendituresForUserForMonthResponse
+                       {
+                           Data = data.Select(ExpenditureDataModelToProxy), 
+                           RequestReference = requestReference
+                       };
         }
 
         /// <summary>

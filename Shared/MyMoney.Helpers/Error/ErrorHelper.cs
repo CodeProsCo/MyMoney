@@ -40,13 +40,13 @@
         public static ResponseErrorWrapper Create(string message, string username, Type className, string methodName)
         {
             var retVal = new ResponseErrorWrapper
-            {
-                ClassName = className.FullName,
-                Message = message,
-                MethodName = methodName,
-                Occurred = DateTime.Now,
-                Username = username
-            };
+                             {
+                                 ClassName = className.FullName, 
+                                 Message = message, 
+                                 MethodName = methodName, 
+                                 Occurred = DateTime.Now, 
+                                 Username = username
+                             };
 
             WriteTrace(retVal);
 

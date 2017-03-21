@@ -30,12 +30,12 @@
         #region Fields
 
         /// <summary>
-        /// The assembler
+        ///     The assembler
         /// </summary>
         private readonly IExpenditureAssembler assembler;
 
         /// <summary>
-        /// The repository
+        ///     The repository
         /// </summary>
         private readonly IExpenditureRepository repository;
 
@@ -44,12 +44,12 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExpenditureOrchestrator"/> class.
+        ///     Initializes a new instance of the <see cref="ExpenditureOrchestrator" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="assembler">The assembler.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the repository or assembler are null.
+        ///     Exception thrown if the repository or assembler are null.
         /// </exception>
         public ExpenditureOrchestrator(IExpenditureRepository repository, IExpenditureAssembler assembler)
         {

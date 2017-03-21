@@ -4,7 +4,6 @@
 
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using Assemblers.Spending.Interfaces;
 
@@ -39,27 +38,27 @@
         public void SetUp()
         {
             validViewModel = new BillViewModel
-            {
-                Amount = 10,
-                Category = "TEST",
-                Id = Guid.NewGuid(),
-                Name = "TEST",
-                ReoccurringPeriod = TimePeriod.Daily,
-                StartDate = DateTime.Now,
-                UserId = Guid.NewGuid()
-            };
+                                 {
+                                     Amount = 10, 
+                                     Category = "TEST", 
+                                     Id = Guid.NewGuid(), 
+                                     Name = "TEST", 
+                                     ReoccurringPeriod = TimePeriod.Daily, 
+                                     StartDate = DateTime.Now, 
+                                     UserId = Guid.NewGuid()
+                                 };
 
             validBillProxy = new BillProxy
-            {
-                Amount = 10,
-                Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" },
-                CategoryId = Guid.NewGuid(),
-                Id = Guid.NewGuid(),
-                Name = "TEST",
-                ReoccurringPeriod = 1,
-                StartDate = DateTime.Now,
-                UserId = Guid.NewGuid()
-            };
+                                 {
+                                     Amount = 10, 
+                                     Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" }, 
+                                     CategoryId = Guid.NewGuid(), 
+                                     Id = Guid.NewGuid(), 
+                                     Name = "TEST", 
+                                     ReoccurringPeriod = 1, 
+                                     StartDate = DateTime.Now, 
+                                     UserId = Guid.NewGuid()
+                                 };
 
             validManageBillsViewModel = new ManageBillsViewModel();
 
@@ -71,16 +70,19 @@
             validGetBillResponse = new GetBillResponse { Bill = validBillProxy };
             validGetBillsForUserRequest = new GetBillsForUserRequest { UserId = validBillProxy.Id };
             validGetBillsForUserResponse = new GetBillsForUserResponse
-            {
-                Bills = new List<BillProxy> { validBillProxy }
-            };
+                                               {
+                                                   Bills = new List<BillProxy> { validBillProxy }
+                                               };
             validEditBillRequest = new EditBillRequest { Bill = validBillProxy };
             validEditBillResponse = new EditBillResponse { Bill = validBillProxy };
             validGetBillsForUserForMonthRequest = new GetBillsForUserForMonthRequest { UserId = validBillProxy.Id };
             validGetBillsForUserForMonthResponse = new GetBillsForUserForMonthResponse
-            {
-                Data = new List<KeyValuePair<DateTime, double>>()
-            };
+                                                       {
+                                                           Data =
+                                                               new List
+                                                               <
+                                                               KeyValuePair<DateTime, double>>()
+                                                       };
 
             invalidBillViewModel = new BillViewModel { Id = Guid.NewGuid() };
             invalidAddBillRequest = new AddBillRequest();
@@ -94,7 +96,14 @@
             invalidEditBillRequest = new EditBillRequest();
             invalidEditBillResponse = new EditBillResponse { Errors = { new ResponseErrorWrapper() } };
             invalidGetBillsForUserForMonthRequest = new GetBillsForUserForMonthRequest();
-            invalidGetBillsForUserForMonthResponse = new GetBillsForUserForMonthResponse { Errors = { new ResponseErrorWrapper() } };
+            invalidGetBillsForUserForMonthResponse = new GetBillsForUserForMonthResponse
+                                                         {
+                                                             Errors =
+                                                                 {
+                                                                     new ResponseErrorWrapper
+                                                                         ()
+                                                                 }
+                                                         };
 
             assembler = Substitute.For<IBillAssembler>();
             dataAccess = Substitute.For<IBillDataAccess>();
@@ -117,7 +126,8 @@
             assembler.NewEditBillRequest(validViewModel, validUsername).Returns(validEditBillRequest);
             assembler.NewEditBillRequest(invalidBillViewModel, validUsername).Returns(invalidEditBillRequest);
             assembler.NewEditBillRequest(null, validUsername).Throws(new Exception("TEST EXCEPTION"));
-            assembler.NewGetBillsForUserForMonthRequest(1,validViewModel.Id, validUsername).Returns(validGetBillsForUserForMonthRequest);
+            assembler.NewGetBillsForUserForMonthRequest(1, validViewModel.Id, validUsername)
+                .Returns(validGetBillsForUserForMonthRequest);
             assembler.NewGetBillsForUserForMonthRequest(1, invalidBillViewModel.Id, validUsername)
                 .Returns(invalidGetBillsForUserForMonthRequest);
             assembler.NewManageBillsViewModel(validGetBillsForUserResponse).Returns(validManageBillsViewModel);
@@ -132,8 +142,10 @@
             dataAccess.GetBillsForUser(invalidGetBillsForUserRequest).Returns(invalidGetBillsForUserResponse);
             dataAccess.EditBill(validEditBillRequest).Returns(validEditBillResponse);
             dataAccess.EditBill(invalidEditBillRequest).Returns(invalidEditBillResponse);
-            dataAccess.GetBillsForUserForMonth(validGetBillsForUserForMonthRequest).Returns(validGetBillsForUserForMonthResponse);
-            dataAccess.GetBillsForUserForMonth(invalidGetBillsForUserForMonthRequest).Returns(invalidGetBillsForUserForMonthResponse);
+            dataAccess.GetBillsForUserForMonth(validGetBillsForUserForMonthRequest)
+                .Returns(validGetBillsForUserForMonthResponse);
+            dataAccess.GetBillsForUserForMonth(invalidGetBillsForUserForMonthRequest)
+                .Returns(invalidGetBillsForUserForMonthResponse);
 
             orchestrator = new BillOrchestrator(assembler, dataAccess);
         }

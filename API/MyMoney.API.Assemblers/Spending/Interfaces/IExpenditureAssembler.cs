@@ -14,7 +14,7 @@
     #endregion
 
     /// <summary>
-    /// Interface for the <see cref="ExpenditureAssembler"/> class.
+    ///     Interface for the <see cref="ExpenditureAssembler" /> class.
     /// </summary>
     public interface IExpenditureAssembler
     {
@@ -66,7 +66,7 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         GetExpendituresForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
-            IEnumerable<ExpenditureDataModel> data,
+            IEnumerable<ExpenditureDataModel> data, 
             Guid requestReference);
 
         /// <summary>

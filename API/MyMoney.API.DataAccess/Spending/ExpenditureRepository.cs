@@ -188,11 +188,11 @@
         }
 
         /// <summary>
-        /// Gets the expenditures for the given user from this month.
+        ///     Gets the expenditures for the given user from this month.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>
-        /// The list of expenditures.
+        ///     The list of expenditures.
         /// </returns>
         public async Task<IEnumerable<ExpenditureDataModel>> GetExpendituresForUserForMonth(Guid userId)
         {

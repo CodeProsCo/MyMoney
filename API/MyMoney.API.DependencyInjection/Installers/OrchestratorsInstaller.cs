@@ -76,7 +76,7 @@
                     .ImplementedBy<ExpenditureOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IExpenditureRepository, ExpenditureRepository>(),
+                        Dependency.OnComponent<IExpenditureRepository, ExpenditureRepository>(), 
                         Dependency.OnComponent<IExpenditureAssembler, ExpenditureAssembler>()));
         }
 

@@ -2,7 +2,7 @@
 /// <reference path="~/Scripts/Semantic/calendar.js"/>
 /// <reference path="~/Scripts/Chartist/chartist.js" />
 /// <reference path="~/Scripts/Moment/moment.js" />
-$(function () {
+$(function() {
     function loadCalendarData(selector) {
         var calendar = $(selector);
         var url = calendar.data("url");
@@ -41,42 +41,46 @@ $(function () {
         //});
 
         var chart = new Chartist.Line("#expenditure-chart",
-	    {
-	        series: [
-	        {
-	            data: [
-	            {
-	                x: 1461862387541, y: 23.55
+        {
+            series: [
+                {
+                    data: [
+                        {
+                            x: 1461862387541,
+                            y: 23.55
 
-	            },
-	            	            {
-	            	                x: 9961862447991, y: 25.55
+                        },
+                        {
+                            x: 9961862447991,
+                            y: 25.55
 
-	            	            }]
-	        }],
-	        fullWidth: true,
-	        chartPadding: {
-	            right: 160
-	        } 
+                        }
+                    ]
+                }
+            ],
+            fullWidth: true,
+            chartPadding: {
+                right: 160
+            }
 
-	    },
-	    {
-	        axisX: {
-	            type: Chartist.FixedScaleAxis,
-	            divisor: 10,
-	            labelInterpolationFnc: function (value) {
-	                return moment(value).format("d-MM");
-	            }
-	        },
-	        lineSmooth: Chartist.Interpolation.cardinal({
-	            fillHoles: true
-	        }),
-	        low: 0,
-	        height: 200
-	    });
+        },
+        {
+            axisX: {
+                type: Chartist.FixedScaleAxis,
+                divisor: 10,
+                labelInterpolationFnc: function(value) {
+                    return moment(value).format("d-MM");
+                }
+            },
+            lineSmooth: Chartist.Interpolation.cardinal({
+                fillHoles: true
+            }),
+            low: 0,
+            height: 200
+        });
     }
 
-    $(function () {
+    $(function() {
         loadCalendarData("#expenditure-calendar");
     });
 });
