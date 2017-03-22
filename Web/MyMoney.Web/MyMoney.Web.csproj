@@ -276,6 +276,10 @@
     <Content Include="Areas\Spending\Views\Expenditure\Tables\_ExpenditureTable.cshtml" />
     <Content Include="Areas\Spending\Scripts\Expenditure\MyMoney.TrackExpenditure.js" />
     <Content Include="Areas\Authentication\Views\Account\Manage.cshtml" />
+    <Content Include="Areas\Authentication\Views\Account\Editors\_PersonalDetailsEditor.cshtml" />
+    <Content Include="Areas\Authentication\Views\Account\Editors\_AccountDetailsEditor.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\NewPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

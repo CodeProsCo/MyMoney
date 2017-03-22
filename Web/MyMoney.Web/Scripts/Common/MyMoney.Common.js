@@ -5,7 +5,7 @@
 /// <reference path="~/Scripts/jQuery/jquery.validate.unobtrusive.js" />
 /// <reference path="~/Scripts/Intro/intro.js" />
 $("#menu-toggle")
-    .click(function(e) {
+    .click(function (e) {
         e.stopPropagation();
 
         $("#sidebar").sidebar("toggle");
@@ -13,7 +13,7 @@ $("#menu-toggle")
 
 
 $("[data-redirect]")
-    .click(function(e) {
+    .click(function (e) {
         e.stopPropagation();
 
         var url = $(this).data("redirect");
@@ -43,7 +43,7 @@ $("[data-input-mask=currency]").inputmask("currency", { rightAlign: false, prefi
 $("table[data-sort=true]").tablesorter();
 $("table[data-sort=true] th")
     .on("click",
-        function(e) {
+        function (e) {
             e.stopPropagation();
 
             $(this).siblings().removeClass("highlighted");
@@ -58,7 +58,7 @@ introJs().hideHints();
 var hintsEnabled = false;
 
 $("#hint-button")
-    .click(function(e) {
+    .click(function (e) {
         e.stopPropagation();
 
         if (!hintsEnabled) {
@@ -70,4 +70,39 @@ $("#hint-button")
             $("#hint-button").html($("#hint-button").html().replace("Hide", "Show"));
             hintsEnabled = false;
         }
+    });
+
+
+$("#password-bar")
+    .progress({ total: 4 });
+
+$("[data-newpassword=true]")
+    .on("input", function () {
+        var total = 0;
+        var upperCase = new RegExp("[A-Z]");
+        var lowerCase = new RegExp("[a-z]");
+        var numbers = new RegExp("[0-9]");
+        var specials = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+
+        var input = $(this).find("input");
+
+        if ($(input).val().match(upperCase)) {
+            total++;
+        }
+
+        if ($(input).val().match(lowerCase)) {
+            total++;
+        }
+
+        if ($(input).val().match(numbers)) {
+            total++;
+        }
+
+        if ($(input).val().match(specials)) {
+            total++;
+        }
+
+        $("#password-bar")
+            .progress("update progress", total);
+
     });

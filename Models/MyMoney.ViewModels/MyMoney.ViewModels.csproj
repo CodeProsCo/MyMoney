@@ -61,6 +61,9 @@
     <Compile Include="Attributes\OverEighteenOnlyAttribute.cs" />
     <Compile Include="Attributes\ComplexPasswordAttribute.cs" />
     <Compile Include="Attributes\RequiredTrueAttribute.cs" />
+    <Compile Include="Authentication\Account\AccountDetailsViewModel.cs" />
+    <Compile Include="Authentication\Account\ManageAccountViewModel.cs" />
+    <Compile Include="Authentication\Account\PersonalDetailsViewModel.cs" />
     <Compile Include="Authentication\User\LoginViewModel.cs" />
     <Compile Include="Authentication\User\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

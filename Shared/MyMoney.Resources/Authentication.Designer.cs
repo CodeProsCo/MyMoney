@@ -79,6 +79,69 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm New Password.
+        /// </summary>
+        public static string Label_ConfirmNewPassword {
+            get {
+                return ResourceManager.GetString("Label_ConfirmNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Of Birth.
+        /// </summary>
+        public static string Label_DateOfBirth {
+            get {
+                return ResourceManager.GetString("Label_DateOfBirth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address.
+        /// </summary>
+        public static string Label_EmailAddress {
+            get {
+                return ResourceManager.GetString("Label_EmailAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        public static string Label_FirstName {
+            get {
+                return ResourceManager.GetString("Label_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        public static string Label_LastName {
+            get {
+                return ResourceManager.GetString("Label_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Password.
+        /// </summary>
+        public static string Label_NewPassword {
+            get {
+                return ResourceManager.GetString("Label_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Password.
+        /// </summary>
+        public static string Label_OldPassword {
+            get {
+                return ResourceManager.GetString("Label_OldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already have an account? Log in .
         /// </summary>
         public static string Message_ExistingUser {

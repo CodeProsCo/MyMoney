@@ -14,6 +14,7 @@
     /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [RouteArea("Common", AreaPrefix = "common")]
     [RoutePrefix("error")]
+    [AllowAnonymous]
     public class ErrorController : BaseController
     {
         #region  Public Methods

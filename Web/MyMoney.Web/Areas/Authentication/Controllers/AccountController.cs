@@ -4,6 +4,8 @@
 
     using System.Web.Mvc;
 
+    using ViewModels.Authentication.Account;
+
     using Web.Controllers;
 
     #endregion
@@ -17,7 +19,16 @@
         [Route("manage")]
         public ActionResult Manage()
         {
-            return View();
+            var model = new ManageAccountViewModel
+            {
+                AccountDetails = new AccountDetailsViewModel
+                {
+                    EmailAddress = UserEmail
+                },
+                PersonalDetails = new PersonalDetailsViewModel()
+            };
+
+            return View(model);
         }
     }
 }

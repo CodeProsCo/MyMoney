@@ -1,0 +1,14 @@
+﻿@model MyMoney.ViewModels.Authentication.Account.AccountDetailsViewModel
+
+<div class="ui form">
+    <div class="two fields">
+        @Html.EditorFor(x => x.EmailAddress)
+    </div>
+    <h5 class="ui block header">
+        Change Password
+    </h5>
+    <div class="two fields">@Html.EditorFor(x => x.OldPassword)</div>
+    <div class="two fields">@Html.EditorFor(x => x.NewPassword)</div>
+    <div class="two fields">@Html.EditorFor(x => x.ConfirmNewPassword)</div>       
+       
+</div>

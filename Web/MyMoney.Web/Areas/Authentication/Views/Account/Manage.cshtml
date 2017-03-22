@@ -1,1 +1,25 @@
-﻿
+﻿@model MyMoney.ViewModels.Authentication.Account.ManageAccountViewModel
+@{
+    ViewBag.Title = "Account";
+}
+
+<div class="ui grid">
+    <div class="eight wide column">
+        <div class="ui segment">
+            <h4 class="ui block header">
+                <i class="spy icon"></i>
+                Account Details
+            </h4>
+            @{Html.RenderPartial("Editors/_AccountDetailsEditor", Model.AccountDetails);}
+        </div>
+    </div>
+    <div class="eight wide column">
+        <div class="ui segment">
+            <h4 class="ui block header">
+                <i class="user icon"></i>
+                Personal Details
+            </h4>
+            @{ Html.RenderPartial("Editors/_PersonalDetailsEditor", Model.PersonalDetails); }
+        </div>
+    </div>
+</div>
