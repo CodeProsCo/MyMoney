@@ -1,6 +1,8 @@
-﻿@model MyMoney.ViewModels.Authentication.Account.ManageAccountViewModel
+﻿@using Cassette.Scripts
+@model MyMoney.ViewModels.Authentication.Account.ManageAccountViewModel
 @{
     ViewBag.Title = "Account";
+    Bundles.Reference<ScriptBundle>("~/Areas/Authentication/Scripts/MyMoney.ManageAccount.js");
 }
 
 <div class="ui grid">
@@ -10,7 +12,14 @@
                 <i class="spy icon"></i>
                 Account Details
             </h4>
-            @{Html.RenderPartial("Editors/_AccountDetailsEditor", Model.AccountDetails);}
+            @using (Html.BeginForm("EditAccountDetails", "Account", FormMethod.Post, new { id = "edit-account-form" }))
+            {
+                Html.RenderPartial("Editors/_AccountDetailsEditor", Model.AccountDetails);
+                <div class="ui positive button" id="save-account">
+                    <i class="save icon"></i>
+                    Save
+                </div>
+            }
         </div>
     </div>
     <div class="eight wide column">
@@ -19,7 +28,15 @@
                 <i class="user icon"></i>
                 Personal Details
             </h4>
-            @{ Html.RenderPartial("Editors/_PersonalDetailsEditor", Model.PersonalDetails); }
+            @using (Html.BeginForm("EditPersonalDetails", "Account", FormMethod.Post, new { id = "edit-personal-form" }))
+            {
+                Html.RenderPartial("Editors/_PersonalDetailsEditor", Model.PersonalDetails);
+                <div class="ui positive button" id="save-personal">
+                    <i class="save icon"></i>
+                    Save
+                </div>
+            }
+
         </div>
     </div>
 </div>

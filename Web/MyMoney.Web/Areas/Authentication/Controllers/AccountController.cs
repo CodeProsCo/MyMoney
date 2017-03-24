@@ -2,7 +2,10 @@
 {
     #region Usings
 
+    using System.Threading.Tasks;
     using System.Web.Mvc;
+
+    using Attributes;
 
     using ViewModels.Authentication.Account;
 
@@ -29,6 +32,22 @@
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        [Route("edit/personal")]
+        public async Task<ActionResult> EditPersonalDetails(PersonalDetailsViewModel model)
+        {
+            return null;
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        [Route("edit/")]
+        public async Task<ActionResult> EditAccountDetails(AccountDetailsViewModel model)
+        {
+            return null;
         }
     }
 }

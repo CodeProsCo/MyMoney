@@ -102,6 +102,17 @@ $("[data-newpassword=true]")
             total++;
         }
 
+        switch (total) {
+            case 1:
+            case 2:
+            case 0:
+                $("#strength-indicator").text("weak").css("color", "red");
+                break;
+            case 4:
+                $("#strength-indicator").text("strong").css("color", "green");
+                break;
+        }
+
         $("#password-bar")
             .progress("update progress", total);
 

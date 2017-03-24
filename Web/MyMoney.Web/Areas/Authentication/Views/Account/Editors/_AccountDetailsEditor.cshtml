@@ -7,8 +7,20 @@
     <h5 class="ui block header">
         Change Password
     </h5>
-    <div class="two fields">@Html.EditorFor(x => x.OldPassword)</div>
-    <div class="two fields">@Html.EditorFor(x => x.NewPassword)</div>
-    <div class="two fields">@Html.EditorFor(x => x.ConfirmNewPassword)</div>       
-       
+    <div class="ui grid">
+        <div class="eight wide column">
+            @Html.EditorFor(x => x.OldPassword)
+            @Html.EditorFor(x => x.NewPassword)
+            @Html.EditorFor(x => x.ConfirmNewPassword)
+        </div>
+        <div class="eight wide column">
+            <div class="ui styled stacked segment password-info">
+                Your password must contain eight characters, at least one capital letter, at least one number and at least one special character:
+                <br/><br/> (~ ` ! # $ % ^ & * + = - [ ] ' ; , / { } | " : < > ?)
+                <br/><br/>
+                This password is <span id="strength-indicator">weak</span>
+            </div>
+        </div>
+    </div>
+    <br/>   
 </div>

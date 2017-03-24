@@ -250,3 +250,11 @@ td.link.negative:not(.disabled):hover {
     width: 1px;
     background: rgba(34, 36, 38, 0.1);
 }
+
+#strength-indicator {
+    color: red;
+}
+
+.password-info {
+    padding: 20px !important;
+}
