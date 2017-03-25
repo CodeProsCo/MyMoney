@@ -49,7 +49,7 @@
                     .ImplementedBy<UserOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IUserAssembler, UserAssembler>(), 
+                        Dependency.OnComponent<IUserAssembler, UserAssembler>(),
                         Dependency.OnComponent<IUserDataAccess, UserDataAccess>()));
 
             container.Register(
@@ -57,15 +57,23 @@
                     .ImplementedBy<BillOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IBillAssembler, BillAssembler>(), 
+                        Dependency.OnComponent<IBillAssembler, BillAssembler>(),
                         Dependency.OnComponent<IBillDataAccess, BillDataAccess>()));
+
+            container.Register(
+                Component.For<IExpenditureOrchestrator>()
+                    .ImplementedBy<ExpenditureOrchestrator>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IExpenditureAssembler, ExpenditureAssembler>(),
+                        Dependency.OnComponent<IExpenditureDataAccess, ExpenditureDataAccess>()));
 
             container.Register(
                 Component.For<IChartOrchestrator>()
                     .ImplementedBy<ChartOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IChartAssembler, ChartAssembler>(), 
+                        Dependency.OnComponent<IChartAssembler, ChartAssembler>(),
                         Dependency.OnComponent<IChartDataAccess, ChartDataAccess>()));
         }
 

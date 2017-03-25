@@ -62,7 +62,9 @@
     <Compile Include="Chart\ChartAssembler.cs" />
     <Compile Include="Chart\Interfaces\IChartAssembler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spending\ExpenditureAssembler.cs" />
     <Compile Include="Spending\BillAssembler.cs" />
+    <Compile Include="Spending\Interfaces\IExpenditureAssembler.cs" />
     <Compile Include="Spending\Interfaces\IBillAssembler.cs" />
   </ItemGroup>
   <ItemGroup>

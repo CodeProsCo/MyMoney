@@ -135,4 +135,7 @@
   <data name="Title_Expenditure" xml:space="preserve">
     <value>Expenditure</value>
   </data>
+  <data name="Warning_NoExpenditure" xml:space="preserve">
+    <value>You have not recorded any expenditures.</value>
+  </data>
 </root>

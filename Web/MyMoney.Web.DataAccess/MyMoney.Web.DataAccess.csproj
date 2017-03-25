@@ -101,7 +101,9 @@
     <Compile Include="Chart\ChartDataAccess.cs" />
     <Compile Include="Chart\Interfaces\IChartDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spending\ExpenditureDataAccess.cs" />
     <Compile Include="Spending\BillDataAccess.cs" />
+    <Compile Include="Spending\Interfaces\IExpenditureDataAccess.cs" />
     <Compile Include="Spending\Interfaces\IBillDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>

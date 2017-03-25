@@ -38,6 +38,9 @@
 
             container.Register(
                 Component.For<IChartDataAccess>().ImplementedBy<ChartDataAccess>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IExpenditureDataAccess>().ImplementedBy<ExpenditureDataAccess>().LifestylePerWebRequest());
         }
 
         #endregion

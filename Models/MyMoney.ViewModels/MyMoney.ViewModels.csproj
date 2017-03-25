@@ -73,6 +73,7 @@
     <Compile Include="Spending\Bills\Enum\BillCategory.cs" />
     <Compile Include="Spending\Bills\Enum\TimePeriod.cs" />
     <Compile Include="Spending\Bills\ManageBillsViewModel.cs" />
+    <Compile Include="Spending\Expenditure\ExpenditureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

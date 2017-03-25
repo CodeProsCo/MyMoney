@@ -16,7 +16,7 @@
     ///     The <see cref="ExpenditureController" /> class handles HTTP requests in the "spending/expenditure" route.
     /// </summary>
     /// <seealso cref="MyMoney.API.Controllers.BaseController" />
-    [RoutePrefix("spending/expenditure")]
+    [RoutePrefix("spending/expenditures")]
     public class ExpenditureController : BaseController
     {
         #region Fields

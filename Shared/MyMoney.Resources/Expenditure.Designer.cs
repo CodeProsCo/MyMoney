@@ -113,5 +113,14 @@ namespace MyMoney.Resources {
                 return ResourceManager.GetString("Title_Expenditure", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not recorded any expenditures..
+        /// </summary>
+        public static string Warning_NoExpenditure {
+            get {
+                return ResourceManager.GetString("Warning_NoExpenditure", resourceCulture);
+            }
+        }
     }
 }
