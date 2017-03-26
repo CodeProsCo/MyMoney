@@ -75,7 +75,7 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        Task<OrchestratorResponseWrapper<IList<ExpenditureViewModel>>> GetExpenditureForUser(Guid userId, string username);
+        Task<OrchestratorResponseWrapper<TrackExpenditureViewModel>> GetExpenditureForUser(Guid userId, string username);
 
         /// <summary>
         ///     Builds and sends a request to obtain expenditure for a specific user for a given month from the database.

@@ -87,6 +87,7 @@
 
             dataModel.Category = category;
             dataModel.CategoryId = category.Id;
+            dataModel.CreationTime = DateTime.Now;
 
             context.Expenditures.Add(dataModel);
 

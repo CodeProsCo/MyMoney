@@ -171,6 +171,7 @@
     <Content Include="Areas\Authentication\Content\user.css" />
     <Content Include="Areas\Authentication\Scripts\MyMoney.ManageAccount.js" />
     <Content Include="Areas\Common\Content\errors.css" />
+    <Content Include="Areas\Spending\Scripts\Expenditure\MyMoney.Expenditure.js" />
     <Content Include="Content\Chartist\chartist.css" />
     <Content Include="Content\Intro\introjs-modern.css" />
     <Content Include="Content\Intro\introjs.css" />
@@ -281,6 +282,9 @@
     <Content Include="Areas\Authentication\Views\Account\Editors\_AccountDetailsEditor.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\NewPassword.cshtml" />
+    <Content Include="Areas\Spending\Views\Expenditure\Modals\_AddExpenditureModal.cshtml" />
+    <Content Include="Areas\Spending\Views\Expenditure\Editors\_ExpenditureEditor.cshtml" />
+    <Content Include="Areas\Spending\Views\Expenditure\Modals\_EditExpenditureModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

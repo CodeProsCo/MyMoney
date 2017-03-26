@@ -130,7 +130,7 @@
         /// <returns>
         ///     The view model.
         /// </returns>
-        IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserResponse apiResponse);
+        TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpendituresForUserResponse apiResponse);
 
         #endregion
 

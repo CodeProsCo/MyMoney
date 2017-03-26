@@ -1,4 +1,4 @@
-﻿namespace MyMoney.ViewModels.Spending.Bills.Enum
+﻿namespace MyMoney.ViewModels.Enum
 {
     #region Usings
 
@@ -8,10 +8,10 @@
     #endregion
 
     /// <summary>
-    ///     The <see cref="BillCategory" /> enumeration determines the category of a bill.
+    ///     The <see cref="Category" /> enumeration determines the category of a bill.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum BillCategory
+    public enum Category
     {
         /// <summary>
         ///     The bill is in the "Utilities" category.

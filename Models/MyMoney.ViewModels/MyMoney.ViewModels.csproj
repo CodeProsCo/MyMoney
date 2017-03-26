@@ -70,10 +70,13 @@
     <Compile Include="Spending\Bills\AddBillViewModel.cs" />
     <Compile Include="Spending\Bills\BillViewModel.cs" />
     <Compile Include="Spending\Bills\EditBillViewModel.cs" />
-    <Compile Include="Spending\Bills\Enum\BillCategory.cs" />
-    <Compile Include="Spending\Bills\Enum\TimePeriod.cs" />
+    <Compile Include="Enum\Category.cs" />
+    <Compile Include="Enum\TimePeriod.cs" />
     <Compile Include="Spending\Bills\ManageBillsViewModel.cs" />
+    <Compile Include="Spending\Expenditure\EditExpenditureViewModel.cs" />
+    <Compile Include="Spending\Expenditure\AddExpenditureViewModel.cs" />
     <Compile Include="Spending\Expenditure\ExpenditureViewModel.cs" />
+    <Compile Include="Spending\Expenditure\TrackExpenditureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

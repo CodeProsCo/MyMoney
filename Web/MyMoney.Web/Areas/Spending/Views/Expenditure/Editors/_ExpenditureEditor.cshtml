@@ -1,0 +1,15 @@
+﻿@model MyMoney.ViewModels.Spending.Expenditure.ExpenditureViewModel
+@{
+    var categoryOptions = (SelectList)ViewData["CategoryOptions"];
+}
+<div class="ui form">
+    @Html.HiddenFor(x => x.Id)
+    <div class="two fields">
+        @Html.EditorFor(x => x.Description)
+        @Html.EditorFor(x => x.DateOccurred)
+    </div>
+    <div class="two fields">
+        @Html.EditorFor(x => x.Amount)
+        @Html.EditorFor(x => x.Category, new { options = categoryOptions })
+    </div>
+</div>

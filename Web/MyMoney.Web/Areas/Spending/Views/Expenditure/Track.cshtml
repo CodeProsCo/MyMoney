@@ -1,4 +1,4 @@
-﻿@model IList<MyMoney.ViewModels.Spending.Expenditure.ExpenditureViewModel>
+﻿@model MyMoney.ViewModels.Spending.Expenditure.TrackExpenditureViewModel
 @using Cassette.Scripts
 @using Cassette.Stylesheets
 @using Cassette.Views
@@ -30,8 +30,14 @@
                 @Expenditure.Heading_LatestExpenditure
             </h4>
             @{
-                Html.RenderPartial("Tables/_ExpenditureTable", Model);
+                Html.RenderPartial("Tables/_ExpenditureTable", Model.Expenditures);
             }
         </div>
     </div>
 </div>
+
+@section Modals
+{
+    @{Html.RenderPartial("Modals/_AddExpenditureModal", Model.AddExpenditure);}
+    @{Html.RenderPartial("Modals/_EditExpenditureModal", Model.EditExpenditure);}
+}

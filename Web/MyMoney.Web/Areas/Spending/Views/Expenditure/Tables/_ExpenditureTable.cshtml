@@ -1,6 +1,6 @@
 ﻿@using MyMoney.Resources
 @model IList<MyMoney.ViewModels.Spending.Expenditure.ExpenditureViewModel>
-<table class="ui celled selectable table" id="bill-table" data-sort="true">
+<table class="ui celled selectable table" id="expenditure-table" data-sort="true">
     <thead>
         <tr data-hint="@Expenditure.Hint_ExpenditureTable">
             <th>@Common.Header_Date</th>
@@ -17,7 +17,7 @@
                 <td>@expenditure.DateOccurred.ToShortDateString()</td>
                 <td>@expenditure.Description</td>
                 <td>@expenditure.Category</td>
-                <td>@expenditure.Amount.ToString("C")</td>
+                <td class="right aligned">@expenditure.Amount.ToString("C")</td>
             </tr>
         }
 

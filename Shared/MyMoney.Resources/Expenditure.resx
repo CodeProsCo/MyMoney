@@ -132,6 +132,12 @@
   <data name="Hint_ExpenditureTable" xml:space="preserve">
     <value>Here you can see a history of your expenditures.</value>
   </data>
+  <data name="Title_AddExpenditure" xml:space="preserve">
+    <value>Track your expenditure</value>
+  </data>
+  <data name="Title_EditExpenditure" xml:space="preserve">
+    <value>Edit an expenditure</value>
+  </data>
   <data name="Title_Expenditure" xml:space="preserve">
     <value>Expenditure</value>
   </data>

@@ -231,11 +231,9 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<OrchestratorResponseWrapper<IList<ExpenditureViewModel>>> GetExpenditureForUser(
-            Guid userId, 
-            string username)
+        public async Task<OrchestratorResponseWrapper<TrackExpenditureViewModel>> GetExpenditureForUser(Guid userId, string username)
         {
-            var response = new OrchestratorResponseWrapper<IList<ExpenditureViewModel>>();
+            var response = new OrchestratorResponseWrapper<TrackExpenditureViewModel>();
 
             try
             {
@@ -251,7 +249,7 @@
 
                 response.AddWarnings(apiResponse.Warnings);
 
-                response.Model = assembler.NewExpenditureViewModelList(apiResponse);
+                response.Model = assembler.NewTrackExpenditureViewModel(apiResponse);
             }
             catch (Exception ex)
             {

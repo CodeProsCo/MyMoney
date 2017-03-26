@@ -1,0 +1,27 @@
+﻿@using MyMoney.Resources
+@model MyMoney.ViewModels.Spending.Expenditure.EditExpenditureViewModel
+<div class="ui modal" id="edit-expenditure-modal">
+    <div class="header">
+        <i class="edit icon"></i>
+        @Expenditure.Title_EditExpenditure
+    </div>
+    <div class="content">
+        @using (Html.BeginForm("Edit", "Expenditure", FormMethod.Post, new { id = "edit-expenditure-form" }))
+        {
+            <div class="description">
+                @{ Html.RenderPartial("Editors/_ExpenditureEditor", Model.Expenditure, new ViewDataDictionary { { "CategoryOptions", Model.CategoryOptions } }); }
+            </div>
+                    }
+    </div>
+    <div class="actions">
+        <div class="ui black deny right labeled icon button">
+            @Common.Button_Cancel
+            <i class="cancel icon"></i>
+        </div>
+        <div class="ui positive right labeled icon button" id="edit-expenditure">
+            @Common.Button_Save
+            <i class="save icon"></i>
+        </div>
+    </div>
+</div>
+

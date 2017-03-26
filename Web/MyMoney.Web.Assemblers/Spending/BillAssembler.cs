@@ -16,6 +16,7 @@
     using Proxies.Common;
     using Proxies.Spending;
 
+    using ViewModels.Enum;
     using ViewModels.Spending.Bills;
     using ViewModels.Spending.Bills.Enum;
 
@@ -250,7 +251,7 @@
             }
 
             var timePeriodOptions = new SelectList(Enum.GetNames(typeof(TimePeriod)));
-            var categoryOptions = new SelectList(Enum.GetNames(typeof(BillCategory)));
+            var categoryOptions = new SelectList(Enum.GetNames(typeof(Category)));
 
             return new ManageBillsViewModel
                        {

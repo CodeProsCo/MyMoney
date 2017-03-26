@@ -21,7 +21,7 @@ $(function() {
 
             var table = $("#bill-table");
 
-            var row = bill.createTableRow(viewBillClick);
+            var row = bill.createTableRow(showEditModal);
 
             table.find("tbody").append(row);
             row.addClass("positive");
@@ -55,7 +55,7 @@ $(function() {
 
                 var table = $("#bill-table");
 
-                var row = bill.createTableRow(viewBillClick);
+                var row = bill.createTableRow(showEditModal);
 
                 table.find(".selected").replaceWith(row);
                 row.addClass("warning");
@@ -141,7 +141,7 @@ $(function() {
         });
     }
 
-    function viewBillClick(event) {
+    function showEditModal(event) {
         event.stopPropagation();
 
         var url = $(this).data("get");
@@ -322,7 +322,7 @@ $(function() {
         $("#add-bill").click(addBillClick);
         $("#edit-bill").click(editBillClick);
         $("#delete-bill").click(deleteBillClick);
-        $("tr[data-get]").click(viewBillClick);
+        $("tr[data-get]").click(showEditModal);
 
         loadAjaxComponents();
     });

@@ -17,6 +17,7 @@
     using Proxies.Common;
     using Proxies.Spending;
 
+    using ViewModels.Enum;
     using ViewModels.Spending.Bills.Enum;
     using ViewModels.Spending.Expenditure;
 
@@ -184,8 +185,8 @@
         ///     The request object.
         /// </returns>
         public GetExpendituresForUserForMonthRequest NewGetExpenditureForUserForMonthRequest(
-            int monthNumber, 
-            Guid userId, 
+            int monthNumber,
+            Guid userId,
             string userEmail)
         {
             if (monthNumber < 1 || monthNumber > 12)
@@ -204,11 +205,11 @@
             }
 
             return new GetExpendituresForUserForMonthRequest
-                       {
-                           UserId = userId, 
-                           MonthNumber = monthNumber, 
-                           Username = userEmail
-                       };
+            {
+                UserId = userId,
+                MonthNumber = monthNumber,
+                Username = userEmail
+            };
         }
 
         /// <summary>
@@ -243,14 +244,56 @@
         /// <returns>
         ///     The view model.
         /// </returns>
-        public IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserResponse apiResponse)
+        public TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpendituresForUserResponse apiResponse)
         {
             if (apiResponse == null)
             {
                 throw new ArgumentNullException(nameof(apiResponse));
             }
 
-            return apiResponse.Expenditures.Select(ExpenditureProxyToViewModel).ToList();
+            return new TrackExpenditureViewModel
+            {
+                AddExpenditure =
+                               new AddExpenditureViewModel
+                               {
+                                   CategoryOptions =
+                                           new SelectList(
+                                           Enum.GetValues(
+                                               typeof(Category))),
+                                   Expenditure =
+                                           new ExpenditureViewModel
+                                           {
+                                               DateOccurred = DateTime.Now
+                                           },
+                                   TimePeriodOptions =
+                                           new SelectList(
+                                           Enum.GetValues(
+                                               typeof(TimePeriod)))
+                               },
+                Expenditures =
+                               apiResponse.Expenditures.Select(ExpenditureProxyToViewModel)
+                               .ToList(),
+                EditExpenditure =
+                               new EditExpenditureViewModel
+                               {
+                                   CategoryOptions =
+                                           new SelectList(
+                                           Enum.GetValues(
+                                               typeof(Category))),
+                                   Expenditure =
+                                           new ExpenditureViewModel
+                                           {
+                                               DateOccurred
+                                                       =
+                                                       DateTime
+                                                       .Now
+                                           },
+                                   TimePeriodOptions =
+                                           new SelectList(
+                                           Enum.GetValues(
+                                               typeof(TimePeriod)))
+                               }
+            };
         }
 
         public IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserForMonthResponse apiResponse)
@@ -275,14 +318,14 @@
         private static ExpenditureViewModel ExpenditureProxyToViewModel(ExpenditureProxy proxy)
         {
             return new ExpenditureViewModel
-                       {
-                           Amount = proxy.Amount, 
-                           Category = proxy.Category.Name, 
-                           Description = proxy.Description, 
-                           DateOccurred = proxy.DateOccurred, 
-                           Id = proxy.Id, 
-                           UserId = proxy.UserId
-                       };
+            {
+                Amount = proxy.Amount,
+                Category = proxy.Category.Name,
+                Description = proxy.Description,
+                DateOccurred = proxy.DateOccurred,
+                Id = proxy.Id,
+                UserId = proxy.UserId
+            };
         }
 
         /// <summary>
@@ -293,14 +336,14 @@
         private static ExpenditureProxy ExpenditureViewModelToProxy(ExpenditureViewModel model)
         {
             return new ExpenditureProxy
-                       {
-                           Amount = model.Amount, 
-                           Category = new CategoryProxy { Name = model.Category }, 
-                           Description = model.Description, 
-                           DateOccurred = model.DateOccurred,
-                           UserId = model.UserId, 
-                           Id = model.Id
-                       };
+            {
+                Amount = model.Amount,
+                Category = new CategoryProxy { Name = model.Category },
+                Description = model.Description,
+                DateOccurred = model.DateOccurred,
+                UserId = model.UserId,
+                Id = model.Id
+            };
         }
 
         #endregion
