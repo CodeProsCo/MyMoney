@@ -232,7 +232,7 @@ $(function() {
 
         $("#edit-bill-modal").modal("hide");
 
-        var btnText = myMoney.strings.get("Bills", "Button_DeleteBill");
+        var btnText = myMoney.strings.get("Common", "Button_Delete");
 
         var btn = $("#delete-bill");
         var icon = $(btn).find("i");

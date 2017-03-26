@@ -14,13 +14,19 @@
                     }
     </div>
     <div class="actions">
-        <div class="ui black deny right labeled icon button">
+        <div class="ui red right labeled left floated icon button"
+             id="delete-expenditure"
+             data-url="@Url.Action("Delete", "Expenditure", new { expenditureId = Model.Expenditure.Id })">
+            @Common.Button_Delete
+            <i class="trash icon"></i>
+        </div>
+        <div class="ui black deny right labeled icon button" id="cancel">
             @Common.Button_Cancel
             <i class="cancel icon"></i>
         </div>
-        <div class="ui positive right labeled icon button" id="edit-expenditure">
-            @Common.Button_Save
-            <i class="save icon"></i>
+        <div class="ui yellow right labeled icon button" id="edit-expenditure">
+            @Common.Button_Edit
+            <i class="edit icon"></i>
         </div>
     </div>
 </div>

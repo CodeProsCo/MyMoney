@@ -6,6 +6,7 @@
 /// <reference path="~/Scripts/Semantic/semantic.js" />
 /// <reference path="~/Scripts/Common/MyMoney.Forms.js" />
 /// <reference path="~/Areas/Spending/Scripts/Expenditure/MyMoney.Expenditure.js" />
+/// <reference path="~/Scripts/Extensions/MyMoney.StringExtensions.js" />
 $(function() {
     function loadCalendarData(selector) {
         var calendar = $(selector);
@@ -93,6 +94,40 @@ $(function() {
     function showEditModal(event) {
         event.stopPropagation();
 
+        var url = $(this).data("get");
+        $(this).addClass("selected");
+
+        var callback = AjaxResponse(getExpenditureCallback);
+
+        $.ajax(url,
+        {
+            method: "GET",
+            async: true,
+            dataType: "json",
+            success: callback,
+            error: ajaxFail
+        });
+    }
+
+    function getExpenditureCallback(data) {
+        var model = new ExpenditureModel(data.model);
+
+        var modal = $("#edit-expenditure-modal");
+        var inputs = $(modal).find("input");
+
+        $(inputs)
+            .each(function (i, elem) {
+                var prop = elem.id.replace("#", "").toCamelCase();
+
+                if ($(elem).attr("type") === "date") {
+                    elem.valueAsDate = model[prop];
+                } else {
+                    var value = model[prop];
+
+                    $(elem).val(value);
+                }
+            });
+
         $("#edit-expenditure-modal").modal("show");
     }
 
@@ -129,11 +164,113 @@ $(function() {
         loadAjaxComponents();
     }
 
+
+    function editExpenditureClick(event) {
+        event.stopPropagation();
+
+        submitForm("#edit-expenditure-form", editExpenditureSuccessCallback);
+    }
+
+    function editExpenditureSuccessCallback(data) {
+        if (data.success) {
+            var successMsg = myMoney.strings.get("Expenditure", "Message_UpdatedExpenditure");
+            var expenditure = new ExpenditureModel(data.model);
+
+            if (typeof (expenditure.id) !== "undefined") {
+                showSuccess(successMsg);
+                $("#edit-expenditure-form")[0].reset();
+
+                var table = $("#expenditure-table");
+
+                var row = expenditure.createTableRow(showEditModal);
+
+                table.find(".selected").replaceWith(row);
+                row.addClass("warning");
+
+                setTimeout(function () {
+                    row.removeClass("warning");
+                },
+                    5000);
+            }
+
+        }
+
+        $("#edit-expenditure-modal").modal("hide");
+        loadAjaxComponents();
+    }
+
+    function deleteExpenditureClick(event) {
+        event.stopPropagation();
+
+        var confirmText = myMoney.strings.get("Common", "Button_Confirm");
+
+        var icon = $(this).find("i");
+
+        $(this).text(confirmText);
+        $(this).append(icon);
+
+        $(this).off("click");
+        $(this).click(confirmDeleteExpenditureClick);
+    }
+
+    function confirmDeleteExpenditureClick(event) {
+        event.stopPropagation();
+
+        var url = $("tr.selected").data("delete");
+
+        var callback = AjaxResponse(deleteExpenditureSuccessCallback);
+
+        $.ajax(url,
+        {
+            method: "GET",
+            async: true,
+            dataType: "json",
+            success: callback,
+            error: ajaxFail
+        });
+    }
+
+    function deleteExpenditureSuccessCallback(data) {
+        if (data.success) {
+            var successMsg = myMoney.strings.get("Expenditure", "Message_DeleteExpenditure");
+
+            showSuccess(successMsg);
+            $("tr.selected").remove();
+
+            var table = $("#expenditure-table");
+
+            if (table.find("tbody").find("tr").length === 0) {
+                var row = $("<tr>").attr("id", "table-warning");
+                var cellText = myMoney.strings.get("Expenditure", "Warning_NoExpenditure");
+                var cell = $("<td>").attr("colspan", 5).text(cellText);
+
+                table.append(row.append(cell));
+            }
+        }
+
+        $("#edit-expenditure-modal").modal("hide");
+
+        var btnText = myMoney.strings.get("Common", "Button_Delete");
+
+        var btn = $("#delete-expenditure");
+        var icon = $(btn).find("i");
+
+        $(btn).text(btnText);
+        $(btn).append(icon);
+        $(btn).off("click");
+        $(btn).click(deleteExpenditureClick);
+
+        loadAjaxComponents();
+    }
+
     $(function() {
         loadCalendarData("#expenditure-calendar");
 
         $("#add-expenditure").click(addExpenditureClick);
         $("#add").click(showAddModal);
+        $("#edit-expenditure").click(editExpenditureClick);
+        $("#delete-expenditure").click(deleteExpenditureClick);
+
         $("tr[data-get]").click(showEditModal);
     });
 });

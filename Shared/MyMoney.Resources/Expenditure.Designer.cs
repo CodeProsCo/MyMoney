@@ -106,6 +106,33 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your expenditure was deleted..
+        /// </summary>
+        public static string Message_DeleteExpenditure {
+            get {
+                return ResourceManager.GetString("Message_DeleteExpenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your expenditure was recorded..
+        /// </summary>
+        public static string Message_RecordedExpenditure {
+            get {
+                return ResourceManager.GetString("Message_RecordedExpenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your expenditure was updated..
+        /// </summary>
+        public static string Message_UpdatedExpenditure {
+            get {
+                return ResourceManager.GetString("Message_UpdatedExpenditure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Track your expenditure.
         /// </summary>
         public static string Title_AddExpenditure {

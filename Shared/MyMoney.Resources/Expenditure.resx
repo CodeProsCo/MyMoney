@@ -132,6 +132,15 @@
   <data name="Hint_ExpenditureTable" xml:space="preserve">
     <value>Here you can see a history of your expenditures.</value>
   </data>
+  <data name="Message_DeleteExpenditure" xml:space="preserve">
+    <value>Your expenditure was deleted.</value>
+  </data>
+  <data name="Message_RecordedExpenditure" xml:space="preserve">
+    <value>Your expenditure was recorded.</value>
+  </data>
+  <data name="Message_UpdatedExpenditure" xml:space="preserve">
+    <value>Your expenditure was updated.</value>
+  </data>
   <data name="Title_AddExpenditure" xml:space="preserve">
     <value>Track your expenditure</value>
   </data>

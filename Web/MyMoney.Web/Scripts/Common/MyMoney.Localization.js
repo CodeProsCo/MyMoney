@@ -15,7 +15,7 @@ function LocalizedString(namespace, key) {
     };
     this.state = states.unloaded;
 
-    this.get = function(url) {
+    this.get = function (url) {
         this.state = states.loading;
 
         var self = this;
@@ -25,12 +25,13 @@ function LocalizedString(namespace, key) {
             method: "GET",
             async: false,
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 self.value = data;
                 self.state = states.loaded;
             },
-            error: function() {
+            error: function () {
                 self.state = states.error;
+                console.error("Failed to obtain resource " + self.namespace + "." + self.key);
             }
         });
     };
@@ -44,7 +45,7 @@ function LocalizedStringStore(urlFormat) {
 
     var self = this;
 
-    this.get = function(namespace, key) {
+    this.get = function (namespace, key) {
         var string = find(namespace, key, this.strings);
 
         if (typeof (string) == "undefined") {
@@ -53,7 +54,7 @@ function LocalizedStringStore(urlFormat) {
 
         return string.value;
     };
-    this.add = function(namespace, key) {
+    this.add = function (namespace, key) {
         var newString = new LocalizedString(namespace, key);
         var url = formatUrl(this.urlFormat, namespace, key);
 
@@ -71,7 +72,7 @@ function LocalizedStringStore(urlFormat) {
         var cookie = this.cookieManager.get("myMoney_LocalizedStrings");
 
         $.each(cookie.strings,
-            function(i, item) {
+            function (i, item) {
                 var toAdd = new LocalizedString(item.namespace, item.key);
 
                 toAdd.state = item.state;

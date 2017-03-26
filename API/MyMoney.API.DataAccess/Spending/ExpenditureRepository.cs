@@ -133,6 +133,9 @@
             }
 
             toEdit = context.Expenditures.Attach(toEdit);
+
+            expenditure.CreationTime = toEdit.CreationTime;
+
             context.Expenditures.Remove(toEdit);
 
             var category = await categoryRepository.GetOrAdd(expenditure.Category);
