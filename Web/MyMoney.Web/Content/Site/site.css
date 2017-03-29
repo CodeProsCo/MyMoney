@@ -2,6 +2,10 @@
 @reference ~/Content/Semantic/semantic.css
 */
 
+#main-grid {
+    padding: 40px !important;    
+}
+
 body {
     background-color: #EFEFEF;
 }
