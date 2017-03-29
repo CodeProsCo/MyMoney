@@ -181,6 +181,7 @@
     <Content Include="Content\Chartist\chartist.css" />
     <Content Include="Content\Intro\introjs-modern.css" />
     <Content Include="Content\Intro\introjs.css" />
+    <Content Include="Content\jQuery\datatables.css" />
     <Content Include="Content\Semantic\calendar.css" />
     <Content Include="Content\Semantic\semantic.css" />
     <Content Include="Content\Semantic\themes\default\assets\fonts\icons.svg" />
@@ -198,6 +199,7 @@
     <Content Include="Scripts\Common\MyMoney.Initialize.js" />
     <Content Include="Scripts\Common\MyMoney.Localization.js" />
     <Content Include="Scripts\Intro\intro.js" />
+    <Content Include="Scripts\jQuery\datatables.js" />
     <Content Include="Scripts\jQuery\jquery-3.1.1.js" />
     <Content Include="Scripts\jQuery\jquery.cookie.js" />
     <Content Include="Scripts\jQuery\jquery.inputmask.bundle.js" />

@@ -4,6 +4,7 @@
 /// <reference path="~/Scripts/Semantic/semantic.js" />
 /// <reference path="~/Scripts/jQuery/jquery.validate.unobtrusive.js" />
 /// <reference path="~/Scripts/Intro/intro.js" />
+/// <reference path="~/Scripts/jQuery/datatables.js" />
 $("#menu-toggle")
     .click(function (e) {
         e.stopPropagation();
@@ -40,16 +41,10 @@ $(".ui.accordion").accordion();
 $(".ui.dropdown").dropdown();
 
 $("[data-input-mask=currency]").inputmask("currency", { rightAlign: false, prefix: "", groupSeparator: "" });
-$("table[data-sort=true]").tablesorter();
-$("table[data-sort=true] th")
-    .on("click",
-        function (e) {
-            e.stopPropagation();
-
-            $(this).siblings().removeClass("highlighted");
-            $(this).addClass("highlighted");
-        });
-
+$("table").DataTable({
+    "info": false,
+    "bFilter" : false
+});
 $(".modal").modal("setting", "closable", false);
 
 introJs().addHints();

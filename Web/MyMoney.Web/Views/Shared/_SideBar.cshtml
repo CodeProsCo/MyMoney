@@ -29,7 +29,7 @@
     <div class="item fixed-bottom-item disabled">
         <p>
             v@(typeof(MvcApplication).Assembly.GetName().Version)<br/>
-            @Assembly.GetExecutingAssembly().GetLinkerTime().ToString(CultureInfo.InvariantCulture)
+            @Assembly.GetExecutingAssembly().GetLinkerTime().ToString(CultureInfo.CurrentCulture)
         </p>
     </div>
 </div>

@@ -3,11 +3,23 @@
 */
 
 #main-grid {
-    padding: 40px !important;    
+    padding: 25px 40px !important;
 }
 
 body {
     background-color: #EFEFEF;
+}
+
+.paginate_button {
+    padding: 5px !important;    
+}
+
+.disabled {
+    color: #CCC !important;
+}
+
+.current {
+    color: #CCC !important;
 }
 
 tr {

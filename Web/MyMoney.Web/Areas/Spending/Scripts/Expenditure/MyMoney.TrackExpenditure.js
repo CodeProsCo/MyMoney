@@ -141,7 +141,6 @@ $(function () {
             lineSmooth: Chartist.Interpolation.cardinal({
                 fillHoles: true
             }),
-            low: 0,
             height: 300
         });
     }
