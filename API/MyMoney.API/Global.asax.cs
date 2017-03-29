@@ -13,8 +13,6 @@
 
     using JetBrains.Annotations;
 
-    using LLibrary;
-
     using Plumbing;
     using Plumbing.Installers;
 
@@ -45,11 +43,6 @@
             APIContainerConfig.InstallForWebApi(container);
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
-            if (!Directory.Exists(L.Directory))
-            {
-                Directory.CreateDirectory(L.Directory);
-            }
         }
 
         #endregion

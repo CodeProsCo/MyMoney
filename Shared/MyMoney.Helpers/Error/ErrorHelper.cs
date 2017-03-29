@@ -5,8 +5,6 @@
     using System;
     using System.Diagnostics;
 
-    using LLibrary;
-
     using Wrappers;
 
     #endregion
@@ -24,8 +22,6 @@
 
         public static ResponseErrorWrapper Create(Exception ex, string username, Type className, string methodName)
         {
-            L.Log("Exception", ex);
-
             var message = string.Empty;
 
             while (ex != null)
@@ -65,8 +61,6 @@
             {
                 Trace.WriteLine(logFormat);
             }
-
-            L.Log("Error", logFormat);
         }
 
         #endregion

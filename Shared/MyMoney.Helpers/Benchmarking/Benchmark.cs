@@ -5,7 +5,6 @@
     using System;
     using System.Diagnostics;
 
-    using LLibrary;
 
     #endregion
 
@@ -88,8 +87,6 @@
             {
                 Trace.WriteLine(entry);
             }
-
-            L.Log("Benchmark", entry);
         }
 
         #endregion

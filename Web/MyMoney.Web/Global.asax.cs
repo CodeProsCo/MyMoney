@@ -17,8 +17,6 @@
 
     using JetBrains.Annotations;
 
-    using LLibrary;
-
     using Newtonsoft.Json.Serialization;
 
     using Plumbing;
@@ -70,11 +68,6 @@
 
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-
-            if (!Directory.Exists(L.Directory))
-            {
-                Directory.CreateDirectory(L.Directory);
-            }
         }
 
         #endregion
