@@ -1,6 +1,5 @@
 ﻿/// <reference path="~/Scripts/jQuery/jquery-3.1.1.js"/>
 /// <reference path="~/Scripts/jQuery/jquery.inputmask.bundle.js"/>
-/// <reference path="~/Scripts/jQuery/jquery.tablesorter.js" />
 /// <reference path="~/Scripts/Semantic/semantic.js" />
 /// <reference path="~/Scripts/jQuery/jquery.validate.unobtrusive.js" />
 /// <reference path="~/Scripts/Intro/intro.js" />

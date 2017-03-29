@@ -3,7 +3,6 @@
 /// <reference path="~/Scripts/Common/MyMoney.ErrorHandling.js"/>
 /// <reference path="~/Scripts/Common/MyMoney.Forms.js"/>
 /// <reference path="~/Areas/Spending/Scripts/Bill/MyMoney.Bill.js" />
-/// <reference path="~/Scripts/jQuery/jquery.tablesorter.js"/>
 /// <reference path="~/Scripts/Chartist/chartist.js" />
 /// <reference path="~/Scripts/Common/MyMoney.Charts.js" />
 /// <reference path="~/Scripts/Extensions/MyMoney.StringExtensions.js"/>

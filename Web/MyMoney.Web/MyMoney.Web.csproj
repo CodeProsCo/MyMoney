@@ -203,7 +203,6 @@
     <Content Include="Scripts\jQuery\jquery-3.1.1.js" />
     <Content Include="Scripts\jQuery\jquery.cookie.js" />
     <Content Include="Scripts\jQuery\jquery.inputmask.bundle.js" />
-    <Content Include="Scripts\jQuery\jquery.tablesorter.js" />
     <Content Include="Scripts\jQuery\jquery.validate.js" />
     <Content Include="Scripts\jQuery\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\Moment\moment.js" />
