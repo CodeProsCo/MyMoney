@@ -1,4 +1,6 @@
-﻿namespace MyMoney.Web.Assemblers.Chart
+﻿using MyMoney.DTO.Request.Chart.Expenditure;
+
+namespace MyMoney.Web.Assemblers.Chart
 {
     #region Usings
 
@@ -90,6 +92,16 @@
             }
 
             return new GetBillPeriodChartDataRequest { UserId = userId, Username = username };
+        }
+
+        public GetExpenditureChartDataRequest NewGetExpenditureChartDataRequest(int nowMonth, Guid userId, string userEmail)
+        {
+            if (nowMonth < 1 || nowMonth > 12)
+            {
+                throw new ArgumentOutOfRangeException(nameof(nowMonth));
+            }
+
+            return new GetExpenditureChartDataRequest {UserId = userId, Username = userEmail, Month = nowMonth};
         }
 
         #endregion

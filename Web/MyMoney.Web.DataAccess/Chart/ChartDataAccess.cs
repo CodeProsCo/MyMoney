@@ -1,4 +1,7 @@
-﻿namespace MyMoney.Web.DataAccess.Chart
+﻿using MyMoney.DTO.Request.Chart.Expenditure;
+using MyMoney.DTO.Response.Chart.Expenditure;
+
+namespace MyMoney.Web.DataAccess.Chart
 {
     #region Usings
 
@@ -46,6 +49,11 @@
         public async Task<GetBillPeriodChartDataResponse> GetBillPeriodChartData(GetBillPeriodChartDataRequest request)
         {
             return await Get<GetBillPeriodChartDataResponse>(request.FormatRequestUri(), request.Username);
+        }
+
+        public async Task<GetExpenditureChartDataResponse> GetExpenditureChartData(GetExpenditureChartDataRequest request)
+        {
+            return await Get<GetExpenditureChartDataResponse>(request.FormatRequestUri(), request.Username);
         }
 
         #endregion

@@ -157,6 +157,7 @@
     <Compile Include="Controllers\Authentication\UserController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Chart\BillChartController.cs" />
+    <Compile Include="Controllers\Chart\ExpenditureChartController.cs" />
     <Compile Include="Controllers\Spending\BillController.cs" />
     <Compile Include="Controllers\Spending\ExpenditureController.cs" />
     <Compile Include="Global.asax.cs">

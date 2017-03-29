@@ -1,9 +1,59 @@
 ﻿/// <reference path="~/Scripts/Chartist/chartist-plugin-tooltip.js"/>
-
+/// <reference path="~/Scripts/Moment/moment.js" />
 function ChartGenerator(data) {
     this.data = data;
 
     var self = this;
+
+    this.createExpenditureChart = function(containerId) {
+        var options = {
+            container: containerId,
+            data: this.data,
+            animated:true
+        }
+
+        return createLineChart(options);
+    }
+
+    function createLineChart(options) {
+        var chartData = [];
+
+        for (var i = 0; i < self.data.length; i++) {
+            var entry = { x: new Date(self.data[i].key).getTime(), y: self.data[i].value };
+
+            chartData.push(entry);
+        }
+
+        var chart = new Chartist.Line(options.container,
+            {
+                series: [
+                    {
+                        data: chartData
+                    }
+                ],
+                fullWidth: true
+            },
+            {
+                axisX: {
+                    type: Chartist.FixedScaleAxis,
+                    divisor: 10,
+                    labelInterpolationFnc: function (value) {
+                        return moment(value).format("DD-MM");
+                    },
+                    low : new Date(new Date().getFullYear(), new Date().getMonth(), 1).getTime()
+                },
+                axisY: {
+                    labelInterpolationFnc: function (value) {
+                        return value.asCurrency();
+                    },
+                    low:0
+                },
+                lineSmooth: Chartist.Interpolation.cardinal({
+                    fillHoles: true
+                }),
+                height: 300
+            });
+    }
 
     this.createBillCategoryChart = function(containerId) {
         var options = {

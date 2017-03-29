@@ -50,6 +50,11 @@
                     .DependsOn(Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
 
             container.Register(
+                Component.For<ExpenditureChartController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
+
+            container.Register(
                 Component.For<ExpenditureController>()
                     .LifestylePerWebRequest()
                     .DependsOn(Dependency.OnComponent<IExpenditureOrchestrator, ExpenditureOrchestrator>()));

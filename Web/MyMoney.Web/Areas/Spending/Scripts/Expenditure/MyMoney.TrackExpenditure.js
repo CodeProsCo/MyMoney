@@ -7,9 +7,11 @@
 /// <reference path="~/Scripts/Common/MyMoney.Forms.js" />
 /// <reference path="~/Areas/Spending/Scripts/Expenditure/MyMoney.Expenditure.js" />
 /// <reference path="~/Scripts/Extensions/MyMoney.StringExtensions.js" />
+/// <reference path="~/Scripts/Common/MyMoney.Charts.js" />
 $(function () {
     function loadAjaxComponents() {
         loadCalendarData("#expenditure-calendar");
+        createChart("#expenditure-chart");
     }
 
     function loadCalendarDataCallback(data) {
@@ -38,7 +40,7 @@ $(function () {
                 var found = false;
 
                 for (var l = 0; l < dateAmounts.length; l++) {
-                    if (dateAmounts[l].date === model.dateOccurred) {
+                    if (dateAmounts[l].date.getTime() === model.dateOccurred.getTime()) {
                         dateAmounts[l].amount += model.amount;
                         found = true;
                         continue;
@@ -54,14 +56,13 @@ $(function () {
                 }
             }
 
-            console.log(dateAmounts);
             for (var k = 0; k < dateAmounts.length; k++) {
                 var dateAmount = dateAmounts[k];
 
                 for (var m = 0; m < monthCells.length; m++) {
                     var cell = monthCells[m];
 
-                    if (cell.date === dateAmount.date.getDay()) {
+                    if (cell.date === dateAmount.date.getDate()) {
                         cell.element.addClass("negative").text(dateAmount.amount.asCurrency());
                     }
                 }
@@ -98,51 +99,39 @@ $(function () {
             .unbind("keydown");
 
         $.ajax(url,
-        {
-        	method: "GET",
-        	async: true,
-        	dataType: "json",
-        	success: callback,
-        	error: ajaxFail
-        });
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
 
-        var chart = new Chartist.Line("#expenditure-chart",
-        {
-            series: [
-                {
-                    data: [
-                        {
-                            x: 1461862387541,
-                            y: 23.55
 
-                        },
-                        {
-                            x: 9961862447991,
-                            y: 25.55
+    }
 
-                        }
-                    ]
-                }
-            ],
-            fullWidth: true        },
-        {
-            axisX: {
-                type: Chartist.FixedScaleAxis,
-                divisor: 10,
-                labelInterpolationFnc: function(value) {
-                    return moment(value).format("dd-MM");
-                }
-            },
-            axisY : {
-                labelInterpolationFnc: function(value) {
-                    return value.asCurrency();
-                }
-            },
-            lineSmooth: Chartist.Interpolation.cardinal({
-                fillHoles: true
-            }),
-            height: 300
-        });
+    function createChart(selector) {
+        var container = $(selector);
+
+        var url = container.data("url");
+        var callback = AjaxResponse(getExpenditureChartDataCallback);
+
+        $.ajax(url,
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
+    }
+
+    function getExpenditureChartDataCallback(data) {
+        if (data.success) {
+            var generator = new ChartGenerator(data.model);
+
+            generator.createExpenditureChart("#expenditure-chart");
+        }
     }
 
     function showAddModal(event) {
@@ -160,13 +149,13 @@ $(function () {
         var callback = AjaxResponse(getExpenditureCallback);
 
         $.ajax(url,
-        {
-            method: "GET",
-            async: true,
-            dataType: "json",
-            success: callback,
-            error: ajaxFail
-        });
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
     }
 
     function getExpenditureCallback(data) {
@@ -281,13 +270,13 @@ $(function () {
         var callback = AjaxResponse(deleteExpenditureSuccessCallback);
 
         $.ajax(url,
-        {
-            method: "GET",
-            async: true,
-            dataType: "json",
-            success: callback,
-            error: ajaxFail
-        });
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
     }
 
     function deleteExpenditureSuccessCallback(data) {
@@ -323,8 +312,9 @@ $(function () {
         loadAjaxComponents();
     }
 
-    $(function() {
+    $(function () {
         loadCalendarData("#expenditure-calendar");
+        createChart("#expenditure-chart");
 
         $("#add-expenditure").click(addExpenditureClick);
         $("#add").click(showAddModal);

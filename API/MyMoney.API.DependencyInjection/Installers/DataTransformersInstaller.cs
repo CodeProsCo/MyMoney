@@ -28,6 +28,11 @@
         {
             container.Register(
                 Component.For<IBillDataTransformer>().ImplementedBy<BillDataTransformer>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IExpenditureDataTransformer>()
+                    .ImplementedBy<ExpenditureDataTransformer>()
+                    .LifestylePerWebRequest());
         }
 
         #endregion

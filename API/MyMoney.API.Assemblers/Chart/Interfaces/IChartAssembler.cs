@@ -6,6 +6,7 @@
     using System.Collections.Generic;
 
     using DTO.Response.Chart.Bill;
+    using DTO.Response.Chart.Expenditure;
 
     #endregion
 
@@ -37,5 +38,7 @@
             Guid requestReference);
 
         #endregion
+
+        GetExpenditureChartDataResponse NewGetExpenditureChartDataResponse(IList<KeyValuePair<DateTime, double>> data, Guid requestRequestReference);
     }
 }

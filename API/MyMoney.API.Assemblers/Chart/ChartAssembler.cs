@@ -6,7 +6,7 @@
     using System.Collections.Generic;
 
     using DTO.Response.Chart.Bill;
-
+    using DTO.Response.Chart.Expenditure;
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -50,6 +50,11 @@
             Guid requestReference)
         {
             return new GetBillPeriodChartDataResponse { Data = data, RequestReference = requestReference };
+        }
+
+        public GetExpenditureChartDataResponse NewGetExpenditureChartDataResponse(IList<KeyValuePair<DateTime, double>> data, Guid requestRequestReference)
+        {
+            return new GetExpenditureChartDataResponse {Data = data, RequestReference = requestRequestReference};
         }
 
         #endregion

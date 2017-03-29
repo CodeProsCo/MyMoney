@@ -1,4 +1,6 @@
-﻿namespace MyMoney.Web.Assemblers.Chart.Interfaces
+﻿using MyMoney.DTO.Request.Chart.Expenditure;
+
+namespace MyMoney.Web.Assemblers.Chart.Interfaces
 {
     #region Usings
 
@@ -43,5 +45,7 @@
         GetBillPeriodChartDataRequest NewGetBillPeriodChartDataRequest(Guid userId, string username);
 
         #endregion
+
+        GetExpenditureChartDataRequest NewGetExpenditureChartDataRequest(int nowMonth, Guid userId, string userEmail);
     }
 }

@@ -40,5 +40,7 @@
             string username);
 
         #endregion
+
+        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(Guid userId, string userEmail);
     }
 }

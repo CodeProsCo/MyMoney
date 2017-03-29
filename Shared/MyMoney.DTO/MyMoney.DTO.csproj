@@ -81,6 +81,7 @@
     <Compile Include="Request\BaseRequest.cs" />
     <Compile Include="Request\Chart\Bill\GetBillCategoryChartDataRequest.cs" />
     <Compile Include="Request\Chart\Bill\GetBillPeriodChartDataRequest.cs" />
+    <Compile Include="Request\Chart\Expenditure\GetExpenditureChartDataRequest.cs" />
     <Compile Include="Request\Interfaces\IDeleteRequest.cs" />
     <Compile Include="Request\Interfaces\IGetRequest.cs" />
     <Compile Include="Request\Spending\Bill\AddBillRequest.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Response\BaseResponse.cs" />
     <Compile Include="Response\Chart\Bill\GetBillCategoryChartDataResponse.cs" />
     <Compile Include="Response\Chart\Bill\GetBillPeriodChartDataResponse.cs" />
+    <Compile Include="Response\Chart\Expenditure\GetExpenditureChartDataResponse.cs" />
     <Compile Include="Response\Spending\Bills\AddBillResponse.cs" />
     <Compile Include="Response\Spending\Bills\DeleteBillResponse.cs" />
     <Compile Include="Response\Spending\Bills\EditBillResponse.cs" />

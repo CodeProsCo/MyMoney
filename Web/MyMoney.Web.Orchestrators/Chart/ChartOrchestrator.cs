@@ -145,6 +145,33 @@
             return response;
         }
 
+        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(Guid userId, string userEmail)
+        {
+            var response = new OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>();
+
+            try
+            {
+                var request = assembler.NewGetExpenditureChartDataRequest(DateTime.Now.Month, userId, userEmail);
+                var apiResponse = await dataAccess.GetExpenditureChartData(request);
+
+                if (!apiResponse.Success)
+                {
+                    response.AddErrors(apiResponse.Errors);
+
+                    return response;
+                }
+
+                response.Model = apiResponse.Data;
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, userEmail, GetType(), "GetExpenditureChartData");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
         #endregion
     }
 }

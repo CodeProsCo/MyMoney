@@ -159,33 +159,19 @@
             return JsonResponse(modelWrapper);
         }
 
-        ///// <summary>
-        /////     Handles HTTP requests to obtain the data required for the expenditure category chart.
-        ///// </summary>
-        ///// <returns>The response object.</returns>
-        //[HttpGet]
-        //[Route("chart/category")]
-        //[AjaxOnly]
-        //public async Task<ActionResult> GetCategoryChartData()
-        //{
-        //    var modelWrapper = await chartOrchestrator.GetExpenditureCategoryChartData(UserId, UserEmail);
+        /// <summary>
+        ///     Handles HTTP requests to obtain the data required for the expenditure category chart.
+        /// </summary>
+        /// <returns>The response object.</returns>
+        [HttpGet]
+        [Route("chart/month/")]
+        [AjaxOnly]
+        public async Task<ActionResult> GetExpenditureChartData()
+        {
+            var modelWrapper = await chartOrchestrator.GetExpenditureChartData(UserId, UserEmail);
 
-        //    return JsonResponse(modelWrapper);
-        //}
-
-        ///// <summary>
-        /////     Handles HTTP requests to obtain the data required for the expenditure period chart.
-        ///// </summary>
-        ///// <returns>The response object.</returns>
-        //[HttpGet]
-        //[Route("chart/period")]
-        //[AjaxOnly]
-        //public async Task<ActionResult> GetPeriodChartData()
-        //{
-        //    var modelWrapper = await chartOrchestrator.GetExpenditurePeriodChartData(UserId, UserEmail);
-
-        //    return JsonResponse(modelWrapper);
-        //}
+            return JsonResponse(modelWrapper);
+        }
 
         /// <summary>
         ///     Handles HTTP requests for the expenditure management view.

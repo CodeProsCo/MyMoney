@@ -67,9 +67,11 @@
                     .ImplementedBy<ChartOrchestrator>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>(), 
-                        Dependency.OnComponent<IBillRepository, BillRepository>(), 
-                        Dependency.OnComponent<IChartAssembler, ChartAssembler>()));
+                        Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>(),
+                        Dependency.OnComponent<IBillRepository, BillRepository>(),
+                        Dependency.OnComponent<IChartAssembler, ChartAssembler>(),
+                        Dependency.OnComponent<IExpenditureRepository, ExpenditureRepository>(),
+                        Dependency.OnComponent<IExpenditureDataTransformer, ExpenditureDataTransformer>()));
 
             container.Register(
                 Component.For<IExpenditureOrchestrator>()

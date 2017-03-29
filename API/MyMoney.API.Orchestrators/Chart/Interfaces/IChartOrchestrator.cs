@@ -1,4 +1,7 @@
-﻿namespace MyMoney.API.Orchestrators.Chart.Interfaces
+﻿using MyMoney.DTO.Request.Chart.Expenditure;
+using MyMoney.DTO.Response.Chart.Expenditure;
+
+namespace MyMoney.API.Orchestrators.Chart.Interfaces
 {
     #region Usings
 
@@ -31,5 +34,7 @@
         Task<GetBillPeriodChartDataResponse> GetBillPeriodChartData(GetBillPeriodChartDataRequest request);
 
         #endregion
+
+        Task<GetExpenditureChartDataResponse> GetExpenditureChartData(GetExpenditureChartDataRequest request);
     }
 }

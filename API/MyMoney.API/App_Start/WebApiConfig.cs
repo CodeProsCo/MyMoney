@@ -40,10 +40,10 @@
                         Repository = new CacheRepository()
                     });
 
-            if (!Debugger.IsAttached)
-            {
-                config.Filters.Add(new ValidateAPIKeyAttribute());
-            }
+            //if (!Debugger.IsAttached)
+            //{
+            //    config.Filters.Add(new ValidateAPIKeyAttribute());
+            //}
         }
 
         #endregion

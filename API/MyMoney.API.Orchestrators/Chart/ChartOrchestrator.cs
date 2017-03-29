@@ -1,4 +1,7 @@
-﻿namespace MyMoney.API.Orchestrators.Chart
+﻿using MyMoney.DTO.Request.Chart.Expenditure;
+using MyMoney.DTO.Response.Chart.Expenditure;
+
+namespace MyMoney.API.Orchestrators.Chart
 {
     #region Usings
 
@@ -46,6 +49,10 @@
         /// </summary>
         private readonly IBillRepository billRepository;
 
+        private readonly IExpenditureRepository expenditureRepository;
+
+        private readonly IExpenditureDataTransformer expenditureDataTransformer;
+
         #endregion
 
         #region Constructor
@@ -62,7 +69,9 @@
         public ChartOrchestrator(
             IChartAssembler assembler, 
             IBillRepository billRepository, 
-            IBillDataTransformer billDataTransformer)
+            IBillDataTransformer billDataTransformer,
+            IExpenditureRepository expenditureRepository,
+            IExpenditureDataTransformer expenditureDataTransformer)
         {
             if (assembler == null)
             {
@@ -79,9 +88,21 @@
                 throw new ArgumentNullException(nameof(billDataTransformer));
             }
 
+            if (expenditureRepository == null)
+            {
+                throw new ArgumentNullException(nameof(expenditureRepository));
+            }
+
+            if (expenditureDataTransformer == null)
+            {
+                throw new ArgumentNullException(nameof(expenditureDataTransformer));
+            }
+
             this.assembler = assembler;
             this.billRepository = billRepository;
             this.billDataTransformer = billDataTransformer;
+            this.expenditureDataTransformer = expenditureDataTransformer;
+            this.expenditureRepository = expenditureRepository;
         }
 
         #endregion
@@ -137,6 +158,26 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        public async Task<GetExpenditureChartDataResponse> GetExpenditureChartData(GetExpenditureChartDataRequest request)
+        {
+            var response = new GetExpenditureChartDataResponse();
+
+            try
+            {
+                var expenditure = await expenditureRepository.GetExpendituresForUserForMonth(request.UserId);
+                var data = expenditureDataTransformer.GetRollingExpenditureSum(expenditure);
+
+                response = assembler.NewGetExpenditureChartDataResponse(data, request.RequestReference);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureChartData");
                 response.AddError(err);
             }
 

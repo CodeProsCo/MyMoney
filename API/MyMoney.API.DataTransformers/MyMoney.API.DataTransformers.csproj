@@ -59,7 +59,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spending\BillDataTransformer.cs" />
+    <Compile Include="Spending\ExpenditureDataTransformer.cs" />
     <Compile Include="Spending\Interfaces\IBillDataTransformer.cs" />
+    <Compile Include="Spending\Interfaces\IExpenditureDataTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Models\MyMoney.DataModels\MyMoney.DataModels.csproj">
