@@ -59,19 +59,19 @@
         /// </returns>
         public async Task<UserDataModel> GetUser(string email, string password)
         {
-                var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
+            var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
 
-                if (result == null)
-                {
-                    throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
-                }
-
-                if (EncryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
-                {
-                    return result;
-                }
-
+            if (result == null)
+            {
                 throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
+            }
+
+            if (EncryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
+            {
+                return result;
+            }
+
+            throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
         }
 
         /// <summary>
@@ -86,14 +86,14 @@
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {
-                var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == username);
+            var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == username);
 
-                if (result == null)
-                {
-                    throw new Exception(Authentication.Error_CouldNotFindUser);
-                }
+            if (result == null)
+            {
+                throw new Exception(Authentication.Error_CouldNotFindUser);
+            }
 
-                return result.Id;
+            return result.Id;
         }
 
         /// <summary>
@@ -105,13 +105,14 @@
         /// </returns>
         public async Task<UserDataModel> RegisterUser(UserDataModel model)
         {
-                model.Id = Guid.NewGuid();
+            model.Id = Guid.NewGuid();
+            model.CreationTime = DateTime.Now;
 
-                var result = context.Users.Add(model);
+            var result = context.Users.Add(model);
 
-                var rowsChanged = await context.SaveChangesAsync();
+            var rowsChanged = await context.SaveChangesAsync();
 
-                return rowsChanged > 0 ? result : null;
+            return rowsChanged > 0 ? result : null;
         }
 
         #endregion

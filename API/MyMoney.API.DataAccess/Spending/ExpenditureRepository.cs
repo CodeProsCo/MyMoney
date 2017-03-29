@@ -192,7 +192,7 @@
                 context.Expenditures.Include(x => x.Category)
                     .Where(
                         x =>
-                        x.DateOccurred.Month == DateTime.Now.Month && x.DateOccurred.Day == DateTime.Now.Day
+                        x.DateOccurred.Month == DateTime.Now.Month && x.DateOccurred.Year == DateTime.Now.Year
                         && x.UserId.Equals(userId))
                     .ToListAsync();
         }

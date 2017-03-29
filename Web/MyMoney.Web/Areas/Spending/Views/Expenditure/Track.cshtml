@@ -20,7 +20,7 @@
                 <i class="calendar icon"></i>
                 @Expenditure.Heading_ExpenditureThisMonth
             </h4>
-            <div id="expenditure-calendar"></div>
+            <div id="expenditure-calendar" data-url="@Url.Action("GetExpenditureForMonth", "Expenditure", new { monthNumber = DateTime.Now.Month})"></div>
         </div>
     </div>
     <div class="eight wide column">

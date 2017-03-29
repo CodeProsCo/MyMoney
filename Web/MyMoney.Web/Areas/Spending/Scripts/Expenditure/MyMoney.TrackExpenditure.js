@@ -7,11 +7,72 @@
 /// <reference path="~/Scripts/Common/MyMoney.Forms.js" />
 /// <reference path="~/Areas/Spending/Scripts/Expenditure/MyMoney.Expenditure.js" />
 /// <reference path="~/Scripts/Extensions/MyMoney.StringExtensions.js" />
-$(function() {
+$(function () {
+    function loadAjaxComponents() {
+        loadCalendarData("#expenditure-calendar");
+    }
+
+    function loadCalendarDataCallback(data) {
+        if (data.success) {
+            var calendarCells = $(".link");
+            var monthCells = [];
+
+            $(calendarCells)
+                .each(function (i, elem) {
+                    elem = $(elem);
+
+                    if (elem.hasClass("disabled") || elem.hasClass("adjacent") || elem.is("span")) {
+                        return;
+                    }
+
+                    monthCells.push({
+                        element: elem,
+                        date: parseInt($(elem).text())
+                    });
+                });
+
+            var dateAmounts = [];
+
+            for (var j = 0; j < data.model.length; j++) {
+                var model = new ExpenditureModel(data.model[j]);
+                var found = false;
+
+                for (var l = 0; l < dateAmounts.length; l++) {
+                    if (dateAmounts[l].date === model.dateOccurred) {
+                        dateAmounts[l].amount += model.amount;
+                        found = true;
+                        continue;
+                    }
+                }
+
+                if (dateAmounts.length === 0 || !found) {
+                    dateAmounts.push({
+                        date: model.dateOccurred,
+                        amount: model.amount
+                    });
+                    continue;
+                }
+            }
+
+            console.log(dateAmounts);
+            for (var k = 0; k < dateAmounts.length; k++) {
+                var dateAmount = dateAmounts[k];
+
+                for (var m = 0; m < monthCells.length; m++) {
+                    var cell = monthCells[m];
+
+                    if (cell.date === dateAmount.date.getDay()) {
+                        cell.element.addClass("negative").text(dateAmount.amount.asCurrency());
+                    }
+                }
+            }
+        }
+    }
+
     function loadCalendarData(selector) {
         var calendar = $(selector);
         var url = calendar.data("url");
-        //var callback = AjaxResponse(loadCalendarDataCallback);
+        var callback = AjaxResponse(loadCalendarDataCallback);
         var date = new Date();
         var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
         var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -36,14 +97,14 @@ $(function() {
             .unbind("touchend")
             .unbind("keydown");
 
-        //$.ajax(url,
-        //{
-        //	method: "GET",
-        //	async: true,
-        //	dataType: "json",
-        //	success: callback,
-        //	error: ajaxFail
-        //});
+        $.ajax(url,
+        {
+        	method: "GET",
+        	async: true,
+        	dataType: "json",
+        	success: callback,
+        	error: ajaxFail
+        });
 
         var chart = new Chartist.Line("#expenditure-chart",
         {
