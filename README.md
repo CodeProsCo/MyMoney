@@ -18,4 +18,3 @@ A personal finance planner written in .NET.
 - [EntityFramework](https://github.com/aspnet/EntityFramework) - A lightweight and extensible version of the popular Entity Framework data access technology
 - [Swashbuckle.Core](https://github.com/domaindrivendev/Swashbuckle) - Seamlessly adds a swagger to WebApi projects!
 - [WebApiThrottle](https://github.com/stefanprodan/WebApiThrottle) - ASP.NET Web API rate limiter for IIS and Owin hosting
-- [net-L](https://github.com/tallesl/net-L) - A configless file logger.
