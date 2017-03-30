@@ -97,6 +97,15 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Here you can see the amount you&apos;ve spent on each day of the month..
+        /// </summary>
+        public static string Hint_ExpenditureCalendar {
+            get {
+                return ResourceManager.GetString("Hint_ExpenditureCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This chart shows a rolling total of your spending over the current month..
         /// </summary>
         public static string Hint_ExpenditureChart {
