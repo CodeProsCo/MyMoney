@@ -12,7 +12,7 @@
 <div class="ui grid" id="main-grid">
     <div class="sixteen wide column">
         <div class="ui styled segment">
-            <div id="expenditure-chart" data-url="@Url.Action("GetExpenditureChartData", "Expenditure")"></div>
+            <div data-hint="@Expenditure.Hint_ExpenditureChart" id="expenditure-chart" data-url="@Url.Action("GetExpenditureChartData", "Expenditure")"></div>
         </div>
     </div>
     <div class="eight wide column">
@@ -26,7 +26,7 @@
     </div>
     <div class="eight wide column">
         <div class="ui styled segment">
-            <h4 class="ui block header">
+            <h4 class="ui block header" data-hint="@Expenditure.Hint_ExpenditureTable">
                 <i class="payment icon"></i>
                 @Expenditure.Heading_LatestExpenditure
             </h4>

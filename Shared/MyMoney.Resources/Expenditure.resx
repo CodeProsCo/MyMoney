@@ -129,6 +129,9 @@
   <data name="Hint_AddNewExpenditure" xml:space="preserve">
     <value>Click to track a new expenditure.</value>
   </data>
+  <data name="Hint_ExpenditureChart" xml:space="preserve">
+    <value>This chart shows a rolling total of your spending over the current month.</value>
+  </data>
   <data name="Hint_ExpenditureTable" xml:space="preserve">
     <value>Here you can see a history of your expenditures.</value>
   </data>
