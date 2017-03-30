@@ -4,12 +4,11 @@
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
+    using MyMoney.Web.DataAccess.Authentication.Interfaces;
 
     #endregion
 
@@ -21,7 +20,7 @@
     [UsedImplicitly]
     public class UserDataAccess : BaseDataAccess, IUserDataAccess
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Sends a request to register the given user.

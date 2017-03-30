@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using Proxies.Authentication;
+    using MyMoney.Proxies.Authentication;
 
     #endregion
 
@@ -12,7 +12,7 @@
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class ValidateUserResponse : BaseResponse
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets a value indicating whether [login success].

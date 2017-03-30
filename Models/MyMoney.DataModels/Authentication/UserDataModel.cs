@@ -14,7 +14,7 @@
     [Table("User")]
     public class UserDataModel : BaseDataModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the date of birth.

@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using Common;
+    using MyMoney.DataModels.Common;
 
     #endregion
 
@@ -16,7 +16,7 @@
     [Table("Bill")]
     public sealed class BillDataModel : BaseDataModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the amount.

@@ -6,17 +6,14 @@
     using System.Linq;
     using System.Security.Claims;
 
-    using Assemblers.Authentication;
-    using Assemblers.Authentication.Interfaces;
-
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
+    using MyMoney.Proxies.Authentication;
+    using MyMoney.ViewModels.Authentication.User;
+    using MyMoney.Web.Assemblers.Authentication;
+    using MyMoney.Web.Assemblers.Authentication.Interfaces;
 
     using NUnit.Framework;
-
-    using Proxies.Authentication;
-
-    using ViewModels.Authentication.User;
 
     #endregion
 
@@ -24,53 +21,19 @@
     [TestFixture]
     public class UserAssemblerTests
     {
-        [SetUp]
-        public void SetUp()
-        {
-            assembler = new UserAssembler();
-            validResponse = new ValidateUserResponse
-                                {
-                                    LoginSuccess = true, 
-                                    RequestReference = Guid.NewGuid(), 
-                                    User =
-                                        new UserProxy
-                                            {
-                                                DateOfBirth = DateTime.MinValue, 
-                                                EmailAddress = "TEST", 
-                                                FirstName = "TEST", 
-                                                Id = Guid.NewGuid(), 
-                                                LastName = "TEST"
-                                            }
-                                };
-            validRegisterViewModel = new RegisterViewModel
-                                         {
-                                             AcceptTermsAndConditions = true, 
-                                             ConfirmPassword = "TEST", 
-                                             DateOfBirth = DateTime.MinValue, 
-                                             EmailAddress = "TEST", 
-                                             FirstName = "TEST", 
-                                             LastName = "TEST", 
-                                             Password = "TEST"
-                                         };
-            validLoginViewModel = new LoginViewModel { EmailAddress = "TEST", Password = "TEST", ReturnUrl = "TEST" };
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            assembler = null;
-            validResponse = null;
-            validRegisterViewModel = null;
-            validLoginViewModel = null;
-        }
+        #region Fields
 
         private IUserAssembler assembler;
 
-        private ValidateUserResponse validResponse;
+        private LoginViewModel validLoginViewModel;
 
         private RegisterViewModel validRegisterViewModel;
 
-        private LoginViewModel validLoginViewModel;
+        private ValidateUserResponse validResponse;
+
+        #endregion
+
+        #region Methods
 
         [Test]
         public void NewClaimsIdentity_NullParams_ThrowsArgumentNullException()
@@ -130,5 +93,47 @@
             Assert.AreEqual(test.Password, "TEST");
             Assert.AreNotEqual(test.RequestReference, Guid.Empty);
         }
+
+        [SetUp]
+        public void SetUp()
+        {
+            assembler = new UserAssembler();
+            validResponse = new ValidateUserResponse
+                                {
+                                    LoginSuccess = true,
+                                    RequestReference = Guid.NewGuid(),
+                                    User =
+                                        new UserProxy
+                                            {
+                                                DateOfBirth = DateTime.MinValue,
+                                                EmailAddress = "TEST",
+                                                FirstName = "TEST",
+                                                Id = Guid.NewGuid(),
+                                                LastName = "TEST"
+                                            }
+                                };
+            validRegisterViewModel = new RegisterViewModel
+                                         {
+                                             AcceptTermsAndConditions = true,
+                                             ConfirmPassword = "TEST",
+                                             DateOfBirth = DateTime.MinValue,
+                                             EmailAddress = "TEST",
+                                             FirstName = "TEST",
+                                             LastName = "TEST",
+                                             Password = "TEST"
+                                         };
+            validLoginViewModel = new LoginViewModel { EmailAddress = "TEST", Password = "TEST", ReturnUrl = "TEST" };
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            assembler = null;
+            validResponse = null;
+            validRegisterViewModel = null;
+            validLoginViewModel = null;
+        }
+
+        #endregion
     }
 }

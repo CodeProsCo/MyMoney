@@ -3,7 +3,6 @@
     #region Usings
 
     using System;
-    using System.IO;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -11,16 +10,14 @@
 
     using Castle.Windsor;
 
-    using DependencyInjection;
-
-    using Helpers.Error;
-
     using JetBrains.Annotations;
 
-    using Newtonsoft.Json.Serialization;
+    using MyMoney.Helpers.Error;
+    using MyMoney.Web.DependencyInjection;
+    using MyMoney.Web.Plumbing;
+    using MyMoney.Web.Plumbing.Installers;
 
-    using Plumbing;
-    using Plumbing.Installers;
+    using Newtonsoft.Json.Serialization;
 
     #endregion
 
@@ -31,7 +28,7 @@
     [UsedImplicitly]
     public class MvcApplication : HttpApplication
     {
-        #region Private Methods
+        #region Methods
 
         /// <summary>
         ///     Handles the Error event of the Application control.

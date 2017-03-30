@@ -2,9 +2,8 @@
 {
     #region Usings
 
-    using Proxies.Spending;
-
-    using Request.Spending.Bill;
+    using MyMoney.DTO.Request.Spending.Bill;
+    using MyMoney.Proxies.Spending;
 
     #endregion
 
@@ -14,7 +13,7 @@
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class EditBillResponse : BaseResponse
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the bill.

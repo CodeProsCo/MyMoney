@@ -2,30 +2,28 @@
 {
     #region Usings
 
-    using Assemblers.Authentication;
-    using Assemblers.Authentication.Interfaces;
-    using Assemblers.Chart;
-    using Assemblers.Chart.Interfaces;
-    using Assemblers.Spending;
-    using Assemblers.Spending.Interfaces;
-
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using DataAccess.Authentication;
-    using DataAccess.Authentication.Interfaces;
-    using DataAccess.Chart;
-    using DataAccess.Chart.Interfaces;
-    using DataAccess.Spending;
-    using DataAccess.Spending.Interfaces;
-
-    using Orchestrators.Authentication;
-    using Orchestrators.Authentication.Interfaces;
-    using Orchestrators.Chart;
-    using Orchestrators.Chart.Interfaces;
-    using Orchestrators.Spending;
-    using Orchestrators.Spending.Interfaces;
+    using MyMoney.Web.Assemblers.Authentication;
+    using MyMoney.Web.Assemblers.Authentication.Interfaces;
+    using MyMoney.Web.Assemblers.Chart;
+    using MyMoney.Web.Assemblers.Chart.Interfaces;
+    using MyMoney.Web.Assemblers.Spending;
+    using MyMoney.Web.Assemblers.Spending.Interfaces;
+    using MyMoney.Web.DataAccess.Authentication;
+    using MyMoney.Web.DataAccess.Authentication.Interfaces;
+    using MyMoney.Web.DataAccess.Chart;
+    using MyMoney.Web.DataAccess.Chart.Interfaces;
+    using MyMoney.Web.DataAccess.Spending;
+    using MyMoney.Web.DataAccess.Spending.Interfaces;
+    using MyMoney.Web.Orchestrators.Authentication;
+    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
+    using MyMoney.Web.Orchestrators.Chart;
+    using MyMoney.Web.Orchestrators.Chart.Interfaces;
+    using MyMoney.Web.Orchestrators.Spending;
+    using MyMoney.Web.Orchestrators.Spending.Interfaces;
 
     #endregion
 
@@ -35,7 +33,7 @@
     /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class OrchestratorsInstaller : IWindsorInstaller
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Performs the installation in the <see cref="T:Castle.Windsor.IWindsorContainer" />.

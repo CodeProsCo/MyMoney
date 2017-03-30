@@ -13,7 +13,7 @@ namespace MyMoney.Web
     /// </summary>
     public class CassetteConfig : IConfiguration<BundleCollection>
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Configures the specified bundles.

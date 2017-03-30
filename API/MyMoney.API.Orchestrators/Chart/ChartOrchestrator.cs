@@ -1,27 +1,21 @@
-﻿using MyMoney.DTO.Request.Chart.Expenditure;
-using MyMoney.DTO.Response.Chart.Expenditure;
-
-namespace MyMoney.API.Orchestrators.Chart
+﻿namespace MyMoney.API.Orchestrators.Chart
 {
     #region Usings
 
     using System;
     using System.Threading.Tasks;
 
-    using Assemblers.Chart.Interfaces;
-
-    using DataAccess.Spending.Interfaces;
-
-    using DataTransformers.Spending.Interfaces;
-
-    using DTO.Request.Chart.Bill;
-    using DTO.Response.Chart.Bill;
-
-    using Helpers.Error;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.API.Assemblers.Chart.Interfaces;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
+    using MyMoney.API.DataTransformers.Spending.Interfaces;
+    using MyMoney.API.Orchestrators.Chart.Interfaces;
+    using MyMoney.DTO.Request.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Expenditure;
+    using MyMoney.DTO.Response.Chart.Bill;
+    using MyMoney.DTO.Response.Chart.Expenditure;
+    using MyMoney.Helpers.Error;
 
     #endregion
 
@@ -49,9 +43,15 @@ namespace MyMoney.API.Orchestrators.Chart
         /// </summary>
         private readonly IBillRepository billRepository;
 
-        private readonly IExpenditureRepository expenditureRepository;
-
+        /// <summary>
+        ///     The expenditure data transformer
+        /// </summary>
         private readonly IExpenditureDataTransformer expenditureDataTransformer;
+
+        /// <summary>
+        ///     The expenditure repository
+        /// </summary>
+        private readonly IExpenditureRepository expenditureRepository;
 
         #endregion
 
@@ -60,15 +60,27 @@ namespace MyMoney.API.Orchestrators.Chart
         /// <summary>
         ///     Initializes a new instance of the <see cref="ChartOrchestrator" /> class.
         /// </summary>
-        /// <param name="assembler">The assembler.</param>
-        /// <param name="billRepository">The bill repository.</param>
-        /// <param name="billDataTransformer">The bill data transformer.</param>
+        /// <param name="assembler">
+        ///     The assembler.
+        /// </param>
+        /// <param name="billRepository">
+        ///     The bill repository.
+        /// </param>
+        /// <param name="billDataTransformer">
+        ///     The bill data transformer.
+        /// </param>
+        /// <param name="expenditureRepository">
+        ///     The expenditure Repository.
+        /// </param>
+        /// <param name="expenditureDataTransformer">
+        ///     The expenditure Data Transformer.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown if the assembler, repository or transformer are null.
         /// </exception>
         public ChartOrchestrator(
-            IChartAssembler assembler, 
-            IBillRepository billRepository, 
+            IChartAssembler assembler,
+            IBillRepository billRepository,
             IBillDataTransformer billDataTransformer,
             IExpenditureRepository expenditureRepository,
             IExpenditureDataTransformer expenditureDataTransformer)
@@ -107,7 +119,7 @@ namespace MyMoney.API.Orchestrators.Chart
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Obtains the bill category chart data from the database.
@@ -164,7 +176,13 @@ namespace MyMoney.API.Orchestrators.Chart
             return response;
         }
 
-        public async Task<GetExpenditureChartDataResponse> GetExpenditureChartData(GetExpenditureChartDataRequest request)
+        /// <summary>
+        /// Obtains the data required for the expenditure chart.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
+        public async Task<GetExpenditureChartDataResponse> GetExpenditureChartData(
+            GetExpenditureChartDataRequest request)
         {
             var response = new GetExpenditureChartDataResponse();
 

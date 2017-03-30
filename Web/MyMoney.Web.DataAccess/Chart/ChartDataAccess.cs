@@ -1,18 +1,16 @@
-﻿using MyMoney.DTO.Request.Chart.Expenditure;
-using MyMoney.DTO.Response.Chart.Expenditure;
-
-namespace MyMoney.Web.DataAccess.Chart
+﻿namespace MyMoney.Web.DataAccess.Chart
 {
     #region Usings
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Chart.Bill;
-    using DTO.Response.Chart.Bill;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.DTO.Request.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Expenditure;
+    using MyMoney.DTO.Response.Chart.Bill;
+    using MyMoney.DTO.Response.Chart.Expenditure;
+    using MyMoney.Web.DataAccess.Chart.Interfaces;
 
     #endregion
 
@@ -24,7 +22,7 @@ namespace MyMoney.Web.DataAccess.Chart
     [UsedImplicitly]
     public class ChartDataAccess : BaseDataAccess, IChartDataAccess
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Sends an HTTP GET request to obtain data for the bill category chart.
@@ -51,7 +49,15 @@ namespace MyMoney.Web.DataAccess.Chart
             return await Get<GetBillPeriodChartDataResponse>(request.FormatRequestUri(), request.Username);
         }
 
-        public async Task<GetExpenditureChartDataResponse> GetExpenditureChartData(GetExpenditureChartDataRequest request)
+        /// <summary>
+        /// Sends an HTTP GET request to obtain data for the expenditure chart.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
+        public async Task<GetExpenditureChartDataResponse> GetExpenditureChartData(
+            GetExpenditureChartDataRequest request)
         {
             return await Get<GetExpenditureChartDataResponse>(request.FormatRequestUri(), request.Username);
         }

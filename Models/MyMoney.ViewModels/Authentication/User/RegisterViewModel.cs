@@ -5,7 +5,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using Attributes;
+    using MyMoney.ViewModels.Attributes;
 
     #endregion
 
@@ -14,7 +14,7 @@
     /// </summary>
     public class RegisterViewModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets a value indicating whether [accept terms and conditions].

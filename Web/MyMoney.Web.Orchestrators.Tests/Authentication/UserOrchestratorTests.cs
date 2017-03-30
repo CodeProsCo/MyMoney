@@ -5,26 +5,20 @@
     using System;
     using System.Security.Claims;
 
-    using Assemblers.Authentication.Interfaces;
-
-    using DataAccess.Authentication.Interfaces;
-
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
+    using MyMoney.Proxies.Authentication;
+    using MyMoney.ViewModels.Authentication.User;
+    using MyMoney.Web.Assemblers.Authentication.Interfaces;
+    using MyMoney.Web.DataAccess.Authentication.Interfaces;
+    using MyMoney.Web.Orchestrators.Authentication;
+    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
+    using MyMoney.Wrappers;
 
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
     using NUnit.Framework;
-
-    using Orchestrators.Authentication;
-    using Orchestrators.Authentication.Interfaces;
-
-    using Proxies.Authentication;
-
-    using ViewModels.Authentication.User;
-
-    using Wrappers;
 
     #endregion
 
@@ -32,177 +26,41 @@
     [Category("Web Orchestrators")]
     public class UserOrchestratorTests
     {
-        [SetUp]
-        public void SetUp()
-        {
-            assembler = Substitute.For<IUserAssembler>();
-            dataAccess = Substitute.For<IUserDataAccess>();
-
-            validRegisterUserRequest = new RegisterUserRequest
-                                           {
-                                               DateOfBirth = DateTime.Now, 
-                                               EmailAddress = "TEST", 
-                                               FirstName = "TEST", 
-                                               LastName = "TEST", 
-                                               Password = "TEST", 
-                                               Username = "TEST"
-                                           };
-
-            validValidateUserResponse = new ValidateUserResponse
-                                            {
-                                                LoginSuccess = true, 
-                                                RequestReference = Guid.NewGuid(), 
-                                                User =
-                                                    new UserProxy
-                                                        {
-                                                            EmailAddress = "TEST", 
-                                                            DateOfBirth = DateTime.Now, 
-                                                            FirstName = "TEST", 
-                                                            Id = Guid.NewGuid(), 
-                                                            LastName = "TEST"
-                                                        }
-                                            };
-
-            invalidValidateUserResponse = new ValidateUserResponse { Errors = { new ResponseErrorWrapper() } };
-
-            validValidateUserRequest = new ValidateUserRequest
-                                           {
-                                               EmailAddress = "TEST", 
-                                               Password = "TEST", 
-                                               Username = "TEST"
-                                           };
-
-            invalidValidateUserRequest = new ValidateUserRequest
-                                             {
-                                                 EmailAddress = string.Empty, 
-                                                 Password = string.Empty, 
-                                                 Username = string.Empty
-                                             };
-
-            validLoginViewModel = new LoginViewModel { EmailAddress = "TEST", Password = "TEST", ReturnUrl = "TEST" };
-
-            invalidLoginViewModel = new LoginViewModel
-                                        {
-                                            EmailAddress = string.Empty, 
-                                            Password = string.Empty, 
-                                            ReturnUrl = string.Empty
-                                        };
-
-            invalidRegisterViewModel = new RegisterViewModel
-                                           {
-                                               AcceptTermsAndConditions = false, 
-                                               ConfirmPassword = string.Empty, 
-                                               DateOfBirth = DateTime.MinValue, 
-                                               EmailAddress = string.Empty, 
-                                               FirstName = string.Empty, 
-                                               LastName = string.Empty, 
-                                               Password = string.Empty
-                                           };
-
-            validRegisterUserResponse = new RegisterUserResponse
-                                            {
-                                                RequestReference = Guid.NewGuid(), 
-                                                RegisterSuccess = true
-                                            };
-
-            invalidRegisterUserResponse = new RegisterUserResponse
-                                              {
-                                                  RequestReference = Guid.NewGuid(), 
-                                                  Errors = {
-                                                              new ResponseErrorWrapper() 
-                                                           }, 
-                                                  RegisterSuccess = false
-                                              };
-
-            validRegisterViewModel = new RegisterViewModel
-                                         {
-                                             AcceptTermsAndConditions = true, 
-                                             ConfirmPassword = "TEST", 
-                                             DateOfBirth = DateTime.Now, 
-                                             EmailAddress = "TEST", 
-                                             FirstName = "TEST", 
-                                             LastName = "TEST", 
-                                             Password = "TEST"
-                                         };
-
-            invalidRegisterUserRequest = new RegisterUserRequest
-                                             {
-                                                 DateOfBirth = DateTime.MinValue, 
-                                                 EmailAddress = string.Empty, 
-                                                 FirstName = string.Empty, 
-                                                 LastName = string.Empty, 
-                                                 Password = string.Empty, 
-                                                 Username = string.Empty
-                                             };
-
-            assembler.NewRegisterUserRequest(invalidRegisterViewModel).Returns(invalidRegisterUserRequest);
-            assembler.NewRegisterUserRequest(validRegisterViewModel).Returns(validRegisterUserRequest);
-            assembler.NewRegisterUserRequest(null).Throws(new Exception("TEST EXCEPTION"));
-
-            assembler.NewValidateUserRequest(invalidLoginViewModel).Returns(invalidValidateUserRequest);
-            assembler.NewValidateUserRequest(validLoginViewModel).Returns(validValidateUserRequest);
-            assembler.NewValidateUserRequest(null).Throws(new Exception("TEST EXCEPTION"));
-
-            assembler.NewClaimsIdentity(validValidateUserResponse).Returns(new ClaimsIdentity());
-
-            dataAccess.RegisterUser(invalidRegisterUserRequest).Returns(invalidRegisterUserResponse);
-            dataAccess.RegisterUser(validRegisterUserRequest).Returns(validRegisterUserResponse);
-
-            dataAccess.ValidateUser(invalidValidateUserRequest).Returns(invalidValidateUserResponse);
-            dataAccess.ValidateUser(validValidateUserRequest).Returns(validValidateUserResponse);
-
-            orchestrator = new UserOrchestrator(assembler, dataAccess);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            orchestrator = null;
-            assembler = null;
-            dataAccess = null;
-            validRegisterViewModel = null;
-            validRegisterUserRequest = null;
-            invalidRegisterUserRequest = null;
-            validRegisterUserResponse = null;
-            invalidRegisterUserResponse = null;
-            invalidRegisterViewModel = null;
-            invalidLoginViewModel = null;
-            validLoginViewModel = null;
-            validValidateUserRequest = null;
-            invalidValidateUserRequest = null;
-            validValidateUserResponse = null;
-            invalidValidateUserResponse = null;
-        }
-
-        private IUserOrchestrator orchestrator;
+        #region Fields
 
         private IUserAssembler assembler;
 
         private IUserDataAccess dataAccess;
 
-        private RegisterViewModel validRegisterViewModel;
-
-        private RegisterUserRequest validRegisterUserRequest;
+        private LoginViewModel invalidLoginViewModel;
 
         private RegisterUserRequest invalidRegisterUserRequest;
-
-        private RegisterUserResponse validRegisterUserResponse;
 
         private RegisterUserResponse invalidRegisterUserResponse;
 
         private RegisterViewModel invalidRegisterViewModel;
 
-        private LoginViewModel invalidLoginViewModel;
+        private ValidateUserRequest invalidValidateUserRequest;
+
+        private ValidateUserResponse invalidValidateUserResponse;
+
+        private IUserOrchestrator orchestrator;
 
         private LoginViewModel validLoginViewModel;
 
-        private ValidateUserRequest validValidateUserRequest;
+        private RegisterUserRequest validRegisterUserRequest;
 
-        private ValidateUserRequest invalidValidateUserRequest;
+        private RegisterUserResponse validRegisterUserResponse;
+
+        private RegisterViewModel validRegisterViewModel;
+
+        private ValidateUserRequest validValidateUserRequest;
 
         private ValidateUserResponse validValidateUserResponse;
 
-        private ValidateUserResponse invalidValidateUserResponse;
+        #endregion
+
+        #region Methods
 
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
@@ -263,6 +121,148 @@
             Assert.IsTrue(test.Model);
         }
 
+        [SetUp]
+        public void SetUp()
+        {
+            assembler = Substitute.For<IUserAssembler>();
+            dataAccess = Substitute.For<IUserDataAccess>();
+
+            validRegisterUserRequest = new RegisterUserRequest
+                                           {
+                                               DateOfBirth = DateTime.Now,
+                                               EmailAddress = "TEST",
+                                               FirstName = "TEST",
+                                               LastName = "TEST",
+                                               Password = "TEST",
+                                               Username = "TEST"
+                                           };
+
+            validValidateUserResponse = new ValidateUserResponse
+                                            {
+                                                LoginSuccess = true,
+                                                RequestReference = Guid.NewGuid(),
+                                                User =
+                                                    new UserProxy
+                                                        {
+                                                            EmailAddress = "TEST",
+                                                            DateOfBirth = DateTime.Now,
+                                                            FirstName = "TEST",
+                                                            Id = Guid.NewGuid(),
+                                                            LastName = "TEST"
+                                                        }
+                                            };
+
+            invalidValidateUserResponse = new ValidateUserResponse { Errors = { new ResponseErrorWrapper() } };
+
+            validValidateUserRequest = new ValidateUserRequest
+                                           {
+                                               EmailAddress = "TEST",
+                                               Password = "TEST",
+                                               Username = "TEST"
+                                           };
+
+            invalidValidateUserRequest = new ValidateUserRequest
+                                             {
+                                                 EmailAddress = string.Empty,
+                                                 Password = string.Empty,
+                                                 Username = string.Empty
+                                             };
+
+            validLoginViewModel = new LoginViewModel { EmailAddress = "TEST", Password = "TEST", ReturnUrl = "TEST" };
+
+            invalidLoginViewModel = new LoginViewModel
+                                        {
+                                            EmailAddress = string.Empty,
+                                            Password = string.Empty,
+                                            ReturnUrl = string.Empty
+                                        };
+
+            invalidRegisterViewModel = new RegisterViewModel
+                                           {
+                                               AcceptTermsAndConditions = false,
+                                               ConfirmPassword = string.Empty,
+                                               DateOfBirth = DateTime.MinValue,
+                                               EmailAddress = string.Empty,
+                                               FirstName = string.Empty,
+                                               LastName = string.Empty,
+                                               Password = string.Empty
+                                           };
+
+            validRegisterUserResponse = new RegisterUserResponse
+                                            {
+                                                RequestReference = Guid.NewGuid(),
+                                                RegisterSuccess = true
+                                            };
+
+            invalidRegisterUserResponse = new RegisterUserResponse
+                                              {
+                                                  RequestReference = Guid.NewGuid(),
+                                                  Errors = {
+                                                              new ResponseErrorWrapper() 
+                                                           },
+                                                  RegisterSuccess = false
+                                              };
+
+            validRegisterViewModel = new RegisterViewModel
+                                         {
+                                             AcceptTermsAndConditions = true,
+                                             ConfirmPassword = "TEST",
+                                             DateOfBirth = DateTime.Now,
+                                             EmailAddress = "TEST",
+                                             FirstName = "TEST",
+                                             LastName = "TEST",
+                                             Password = "TEST"
+                                         };
+
+            invalidRegisterUserRequest = new RegisterUserRequest
+                                             {
+                                                 DateOfBirth = DateTime.MinValue,
+                                                 EmailAddress = string.Empty,
+                                                 FirstName = string.Empty,
+                                                 LastName = string.Empty,
+                                                 Password = string.Empty,
+                                                 Username = string.Empty
+                                             };
+
+            assembler.NewRegisterUserRequest(invalidRegisterViewModel).Returns(invalidRegisterUserRequest);
+            assembler.NewRegisterUserRequest(validRegisterViewModel).Returns(validRegisterUserRequest);
+            assembler.NewRegisterUserRequest(null).Throws(new Exception("TEST EXCEPTION"));
+
+            assembler.NewValidateUserRequest(invalidLoginViewModel).Returns(invalidValidateUserRequest);
+            assembler.NewValidateUserRequest(validLoginViewModel).Returns(validValidateUserRequest);
+            assembler.NewValidateUserRequest(null).Throws(new Exception("TEST EXCEPTION"));
+
+            assembler.NewClaimsIdentity(validValidateUserResponse).Returns(new ClaimsIdentity());
+
+            dataAccess.RegisterUser(invalidRegisterUserRequest).Returns(invalidRegisterUserResponse);
+            dataAccess.RegisterUser(validRegisterUserRequest).Returns(validRegisterUserResponse);
+
+            dataAccess.ValidateUser(invalidValidateUserRequest).Returns(invalidValidateUserResponse);
+            dataAccess.ValidateUser(validValidateUserRequest).Returns(validValidateUserResponse);
+
+            orchestrator = new UserOrchestrator(assembler, dataAccess);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            orchestrator = null;
+            assembler = null;
+            dataAccess = null;
+            validRegisterViewModel = null;
+            validRegisterUserRequest = null;
+            invalidRegisterUserRequest = null;
+            validRegisterUserResponse = null;
+            invalidRegisterUserResponse = null;
+            invalidRegisterViewModel = null;
+            invalidLoginViewModel = null;
+            validLoginViewModel = null;
+            validValidateUserRequest = null;
+            invalidValidateUserRequest = null;
+            validValidateUserResponse = null;
+            invalidValidateUserResponse = null;
+        }
+
         [Test]
         public void ValidateUser_InvalidRequest_ReturnsError()
         {
@@ -313,5 +313,7 @@
             Assert.IsTrue(test.Success);
             Assert.IsNotNull(test.Model);
         }
+
+        #endregion
     }
 }

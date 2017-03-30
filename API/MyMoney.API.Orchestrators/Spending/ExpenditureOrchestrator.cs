@@ -5,18 +5,14 @@
     using System;
     using System.Threading.Tasks;
 
-    using Assemblers.Spending.Interfaces;
-
-    using DataAccess.Spending.Interfaces;
-
-    using DTO.Request.Spending.Expenditure;
-    using DTO.Response.Spending.Expenditure;
-
-    using Helpers.Error;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.API.Assemblers.Spending.Interfaces;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
+    using MyMoney.API.Orchestrators.Spending.Interfaces;
+    using MyMoney.DTO.Request.Spending.Expenditure;
+    using MyMoney.DTO.Response.Spending.Expenditure;
+    using MyMoney.Helpers.Error;
 
     #endregion
 
@@ -69,7 +65,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds an expenditure to the database.

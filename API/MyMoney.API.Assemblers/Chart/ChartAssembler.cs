@@ -5,11 +5,11 @@
     using System;
     using System.Collections.Generic;
 
-    using DTO.Response.Chart.Bill;
-    using DTO.Response.Chart.Expenditure;
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.API.Assemblers.Chart.Interfaces;
+    using MyMoney.DTO.Response.Chart.Bill;
+    using MyMoney.DTO.Response.Chart.Expenditure;
 
     #endregion
 
@@ -20,7 +20,7 @@
     [UsedImplicitly]
     public class ChartAssembler : IChartAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="GetBillCategoryChartDataResponse" /> class.
@@ -31,7 +31,7 @@
         ///     The response object.
         /// </returns>
         public GetBillCategoryChartDataResponse NewGetBillCategoryChartDataResponse(
-            IList<KeyValuePair<string, int>> data, 
+            IList<KeyValuePair<string, int>> data,
             Guid requestReference)
         {
             return new GetBillCategoryChartDataResponse { Data = data, RequestReference = requestReference };
@@ -46,15 +46,23 @@
         ///     The response object.
         /// </returns>
         public GetBillPeriodChartDataResponse NewGetBillPeriodChartDataResponse(
-            IList<KeyValuePair<string, int>> data, 
+            IList<KeyValuePair<string, int>> data,
             Guid requestReference)
         {
             return new GetBillPeriodChartDataResponse { Data = data, RequestReference = requestReference };
         }
 
-        public GetExpenditureChartDataResponse NewGetExpenditureChartDataResponse(IList<KeyValuePair<DateTime, double>> data, Guid requestRequestReference)
+        /// <summary>
+        /// News the get expenditure chart data response.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="requestRequestReference">The request request reference.</param>
+        /// <returns>The response object.</returns>
+        public GetExpenditureChartDataResponse NewGetExpenditureChartDataResponse(
+            IList<KeyValuePair<DateTime, double>> data,
+            Guid requestRequestReference)
         {
-            return new GetExpenditureChartDataResponse {Data = data, RequestReference = requestRequestReference};
+            return new GetExpenditureChartDataResponse { Data = data, RequestReference = requestRequestReference };
         }
 
         #endregion

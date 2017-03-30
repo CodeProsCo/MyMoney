@@ -6,14 +6,11 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using Attributes;
-
-    using Orchestrators.Chart.Interfaces;
-    using Orchestrators.Spending.Interfaces;
-
-    using ViewModels.Spending.Bills;
-
-    using Web.Controllers;
+    using MyMoney.ViewModels.Spending.Bills;
+    using MyMoney.Web.Attributes;
+    using MyMoney.Web.Controllers;
+    using MyMoney.Web.Orchestrators.Chart.Interfaces;
+    using MyMoney.Web.Orchestrators.Spending.Interfaces;
 
     #endregion
 
@@ -68,7 +65,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Handles a HTTP request to add a bill to the database.

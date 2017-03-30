@@ -2,6 +2,7 @@
 /// <reference path="~/Scripts/Moment/moment.js" />
 function ChartGenerator(data) {
     this.data = data;
+    this.chart = {};
 
     var self = this;
 
@@ -24,7 +25,7 @@ function ChartGenerator(data) {
             chartData.push(entry);
         }
 
-        var chart = new Chartist.Line(options.container,
+        self.chart = new Chartist.Line(options.container,
             {
                 series: [
                     {
@@ -109,7 +110,7 @@ function ChartGenerator(data) {
             addDonutAnimation(chart);
         }
 
-        return chart;
+        self.chart = chart;
     }
 
     function addDonutAnimation(chart) {

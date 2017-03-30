@@ -5,7 +5,7 @@
     using System.Diagnostics;
     using System.Web.Http;
 
-    using Attributes;
+    using MyMoney.API.Attributes;
 
     using WebApiThrottle;
 
@@ -16,7 +16,7 @@
     /// </summary>
     public static class WebApiConfig
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers routes to specified configuration.
@@ -34,16 +34,16 @@
                         Policy =
                             new ThrottlePolicy(1, 30, 200)
                                 {
-                                    IpThrottling = true, 
+                                    IpThrottling = true,
                                     EndpointThrottling = true
-                                }, 
+                                },
                         Repository = new CacheRepository()
                     });
 
-            //if (!Debugger.IsAttached)
-            //{
-            //    config.Filters.Add(new ValidateAPIKeyAttribute());
-            //}
+            if (!Debugger.IsAttached)
+            {
+                config.Filters.Add(new ValidateApiKeyAttribute());
+            }
         }
 
         #endregion

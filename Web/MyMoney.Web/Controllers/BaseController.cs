@@ -14,15 +14,14 @@
     using System.Web.Mvc;
     using System.Web.Routing;
 
-    using Helpers.Benchmarking;
-    using Helpers.Error;
-
     using Microsoft.Owin.Security;
+
+    using MyMoney.Helpers.Benchmarking;
+    using MyMoney.Helpers.Error;
+    using MyMoney.Wrappers;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
-
-    using Wrappers;
 
     #endregion
 
@@ -34,11 +33,14 @@
     {
         #region Fields
 
+        /// <summary>
+        /// The controller benchmark
+        /// </summary>
         private Benchmark controllerBenchmark;
 
         #endregion
 
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets the user email.
@@ -58,7 +60,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds errors to the model.
@@ -95,18 +97,20 @@
             return context.Authentication;
         }
 
-        #endregion
-
-        #region Private Methods
-
-        protected static string GetResourceValue(string nmSpace, string key)
+        /// <summary>
+        /// Gets the resource value.
+        /// </summary>
+        /// <param name="nameSpace">The resource namespace.</param>
+        /// <param name="key">The key.</param>
+        /// <returns>If found, the string. Otherwise an empty string.</returns>
+        protected static string GetResourceValue(string nameSpace, string key)
         {
             var assembly = Assembly.Load("MyMoney.Resources");
             var resourceNames = assembly.GetManifestResourceNames();
 
             foreach (var t in resourceNames)
             {
-                if (!t.Contains($"{nmSpace}.resources"))
+                if (!t.Contains($"{nameSpace}.resources"))
                 {
                     continue;
                 }
@@ -119,20 +123,25 @@
             return string.Empty;
         }
 
+        /// <summary>
+        /// Creates a JSON response object based on the given response object.
+        /// </summary>
+        /// <typeparam name="T">The model type.</typeparam>
+        /// <param name="response">The response.</param>
+        /// <returns>The JSON response.</returns>
         protected static ContentResult JsonResponse<T>(OrchestratorResponseWrapper<T> response)
         {
             return new ContentResult
                        {
-                           ContentType = "application/json", 
+                           ContentType = "application/json",
                            Content =
                                JsonConvert.SerializeObject(
-                                   response, 
+                                   response,
                                    new JsonSerializerSettings
                                        {
                                            ContractResolver =
-                                               new CamelCasePropertyNamesContractResolver
-                                               ()
-                                       }), 
+                                               new CamelCasePropertyNamesContractResolver()
+                                       }),
                            ContentEncoding = Encoding.UTF8
                        };
         }
@@ -143,8 +152,8 @@
         /// <param name="callback">The asynchronous callback.</param>
         /// <param name="state">The state.</param>
         protected override IAsyncResult BeginExecute(
-            RequestContext requestContext, 
-            AsyncCallback callback, 
+            RequestContext requestContext,
+            AsyncCallback callback,
             object state)
         {
             controllerBenchmark = BenchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl);
@@ -188,9 +197,6 @@
         protected override void OnException(ExceptionContext filterContext)
         {
             filterContext.ExceptionHandled = true;
-
-            var error = ErrorHelper.Create(filterContext.Exception, UserEmail, GetType(), "OnException");
-
             filterContext.Result = RedirectToAction("SystemError", "Error", new { area = "Common" });
         }
 

@@ -6,17 +6,14 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DataModels.Common;
-    using DataModels.Spending;
-
-    using DTO.Response.Spending.Bills;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using Proxies.Common;
-    using Proxies.Spending;
+    using MyMoney.API.Assemblers.Spending.Interfaces;
+    using MyMoney.DataModels.Common;
+    using MyMoney.DataModels.Spending;
+    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.Proxies.Common;
+    using MyMoney.Proxies.Spending;
 
     #endregion
 
@@ -27,7 +24,7 @@
     [UsedImplicitly]
     public class BillAssembler : IBillAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates a new instance of the <see cref="AddBillResponse" /> class.
@@ -96,7 +93,7 @@
         ///     The response object.
         /// </returns>
         public GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(
-            IList<KeyValuePair<DateTime, double>> data, 
+            IList<KeyValuePair<DateTime, double>> data,
             Guid requestReference)
         {
             return new GetBillsForUserForMonthResponse { Data = data, RequestReference = requestReference };
@@ -112,14 +109,10 @@
         {
             return new GetBillsForUserResponse
                        {
-                           RequestReference = requestReference, 
+                           RequestReference = requestReference,
                            Bills = bills.Select(BillDataModelToProxy).ToList()
                        };
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         ///     Converts a bill data model to a proxy.
@@ -130,13 +123,13 @@
         {
             return new BillProxy
                        {
-                           Amount = model.Amount, 
-                           Category = new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name }, 
-                           CategoryId = model.CategoryId, 
-                           Id = model.Id, 
-                           Name = model.Name, 
-                           ReoccurringPeriod = model.ReoccurringPeriod, 
-                           StartDate = model.StartDate, 
+                           Amount = model.Amount,
+                           Category = new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name },
+                           CategoryId = model.CategoryId,
+                           Id = model.Id,
+                           Name = model.Name,
+                           ReoccurringPeriod = model.ReoccurringPeriod,
+                           StartDate = model.StartDate,
                            UserId = model.UserId
                        };
         }
@@ -150,14 +143,18 @@
         {
             return new BillDataModel
                        {
-                           Amount = proxy.Amount, 
+                           Amount = proxy.Amount,
                            Category =
-                               new CategoryDataModel { Id = proxy.Category.Id, Name = proxy.Category.Name }, 
-                           CategoryId = proxy.CategoryId, 
-                           Id = proxy.Id, 
-                           Name = proxy.Name, 
-                           ReoccurringPeriod = proxy.ReoccurringPeriod, 
-                           StartDate = proxy.StartDate, 
+                               new CategoryDataModel
+                                   {
+                                       Id = proxy.Category.Id,
+                                       Name = proxy.Category.Name
+                                   },
+                           CategoryId = proxy.CategoryId,
+                           Id = proxy.Id,
+                           Name = proxy.Name,
+                           ReoccurringPeriod = proxy.ReoccurringPeriod,
+                           StartDate = proxy.StartDate,
                            UserId = proxy.UserId
                        };
         }

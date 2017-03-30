@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using Proxies.Spending;
+    using MyMoney.Proxies.Spending;
 
     #endregion
 
@@ -24,7 +24,7 @@
 
         #endregion
 
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the bill.

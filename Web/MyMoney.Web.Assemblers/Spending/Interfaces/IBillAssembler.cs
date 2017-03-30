@@ -4,10 +4,9 @@
 
     using System;
 
-    using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending.Bills;
-
-    using ViewModels.Spending.Bills;
+    using MyMoney.DTO.Request.Spending.Bill;
+    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.ViewModels.Spending.Bills;
 
     #endregion
 
@@ -16,7 +15,7 @@
     /// </summary>
     public interface IBillAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="AddBillRequest" />. class.

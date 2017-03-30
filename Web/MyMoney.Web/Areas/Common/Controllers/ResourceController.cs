@@ -4,9 +4,8 @@
 
     using System.Web.Mvc;
 
-    using Attributes;
-
-    using Web.Controllers;
+    using MyMoney.Web.Attributes;
+    using MyMoney.Web.Controllers;
 
     #endregion
 
@@ -18,7 +17,7 @@
     [RoutePrefix("resource")]
     public class ResourceController : BaseController
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Gets the resource string.

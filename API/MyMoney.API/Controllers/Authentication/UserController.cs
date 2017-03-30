@@ -6,9 +6,8 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using DTO.Request.Authentication;
-
-    using Orchestrators.Authentication.Interfaces;
+    using MyMoney.API.Orchestrators.Authentication.Interfaces;
+    using MyMoney.DTO.Request.Authentication;
 
     #endregion
 
@@ -48,7 +47,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers a user.

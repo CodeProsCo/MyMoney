@@ -4,8 +4,8 @@
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Spending.Expenditure;
-    using DTO.Response.Spending.Expenditure;
+    using MyMoney.DTO.Request.Spending.Expenditure;
+    using MyMoney.DTO.Response.Spending.Expenditure;
 
     #endregion
 
@@ -14,7 +14,7 @@
     /// </summary>
     public interface IExpenditureOrchestrator
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds an expenditure to the database.

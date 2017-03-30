@@ -4,11 +4,11 @@
 
     using System.Data.Entity;
 
-    using DataModels.Authentication;
-    using DataModels.Common;
-    using DataModels.Spending;
-
     using JetBrains.Annotations;
+
+    using MyMoney.DataModels.Authentication;
+    using MyMoney.DataModels.Common;
+    using MyMoney.DataModels.Spending;
 
     #endregion
 
@@ -31,7 +31,7 @@
 
         #endregion
 
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the bills.
@@ -67,7 +67,7 @@
 
         #endregion
 
-        #region Private Methods
+        #region Methods
 
         /// <summary>
         ///     This method is called when the model for a derived context has been initialized, but

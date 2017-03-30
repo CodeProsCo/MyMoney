@@ -5,8 +5,8 @@
     using System;
     using System.Collections.Generic;
 
-    using DTO.Response.Chart.Bill;
-    using DTO.Response.Chart.Expenditure;
+    using MyMoney.DTO.Response.Chart.Bill;
+    using MyMoney.DTO.Response.Chart.Expenditure;
 
     #endregion
 
@@ -15,7 +15,7 @@
     /// </summary>
     public interface IChartAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="GetBillCategoryChartDataResponse" /> class.
@@ -24,7 +24,7 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         GetBillCategoryChartDataResponse NewGetBillCategoryChartDataResponse(
-            IList<KeyValuePair<string, int>> data, 
+            IList<KeyValuePair<string, int>> data,
             Guid requestReference);
 
         /// <summary>
@@ -34,11 +34,19 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         GetBillPeriodChartDataResponse NewGetBillPeriodChartDataResponse(
-            IList<KeyValuePair<string, int>> data, 
+            IList<KeyValuePair<string, int>> data,
             Guid requestReference);
 
-        #endregion
+        /// <summary>
+        /// Creates an instance of the <see cref="GetExpenditureChartDataResponse"/> class.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="requestRequestReference">The request request reference.</param>
+        /// <returns>The response object.</returns>
+        GetExpenditureChartDataResponse NewGetExpenditureChartDataResponse(
+            IList<KeyValuePair<DateTime, double>> data,
+            Guid requestRequestReference);
 
-        GetExpenditureChartDataResponse NewGetExpenditureChartDataResponse(IList<KeyValuePair<DateTime, double>> data, Guid requestRequestReference);
+        #endregion
     }
 }

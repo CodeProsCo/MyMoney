@@ -6,9 +6,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using ViewModels.Spending.Expenditure;
-
-    using Wrappers;
+    using MyMoney.ViewModels.Spending.Expenditure;
+    using MyMoney.Wrappers;
 
     #endregion
 
@@ -17,7 +16,7 @@
     /// </summary>
     public interface IExpenditureOrchestrator
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Builds and sends a request to add a bill to the database.
@@ -25,7 +24,9 @@
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
-        Task<OrchestratorResponseWrapper<ExpenditureViewModel>> AddExpenditure(ExpenditureViewModel model, string username);
+        Task<OrchestratorResponseWrapper<ExpenditureViewModel>> AddExpenditure(
+            ExpenditureViewModel model,
+            string username);
 
         /// <summary>
         ///     Builds and sends a request to delete a bill from the database.
@@ -47,7 +48,9 @@
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
-        Task<OrchestratorResponseWrapper<ExpenditureViewModel>> EditExpenditure(ExpenditureViewModel model, string username);
+        Task<OrchestratorResponseWrapper<ExpenditureViewModel>> EditExpenditure(
+            ExpenditureViewModel model,
+            string username);
 
         /// <summary>
         ///     Builds and sends a request to obtain a bill from the database.
@@ -84,7 +87,10 @@
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
-        Task<OrchestratorResponseWrapper<IList<ExpenditureViewModel>>> GetExpenditureForUserForMonth(int monthNumber, Guid userId, string username);
+        Task<OrchestratorResponseWrapper<IList<ExpenditureViewModel>>> GetExpenditureForUserForMonth(
+            int monthNumber,
+            Guid userId,
+            string username);
 
         #endregion
     }

@@ -14,7 +14,7 @@
     [Table("Category")]
     public class CategoryDataModel : BaseDataModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the identifier.

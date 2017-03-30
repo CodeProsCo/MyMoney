@@ -12,7 +12,7 @@
     /// </summary>
     public static class RouteConfig
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers the routes.
@@ -26,9 +26,9 @@
 
             routes.LowercaseUrls = true;
 
-            var route = routes.MapRoute(
-                "Default", 
-                "{area}/{controller}/{action}/{id}", 
+            routes.MapRoute(
+                "Default",
+                "{area}/{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional, area = UrlParameter.Optional });
         }
 

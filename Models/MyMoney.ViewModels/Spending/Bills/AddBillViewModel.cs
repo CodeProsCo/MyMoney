@@ -11,7 +11,7 @@
     /// </summary>
     public class AddBillViewModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the bill.

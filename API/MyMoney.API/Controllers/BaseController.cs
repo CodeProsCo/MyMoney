@@ -8,7 +8,7 @@
     using System.Web.Http;
     using System.Web.Http.Controllers;
 
-    using Helpers.Benchmarking;
+    using MyMoney.Helpers.Benchmarking;
 
     #endregion
 
@@ -18,14 +18,14 @@
     /// <seealso cref="System.Web.Http.ApiController" />
     public class BaseController : ApiController
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>Executes asynchronously a single HTTP operation.</summary>
         /// <returns>The newly started task.</returns>
         /// <param name="controllerContext">The controller context for a single HTTP operation.</param>
         /// <param name="cancellationToken">The cancellation token assigned for the HTTP operation.</param>
         public override Task<HttpResponseMessage> ExecuteAsync(
-            HttpControllerContext controllerContext, 
+            HttpControllerContext controllerContext,
             CancellationToken cancellationToken)
         {
             using (BenchmarkHelper.Create(controllerContext.Request.RequestUri))

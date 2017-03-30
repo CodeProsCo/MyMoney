@@ -6,9 +6,8 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using DTO.Request.Chart.Bill;
-
-    using Orchestrators.Chart.Interfaces;
+    using MyMoney.API.Orchestrators.Chart.Interfaces;
+    using MyMoney.DTO.Request.Chart.Bill;
 
     #endregion
 
@@ -49,7 +48,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Handles HTTP GET requests for the bill category chart data for a user.

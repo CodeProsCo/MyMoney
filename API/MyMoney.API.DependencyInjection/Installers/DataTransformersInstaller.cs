@@ -6,8 +6,8 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using DataTransformers.Spending;
-    using DataTransformers.Spending.Interfaces;
+    using MyMoney.API.DataTransformers.Spending;
+    using MyMoney.API.DataTransformers.Spending.Interfaces;
 
     #endregion
 
@@ -17,7 +17,7 @@
     /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class DataTransformersInstaller : IWindsorInstaller
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Performs the installation in the <see cref="T:Castle.Windsor.IWindsorContainer" />.

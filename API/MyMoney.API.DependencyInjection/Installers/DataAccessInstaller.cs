@@ -6,13 +6,13 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using DataAccess;
-    using DataAccess.Authentication;
-    using DataAccess.Authentication.Interfaces;
-    using DataAccess.Common;
-    using DataAccess.Common.Interfaces;
-    using DataAccess.Spending;
-    using DataAccess.Spending.Interfaces;
+    using MyMoney.API.DataAccess;
+    using MyMoney.API.DataAccess.Authentication;
+    using MyMoney.API.DataAccess.Authentication.Interfaces;
+    using MyMoney.API.DataAccess.Common;
+    using MyMoney.API.DataAccess.Common.Interfaces;
+    using MyMoney.API.DataAccess.Spending;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
 
     #endregion
 
@@ -22,7 +22,7 @@
     /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class DataAccessInstaller : IWindsorInstaller
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Performs the installation in the <see cref="T:Castle.Windsor.IWindsorContainer" />.

@@ -13,7 +13,7 @@
     /// <seealso cref="System.ComponentModel.DataAnnotations.ValidationAttribute" />
     public class RequiredTrueAttribute : ValidationAttribute
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>Determines whether the specified value of the object is valid. </summary>
         /// <returns>true if the specified value is valid; otherwise, false.</returns>

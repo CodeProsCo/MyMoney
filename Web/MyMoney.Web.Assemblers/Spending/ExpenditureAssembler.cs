@@ -7,19 +7,15 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using DTO.Request.Spending.Expenditure;
-    using DTO.Response.Spending.Expenditure;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using Proxies.Common;
-    using Proxies.Spending;
-
-    using ViewModels.Enum;
-    using ViewModels.Spending.Bills.Enum;
-    using ViewModels.Spending.Expenditure;
+    using MyMoney.DTO.Request.Spending.Expenditure;
+    using MyMoney.DTO.Response.Spending.Expenditure;
+    using MyMoney.Proxies.Common;
+    using MyMoney.Proxies.Spending;
+    using MyMoney.ViewModels.Enum;
+    using MyMoney.ViewModels.Spending.Expenditure;
+    using MyMoney.Web.Assemblers.Spending.Interfaces;
 
     #endregion
 
@@ -30,7 +26,7 @@
     [UsedImplicitly]
     public class ExpenditureAssembler : IExpenditureAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="AddExpenditureRequest" />. class.
@@ -53,6 +49,52 @@
             }
 
             return new AddExpenditureRequest { Expenditure = ExpenditureViewModelToProxy(model), Username = username };
+        }
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="DeleteExpenditureRequest" />. class.
+        /// </summary>
+        /// <param name="expenditureId">The expenditure Id.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        public DeleteExpenditureRequest NewDeleteExpenditureRequest(Guid expenditureId, string username)
+        {
+            if (expenditureId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(expenditureId));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
+            return new DeleteExpenditureRequest { ExpenditureId = expenditureId, Username = username };
+        }
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="EditExpenditureRequest" />. class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        public EditExpenditureRequest NewEditExpenditureRequest(ExpenditureViewModel model, string username)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
+            return new EditExpenditureRequest { Username = username, Expenditure = ExpenditureViewModelToProxy(model) };
         }
 
         /// <summary>
@@ -107,72 +149,24 @@
         }
 
         /// <summary>
-        ///     Creates an instance of the <see cref="DeleteExpenditureRequest" />. class.
+        /// Creates a collection of the <see cref="ExpenditureViewModel" /> class for the given response object.
         /// </summary>
-        /// <param name="expenditureId">The expenditure Id.</param>
-        /// <param name="username">The username.</param>
+        /// <param name="apiResponse">The API response.</param>
         /// <returns>
-        ///     The request object.
+        /// The list of view models.
         /// </returns>
-        public DeleteExpenditureRequest NewDeleteExpenditureRequest(Guid expenditureId, string username)
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the API response is null.
+        /// </exception>
+        public IList<ExpenditureViewModel> NewExpenditureViewModelList(
+            GetExpendituresForUserForMonthResponse apiResponse)
         {
-            if (expenditureId == Guid.Empty)
+            if (apiResponse == null)
             {
-                throw new ArgumentNullException(nameof(expenditureId));
+                throw new ArgumentNullException(nameof(apiResponse));
             }
 
-            if (string.IsNullOrEmpty(username))
-            {
-                throw new ArgumentNullException(nameof(username));
-            }
-
-            return new DeleteExpenditureRequest { ExpenditureId = expenditureId, Username = username };
-        }
-
-        /// <summary>
-        ///     Creates an instance of the <see cref="EditExpenditureRequest" />. class.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <param name="username">The username.</param>
-        /// <returns>
-        ///     The request object.
-        /// </returns>
-        public EditExpenditureRequest NewEditExpenditureRequest(ExpenditureViewModel model, string username)
-        {
-            if (model == null)
-            {
-                throw new ArgumentNullException(nameof(model));
-            }
-
-            if (string.IsNullOrEmpty(username))
-            {
-                throw new ArgumentNullException(nameof(username));
-            }
-
-            return new EditExpenditureRequest { Username = username, Expenditure = ExpenditureViewModelToProxy(model) };
-        }
-
-        /// <summary>
-        ///     Creates an instance of the <see cref="GetExpenditureRequest" />. class.
-        /// </summary>
-        /// <param name="expenditureId">The expenditure identifier.</param>
-        /// <param name="username">The username.</param>
-        /// <returns>
-        ///     The request object.
-        /// </returns>
-        public GetExpenditureRequest NewGetExpenditureRequest(Guid expenditureId, string username)
-        {
-            if (expenditureId == Guid.Empty)
-            {
-                throw new ArgumentNullException(nameof(expenditureId));
-            }
-
-            if (string.IsNullOrEmpty(username))
-            {
-                throw new ArgumentNullException(nameof(username));
-            }
-
-            return new GetExpenditureRequest { ExpenditureId = expenditureId, Username = username };
+            return apiResponse.Data.Select(ExpenditureProxyToViewModel).ToList();
         }
 
         /// <summary>
@@ -205,11 +199,11 @@
             }
 
             return new GetExpendituresForUserForMonthRequest
-            {
-                UserId = userId,
-                MonthNumber = monthNumber,
-                Username = userEmail
-            };
+                       {
+                           UserId = userId,
+                           MonthNumber = monthNumber,
+                           Username = userEmail
+                       };
         }
 
         /// <summary>
@@ -237,6 +231,29 @@
         }
 
         /// <summary>
+        ///     Creates an instance of the <see cref="GetExpenditureRequest" />. class.
+        /// </summary>
+        /// <param name="expenditureId">The expenditure identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        public GetExpenditureRequest NewGetExpenditureRequest(Guid expenditureId, string username)
+        {
+            if (expenditureId == Guid.Empty)
+            {
+                throw new ArgumentNullException(nameof(expenditureId));
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username));
+            }
+
+            return new GetExpenditureRequest { ExpenditureId = expenditureId, Username = username };
+        }
+
+        /// <summary>
         ///     Assembles an instance of the <see cref="IList{ExpenditureViewModel}" /> class based on the given
         ///     <see cref="GetExpendituresForUserResponse" />.
         /// </summary>
@@ -252,63 +269,52 @@
             }
 
             return new TrackExpenditureViewModel
-            {
-                AddExpenditure =
+                       {
+                           AddExpenditure =
                                new AddExpenditureViewModel
-                               {
-                                   CategoryOptions =
+                                   {
+                                       CategoryOptions =
                                            new SelectList(
-                                           Enum.GetValues(
-                                               typeof(Category))),
-                                   Expenditure =
+                                               Enum.GetValues(
+                                                   typeof(Category))),
+                                       Expenditure =
                                            new ExpenditureViewModel
-                                           {
-                                               DateOccurred = DateTime.Now
-                                           },
-                                   TimePeriodOptions =
-                                           new SelectList(
-                                           Enum.GetValues(
-                                               typeof(TimePeriod)))
-                               },
-                Expenditures =
-                               apiResponse.Expenditures.Select(ExpenditureProxyToViewModel)
-                               .ToList(),
-                EditExpenditure =
-                               new EditExpenditureViewModel
-                               {
-                                   CategoryOptions =
-                                           new SelectList(
-                                           Enum.GetValues(
-                                               typeof(Category))),
-                                   Expenditure =
-                                           new ExpenditureViewModel
-                                           {
-                                               DateOccurred
+                                               {
+                                                   DateOccurred
                                                        =
                                                        DateTime
-                                                       .Now
-                                           },
-                                   TimePeriodOptions =
+                                                           .Now
+                                               },
+                                       TimePeriodOptions =
                                            new SelectList(
-                                           Enum.GetValues(
-                                               typeof(TimePeriod)))
-                               }
-            };
+                                               Enum.GetValues(
+                                                   typeof(TimePeriod)))
+                                   },
+                           Expenditures =
+                               apiResponse.Expenditures.Select(ExpenditureProxyToViewModel)
+                                   .ToList(),
+                           EditExpenditure =
+                               new EditExpenditureViewModel
+                                   {
+                                       CategoryOptions =
+                                           new SelectList(
+                                               Enum.GetValues(
+                                                   typeof(Category))),
+                                       Expenditure =
+                                           new ExpenditureViewModel
+                                               {
+                                                   DateOccurred
+                                                       =
+                                                       DateTime
+                                                           .Now
+                                               },
+                                       TimePeriodOptions =
+                                           new SelectList(
+                                               Enum.GetValues(
+                                                   typeof(TimePeriod)))
+                                   }
+                       };
         }
-
-        public IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserForMonthResponse apiResponse)
-        {
-            if (apiResponse == null)
-            {
-                throw new ArgumentNullException(nameof(apiResponse));
-            }
-
-            return apiResponse.Data.Select(ExpenditureProxyToViewModel).ToList();
-        }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         ///     Converts an instance of the <see cref="ExpenditureProxy" /> class to a <see cref="ExpenditureViewModel" /> class.
@@ -318,14 +324,14 @@
         private static ExpenditureViewModel ExpenditureProxyToViewModel(ExpenditureProxy proxy)
         {
             return new ExpenditureViewModel
-            {
-                Amount = proxy.Amount,
-                Category = proxy.Category.Name,
-                Description = proxy.Description,
-                DateOccurred = proxy.DateOccurred,
-                Id = proxy.Id,
-                UserId = proxy.UserId
-            };
+                       {
+                           Amount = proxy.Amount,
+                           Category = proxy.Category.Name,
+                           Description = proxy.Description,
+                           DateOccurred = proxy.DateOccurred,
+                           Id = proxy.Id,
+                           UserId = proxy.UserId
+                       };
         }
 
         /// <summary>
@@ -336,14 +342,14 @@
         private static ExpenditureProxy ExpenditureViewModelToProxy(ExpenditureViewModel model)
         {
             return new ExpenditureProxy
-            {
-                Amount = model.Amount,
-                Category = new CategoryProxy { Name = model.Category },
-                Description = model.Description,
-                DateOccurred = model.DateOccurred,
-                UserId = model.UserId,
-                Id = model.Id
-            };
+                       {
+                           Amount = model.Amount,
+                           Category = new CategoryProxy { Name = model.Category },
+                           Description = model.Description,
+                           DateOccurred = model.DateOccurred,
+                           UserId = model.UserId,
+                           Id = model.Id
+                       };
         }
 
         #endregion

@@ -6,11 +6,10 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DataModels.Spending;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.API.DataTransformers.Spending.Interfaces;
+    using MyMoney.DataModels.Spending;
 
     #endregion
 
@@ -21,7 +20,7 @@
     [UsedImplicitly]
     public class BillDataTransformer : IBillDataTransformer
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Gets the bill category chart data.
@@ -60,7 +59,7 @@
         ///     A list of key value pairs of the date and the amount spent on bills on that date.
         /// </returns>
         public IList<KeyValuePair<DateTime, double>> GetOutgoingBillsForMonth(
-            int monthNumber, 
+            int monthNumber,
             IList<BillDataModel> bills)
         {
             var weeklyBills = bills.Where(x => x.ReoccurringPeriod == 1).ToList();

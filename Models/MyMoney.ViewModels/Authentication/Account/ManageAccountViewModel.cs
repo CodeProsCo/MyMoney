@@ -1,15 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.ViewModels.Authentication.Account
+﻿namespace MyMoney.ViewModels.Authentication.Account
 {
+    /// <summary>
+    /// The <see cref="ManageAccountViewModel"/> class contains view information for managing accounts.
+    /// </summary>
     public class ManageAccountViewModel
     {
-        public PersonalDetailsViewModel PersonalDetails;
+        #region Properties
 
-        public AccountDetailsViewModel AccountDetails;
+        /// <summary>
+        /// Gets or sets the account details.
+        /// </summary>
+        /// <value>
+        /// The account details.
+        /// </value>
+        public AccountDetailsViewModel AccountDetails { get; set; }
+
+        /// <summary>
+        /// Gets or sets the personal details.
+        /// </summary>
+        /// <value>
+        /// The personal details.
+        /// </value>
+        public PersonalDetailsViewModel PersonalDetails { get; set; }
+
+        #endregion
     }
 }

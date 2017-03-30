@@ -8,15 +8,12 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Common.Interfaces;
-
-    using DataModels.Spending;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using Resources;
+    using MyMoney.API.DataAccess.Common.Interfaces;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
+    using MyMoney.DataModels.Spending;
+    using MyMoney.Resources;
 
     #endregion
 
@@ -70,7 +67,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds a expenditure to the database.
@@ -160,8 +157,7 @@
         public async Task<ExpenditureDataModel> GetExpenditure(Guid expenditureId)
         {
             return
-                await
-                context.Expenditures.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id.Equals(expenditureId));
+                await context.Expenditures.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id.Equals(expenditureId));
         }
 
         /// <summary>
@@ -173,9 +169,7 @@
         /// </returns>
         public async Task<IList<ExpenditureDataModel>> GetExpendituresForUser(Guid userId)
         {
-            return
-                await
-                context.Expenditures.Include(x => x.Category).Where(x => x.UserId.Equals(userId)).ToListAsync();
+            return await context.Expenditures.Include(x => x.Category).Where(x => x.UserId.Equals(userId)).ToListAsync();
         }
 
         /// <summary>
@@ -188,12 +182,11 @@
         public async Task<IEnumerable<ExpenditureDataModel>> GetExpendituresForUserForMonth(Guid userId)
         {
             return
-                await
-                context.Expenditures.Include(x => x.Category)
+                await context.Expenditures.Include(x => x.Category)
                     .Where(
                         x =>
-                        x.DateOccurred.Month == DateTime.Now.Month && x.DateOccurred.Year == DateTime.Now.Year
-                        && x.UserId.Equals(userId))
+                            x.DateOccurred.Month == DateTime.Now.Month && x.DateOccurred.Year == DateTime.Now.Year
+                            && x.UserId.Equals(userId))
                     .ToListAsync();
         }
 

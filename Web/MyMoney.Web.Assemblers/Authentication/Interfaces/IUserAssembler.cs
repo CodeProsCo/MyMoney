@@ -4,10 +4,9 @@
 
     using System.Security.Claims;
 
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
-
-    using ViewModels.Authentication.User;
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
+    using MyMoney.ViewModels.Authentication.User;
 
     #endregion
 
@@ -16,7 +15,7 @@
     /// </summary>
     public interface IUserAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ClaimsIdentity" /> class based on the given

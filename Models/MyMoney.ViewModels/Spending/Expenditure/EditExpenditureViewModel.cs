@@ -11,15 +11,7 @@
     /// </summary>
     public class EditExpenditureViewModel
     {
-        #region  Properties
-
-        /// <summary>
-        ///     Gets or sets the bill.
-        /// </summary>
-        /// <value>
-        ///     The bill.
-        /// </value>
-        public ExpenditureViewModel Expenditure { get; set; }
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the category options.
@@ -28,6 +20,14 @@
         ///     The category options.
         /// </value>
         public SelectList CategoryOptions { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the bill.
+        /// </summary>
+        /// <value>
+        ///     The bill.
+        /// </value>
+        public ExpenditureViewModel Expenditure { get; set; }
 
         /// <summary>
         ///     Gets or sets the time period options.

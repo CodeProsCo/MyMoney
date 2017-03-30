@@ -5,20 +5,15 @@
     using System;
     using System.Threading.Tasks;
 
-    using Assemblers.Spending.Interfaces;
-
-    using DataAccess.Spending.Interfaces;
-
-    using DataTransformers.Spending.Interfaces;
-
-    using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending.Bills;
-
-    using Helpers.Error;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.API.Assemblers.Spending.Interfaces;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
+    using MyMoney.API.DataTransformers.Spending.Interfaces;
+    using MyMoney.API.Orchestrators.Spending.Interfaces;
+    using MyMoney.DTO.Request.Spending.Bill;
+    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.Helpers.Error;
 
     #endregion
 
@@ -60,8 +55,8 @@
         ///     Exception thrown when either the assembler, repository or data transformer are null.
         /// </exception>
         public BillOrchestrator(
-            IBillAssembler assembler, 
-            IBillRepository repository, 
+            IBillAssembler assembler,
+            IBillRepository repository,
             IBillDataTransformer dataTransformer)
         {
             if (assembler == null)
@@ -86,7 +81,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds a bill.

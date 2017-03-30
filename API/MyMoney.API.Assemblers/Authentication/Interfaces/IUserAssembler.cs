@@ -4,10 +4,9 @@
 
     using System;
 
-    using DataModels.Authentication;
-
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
+    using MyMoney.DataModels.Authentication;
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
 
     #endregion
 
@@ -16,7 +15,7 @@
     /// </summary>
     public interface IUserAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates a new instance of the <see cref="ValidateUserResponse" /> class.

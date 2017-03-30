@@ -6,19 +6,15 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending.Bills;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using Proxies.Common;
-    using Proxies.Spending;
-
-    using ViewModels.Enum;
-    using ViewModels.Spending.Bills;
-    using ViewModels.Spending.Bills.Enum;
+    using MyMoney.DTO.Request.Spending.Bill;
+    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.Proxies.Common;
+    using MyMoney.Proxies.Spending;
+    using MyMoney.ViewModels.Enum;
+    using MyMoney.ViewModels.Spending.Bills;
+    using MyMoney.Web.Assemblers.Spending.Interfaces;
 
     #endregion
 
@@ -29,7 +25,7 @@
     [UsedImplicitly]
     public class BillAssembler : IBillAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="AddBillRequest" />. class.
@@ -184,8 +180,8 @@
         ///     The request object.
         /// </returns>
         public GetBillsForUserForMonthRequest NewGetBillsForUserForMonthRequest(
-            int monthNumber, 
-            Guid userId, 
+            int monthNumber,
+            Guid userId,
             string userEmail)
         {
             if (monthNumber < 1 || monthNumber > 12)
@@ -205,8 +201,8 @@
 
             return new GetBillsForUserForMonthRequest
                        {
-                           UserId = userId, 
-                           MonthNumber = monthNumber, 
+                           UserId = userId,
+                           MonthNumber = monthNumber,
                            Username = userEmail
                        };
         }
@@ -263,10 +259,10 @@
                                                {
                                                    StartDate =
                                                        DateTime.Now
-                                               }, 
-                                       TimePeriodOptions = timePeriodOptions, 
+                                               },
+                                       TimePeriodOptions = timePeriodOptions,
                                        CategoryOptions = categoryOptions
-                                   }, 
+                                   },
                            EditModel =
                                new EditBillViewModel
                                    {
@@ -275,17 +271,13 @@
                                                {
                                                    StartDate =
                                                        DateTime.Now
-                                               }, 
-                                       TimePeriodOptions = timePeriodOptions, 
+                                               },
+                                       TimePeriodOptions = timePeriodOptions,
                                        CategoryOptions = categoryOptions
-                                   }, 
+                                   },
                            Bills = apiResponse.Bills.Select(BillProxyToViewModel).ToList()
                        };
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         ///     Converts an instance of the <see cref="BillProxy" /> class to a <see cref="BillViewModel" /> class.
@@ -296,12 +288,12 @@
         {
             return new BillViewModel
                        {
-                           Amount = proxy.Amount, 
-                           Category = proxy.Category.Name, 
-                           Name = proxy.Name, 
-                           ReoccurringPeriod = (TimePeriod)proxy.ReoccurringPeriod, 
-                           StartDate = proxy.StartDate, 
-                           Id = proxy.Id, 
+                           Amount = proxy.Amount,
+                           Category = proxy.Category.Name,
+                           Name = proxy.Name,
+                           ReoccurringPeriod = (TimePeriod)proxy.ReoccurringPeriod,
+                           StartDate = proxy.StartDate,
+                           Id = proxy.Id,
                            UserId = proxy.UserId
                        };
         }
@@ -315,12 +307,12 @@
         {
             return new BillProxy
                        {
-                           Amount = model.Amount, 
-                           Category = new CategoryProxy { Name = model.Category }, 
-                           Name = model.Name, 
-                           ReoccurringPeriod = (int)model.ReoccurringPeriod, 
-                           StartDate = model.StartDate, 
-                           UserId = model.UserId, 
+                           Amount = model.Amount,
+                           Category = new CategoryProxy { Name = model.Category },
+                           Name = model.Name,
+                           ReoccurringPeriod = (int)model.ReoccurringPeriod,
+                           StartDate = model.StartDate,
+                           UserId = model.UserId,
                            Id = model.Id
                        };
         }

@@ -5,18 +5,14 @@
     using System;
     using System.Threading.Tasks;
 
-    using Assemblers.Authentication.Interfaces;
-
-    using DataAccess.Authentication.Interfaces;
-
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
-
-    using Helpers.Error;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.API.Assemblers.Authentication.Interfaces;
+    using MyMoney.API.DataAccess.Authentication.Interfaces;
+    using MyMoney.API.Orchestrators.Authentication.Interfaces;
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
+    using MyMoney.Helpers.Error;
 
     #endregion
 
@@ -69,7 +65,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers a user.

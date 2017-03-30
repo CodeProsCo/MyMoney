@@ -14,7 +14,7 @@
     [UsedImplicitly]
     public class FilterConfig
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers the global filters.

@@ -5,7 +5,7 @@
     /// </summary>
     public interface IGetRequest
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Formats the request URI.

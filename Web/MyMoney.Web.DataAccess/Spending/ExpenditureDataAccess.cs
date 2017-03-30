@@ -4,12 +4,11 @@
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Spending.Expenditure;
-    using DTO.Response.Spending.Expenditure;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.DTO.Request.Spending.Expenditure;
+    using MyMoney.DTO.Response.Spending.Expenditure;
+    using MyMoney.Web.DataAccess.Spending.Interfaces;
 
     #endregion
 
@@ -21,7 +20,7 @@
     [UsedImplicitly]
     public class ExpenditureDataAccess : BaseDataAccess, IExpenditureDataAccess
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Sends an HTTP POST request to add a expenditure to the database.

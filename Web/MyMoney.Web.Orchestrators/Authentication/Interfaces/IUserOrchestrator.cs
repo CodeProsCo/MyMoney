@@ -5,9 +5,8 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using ViewModels.Authentication.User;
-
-    using Wrappers;
+    using MyMoney.ViewModels.Authentication.User;
+    using MyMoney.Wrappers;
 
     #endregion
 
@@ -16,7 +15,7 @@
     /// </summary>
     public interface IUserOrchestrator
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers a user.

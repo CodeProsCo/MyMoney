@@ -6,19 +6,14 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Assemblers.Chart.Interfaces;
-
-    using DataAccess.Chart.Interfaces;
-
-    using Helpers.Error;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using ViewModels.Spending.Bills.Enum;
-
-    using Wrappers;
+    using MyMoney.Helpers.Error;
+    using MyMoney.ViewModels.Enum;
+    using MyMoney.Web.Assemblers.Chart.Interfaces;
+    using MyMoney.Web.DataAccess.Chart.Interfaces;
+    using MyMoney.Web.Orchestrators.Chart.Interfaces;
+    using MyMoney.Wrappers;
 
     #endregion
 
@@ -71,7 +66,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Builds and sends an HTTP request for the data required to produce the bill category chart.
@@ -82,7 +77,7 @@
         ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<string, int>>>> GetBillCategoryChartData(
-            Guid userId, 
+            Guid userId,
             string username)
         {
             var response = new OrchestratorResponseWrapper<IList<KeyValuePair<string, int>>>();
@@ -118,7 +113,7 @@
         ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<TimePeriod, int>>>> GetBillPeriodChartData(
-            Guid userId, 
+            Guid userId,
             string username)
         {
             var response = new OrchestratorResponseWrapper<IList<KeyValuePair<TimePeriod, int>>>();
@@ -145,7 +140,17 @@
             return response;
         }
 
-        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(Guid userId, string userEmail)
+        /// <summary>
+        /// Builds and sends an HTTP request for the data required to produce the expenditure chart.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
+        public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(
+            Guid userId,
+            string userEmail)
         {
             var response = new OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>();
 

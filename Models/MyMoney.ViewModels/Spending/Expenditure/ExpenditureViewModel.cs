@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.ViewModels.Spending.Expenditure
+﻿namespace MyMoney.ViewModels.Spending.Expenditure
 {
+    #region Usings
+
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    using Resources;
+    using MyMoney.Resources;
 
+    #endregion
+
+    /// <summary>
+    /// The <see cref="ExpenditureViewModel"/> class contains view information on an expenditure.
+    /// </summary>
     public class ExpenditureViewModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the amount.

@@ -4,7 +4,7 @@
 
     using System.Threading.Tasks;
 
-    using DataModels.Common;
+    using MyMoney.DataModels.Common;
 
     #endregion
 
@@ -13,7 +13,7 @@
     /// </summary>
     public interface ICategoryRepository
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Checks the database if a given category exists. If not, it is added to the database. Otherwise, it is returned from

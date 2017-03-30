@@ -2,19 +2,17 @@
 {
     #region Usings
 
-    using System.IO;
     using System.Web;
     using System.Web.Http;
     using System.Web.Http.Dispatcher;
 
     using Castle.Windsor;
 
-    using DependencyInjection;
-
     using JetBrains.Annotations;
 
-    using Plumbing;
-    using Plumbing.Installers;
+    using MyMoney.API.DependencyInjection;
+    using MyMoney.API.Plumbing;
+    using MyMoney.API.Plumbing.Installers;
 
     #endregion
 
@@ -25,7 +23,7 @@
     [UsedImplicitly]
     public class WebApiApplication : HttpApplication
     {
-        #region Private Methods
+        #region Methods
 
         /// <summary>
         ///     Starts the application.
@@ -35,12 +33,12 @@
             var container = new WindsorContainer();
 
             GlobalConfiguration.Configuration.Services.Replace(
-                typeof(IHttpControllerActivator), 
+                typeof(IHttpControllerActivator),
                 new WindsorWebApiControllerActivator(container));
 
             container.Install(new ControllersInstaller());
 
-            APIContainerConfig.InstallForWebApi(container);
+            ApiContainerConfig.InstallForWebApi(container);
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }

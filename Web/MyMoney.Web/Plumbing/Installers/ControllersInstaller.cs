@@ -2,23 +2,21 @@
 {
     #region Usings
 
-    using Areas.Authentication.Controllers;
-    using Areas.Common.Controllers;
-    using Areas.Dashboard.Controllers;
-    using Areas.Spending.Controllers;
-
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using Controllers;
-
-    using Orchestrators.Authentication;
-    using Orchestrators.Authentication.Interfaces;
-    using Orchestrators.Chart;
-    using Orchestrators.Chart.Interfaces;
-    using Orchestrators.Spending;
-    using Orchestrators.Spending.Interfaces;
+    using MyMoney.Web.Areas.Authentication.Controllers;
+    using MyMoney.Web.Areas.Common.Controllers;
+    using MyMoney.Web.Areas.Dashboard.Controllers;
+    using MyMoney.Web.Areas.Spending.Controllers;
+    using MyMoney.Web.Controllers;
+    using MyMoney.Web.Orchestrators.Authentication;
+    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
+    using MyMoney.Web.Orchestrators.Chart;
+    using MyMoney.Web.Orchestrators.Chart.Interfaces;
+    using MyMoney.Web.Orchestrators.Spending;
+    using MyMoney.Web.Orchestrators.Spending.Interfaces;
 
     #endregion
 
@@ -28,7 +26,7 @@
     /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class ControllersInstaller : IWindsorInstaller
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Performs the installation in the <see cref="T:Castle.Windsor.IWindsorContainer" />.
@@ -48,7 +46,7 @@
                 Component.For<BillController>()
                     .LifestylePerWebRequest()
                     .DependsOn(
-                        Dependency.OnComponent<IBillOrchestrator, BillOrchestrator>(), 
+                        Dependency.OnComponent<IBillOrchestrator, BillOrchestrator>(),
                         Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
 
             container.Register(Component.For<ResourceController>().LifestylePerWebRequest());

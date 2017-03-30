@@ -6,17 +6,14 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using DataModels.Common;
-    using DataModels.Spending;
-
-    using DTO.Response.Spending.Expenditure;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using Proxies.Common;
-    using Proxies.Spending;
+    using MyMoney.API.Assemblers.Spending.Interfaces;
+    using MyMoney.DataModels.Common;
+    using MyMoney.DataModels.Spending;
+    using MyMoney.DTO.Response.Spending.Expenditure;
+    using MyMoney.Proxies.Common;
+    using MyMoney.Proxies.Spending;
 
     #endregion
 
@@ -27,7 +24,7 @@
     [UsedImplicitly]
     public class ExpenditureAssembler : IExpenditureAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates a new instance of the <see cref="AddExpenditureResponse" /> class.
@@ -39,7 +36,7 @@
         {
             return new AddExpenditureResponse
                        {
-                           Expenditure = ExpenditureDataModelToProxy(expenditure), 
+                           Expenditure = ExpenditureDataModelToProxy(expenditure),
                            RequestReference = requestReference
                        };
         }
@@ -69,7 +66,7 @@
         {
             return new EditExpenditureResponse
                        {
-                           Expenditure = ExpenditureDataModelToProxy(model), 
+                           Expenditure = ExpenditureDataModelToProxy(model),
                            RequestReference = requestReference
                        };
         }
@@ -94,7 +91,7 @@
         {
             return new GetExpenditureResponse
                        {
-                           RequestReference = requestReference, 
+                           RequestReference = requestReference,
                            Expenditure = ExpenditureDataModelToProxy(expenditure)
                        };
         }
@@ -108,12 +105,12 @@
         ///     The response object.
         /// </returns>
         public GetExpendituresForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
-            IEnumerable<ExpenditureDataModel> data, 
+            IEnumerable<ExpenditureDataModel> data,
             Guid requestReference)
         {
             return new GetExpendituresForUserForMonthResponse
                        {
-                           Data = data.Select(ExpenditureDataModelToProxy), 
+                           Data = data.Select(ExpenditureDataModelToProxy),
                            RequestReference = requestReference
                        };
         }
@@ -125,20 +122,16 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         public GetExpendituresForUserResponse NewGetExpendituresForUserResponse(
-            IList<ExpenditureDataModel> expenditures, 
+            IList<ExpenditureDataModel> expenditures,
             Guid requestReference)
         {
             return new GetExpendituresForUserResponse
                        {
-                           RequestReference = requestReference, 
+                           RequestReference = requestReference,
                            Expenditures =
                                expenditures.Select(ExpenditureDataModelToProxy).ToList()
                        };
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         ///     Converts a expenditure data model to a proxy.
@@ -149,13 +142,13 @@
         {
             return new ExpenditureProxy
                        {
-                           Amount = model.Amount, 
+                           Amount = model.Amount,
                            Category =
-                               new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name }, 
-                           CategoryId = model.CategoryId, 
-                           Id = model.Id, 
-                           Description = model.Description, 
-                           DateOccurred = model.DateOccurred, 
+                               new CategoryProxy { Id = model.Category.Id, Name = model.Category.Name },
+                           CategoryId = model.CategoryId,
+                           Id = model.Id,
+                           Description = model.Description,
+                           DateOccurred = model.DateOccurred,
                            UserId = model.UserId
                        };
         }
@@ -169,17 +162,17 @@
         {
             return new ExpenditureDataModel
                        {
-                           Amount = proxy.Amount, 
+                           Amount = proxy.Amount,
                            Category =
                                new CategoryDataModel
                                    {
-                                       Id = proxy.Category.Id, 
+                                       Id = proxy.Category.Id,
                                        Name = proxy.Category.Name
-                                   }, 
-                           CategoryId = proxy.CategoryId, 
-                           Id = proxy.Id, 
-                           Description = proxy.Description, 
-                           DateOccurred = proxy.DateOccurred, 
+                                   },
+                           CategoryId = proxy.CategoryId,
+                           Id = proxy.Id,
+                           Description = proxy.Description,
+                           DateOccurred = proxy.DateOccurred,
                            UserId = proxy.UserId
                        };
         }

@@ -2,16 +2,16 @@
 {
     #region Usings
 
-    using Assemblers.Authentication;
-    using Assemblers.Authentication.Interfaces;
-    using Assemblers.Chart;
-    using Assemblers.Chart.Interfaces;
-    using Assemblers.Spending;
-    using Assemblers.Spending.Interfaces;
-
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
+
+    using MyMoney.API.Assemblers.Authentication;
+    using MyMoney.API.Assemblers.Authentication.Interfaces;
+    using MyMoney.API.Assemblers.Chart;
+    using MyMoney.API.Assemblers.Chart.Interfaces;
+    using MyMoney.API.Assemblers.Spending;
+    using MyMoney.API.Assemblers.Spending.Interfaces;
 
     #endregion
 
@@ -21,7 +21,7 @@
     /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class AssemblersInstaller : IWindsorInstaller
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Performs the installation in the <see cref="T:Castle.Windsor.IWindsorContainer" />.

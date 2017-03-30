@@ -4,7 +4,7 @@
 
     using System.Collections.Generic;
 
-    using Request.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Bill;
 
     #endregion
 
@@ -14,7 +14,7 @@
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class GetBillCategoryChartDataResponse : BaseResponse
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the data.

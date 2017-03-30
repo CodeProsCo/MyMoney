@@ -4,16 +4,16 @@
 
     using Castle.Windsor;
 
-    using Installers;
+    using MyMoney.API.DependencyInjection.Installers;
 
     #endregion
 
     /// <summary>
     ///     Configures the castle windsor container for both web and API applications.
     /// </summary>
-    public static class APIContainerConfig
+    public static class ApiContainerConfig
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Installs dependencies for the web API.

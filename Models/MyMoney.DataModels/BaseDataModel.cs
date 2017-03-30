@@ -11,7 +11,7 @@
     /// </summary>
     public class BaseDataModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the creation time.

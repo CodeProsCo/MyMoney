@@ -6,8 +6,8 @@
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
 
     #endregion
 
@@ -18,7 +18,7 @@
     /// </summary>
     public interface IUserOrchestrator
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers a user.

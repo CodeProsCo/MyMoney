@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    using DataModels.Spending;
+    using MyMoney.DataModels.Spending;
 
     #endregion
 
@@ -14,7 +14,7 @@
     /// </summary>
     public interface IBillDataTransformer
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Gets the bill category chart data.

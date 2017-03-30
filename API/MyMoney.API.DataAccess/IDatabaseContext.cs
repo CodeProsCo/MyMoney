@@ -1,18 +1,24 @@
-﻿
-namespace MyMoney.API.DataAccess
+﻿namespace MyMoney.API.DataAccess
 {
+    #region Usings
+
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using DataModels.Authentication;
-    using DataModels.Common;
-    using DataModels.Spending;
-
     using JetBrains.Annotations;
 
+    using MyMoney.DataModels.Authentication;
+    using MyMoney.DataModels.Common;
+    using MyMoney.DataModels.Spending;
+
+    #endregion
+
+    /// <summary>
+    /// The interface for the <see cref="DatabaseContext"/> class.
+    /// </summary>
     public interface IDatabaseContext
     {
-        Task<int> SaveChangesAsync();
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the bills.
@@ -45,5 +51,17 @@ namespace MyMoney.API.DataAccess
         ///     The users.
         /// </value>
         DbSet<UserDataModel> Users { get; [UsedImplicitly] set; }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Saves the changes asynchronously.
+        /// </summary>
+        /// <returns>The number of rows changed.</returns>
+        Task<int> SaveChangesAsync();
+
+        #endregion
     }
 }

@@ -16,7 +16,7 @@
     /// </summary>
     public class Startup
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Configures the specified application.
@@ -28,7 +28,7 @@
             app.UseCookieAuthentication(
                 new CookieAuthenticationOptions
                     {
-                        AuthenticationType = "ApplicationCookie", 
+                        AuthenticationType = "ApplicationCookie",
                         LoginPath = new PathString("/auth/user/login")
                     });
         }

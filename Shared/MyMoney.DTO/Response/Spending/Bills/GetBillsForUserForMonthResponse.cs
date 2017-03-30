@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    using Request.Spending.Bill;
+    using MyMoney.DTO.Request.Spending.Bill;
 
     #endregion
 
@@ -15,7 +15,7 @@
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class GetBillsForUserForMonthResponse : BaseResponse
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the data.

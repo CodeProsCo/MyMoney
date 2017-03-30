@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using Request.Spending.Expenditure;
+    using MyMoney.DTO.Request.Spending.Expenditure;
 
     #endregion
 
@@ -13,7 +13,7 @@
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class DeleteExpenditureResponse : BaseResponse
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets a value indicating whether [delete success].

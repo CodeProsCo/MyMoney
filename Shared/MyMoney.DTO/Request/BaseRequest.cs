@@ -25,7 +25,7 @@
 
         #endregion
 
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets the request reference.
@@ -53,7 +53,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Gets the action.

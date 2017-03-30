@@ -1,15 +1,13 @@
-﻿using MyMoney.DTO.Request.Chart.Expenditure;
-
-namespace MyMoney.Web.Assemblers.Chart.Interfaces
+﻿namespace MyMoney.Web.Assemblers.Chart.Interfaces
 {
     #region Usings
 
     using System;
     using System.Collections.Generic;
 
-    using DTO.Request.Chart.Bill;
-
-    using ViewModels.Spending.Bills.Enum;
+    using MyMoney.DTO.Request.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Expenditure;
+    using MyMoney.ViewModels.Enum;
 
     #endregion
 
@@ -18,7 +16,7 @@ namespace MyMoney.Web.Assemblers.Chart.Interfaces
     /// </summary>
     public interface IChartAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Converts the <see cref="string" /> object in the data list to an instance of the <see cref="TimePeriod" />
@@ -44,8 +42,15 @@ namespace MyMoney.Web.Assemblers.Chart.Interfaces
         /// <returns>The request object.</returns>
         GetBillPeriodChartDataRequest NewGetBillPeriodChartDataRequest(Guid userId, string username);
 
-        #endregion
-
+        /// <summary>
+        /// Creates an instance of the <see cref="GetExpenditureChartDataRequest"/> class.
+        /// </summary>
+        /// <param name="nowMonth">The current month.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <returns>The request object.</returns>
         GetExpenditureChartDataRequest NewGetExpenditureChartDataRequest(int nowMonth, Guid userId, string userEmail);
+
+        #endregion
     }
 }

@@ -6,8 +6,8 @@
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Request.Spending.Bill;
+    using MyMoney.DTO.Response.Spending.Bills;
 
     #endregion
 
@@ -18,7 +18,7 @@
     /// </summary>
     public interface IBillOrchestrator
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds a bill.

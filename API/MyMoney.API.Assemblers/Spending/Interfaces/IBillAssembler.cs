@@ -5,11 +5,9 @@
     using System;
     using System.Collections.Generic;
 
-    using DataModels.Spending;
-
-    using DTO.Response.Spending.Bills;
-
-    using Proxies.Spending;
+    using MyMoney.DataModels.Spending;
+    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.Proxies.Spending;
 
     #endregion
 
@@ -18,7 +16,7 @@
     /// </summary>
     public interface IBillAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates a new instance of the <see cref="AddBillResponse" /> class.
@@ -66,7 +64,7 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         GetBillsForUserForMonthResponse NewGetBillsForUserForMonthResponse(
-            IList<KeyValuePair<DateTime, double>> data, 
+            IList<KeyValuePair<DateTime, double>> data,
             Guid requestReference);
 
         /// <summary>

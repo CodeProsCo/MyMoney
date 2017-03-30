@@ -5,14 +5,12 @@
     using System;
     using System.Security.Claims;
 
-    using DTO.Request.Authentication;
-    using DTO.Response.Authentication;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using ViewModels.Authentication.User;
+    using MyMoney.DTO.Request.Authentication;
+    using MyMoney.DTO.Response.Authentication;
+    using MyMoney.ViewModels.Authentication.User;
+    using MyMoney.Web.Assemblers.Authentication.Interfaces;
 
     #endregion
 
@@ -23,7 +21,7 @@
     [UsedImplicitly]
     public class UserAssembler : IUserAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Assembles an instance of the <see cref="ClaimsIdentity" /> class based on the given
@@ -44,12 +42,12 @@
                 new ClaimsIdentity(
                     new[]
                         {
-                            new Claim(ClaimTypes.Email, response.User.EmailAddress), 
-                            new Claim(ClaimTypes.Surname, response.User.LastName), 
-                            new Claim(ClaimTypes.GivenName, response.User.FirstName), 
-                            new Claim(ClaimTypes.NameIdentifier, response.User.Id.ToString()), 
+                            new Claim(ClaimTypes.Email, response.User.EmailAddress),
+                            new Claim(ClaimTypes.Surname, response.User.LastName),
+                            new Claim(ClaimTypes.GivenName, response.User.FirstName),
+                            new Claim(ClaimTypes.NameIdentifier, response.User.Id.ToString()),
                             new Claim(ClaimTypes.Name, response.User.FirstName)
-                        }, 
+                        },
                     "ApplicationCookie");
         }
 
@@ -70,10 +68,10 @@
 
             return new RegisterUserRequest
                        {
-                           EmailAddress = model.EmailAddress, 
-                           Password = model.Password, 
-                           DateOfBirth = model.DateOfBirth, 
-                           FirstName = model.FirstName, 
+                           EmailAddress = model.EmailAddress,
+                           Password = model.Password,
+                           DateOfBirth = model.DateOfBirth,
+                           FirstName = model.FirstName,
                            LastName = model.LastName
                        };
         }

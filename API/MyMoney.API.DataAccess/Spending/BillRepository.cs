@@ -8,15 +8,12 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Common.Interfaces;
-
-    using DataModels.Spending;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using Resources;
+    using MyMoney.API.DataAccess.Common.Interfaces;
+    using MyMoney.API.DataAccess.Spending.Interfaces;
+    using MyMoney.DataModels.Spending;
+    using MyMoney.Resources;
 
     #endregion
 
@@ -69,7 +66,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds a bill to the database.

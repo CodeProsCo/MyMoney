@@ -4,12 +4,11 @@
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending.Bills;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.DTO.Request.Spending.Bill;
+    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.Web.DataAccess.Spending.Interfaces;
 
     #endregion
 
@@ -21,7 +20,7 @@
     [UsedImplicitly]
     public class BillDataAccess : BaseDataAccess, IBillDataAccess
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Sends an HTTP POST request to add a bill to the database.

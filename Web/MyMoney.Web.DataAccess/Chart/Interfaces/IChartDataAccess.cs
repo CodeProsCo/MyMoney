@@ -1,14 +1,13 @@
-﻿using MyMoney.DTO.Request.Chart.Expenditure;
-using MyMoney.DTO.Response.Chart.Expenditure;
-
-namespace MyMoney.Web.DataAccess.Chart.Interfaces
+﻿namespace MyMoney.Web.DataAccess.Chart.Interfaces
 {
     #region Usings
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Chart.Bill;
-    using DTO.Response.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Expenditure;
+    using MyMoney.DTO.Response.Chart.Bill;
+    using MyMoney.DTO.Response.Chart.Expenditure;
 
     #endregion
 
@@ -17,7 +16,7 @@ namespace MyMoney.Web.DataAccess.Chart.Interfaces
     /// </summary>
     public interface IChartDataAccess
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Sends an HTTP GET request to obtain data for the bill category chart.
@@ -33,8 +32,13 @@ namespace MyMoney.Web.DataAccess.Chart.Interfaces
         /// <returns>The response object.</returns>
         Task<GetBillPeriodChartDataResponse> GetBillPeriodChartData(GetBillPeriodChartDataRequest request);
 
-        #endregion
-
+        /// <summary>
+        /// Sends an HTTP GET request to obtain data for the expenditure chart.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
         Task<GetExpenditureChartDataResponse> GetExpenditureChartData(GetExpenditureChartDataRequest request);
+
+        #endregion
     }
 }

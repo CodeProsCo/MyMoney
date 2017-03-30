@@ -4,7 +4,7 @@
 
     using System;
 
-    using Common;
+    using MyMoney.Proxies.Common;
 
     #endregion
 
@@ -13,7 +13,7 @@
     /// </summary>
     public class BillProxy
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the amount.

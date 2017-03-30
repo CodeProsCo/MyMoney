@@ -4,7 +4,7 @@
 
     using Castle.Windsor;
 
-    using Installers;
+    using MyMoney.Web.DependencyInjection.Installers;
 
     #endregion
 
@@ -13,7 +13,7 @@
     /// </summary>
     public static class WebContainerConfig
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Installs dependencies for the web application.

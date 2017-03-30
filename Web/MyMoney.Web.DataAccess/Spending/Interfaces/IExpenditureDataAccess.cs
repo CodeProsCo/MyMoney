@@ -4,8 +4,8 @@
 
     using System.Threading.Tasks;
 
-    using DTO.Request.Spending.Expenditure;
-    using DTO.Response.Spending.Expenditure;
+    using MyMoney.DTO.Request.Spending.Expenditure;
+    using MyMoney.DTO.Response.Spending.Expenditure;
 
     #endregion
 
@@ -14,7 +14,7 @@
     /// </summary>
     public interface IExpenditureDataAccess
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Sends an HTTP POST request to add a expenditure to the database.
@@ -56,7 +56,8 @@
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        Task<GetExpendituresForUserForMonthResponse> GetExpendituresForUserForMonth(GetExpendituresForUserForMonthRequest request);
+        Task<GetExpendituresForUserForMonthResponse> GetExpendituresForUserForMonth(
+            GetExpendituresForUserForMonthRequest request);
 
         #endregion
     }

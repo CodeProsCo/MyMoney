@@ -5,14 +5,12 @@
     using System;
     using System.Collections.Generic;
 
-    using Assemblers.Chart;
-    using Assemblers.Chart.Interfaces;
-
-    using DTO.Request.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Bill;
+    using MyMoney.ViewModels.Enum;
+    using MyMoney.Web.Assemblers.Chart;
+    using MyMoney.Web.Assemblers.Chart.Interfaces;
 
     using NUnit.Framework;
-
-    using ViewModels.Spending.Bills.Enum;
 
     #endregion
 
@@ -20,21 +18,7 @@
     [TestFixture]
     public class ChartAssemblerTests
     {
-        [SetUp]
-        public void SetUp()
-        {
-            assembler = new ChartAssembler();
-            validTimePeriodData = new List<KeyValuePair<string, int>> { new KeyValuePair<string, int>("1", 1) };
-            validUserId = Guid.NewGuid();
-            validUsername = "TEST";
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            assembler = null;
-            validTimePeriodData = null;
-        }
+        #region Fields
 
         private IChartAssembler assembler;
 
@@ -43,6 +27,10 @@
         private Guid validUserId;
 
         private string validUsername;
+
+        #endregion
+
+        #region Methods
 
         [Test]
         public void AssembleTimePeriodList_NullParams_ThrowsArgumentNullException()
@@ -101,5 +89,23 @@
             Assert.AreEqual(test.UserId, validUserId);
             Assert.AreEqual(test.Username, validUsername);
         }
+
+        [SetUp]
+        public void SetUp()
+        {
+            assembler = new ChartAssembler();
+            validTimePeriodData = new List<KeyValuePair<string, int>> { new KeyValuePair<string, int>("1", 1) };
+            validUserId = Guid.NewGuid();
+            validUsername = "TEST";
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            assembler = null;
+            validTimePeriodData = null;
+        }
+
+        #endregion
     }
 }

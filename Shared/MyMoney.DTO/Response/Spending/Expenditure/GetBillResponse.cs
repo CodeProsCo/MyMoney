@@ -2,9 +2,8 @@
 {
     #region Usings
 
-    using Proxies.Spending;
-
-    using Request.Spending.Expenditure;
+    using MyMoney.DTO.Request.Spending.Expenditure;
+    using MyMoney.Proxies.Spending;
 
     #endregion
 
@@ -15,7 +14,7 @@
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class GetExpenditureResponse : BaseResponse
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the expenditure.

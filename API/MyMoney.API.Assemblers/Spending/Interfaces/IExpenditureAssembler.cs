@@ -5,11 +5,9 @@
     using System;
     using System.Collections.Generic;
 
-    using DataModels.Spending;
-
-    using DTO.Response.Spending.Expenditure;
-
-    using Proxies.Spending;
+    using MyMoney.DataModels.Spending;
+    using MyMoney.DTO.Response.Spending.Expenditure;
+    using MyMoney.Proxies.Spending;
 
     #endregion
 
@@ -18,7 +16,7 @@
     /// </summary>
     public interface IExpenditureAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates a new instance of the <see cref="AddExpenditureResponse" /> class.
@@ -66,7 +64,7 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         GetExpendituresForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
-            IEnumerable<ExpenditureDataModel> data, 
+            IEnumerable<ExpenditureDataModel> data,
             Guid requestReference);
 
         /// <summary>
@@ -76,7 +74,7 @@
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
         GetExpendituresForUserResponse NewGetExpendituresForUserResponse(
-            IList<ExpenditureDataModel> expenditures, 
+            IList<ExpenditureDataModel> expenditures,
             Guid requestReference);
 
         #endregion

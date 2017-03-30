@@ -5,7 +5,7 @@
     /// </summary>
     public interface IDeleteRequest
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Formats the request URI.

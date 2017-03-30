@@ -11,11 +11,10 @@
     using System.Web;
     using System.Web.Configuration;
 
-    using DTO.Request;
-    using DTO.Response;
-
-    using Helpers.Benchmarking;
-    using Helpers.Error;
+    using MyMoney.DTO.Request;
+    using MyMoney.DTO.Response;
+    using MyMoney.Helpers.Benchmarking;
+    using MyMoney.Helpers.Error;
 
     #endregion
 
@@ -58,7 +57,7 @@
 
         #endregion
 
-        #region Private Methods
+        #region Methods
 
         /// <summary>
         ///     Sends an HTTP DELETE request to the given uri.

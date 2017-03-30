@@ -13,7 +13,7 @@
     [AllowAnonymous]
     public class HomeController : BaseController
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     The main endpoint for the application. Redirects based on authentication.

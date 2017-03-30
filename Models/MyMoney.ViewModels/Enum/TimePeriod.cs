@@ -1,4 +1,4 @@
-﻿namespace MyMoney.ViewModels.Spending.Bills.Enum
+﻿namespace MyMoney.ViewModels.Enum
 {
     #region Usings
 
@@ -16,17 +16,17 @@
         /// <summary>
         ///     The event happens daily.
         /// </summary>
-        Daily = 0, 
+        Daily = 0,
 
         /// <summary>
         ///     The event happens weekly.
         /// </summary>
-        Weekly, 
+        Weekly,
 
         /// <summary>
         ///     The event happens monthly.
         /// </summary>
-        Monthly, 
+        Monthly,
 
         /// <summary>
         ///     The event happens yearly.

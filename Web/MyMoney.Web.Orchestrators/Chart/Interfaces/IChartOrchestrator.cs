@@ -6,9 +6,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using ViewModels.Spending.Bills.Enum;
-
-    using Wrappers;
+    using MyMoney.ViewModels.Enum;
+    using MyMoney.Wrappers;
 
     #endregion
 
@@ -17,7 +16,7 @@
     /// </summary>
     public interface IChartOrchestrator
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Builds and sends an HTTP request for the data required to produce the bill category chart.
@@ -26,7 +25,7 @@
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
         Task<OrchestratorResponseWrapper<IList<KeyValuePair<string, int>>>> GetBillCategoryChartData(
-            Guid userId, 
+            Guid userId,
             string username);
 
         /// <summary>
@@ -36,11 +35,19 @@
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
         Task<OrchestratorResponseWrapper<IList<KeyValuePair<TimePeriod, int>>>> GetBillPeriodChartData(
-            Guid userId, 
+            Guid userId,
             string username);
 
-        #endregion
+        /// <summary>
+        /// Builds and sends an HTTP request for the data required to produce the expenditure chart.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <returns>The response object.</returns>
+        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(
+            Guid userId,
+            string userEmail);
 
-        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(Guid userId, string userEmail);
+        #endregion
     }
 }

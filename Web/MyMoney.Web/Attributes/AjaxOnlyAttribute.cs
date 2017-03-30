@@ -13,7 +13,7 @@
     /// <seealso cref="System.Web.Mvc.ActionMethodSelectorAttribute" />
     public class AjaxOnlyAttribute : ActionMethodSelectorAttribute
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>Determines whether the action method selection is valid for the specified controller context.</summary>
         /// <returns>true if the action method selection is valid for the specified controller context; otherwise, false.</returns>

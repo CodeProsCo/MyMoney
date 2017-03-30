@@ -7,11 +7,9 @@
     using System.Web;
     using System.Web.Mvc;
 
-    using Orchestrators.Authentication.Interfaces;
-
-    using ViewModels.Authentication.User;
-
-    using Web.Controllers;
+    using MyMoney.ViewModels.Authentication.User;
+    using MyMoney.Web.Controllers;
+    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
 
     #endregion
 
@@ -53,7 +51,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Handles a request for the login view.

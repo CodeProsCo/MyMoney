@@ -16,42 +16,42 @@
         /// <summary>
         ///     The bill is in the "Utilities" category.
         /// </summary>
-        Utilities = 0, 
+        Utilities = 0,
 
         /// <summary>
         ///     The bill is in the "Telephone" category.
         /// </summary>
-        Telephone, 
+        Telephone,
 
         /// <summary>
         ///     The bill is in the "Internet" category.
         /// </summary>
-        Internet, 
+        Internet,
 
         /// <summary>
         ///     The bill is in the "Rent" category.
         /// </summary>
-        Rent, 
+        Rent,
 
         /// <summary>
         ///     The bill is in the "Insurance" category.
         /// </summary>
-        Insurance, 
+        Insurance,
 
         /// <summary>
         ///     The bill is in the "Vehicle" category.
         /// </summary>
-        Vehicle, 
+        Vehicle,
 
         /// <summary>
         ///     The bill is in the "Mortgage" category.
         /// </summary>
-        Mortgage, 
+        Mortgage,
 
         /// <summary>
         ///     The bill is in the "Credit" category.
         /// </summary>
-        Credit, 
+        Credit,
 
         /// <summary>
         ///     The bill is in the "Other" category.

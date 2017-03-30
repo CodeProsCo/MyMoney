@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using Request.Authentication;
+    using MyMoney.DTO.Request.Authentication;
 
     #endregion
 
@@ -13,7 +13,7 @@
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
     public class RegisterUserResponse : BaseResponse
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets a value indicating whether [register success].

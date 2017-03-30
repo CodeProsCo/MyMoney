@@ -4,7 +4,7 @@
 
     using System;
 
-    using Interfaces;
+    using MyMoney.DTO.Request.Interfaces;
 
     #endregion
 
@@ -27,7 +27,7 @@
 
         #endregion
 
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the month number.
@@ -47,7 +47,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Formats the request URI.

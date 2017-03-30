@@ -5,7 +5,7 @@
     /// </summary>
     public class EncryptedPasswordModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the hash.

@@ -6,9 +6,8 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using DTO.Request.Spending.Expenditure;
-
-    using Orchestrators.Spending.Interfaces;
+    using MyMoney.API.Orchestrators.Spending.Interfaces;
+    using MyMoney.DTO.Request.Spending.Expenditure;
 
     #endregion
 
@@ -49,7 +48,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Handles an HTTP POST request to add a expenditure to the database.

@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using DataModels.Spending;
+    using MyMoney.DataModels.Spending;
 
     #endregion
 
@@ -15,7 +15,7 @@
     /// </summary>
     public interface IBillRepository
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Adds a bill to the database.

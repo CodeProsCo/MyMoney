@@ -4,7 +4,7 @@
 
     using System.Web.Mvc;
 
-    using Web.Controllers;
+    using MyMoney.Web.Controllers;
 
     #endregion
 
@@ -17,7 +17,7 @@
     [AllowAnonymous]
     public class ErrorController : BaseController
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     The error page shown when a system error occurs.

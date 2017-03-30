@@ -13,7 +13,7 @@
     /// </summary>
     public class UserProxy
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the date of birth.

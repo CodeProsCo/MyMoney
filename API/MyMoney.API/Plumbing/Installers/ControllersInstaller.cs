@@ -6,16 +6,15 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using Controllers.Authentication;
-    using Controllers.Chart;
-    using Controllers.Spending;
-
-    using Orchestrators.Authentication;
-    using Orchestrators.Authentication.Interfaces;
-    using Orchestrators.Chart;
-    using Orchestrators.Chart.Interfaces;
-    using Orchestrators.Spending;
-    using Orchestrators.Spending.Interfaces;
+    using MyMoney.API.Controllers.Authentication;
+    using MyMoney.API.Controllers.Chart;
+    using MyMoney.API.Controllers.Spending;
+    using MyMoney.API.Orchestrators.Authentication;
+    using MyMoney.API.Orchestrators.Authentication.Interfaces;
+    using MyMoney.API.Orchestrators.Chart;
+    using MyMoney.API.Orchestrators.Chart.Interfaces;
+    using MyMoney.API.Orchestrators.Spending;
+    using MyMoney.API.Orchestrators.Spending.Interfaces;
 
     #endregion
 
@@ -25,7 +24,7 @@
     /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class ControllersInstaller : IWindsorInstaller
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Performs the installation in the <see cref="T:Castle.Windsor.IWindsorContainer" />.

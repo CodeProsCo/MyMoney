@@ -15,7 +15,7 @@
     [UsedImplicitly]
     public class AuthenticationAreaRegistration : AreaRegistration
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets the name of the area to register.
@@ -24,7 +24,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Registers an area in an ASP.NET MVC application using the specified area's context information.
@@ -33,8 +33,8 @@
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Authentication_default", 
-                "Authentication/{controller}/{action}/{id}", 
+                "Authentication_default",
+                "Authentication/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional });
         }
 

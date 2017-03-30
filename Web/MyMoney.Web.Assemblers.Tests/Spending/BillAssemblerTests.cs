@@ -6,19 +6,16 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Assemblers.Spending;
-    using Assemblers.Spending.Interfaces;
-
-    using DTO.Request.Spending.Bill;
-    using DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Request.Spending.Bill;
+    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.Proxies.Common;
+    using MyMoney.Proxies.Spending;
+    using MyMoney.ViewModels.Enum;
+    using MyMoney.ViewModels.Spending.Bills;
+    using MyMoney.Web.Assemblers.Spending;
+    using MyMoney.Web.Assemblers.Spending.Interfaces;
 
     using NUnit.Framework;
-
-    using Proxies.Common;
-    using Proxies.Spending;
-
-    using ViewModels.Spending.Bills;
-    using ViewModels.Spending.Bills.Enum;
 
     #endregion
 
@@ -26,82 +23,31 @@
     [TestFixture]
     public class BillAssemblerTests
     {
-        [SetUp]
-        public void SetUp()
-        {
-            assembler = new BillAssembler();
-            validUsername = "TEST";
-            validBillId = Guid.NewGuid();
-            validUserId = Guid.NewGuid();
-
-            validBillProxy = new BillProxy
-                                 {
-                                     Amount = 10, 
-                                     Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" }, 
-                                     CategoryId = Guid.NewGuid(), 
-                                     Id = Guid.NewGuid(), 
-                                     Name = "TEST", 
-                                     ReoccurringPeriod = 1, 
-                                     StartDate = DateTime.MaxValue, 
-                                     UserId = Guid.NewGuid()
-                                 };
-
-            validGetBillResponse = new GetBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
-
-            validBillViewModel = new BillViewModel
-                                     {
-                                         Amount = 10, 
-                                         Category = "TEST", 
-                                         Id = Guid.NewGuid(), 
-                                         Name = "TEST", 
-                                         ReoccurringPeriod = TimePeriod.Daily, 
-                                         StartDate = DateTime.MinValue, 
-                                         UserId = Guid.NewGuid()
-                                     };
-
-            validAddBillResponse = new AddBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
-
-            validEditBillResponse = new EditBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
-
-            validGetBillsForUserResponse = new GetBillsForUserResponse
-                                               {
-                                                   Bills = new List<BillProxy> { validBillProxy }, 
-                                                   RequestReference = Guid.NewGuid()
-                                               };
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            assembler = null;
-            validUsername = null;
-            validBillViewModel = null;
-            validAddBillResponse = null;
-            validGetBillResponse = null;
-            validEditBillResponse = null;
-            validBillProxy = null;
-            validBillId = Guid.Empty;
-        }
+        #region Fields
 
         private IBillAssembler assembler;
 
-        private string validUsername;
-
-        private BillViewModel validBillViewModel;
-
         private AddBillResponse validAddBillResponse;
-
-        private GetBillResponse validGetBillResponse;
-
-        private EditBillResponse validEditBillResponse;
-
-        private GetBillsForUserResponse validGetBillsForUserResponse;
-
-        private BillProxy validBillProxy;
 
         private Guid validBillId;
 
+        private BillProxy validBillProxy;
+
+        private BillViewModel validBillViewModel;
+
+        private EditBillResponse validEditBillResponse;
+
+        private GetBillResponse validGetBillResponse;
+
+        private GetBillsForUserResponse validGetBillsForUserResponse;
+
         private Guid validUserId;
+
+        private string validUsername;
+
+        #endregion
+
+        #region Methods
 
         [Test]
         public void NewAddBillRequest_NullParams_ThrowsArgumentNullException()
@@ -346,5 +292,64 @@
             Assert.Greater(test.BillCategories.Count(), 0);
             Assert.Greater(test.BillPeriods.Count(), 0);
         }
+
+        [SetUp]
+        public void SetUp()
+        {
+            assembler = new BillAssembler();
+            validUsername = "TEST";
+            validBillId = Guid.NewGuid();
+            validUserId = Guid.NewGuid();
+
+            validBillProxy = new BillProxy
+                                 {
+                                     Amount = 10,
+                                     Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" },
+                                     CategoryId = Guid.NewGuid(),
+                                     Id = Guid.NewGuid(),
+                                     Name = "TEST",
+                                     ReoccurringPeriod = 1,
+                                     StartDate = DateTime.MaxValue,
+                                     UserId = Guid.NewGuid()
+                                 };
+
+            validGetBillResponse = new GetBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
+
+            validBillViewModel = new BillViewModel
+                                     {
+                                         Amount = 10,
+                                         Category = "TEST",
+                                         Id = Guid.NewGuid(),
+                                         Name = "TEST",
+                                         ReoccurringPeriod = TimePeriod.Daily,
+                                         StartDate = DateTime.MinValue,
+                                         UserId = Guid.NewGuid()
+                                     };
+
+            validAddBillResponse = new AddBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
+
+            validEditBillResponse = new EditBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
+
+            validGetBillsForUserResponse = new GetBillsForUserResponse
+                                               {
+                                                   Bills = new List<BillProxy> { validBillProxy },
+                                                   RequestReference = Guid.NewGuid()
+                                               };
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            assembler = null;
+            validUsername = null;
+            validBillViewModel = null;
+            validAddBillResponse = null;
+            validGetBillResponse = null;
+            validEditBillResponse = null;
+            validBillProxy = null;
+            validBillId = Guid.Empty;
+        }
+
+        #endregion
     }
 }

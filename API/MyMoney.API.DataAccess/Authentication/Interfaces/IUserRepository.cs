@@ -5,7 +5,7 @@
     using System;
     using System.Threading.Tasks;
 
-    using DataModels.Authentication;
+    using MyMoney.DataModels.Authentication;
 
     #endregion
 
@@ -14,7 +14,7 @@
     /// </summary>
     public interface IUserRepository
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Gets a user based on the given email address and password.

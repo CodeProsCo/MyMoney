@@ -11,7 +11,7 @@
     /// </summary>
     public class CategoryProxy
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the category identifier.

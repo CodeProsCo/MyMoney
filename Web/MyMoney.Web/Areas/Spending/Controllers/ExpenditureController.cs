@@ -6,14 +6,11 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using Attributes;
-
-    using Orchestrators.Chart.Interfaces;
-    using Orchestrators.Spending.Interfaces;
-
-    using ViewModels.Spending.Expenditure;
-
-    using Web.Controllers;
+    using MyMoney.ViewModels.Spending.Expenditure;
+    using MyMoney.Web.Attributes;
+    using MyMoney.Web.Controllers;
+    using MyMoney.Web.Orchestrators.Chart.Interfaces;
+    using MyMoney.Web.Orchestrators.Spending.Interfaces;
 
     #endregion
 
@@ -68,7 +65,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Handles a HTTP request to add a expenditure to the database.
@@ -145,6 +142,20 @@
         }
 
         /// <summary>
+        ///     Handles HTTP requests to obtain the data required for the expenditure category chart.
+        /// </summary>
+        /// <returns>The response object.</returns>
+        [HttpGet]
+        [Route("chart/month/")]
+        [AjaxOnly]
+        public async Task<ActionResult> GetExpenditureChartData()
+        {
+            var modelWrapper = await chartOrchestrator.GetExpenditureChartData(UserId, UserEmail);
+
+            return JsonResponse(modelWrapper);
+        }
+
+        /// <summary>
         ///     Handles HTTP requests to obtain the user's expenditures in a certain month.
         /// </summary>
         /// <param name="monthNumber">The month number.</param>
@@ -155,20 +166,6 @@
         public async Task<ActionResult> GetExpenditureForMonth(int monthNumber)
         {
             var modelWrapper = await orchestrator.GetExpenditureForUserForMonth(monthNumber, UserId, UserEmail);
-
-            return JsonResponse(modelWrapper);
-        }
-
-        /// <summary>
-        ///     Handles HTTP requests to obtain the data required for the expenditure category chart.
-        /// </summary>
-        /// <returns>The response object.</returns>
-        [HttpGet]
-        [Route("chart/month/")]
-        [AjaxOnly]
-        public async Task<ActionResult> GetExpenditureChartData()
-        {
-            var modelWrapper = await chartOrchestrator.GetExpenditureChartData(UserId, UserEmail);
 
             return JsonResponse(modelWrapper);
         }

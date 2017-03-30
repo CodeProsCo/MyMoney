@@ -6,9 +6,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    using Enum;
-
-    using Resources;
+    using MyMoney.Resources;
+    using MyMoney.ViewModels.Enum;
 
     #endregion
 
@@ -17,7 +16,7 @@
     /// </summary>
     public class BillViewModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the amount.

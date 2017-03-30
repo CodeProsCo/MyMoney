@@ -22,7 +22,7 @@
         /// <summary>
         ///     The container
         /// </summary>
-        private readonly IWindsorContainer _container;
+        private readonly IWindsorContainer container;
 
         #endregion
 
@@ -34,12 +34,12 @@
         /// <param name="container">The container.</param>
         public WindsorWebApiControllerActivator(IWindsorContainer container)
         {
-            _container = container;
+            this.container = container;
         }
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
@@ -51,13 +51,13 @@
         ///     An <see cref="T:System.Web.Http.Controllers.IHttpController" /> object.
         /// </returns>
         public IHttpController Create(
-            HttpRequestMessage request, 
-            HttpControllerDescriptor controllerDescriptor, 
+            HttpRequestMessage request,
+            HttpControllerDescriptor controllerDescriptor,
             Type controllerType)
         {
-            var controller = (IHttpController)_container.Resolve(controllerType);
+            var controller = (IHttpController)container.Resolve(controllerType);
 
-            request.RegisterForDispose(new Release(() => _container.Release(controller)));
+            request.RegisterForDispose(new Release(() => container.Release(controller)));
 
             return controller;
         }
@@ -75,7 +75,7 @@
             /// <summary>
             ///     The release
             /// </summary>
-            private readonly Action _release;
+            private readonly Action release;
 
             #endregion
 
@@ -87,19 +87,19 @@
             /// <param name="release">The release.</param>
             public Release(Action release)
             {
-                _release = release;
+                this.release = release;
             }
 
             #endregion
 
-            #region  Public Methods
+            #region Methods
 
             /// <summary>
             ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             /// </summary>
             public void Dispose()
             {
-                _release();
+                release();
             }
 
             #endregion

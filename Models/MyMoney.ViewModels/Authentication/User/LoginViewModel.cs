@@ -12,7 +12,7 @@
     /// </summary>
     public class LoginViewModel
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the email address.

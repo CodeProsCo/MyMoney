@@ -10,6 +10,10 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="WindsorControllerFactory"/> class creates castle windsor containers for controller classes.
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.DefaultControllerFactory" />
     public class WindsorControllerFactory : DefaultControllerFactory
     {
         #region Constructor
@@ -22,7 +26,7 @@
         /// </param>
         /// The container used to resolve the MVC controllers.
         /// <exception cref="System.ArgumentNullException">
-        ///     container
+        ///     Exception thrown if the container is null.
         /// </exception>
         public WindsorControllerFactory(IWindsorContainer container)
         {
@@ -36,16 +40,16 @@
 
         #endregion
 
-        #region  Properties
+        #region Properties
 
         /// <summary>
-        ///     Gets or sets the container.
+        ///     Gets the container.
         /// </summary>
         private IWindsorContainer Container { get; }
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Releases the specified controller.
@@ -61,10 +65,6 @@
             // Inform Castle that the controller is no longer required
             Container.Release(controller);
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         ///     Retrieves the controller instance for the specified request context and controller type.

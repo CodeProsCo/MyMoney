@@ -6,19 +6,14 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Assemblers.Spending.Interfaces;
-
-    using DataAccess.Spending.Interfaces;
-
-    using Helpers.Error;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using ViewModels.Spending.Expenditure;
-
-    using Wrappers;
+    using MyMoney.Helpers.Error;
+    using MyMoney.ViewModels.Spending.Expenditure;
+    using MyMoney.Web.Assemblers.Spending.Interfaces;
+    using MyMoney.Web.DataAccess.Spending.Interfaces;
+    using MyMoney.Web.Orchestrators.Spending.Interfaces;
+    using MyMoney.Wrappers;
 
     #endregion
 
@@ -71,7 +66,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Builds and sends a request to add a expenditure to the database.
@@ -81,7 +76,9 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<OrchestratorResponseWrapper<ExpenditureViewModel>> AddExpenditure(ExpenditureViewModel model, string username)
+        public async Task<OrchestratorResponseWrapper<ExpenditureViewModel>> AddExpenditure(
+            ExpenditureViewModel model,
+            string username)
         {
             var response = new OrchestratorResponseWrapper<ExpenditureViewModel>();
 
@@ -156,7 +153,9 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<OrchestratorResponseWrapper<ExpenditureViewModel>> EditExpenditure(ExpenditureViewModel model, string username)
+        public async Task<OrchestratorResponseWrapper<ExpenditureViewModel>> EditExpenditure(
+            ExpenditureViewModel model,
+            string username)
         {
             var response = new OrchestratorResponseWrapper<ExpenditureViewModel>();
 
@@ -193,7 +192,9 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<OrchestratorResponseWrapper<ExpenditureViewModel>> GetExpenditure(Guid expenditureId, string username)
+        public async Task<OrchestratorResponseWrapper<ExpenditureViewModel>> GetExpenditure(
+            Guid expenditureId,
+            string username)
         {
             var response = new OrchestratorResponseWrapper<ExpenditureViewModel>();
 
@@ -231,7 +232,9 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<OrchestratorResponseWrapper<TrackExpenditureViewModel>> GetExpenditureForUser(Guid userId, string username)
+        public async Task<OrchestratorResponseWrapper<TrackExpenditureViewModel>> GetExpenditureForUser(
+            Guid userId,
+            string username)
         {
             var response = new OrchestratorResponseWrapper<TrackExpenditureViewModel>();
 
@@ -270,8 +273,8 @@
         ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<IList<ExpenditureViewModel>>> GetExpenditureForUserForMonth(
-            int monthNumber, 
-            Guid userId, 
+            int monthNumber,
+            Guid userId,
             string username)
         {
             var response = new OrchestratorResponseWrapper<IList<ExpenditureViewModel>>();

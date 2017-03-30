@@ -1,6 +1,4 @@
-﻿using MyMoney.DTO.Request.Chart.Expenditure;
-
-namespace MyMoney.Web.Assemblers.Chart
+﻿namespace MyMoney.Web.Assemblers.Chart
 {
     #region Usings
 
@@ -8,13 +6,12 @@ namespace MyMoney.Web.Assemblers.Chart
     using System.Collections.Generic;
     using System.Linq;
 
-    using DTO.Request.Chart.Bill;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
 
-    using ViewModels.Spending.Bills.Enum;
+    using MyMoney.DTO.Request.Chart.Bill;
+    using MyMoney.DTO.Request.Chart.Expenditure;
+    using MyMoney.ViewModels.Enum;
+    using MyMoney.Web.Assemblers.Chart.Interfaces;
 
     #endregion
 
@@ -26,7 +23,7 @@ namespace MyMoney.Web.Assemblers.Chart
     [UsedImplicitly]
     public class ChartAssembler : IChartAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Converts the <see cref="string" /> object in the data list to an instance of the <see cref="TimePeriod" />
@@ -94,14 +91,27 @@ namespace MyMoney.Web.Assemblers.Chart
             return new GetBillPeriodChartDataRequest { UserId = userId, Username = username };
         }
 
-        public GetExpenditureChartDataRequest NewGetExpenditureChartDataRequest(int nowMonth, Guid userId, string userEmail)
+        /// <summary>
+        /// Creates an instance of the <see cref="GetExpenditureChartDataRequest" /> class.
+        /// </summary>
+        /// <param name="nowMonth">The current month.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">Exception thrown if the given month is out of range.</exception>
+        public GetExpenditureChartDataRequest NewGetExpenditureChartDataRequest(
+            int nowMonth,
+            Guid userId,
+            string userEmail)
         {
             if (nowMonth < 1 || nowMonth > 12)
             {
                 throw new ArgumentOutOfRangeException(nameof(nowMonth));
             }
 
-            return new GetExpenditureChartDataRequest {UserId = userId, Username = userEmail, Month = nowMonth};
+            return new GetExpenditureChartDataRequest { UserId = userId, Username = userEmail, Month = nowMonth };
         }
 
         #endregion

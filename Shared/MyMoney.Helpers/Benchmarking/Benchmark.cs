@@ -5,7 +5,6 @@
     using System;
     using System.Diagnostics;
 
-
     #endregion
 
     /// <summary>
@@ -46,7 +45,7 @@
 
         #endregion
 
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the end time.
@@ -74,7 +73,7 @@
 
         #endregion
 
-        #region  Public Methods
+        #region Methods
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public void Dispose()

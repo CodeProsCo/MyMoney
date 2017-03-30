@@ -17,7 +17,7 @@ namespace MyMoney.Extensions.Assembly
     /// </summary>
     public static class AssemblyExtensions
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Gets the linker time.

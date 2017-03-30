@@ -4,7 +4,7 @@
 
     using System.Web.Mvc;
 
-    using Web.Controllers;
+    using MyMoney.Web.Controllers;
 
     #endregion
 
@@ -17,7 +17,7 @@
     [Authorize]
     public class BudgetController : BaseController
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Handles requests for the budget overview view.

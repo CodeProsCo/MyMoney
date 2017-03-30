@@ -5,10 +5,9 @@
     using System;
     using System.Collections.Generic;
 
-    using DTO.Request.Spending.Expenditure;
-    using DTO.Response.Spending.Expenditure;
-
-    using ViewModels.Spending.Expenditure;
+    using MyMoney.DTO.Request.Spending.Expenditure;
+    using MyMoney.DTO.Response.Spending.Expenditure;
+    using MyMoney.ViewModels.Spending.Expenditure;
 
     #endregion
 
@@ -17,7 +16,7 @@
     /// </summary>
     public interface IExpenditureAssembler
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="AddExpenditureRequest" />. class.
@@ -26,6 +25,34 @@
         /// <param name="username">The username.</param>
         /// <returns>The request object.</returns>
         AddExpenditureRequest NewAddExpenditureRequest(ExpenditureViewModel model, string username);
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="DeleteExpenditureRequest" />. class.
+        /// </summary>
+        /// <param name="expenditureId">
+        ///     The expenditure Id.
+        /// </param>
+        /// <param name="username">
+        ///     The username.
+        /// </param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        DeleteExpenditureRequest NewDeleteExpenditureRequest(Guid expenditureId, string username);
+
+        /// <summary>
+        ///     Creates an instance of the <see cref="EditExpenditureRequest" />. class.
+        /// </summary>
+        /// <param name="model">
+        ///     The model.
+        /// </param>
+        /// <param name="username">
+        ///     The username.
+        /// </param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        EditExpenditureRequest NewEditExpenditureRequest(ExpenditureViewModel model, string username);
 
         /// <summary>
         ///     Creates an instance of the <see cref="ExpenditureViewModel" />. class.
@@ -61,32 +88,36 @@
         ExpenditureViewModel NewExpenditureViewModel(EditExpenditureResponse apiResponse);
 
         /// <summary>
-        ///     Creates an instance of the <see cref="DeleteExpenditureRequest" />. class.
+        /// Creates a collection of the <see cref="ExpenditureViewModel"/> class for the given response object.
         /// </summary>
-        /// <param name="expenditureId">
-        ///     The expenditure Id.
-        /// </param>
-        /// <param name="username">
-        ///     The username.
-        /// </param>
-        /// <returns>
-        ///     The request object.
-        /// </returns>
-        DeleteExpenditureRequest NewDeleteExpenditureRequest(Guid expenditureId, string username);
+        /// <param name="apiResponse">The API response.</param>
+        /// <returns>The list of view models.</returns>
+        IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserForMonthResponse apiResponse);
 
         /// <summary>
-        ///     Creates an instance of the <see cref="EditExpenditureRequest" />. class.
+        ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthRequest" />. class.
         /// </summary>
-        /// <param name="model">
-        ///     The model.
-        /// </param>
-        /// <param name="username">
-        ///     The username.
-        /// </param>
+        /// <param name="monthNumber">The month number.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="userEmail">The user email.</param>
         /// <returns>
         ///     The request object.
         /// </returns>
-        EditExpenditureRequest NewEditExpenditureRequest(ExpenditureViewModel model, string username);
+        GetExpendituresForUserForMonthRequest NewGetExpenditureForUserForMonthRequest(
+            int monthNumber,
+            Guid userId,
+            string userEmail);
+
+        /// <summary>
+        ///     Assembles an instance of the <see cref="GetExpendituresForUserRequest" /> class based on the given
+        ///     <see cref="string" />.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        ///     The request object.
+        /// </returns>
+        GetExpendituresForUserRequest NewGetExpenditureForUserRequest(Guid userId, string username);
 
         /// <summary>
         ///     Creates an instance of the <see cref="GetExpenditureRequest" />. class.
@@ -101,28 +132,6 @@
         GetExpenditureRequest NewGetExpenditureRequest(Guid expenditureId, string username);
 
         /// <summary>
-        ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthRequest" />. class.
-        /// </summary>
-        /// <param name="monthNumber">The month number.</param>
-        /// <param name="userId">The user identifier.</param>
-        /// <param name="userEmail">The user email.</param>
-        /// <returns>
-        ///     The request object.
-        /// </returns>
-        GetExpendituresForUserForMonthRequest NewGetExpenditureForUserForMonthRequest(int monthNumber, Guid userId, string userEmail);
-
-        /// <summary>
-        ///     Assembles an instance of the <see cref="GetExpendituresForUserRequest" /> class based on the given
-        ///     <see cref="string" />.
-        /// </summary>
-        /// <param name="userId">The user identifier.</param>
-        /// <param name="username">The username.</param>
-        /// <returns>
-        ///     The request object.
-        /// </returns>
-        GetExpendituresForUserRequest NewGetExpenditureForUserRequest(Guid userId, string username);
-
-        /// <summary>
         ///     Assembles an instance of the <see cref="IList{ExpenditureViewModel}" /> class based on the given
         ///     <see cref="GetExpendituresForUserResponse" />.
         /// </summary>
@@ -133,7 +142,5 @@
         TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpendituresForUserResponse apiResponse);
 
         #endregion
-
-        IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserForMonthResponse apiResponse);
     }
 }

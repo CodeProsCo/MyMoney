@@ -19,7 +19,7 @@
     /// </example>
     public static class BenchmarkHelper
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="Benchmark" /> class and starts its timer.

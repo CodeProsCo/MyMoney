@@ -1,8 +1,8 @@
-﻿@model MyMoney.ViewModels.Spending.Expenditure.TrackExpenditureViewModel
-@using Cassette.Scripts
+﻿@using Cassette.Scripts
 @using Cassette.Stylesheets
 @using Cassette.Views
 @using MyMoney.Resources
+@model MyMoney.ViewModels.Spending.Expenditure.TrackExpenditureViewModel
 @{
     ViewBag.Title = Expenditure.Title_Expenditure;
     Bundles.Reference<ScriptBundle>("~/Areas/Spending/Scripts/Expenditure/MyMoney.TrackExpenditure.js");
@@ -21,7 +21,7 @@
                 <i class="calendar icon"></i>
                 @Expenditure.Heading_ExpenditureThisMonth
             </h4>
-            <div id="expenditure-calendar" data-url="@Url.Action("GetExpenditureForMonth", "Expenditure", new { monthNumber = DateTime.Now.Month})"></div>
+            <div id="expenditure-calendar" data-url="@Url.Action("GetExpenditureForMonth", "Expenditure", new { monthNumber = DateTime.Now.Month })"></div>
         </div>
     </div>
     <div class="eight wide column">
@@ -39,6 +39,6 @@
 
 @section Modals
 {
-    @{Html.RenderPartial("Modals/_AddExpenditureModal", Model.AddExpenditure);}
-    @{Html.RenderPartial("Modals/_EditExpenditureModal", Model.EditExpenditure);}
+    @{ Html.RenderPartial("Modals/_AddExpenditureModal", Model.AddExpenditure); }
+    @{ Html.RenderPartial("Modals/_EditExpenditureModal", Model.EditExpenditure); }
 }

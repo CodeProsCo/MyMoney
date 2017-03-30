@@ -6,11 +6,10 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using DataModels.Common;
-
-    using Interfaces;
-
     using JetBrains.Annotations;
+
+    using MyMoney.API.DataAccess.Common.Interfaces;
+    using MyMoney.DataModels.Common;
 
     #endregion
 
@@ -22,10 +21,16 @@
     [UsedImplicitly]
     public class CategoryRepository : ICategoryRepository
     {
+        #region Fields
+
         /// <summary>
         /// The context
         /// </summary>
         private readonly IDatabaseContext context;
+
+        #endregion
+
+        #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CategoryRepository"/> class.
@@ -44,7 +49,9 @@
             this.context = context;
         }
 
-        #region  Public Methods
+        #endregion
+
+        #region Methods
 
         /// <summary>
         ///     Checks the database if a given category exists. If not, it is added to the database. Otherwise, it is returned from
@@ -64,9 +71,22 @@
             return await AddCategory(category);
         }
 
-        #endregion
+        /// <summary>
+        ///     Adds the given category.
+        /// </summary>
+        /// <param name="category">The category.</param>
+        /// <returns>The newly added category.</returns>
+        private async Task<CategoryDataModel> AddCategory(CategoryDataModel category)
+        {
+            category.Id = Guid.NewGuid();
+            category.CreationTime = DateTime.Now;
 
-        #region Private Methods
+            var addedModel = context.Categories.Add(category);
+
+            var rowsChanged = await context.SaveChangesAsync();
+
+            return rowsChanged > 0 ? addedModel : null;
+        }
 
         /// <summary>
         ///     Asserts if a category with the given name exists in the database.
@@ -93,23 +113,6 @@
         private async Task<CategoryDataModel> GetCategory(string name)
         {
             return await context.Categories.FirstOrDefaultAsync(x => x.Name == name);
-        }
-
-        /// <summary>
-        ///     Adds the given category.
-        /// </summary>
-        /// <param name="category">The category.</param>
-        /// <returns>The newly added category.</returns>
-        private async Task<CategoryDataModel> AddCategory(CategoryDataModel category)
-        {
-            category.Id = Guid.NewGuid();
-            category.CreationTime = DateTime.Now;
-
-            var addedModel = context.Categories.Add(category);
-
-            var rowsChanged = await context.SaveChangesAsync();
-
-            return rowsChanged > 0 ? addedModel : null;
         }
 
         #endregion

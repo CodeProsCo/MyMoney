@@ -6,9 +6,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using ViewModels.Spending.Bills;
-
-    using Wrappers;
+    using MyMoney.ViewModels.Spending.Bills;
+    using MyMoney.Wrappers;
 
     #endregion
 
@@ -17,7 +16,7 @@
     /// </summary>
     public interface IBillOrchestrator
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Builds and sends a request to add a bill to the database.
@@ -85,8 +84,8 @@
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
         Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetBillsForUserForMonth(
-            int monthNumber, 
-            Guid userId, 
+            int monthNumber,
+            Guid userId,
             string username);
 
         #endregion

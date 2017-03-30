@@ -13,7 +13,7 @@
     /// </summary>
     public class ResponseErrorWrapper
     {
-        #region  Properties
+        #region Properties
 
         /// <summary>
         ///     Gets or sets the name of the class.

@@ -13,11 +13,15 @@ $(function () {
     }
 
     function saveAccountDetailsSuccessCallback(data) {
-        
+        if (data.success) {
+            
+        }
     }
 
     function savePersonalDetailsSuccessCallback(data) {
-        
+        if (data.success) {
+            
+        }   
     }
 
     $(function() {

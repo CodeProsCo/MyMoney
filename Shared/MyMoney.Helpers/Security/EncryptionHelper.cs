@@ -14,7 +14,7 @@
     /// </summary>
     public static class EncryptionHelper
     {
-        #region  Public Methods
+        #region Methods
 
         /// <summary>
         ///     Creates an instance of the <see cref="EncryptedPasswordModel" /> class based on the given password.
@@ -49,10 +49,6 @@
 
             return newHash.SequenceEqual(hash);
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         ///     Generates a hash using the <see cref="Rfc2898DeriveBytes" /> class.
