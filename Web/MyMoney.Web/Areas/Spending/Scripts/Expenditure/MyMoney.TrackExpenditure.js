@@ -131,7 +131,19 @@ $(function () {
             var generator = new ChartGenerator(data.model);
 
             generator.createExpenditureChart("#expenditure-chart");
+
+            $("#expenditure-chart").siblings().fadeOut();
+        } else {
+            hideChart("#expenditure-chart");
         }
+    }
+
+    function hideChart(selector) {
+        var text = myMoney.strings.get("Common", "Error_NoDataForChart");
+        var loader = $(selector).parent().find(".loader");
+
+        loader.text(text);
+        loader.addClass("no-pseudo");
     }
 
     function showAddModal(event) {

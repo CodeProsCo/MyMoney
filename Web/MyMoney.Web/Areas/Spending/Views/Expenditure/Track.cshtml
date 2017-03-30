@@ -12,6 +12,9 @@
 <div class="ui grid" id="main-grid">
     <div class="sixteen wide column">
         <div class="ui styled segment">
+            <div class="ui active inverted dimmer">
+                <div class="ui text loader" id="chart-loading-text"></div>
+            </div>
             <div data-hint="@Expenditure.Hint_ExpenditureChart" id="expenditure-chart" data-url="@Url.Action("GetExpenditureChartData", "Expenditure")"></div>
         </div>
     </div>

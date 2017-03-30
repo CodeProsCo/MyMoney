@@ -107,7 +107,7 @@ $(function() {
         var chartGenerator = new ChartGenerator(data.model);
         chartGenerator.createBillCategoryChart("#category-chart");
 
-        $("#category-chart").siblings(".dimmer").addClass("disabled").removeClass("active");
+        $("#bill-chart-loader").fadeOut();
     }
 
     function getPeriodChartDataSuccessCallback(data) {

@@ -30,21 +30,19 @@
         </div>
     </div>
     <div class="four wide column">
-        <div class="ui styled segment">
+        <div class="ui styled segment" id="bill-charts">
             <div class="ui block header" data-hint="@Bills.Hint_BillBreakdown">
                 <i class="browser icon"></i>
                 @Bills.Heading_BillBreakdown
             </div>
             <div class="ui divided items">
-
+                <div class="ui active inverted dimmer" id="bill-chart-loader">
+                    <div class="ui text loader" id="chart-loading-text"></div>
+                </div>
                 <div class="item">
-
                     <div id="category-chart" data-url="@Url.Action("GetCategoryChartData", "Bill")"></div>
                 </div>
                 <div class="item">
-                    <div class="ui active inverted dimmer">
-                        <div class="ui text loader" id="chart-loading-text">Loading</div>
-                    </div>
 
                     <div id="period-chart" data-url="@Url.Action("GetPeriodChartData", "Bill")"></div>
                 </div>

@@ -274,3 +274,7 @@ td.link.negative:not(.disabled):hover {
 .password-info {
     padding: 20px !important;
 }
+
+#bill-charts {
+    min-height: 530px;
+}

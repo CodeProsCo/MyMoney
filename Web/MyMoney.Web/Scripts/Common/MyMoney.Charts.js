@@ -59,16 +59,14 @@ function ChartGenerator(data) {
     this.createBillCategoryChart = function(containerId) {
         var options = {
             container: containerId,
-            data: this.data,
-            animated: true
+            data: this.data
         };
         return createDonutChart(options);
     };
     this.createBillPeriodChart = function(containerId) {
         var options = {
             container: containerId,
-            data: this.data,
-            animated: true
+            data: this.data
         };
         return createDonutChart(options);
     };
@@ -106,45 +104,7 @@ function ChartGenerator(data) {
 
         var chart = new Chartist.Pie(options.container, fullData, chartOptions);
 
-        if (options.animated) {
-            addDonutAnimation(chart);
-        }
-
         self.chart = chart;
-    }
-
-    function addDonutAnimation(chart) {
-        chart.on("draw",
-            function(chartData) {
-                if (chartData.type === "slice") {
-                    var pathLength = chartData.element._node.getTotalLength();
-
-                    chartData.element.attr({
-                        'stroke-dasharray': pathLength + "px " + pathLength + "px"
-                    });
-
-                    var animationDefinition = {
-                        'stroke-dashoffset': {
-                            id: "anim" + chartData.index,
-                            dur: 500,
-                            from: -pathLength + "px",
-                            to: "0px",
-                            easing: Chartist.Svg.Easing.easeOutQuint,
-                            fill: "freeze"
-                        }
-                    };
-
-                    if (chartData.index !== 0) {
-                        animationDefinition["stroke-dashoffset"].begin = "anim" + (chartData.index - 1) + ".end";
-                    }
-
-                    chartData.element.attr({
-                        'stroke-dashoffset': -pathLength + "px"
-                    });
-
-                    chartData.element.animate(animationDefinition, false);
-                }
-            });
     }
 }
 
