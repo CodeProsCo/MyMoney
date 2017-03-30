@@ -247,7 +247,7 @@
             }
 
             var timePeriodOptions = new SelectList(Enum.GetNames(typeof(TimePeriod)));
-            var categoryOptions = new SelectList(Enum.GetNames(typeof(Category)));
+            var categoryOptions = new SelectList(Enum.GetNames(typeof(Category)).OrderBy(x => x));
 
             return new ManageBillsViewModel
                        {

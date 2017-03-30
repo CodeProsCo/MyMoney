@@ -8,54 +8,84 @@
     #endregion
 
     /// <summary>
-    ///     The <see cref="Category" /> enumeration determines the category of a bill.
+    ///     The <see cref="Category" /> enumeration determines the category of an object.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Category
     {
         /// <summary>
-        ///     The bill is in the "Utilities" category.
+        ///     The object is in the "Utilities" category.
         /// </summary>
         Utilities = 0,
 
         /// <summary>
-        ///     The bill is in the "Telephone" category.
+        ///     The object is in the "Telephone" category.
         /// </summary>
         Telephone,
 
         /// <summary>
-        ///     The bill is in the "Internet" category.
+        ///     The object is in the "Internet" category.
         /// </summary>
         Internet,
 
         /// <summary>
-        ///     The bill is in the "Rent" category.
+        ///     The object is in the "Rent" category.
         /// </summary>
         Rent,
 
         /// <summary>
-        ///     The bill is in the "Insurance" category.
+        ///     The object is in the "Insurance" category.
         /// </summary>
         Insurance,
 
         /// <summary>
-        ///     The bill is in the "Vehicle" category.
+        ///     The object is in the "Vehicle" category.
         /// </summary>
         Vehicle,
 
         /// <summary>
-        ///     The bill is in the "Mortgage" category.
+        ///     The object is in the "Mortgage" category.
         /// </summary>
         Mortgage,
 
         /// <summary>
-        ///     The bill is in the "Credit" category.
+        ///     The object is in the "Credit" category.
         /// </summary>
         Credit,
 
         /// <summary>
-        ///     The bill is in the "Other" category.
+        ///     The object is in the "Other" category.
         /// </summary>
-        Other
+        Other,
+
+        /// <summary>
+        ///     The object is in the "Groceries" category.
+        /// </summary>
+        Groceries,
+
+        /// <summary>
+        ///     The object is in the "Entertainment" category.
+        /// </summary>
+        Entertaiment,
+
+        /// <summary>
+        ///     The object is in the "Clothing" category.
+        /// </summary>
+        Clothing,
+
+        /// <summary>
+        ///     The object is in the "Tobacco" category.
+        /// </summary>
+        Tobacco,
+
+        /// <summary>
+        ///     The object is in the "Alcohol" category.
+        /// </summary>
+        Alcohol,
+
+        /// <summary>
+        ///     The object is in the "Dining" category.
+        /// </summary>
+        Dining
     }
 }

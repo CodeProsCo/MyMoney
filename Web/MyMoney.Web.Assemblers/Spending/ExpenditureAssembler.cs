@@ -275,8 +275,8 @@
                                    {
                                        CategoryOptions =
                                            new SelectList(
-                                               Enum.GetValues(
-                                                   typeof(Category))),
+                                               Enum.GetNames(
+                                                   typeof(Category)).OrderBy(x => x)),
                                        Expenditure =
                                            new ExpenditureViewModel
                                                {
@@ -298,8 +298,8 @@
                                    {
                                        CategoryOptions =
                                            new SelectList(
-                                               Enum.GetValues(
-                                                   typeof(Category))),
+                                               Enum.GetNames(
+                                                   typeof(Category)).OrderBy(x => x)),
                                        Expenditure =
                                            new ExpenditureViewModel
                                                {
