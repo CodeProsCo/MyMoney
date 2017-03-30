@@ -33,24 +33,15 @@
             IEnumerable<ExpenditureDataModel> expenditure)
         {
             var retVal = new List<KeyValuePair<DateTime, double>>();
+            double total = 0;
 
-            foreach (var exp in expenditure.OrderBy(x => x.DateOccurred))
+            foreach (var exp in expenditure.GroupBy(x => x.DateOccurred).OrderBy(x => x.Key))
             {
-                var existingDate = retVal.FirstOrDefault(x => x.Key.Equals(exp.DateOccurred));
-
-                if (existingDate.Key == DateTime.MinValue)
-                {
-                    retVal.Add(new KeyValuePair<DateTime, double>(exp.DateOccurred, exp.Amount));
-                }
-                else
-                {
-                    retVal.Remove(existingDate);
-                    existingDate = new KeyValuePair<DateTime, double>(existingDate.Key, existingDate.Value + exp.Amount);
-                    retVal.Add(existingDate);
-                }
+                total += exp.Sum(x => x.Amount);
+                retVal.Add(new KeyValuePair<DateTime, double>(exp.Key, total));
             }
 
-            return retVal.OrderBy(x => x.Key).ToList();
+            return retVal.OrderBy(x => x.Value).ToList();
         }
 
         #endregion

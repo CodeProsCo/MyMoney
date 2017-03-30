@@ -25,14 +25,14 @@
             </summary>
             <param name="config">The configuration.</param>
         </member>
-        <member name="T:MyMoney.API.Attributes.ValidateAPIKeyAttribute">
+        <member name="T:MyMoney.API.Attributes.ValidateApiKeyAttribute">
             <summary>
-                The <see cref="T:MyMoney.API.Attributes.ValidateAPIKeyAttribute" /> attribute ensures that an authorized request contains an API key that
+                The <see cref="T:MyMoney.API.Attributes.ValidateApiKeyAttribute" /> attribute ensures that an authorized request contains an API key that
                 matches the one stored on the server.
             </summary>
             <seealso cref="T:System.Web.Http.AuthorizeAttribute" />
         </member>
-        <member name="M:MyMoney.API.Attributes.ValidateAPIKeyAttribute.IsAuthorized(System.Web.Http.Controllers.HttpActionContext)">
+        <member name="M:MyMoney.API.Attributes.ValidateApiKeyAttribute.IsAuthorized(System.Web.Http.Controllers.HttpActionContext)">
             <summary>Indicates whether the specified control is authorized.</summary>
             <returns>true if the control is authorized; otherwise, false.</returns>
             <param name="actionContext">The context.</param>
@@ -118,6 +118,33 @@
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="T:MyMoney.API.Controllers.Chart.ExpenditureChartController">
+            <summary>
+            The <see cref="T:MyMoney.API.Controllers.Chart.ExpenditureChartController"/> class handles HTTP requests in the "chart/expenditure" route.
+            </summary>
+            <seealso cref="T:MyMoney.API.Controllers.BaseController" />
+        </member>
+        <member name="F:MyMoney.API.Controllers.Chart.ExpenditureChartController.orchestrator">
+            <summary>
+            The orchestrator
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Chart.ExpenditureChartController.#ctor(MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Chart.ExpenditureChartController"/> class.
+            </summary>
+            <param name="orchestrator">The orchestrator.</param>
+            <exception cref="T:System.ArgumentNullException">orchestrator
+            Exception thrown if the orchestrator is null.
+            </exception>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Chart.ExpenditureChartController.GetExpenditureChartData(MyMoney.DTO.Request.Chart.Expenditure.GetExpenditureChartDataRequest)">
+            <summary>
+            Handles an HTTP GET request to obtain the data for the expenditure chart.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object, wrapped in a 200 response.</returns>
         </member>
         <member name="T:MyMoney.API.Controllers.Spending.BillController">
             <summary>
@@ -273,7 +300,7 @@
             </summary>
             <seealso cref="T:System.Web.Http.Dispatcher.IHttpControllerActivator" />
         </member>
-        <member name="F:MyMoney.API.Plumbing.WindsorWebApiControllerActivator._container">
+        <member name="F:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.container">
             <summary>
                 The container
             </summary>
@@ -301,7 +328,7 @@
             </summary>
             <seealso cref="T:System.IDisposable" />
         </member>
-        <member name="F:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release._release">
+        <member name="F:MyMoney.API.Plumbing.WindsorWebApiControllerActivator.Release.release">
             <summary>
                 The release
             </summary>
