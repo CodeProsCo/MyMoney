@@ -7,6 +7,9 @@
 
     using MyMoney.DTO.Request.Spending.Expenditure;
     using MyMoney.DTO.Response.Spending.Expenditure;
+    using MyMoney.Proxies.Spending;
+    using MyMoney.ViewModels.Common;
+    using MyMoney.ViewModels.Enum;
     using MyMoney.ViewModels.Spending.Expenditure;
 
     #endregion
@@ -142,5 +145,7 @@
         TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpendituresForUserResponse apiResponse);
 
         #endregion
+
+        ExportViewModel NewExportViewModel(IList<ExpenditureProxy> apiResponseExpenditures, ExportType exportType);
     }
 }

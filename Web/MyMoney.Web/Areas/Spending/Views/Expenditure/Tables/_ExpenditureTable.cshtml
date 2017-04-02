@@ -1,42 +1,47 @@
 ﻿@using MyMoney.Resources
 @model IList<MyMoney.ViewModels.Spending.Expenditure.ExpenditureViewModel>
+@{
+    ViewData["exportController"] = "Expenditure";
+}
 <table class="ui celled selectable table" id="expenditure-table" data-sort="true">
     <thead>
-    <tr data-hint="@Expenditure.Hint_ExpenditureTable">
-        <th>@Common.Header_Date</th>
-        <th>@Common.Header_Description</th>
-        <th>@Common.Header_Category</th>
-        <th>@Common.Header_Amount</th>
-    </tr>
+        <tr data-hint="@Expenditure.Hint_ExpenditureTable">
+            <th>@Common.Header_Date</th>
+            <th>@Common.Header_Description</th>
+            <th>@Common.Header_Category</th>
+            <th>@Common.Header_Amount</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var expenditure in Model)
-    {
-        <tr data-get="@Url.Action("Get", "Expenditure", new { expenditureId = expenditure.Id.ToString() })"
-            data-delete="@Url.Action("Delete", "Expenditure", new { expenditureId = expenditure.Id.ToString() })">
-            <td>@expenditure.DateOccurred.ToShortDateString()</td>
-            <td>@expenditure.Description</td>
-            <td>@expenditure.Category</td>
-            <td class="right aligned">@expenditure.Amount.ToString("C")</td>
-        </tr>
-    }
+        @foreach (var expenditure in Model)
+        {
+            <tr data-get="@Url.Action("Get", "Expenditure", new { expenditureId = expenditure.Id.ToString() })"
+                data-delete="@Url.Action("Delete", "Expenditure", new { expenditureId = expenditure.Id.ToString() })">
+                <td>@expenditure.DateOccurred.ToShortDateString()</td>
+                <td>@expenditure.Description</td>
+                <td>@expenditure.Category</td>
+                <td class="right aligned">@expenditure.Amount.ToString("C")</td>
+            </tr>
+        }
 
-    @if (Model.Count == 0)
-    {
-        <tr id="table-warning">
-            <td colspan="4">
-                @Expenditure.Warning_NoExpenditure
-            </td>
-        </tr>
-    }
+        @if (Model.Count == 0)
+        {
+            <tr id="table-warning">
+                <td colspan="4">
+                    @Expenditure.Warning_NoExpenditure
+                </td>
+            </tr>
+        }
     </tbody>
     <tfoot>
-    <tr>
-        <th colspan="4">
-            <div class="ui left floated small primary button" id="add" data-hint="@Expenditure.Hint_AddNewExpenditure">
-                <i class="add icon"></i> @Common.Button_New
-            </div>
-        </th>
-    </tr>
+        <tr>
+            <th colspan="4">
+                <div class="ui left floated small primary button" id="add" data-hint="@Expenditure.Hint_AddNewExpenditure">
+                    <i class="add icon"></i> @Common.Button_New
+                </div>
+
+                @{Html.RenderPartial("Components/Buttons/_ExportButton");}
+            </th>
+        </tr>
     </tfoot>
 </table>

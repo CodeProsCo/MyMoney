@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
+    using MyMoney.ViewModels.Enum;
     using MyMoney.ViewModels.Spending.Expenditure;
     using MyMoney.Web.Attributes;
     using MyMoney.Web.Controllers;
@@ -85,6 +86,16 @@
             model.UserId = UserId;
 
             var response = await orchestrator.AddExpenditure(model, UserEmail);
+
+            return JsonResponse(response);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        [Route("export")]
+        public async Task<ActionResult> Export(ExportType exportType)
+        {
+            var response = await orchestrator.ExportExpenditure(exportType, UserEmail, UserId);
 
             return JsonResponse(response);
         }

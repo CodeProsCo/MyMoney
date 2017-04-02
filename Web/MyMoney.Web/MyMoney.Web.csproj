@@ -224,7 +224,6 @@
     <Compile Include="Areas\Common\Controllers\ResourceController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\BudgetController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
-    <Compile Include="Areas\Saving\Controllers\GoalController.cs" />
     <Compile Include="Areas\Saving\SavingAreaRegistration.cs" />
     <Compile Include="Areas\Spending\Controllers\BillController.cs" />
     <Compile Include="Areas\Spending\Controllers\ExpenditureController.cs" />
@@ -308,6 +307,7 @@
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
+    <Folder Include="Areas\Saving\Controllers\" />
     <Folder Include="Areas\Saving\Models\" />
     <Folder Include="Areas\Saving\Views\Goal\" />
     <Folder Include="Areas\Saving\Views\Shared\" />

@@ -9,6 +9,8 @@
     using JetBrains.Annotations;
 
     using MyMoney.Helpers.Error;
+    using MyMoney.ViewModels.Common;
+    using MyMoney.ViewModels.Enum;
     using MyMoney.ViewModels.Spending.Expenditure;
     using MyMoney.Web.Assemblers.Spending.Interfaces;
     using MyMoney.Web.DataAccess.Spending.Interfaces;
@@ -296,6 +298,33 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditureForUserForMonth");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        public async Task<OrchestratorResponseWrapper<ExportViewModel>> ExportExpenditure(ExportType exportType, string userEmail, Guid userId)
+        {
+            var response = new OrchestratorResponseWrapper<ExportViewModel>();
+
+            try
+            {
+                var request = assembler.NewGetExpenditureForUserRequest(userId, userEmail);
+                var apiResponse = await dataAccess.GetExpendituresForUser(request);
+
+                if (!apiResponse.Success)
+                {
+                    response.AddErrors(apiResponse.Errors);
+                }
+
+                response.AddWarnings(apiResponse.Warnings);
+
+                response.Model = assembler.NewExportViewModel(apiResponse.Expenditures, exportType);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, userEmail, GetType(), "ExportExpenditure");
                 response.AddError(err);
             }
 

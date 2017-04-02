@@ -13,9 +13,12 @@
     using MyMoney.DTO.Response.Spending.Expenditure;
     using MyMoney.Proxies.Common;
     using MyMoney.Proxies.Spending;
+    using MyMoney.ViewModels.Common;
     using MyMoney.ViewModels.Enum;
     using MyMoney.ViewModels.Spending.Expenditure;
     using MyMoney.Web.Assemblers.Spending.Interfaces;
+
+    using ServiceStack;
 
     #endregion
 
@@ -350,6 +353,28 @@
                            UserId = model.UserId,
                            Id = model.Id
                        };
+        }
+
+        public ExportViewModel NewExportViewModel(IList<ExpenditureProxy> apiResponseExpenditures, ExportType exportType)
+        {
+            var retVal = new ExportViewModel { ExportType = exportType, FileName = "expenditure" };
+
+            switch (exportType)
+            {
+                case ExportType.Csv:
+                    retVal.FileData = apiResponseExpenditures.ToCsv();
+                    break;
+                case ExportType.Xml:
+                    retVal.FileData = apiResponseExpenditures.ToXml();
+                    break;
+                case ExportType.Json:
+                    retVal.FileData = apiResponseExpenditures.ToJson();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);
+            }
+
+            return retVal;
         }
 
         #endregion
