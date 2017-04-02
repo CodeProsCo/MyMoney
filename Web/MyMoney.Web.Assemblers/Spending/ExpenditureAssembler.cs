@@ -169,7 +169,7 @@
                 throw new ArgumentNullException(nameof(apiResponse));
             }
 
-            return apiResponse.Data.Select(ExpenditureProxyToViewModel).ToList();
+            return apiResponse.Data.Select(ExpenditureProxyToViewModel).OrderBy(x => x.DateOccurred).ToList();
         }
 
         /// <summary>
@@ -331,7 +331,7 @@
                                    },
                            Expenditures =
                                apiResponse.Expenditures.Select(ExpenditureProxyToViewModel)
-                                   .ToList(),
+                                   .OrderBy(x => x.DateOccurred).ToList(),
                            EditExpenditure =
                                new EditExpenditureViewModel
                                    {
