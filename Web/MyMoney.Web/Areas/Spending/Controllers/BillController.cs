@@ -90,6 +90,11 @@
             return JsonResponse(response);
         }
 
+        /// <summary>
+        /// Handles an HTTP GET request to export the user's bills to a given type.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <returns>The response object.</returns>
         [HttpGet]
         [Route("export/{exportType}")]
         [AjaxOnly]

@@ -152,6 +152,39 @@
         }
 
         /// <summary>
+        /// Creates a new instance of the <see cref="ExportViewModel" /> class based on the given list of bills.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <param name="apiResponseBills">The bills.</param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// Exception thrown if the given export type is out of range.
+        /// </exception>
+        public ExportViewModel NewExportViewModel(ExportType exportType, IList<BillProxy> apiResponseBills)
+        {
+            var retVal = new ExportViewModel { ExportType = exportType, FileName = "bills" };
+
+            switch (exportType)
+            {
+                case ExportType.Csv:
+                    retVal.FileData = apiResponseBills.ToCsv();
+                    break;
+                case ExportType.Xml:
+                    retVal.FileData = apiResponseBills.ToXml();
+                    break;
+                case ExportType.Json:
+                    retVal.FileData = apiResponseBills.ToJson();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);
+            }
+
+            return retVal;
+        }
+
+        /// <summary>
         ///     Creates an instance of the <see cref="GetBillRequest" />. class.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
@@ -319,28 +352,6 @@
                            UserId = model.UserId,
                            Id = model.Id
                        };
-        }
-
-        public ExportViewModel NewExportViewModel(ExportType exportType, IList<BillProxy> apiResponseBills)
-        {
-            var retVal = new ExportViewModel { ExportType = exportType, FileName = "bills" };
-
-            switch (exportType)
-            {
-                case ExportType.Csv:
-                    retVal.FileData = apiResponseBills.ToCsv();
-                    break;
-                case ExportType.Xml:
-                    retVal.FileData = apiResponseBills.ToXml();
-                    break;
-                    case ExportType.Json:
-                    retVal.FileData = apiResponseBills.ToJson();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);
-            }
-
-            return retVal;
         }
 
         #endregion
