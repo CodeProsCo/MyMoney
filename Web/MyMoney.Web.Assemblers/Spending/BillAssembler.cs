@@ -3,6 +3,7 @@
     #region Usings
 
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
@@ -12,9 +13,12 @@
     using MyMoney.DTO.Response.Spending.Bills;
     using MyMoney.Proxies.Common;
     using MyMoney.Proxies.Spending;
+    using MyMoney.ViewModels.Common;
     using MyMoney.ViewModels.Enum;
     using MyMoney.ViewModels.Spending.Bills;
     using MyMoney.Web.Assemblers.Spending.Interfaces;
+
+    using ServiceStack;
 
     #endregion
 
@@ -315,6 +319,28 @@
                            UserId = model.UserId,
                            Id = model.Id
                        };
+        }
+
+        public ExportViewModel NewExportViewModel(ExportType exportType, IList<BillProxy> apiResponseBills)
+        {
+            var retVal = new ExportViewModel { ExportType = exportType, FileName = "bills" };
+
+            switch (exportType)
+            {
+                case ExportType.Csv:
+                    retVal.FileData = apiResponseBills.ToCsv();
+                    break;
+                case ExportType.Xml:
+                    retVal.FileData = apiResponseBills.ToXml();
+                    break;
+                    case ExportType.Json:
+                    retVal.FileData = apiResponseBills.ToJson();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);
+            }
+
+            return retVal;
         }
 
         #endregion

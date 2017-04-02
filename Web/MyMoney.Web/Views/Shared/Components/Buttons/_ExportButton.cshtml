@@ -1,0 +1,21 @@
+﻿@using MyMoney.ViewModels.Enum
+
+@{
+    var controller = ViewData["exportController"].ToString();
+}
+
+<div class="ui right floated small yellow dropdown button">
+    <i class="external icon"></i>
+    <span class="text">Export</span>
+    <div class="menu">
+        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Csv})">
+            .csv
+        </div>
+        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Xml})">
+            .xml
+        </div>
+        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Json})">
+            .json
+        </div>
+    </div>
+</div>

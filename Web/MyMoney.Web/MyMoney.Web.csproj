@@ -224,6 +224,8 @@
     <Compile Include="Areas\Common\Controllers\ResourceController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\BudgetController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
+    <Compile Include="Areas\Saving\Controllers\GoalController.cs" />
+    <Compile Include="Areas\Saving\SavingAreaRegistration.cs" />
     <Compile Include="Areas\Spending\Controllers\BillController.cs" />
     <Compile Include="Areas\Spending\Controllers\ExpenditureController.cs" />
     <Compile Include="Areas\Spending\SpendingAreaRegistration.cs" />
@@ -268,7 +270,6 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\SearchableDropdown.cshtml" />
     <Content Include="Scripts\Common\MyMoney.Ajax.js" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Dropdown.cshtml" />
@@ -293,6 +294,8 @@
     <Content Include="Areas\Spending\Views\Expenditure\Modals\_AddExpenditureModal.cshtml" />
     <Content Include="Areas\Spending\Views\Expenditure\Editors\_ExpenditureEditor.cshtml" />
     <Content Include="Areas\Spending\Views\Expenditure\Modals\_EditExpenditureModal.cshtml" />
+    <Content Include="Areas\Saving\Views\web.config" />
+    <Content Include="Views\Shared\Components\Buttons\_ExportButton.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -305,6 +308,9 @@
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
+    <Folder Include="Areas\Saving\Models\" />
+    <Folder Include="Areas\Saving\Views\Goal\" />
+    <Folder Include="Areas\Saving\Views\Shared\" />
     <Folder Include="Areas\Spending\Views\Shared\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>

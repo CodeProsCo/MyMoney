@@ -8,6 +8,7 @@
 /// <reference path="~/Areas/Spending/Scripts/Expenditure/MyMoney.Expenditure.js" />
 /// <reference path="~/Scripts/Extensions/MyMoney.StringExtensions.js" />
 /// <reference path="~/Scripts/Common/MyMoney.Charts.js" />
+/// <reference path="~/Scripts/jQuery/datatables.js" />
 $(function () {
     function loadAjaxComponents() {
         loadCalendarData("#expenditure-calendar");
@@ -332,6 +333,13 @@ $(function () {
         $("#add").click(showAddModal);
         $("#edit-expenditure").click(editExpenditureClick);
         $("#delete-expenditure").click(deleteExpenditureClick);
+
+        if (!$("#table-warning")) {
+            $("#expenditure-table").DataTable({
+                "info": false,
+                "bFilter": false
+            });
+        }
 
         $("tr[data-get]").click(showEditModal);
     });

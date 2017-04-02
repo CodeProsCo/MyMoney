@@ -3,7 +3,7 @@
 /// <reference path="~/Scripts/Semantic/semantic.js" />
 /// <reference path="~/Scripts/jQuery/jquery.validate.unobtrusive.js" />
 /// <reference path="~/Scripts/Intro/intro.js" />
-/// <reference path="~/Scripts/jQuery/datatables.js" />
+/// <reference path="~/Scripts/Common/MyMoney.Ajax.js" />
 $("#menu-toggle")
     .click(function (e) {
         e.stopPropagation();
@@ -11,6 +11,34 @@ $("#menu-toggle")
         $("#sidebar").sidebar("toggle");
     });
 
+$("[data-export]").click(function (e) {
+    e.stopPropagation();
+
+    var url = $(this).data("export");
+
+    $.ajax(url,
+        {
+            method: "GET",
+            async: true,
+            dataType: "json",
+            success: AjaxResponse(function (data) {
+                if (!data.success) {
+                    return;
+                }
+
+                var element = document.createElement("a");
+                element.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(data.model.fileData));
+                element.setAttribute("download", data.model.fullFileName);
+
+                element.style.display = "none";
+                document.body.appendChild(element);
+
+                element.click();
+
+                document.body.removeChild(element);
+            })
+        });
+});
 
 $("[data-redirect]")
     .click(function (e) {
@@ -40,10 +68,7 @@ $(".ui.accordion").accordion();
 $(".ui.dropdown").dropdown();
 
 $("[data-input-mask=currency]").inputmask("currency", { rightAlign: false, prefix: "", groupSeparator: "" });
-$("table").DataTable({
-    "info": false,
-    "bFilter" : false
-});
+
 $(".modal").modal("setting", "closable", false);
 
 introJs().addHints();

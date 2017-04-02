@@ -70,6 +70,8 @@
     <Compile Include="Authentication\Account\PersonalDetailsViewModel.cs" />
     <Compile Include="Authentication\User\LoginViewModel.cs" />
     <Compile Include="Authentication\User\RegisterViewModel.cs" />
+    <Compile Include="Common\ExportViewModel.cs" />
+    <Compile Include="Enum\ExportType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spending\Bills\AddBillViewModel.cs" />
     <Compile Include="Spending\Bills\BillViewModel.cs" />

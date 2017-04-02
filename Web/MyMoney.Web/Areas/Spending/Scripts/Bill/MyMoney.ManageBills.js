@@ -9,6 +9,7 @@
 /// <reference path="~/Scripts/Common/MyMoney.Localization.js"/>
 /// <reference path="~/Scripts/Semantic/calendar.js"/>
 /// <reference path="~/Scripts/Extensions/MyMoney.NumberExtensions.js" />
+/// <reference path="~/Scripts/jQuery/datatables.js" />
 $(function() {
     function addBillSuccessCallback(data) {
         if (data.success) {
@@ -322,6 +323,14 @@ $(function() {
         $("#edit-bill").click(editBillClick);
         $("#delete-bill").click(deleteBillClick);
         $("tr[data-get]").click(showEditModal);
+
+        if (!$("#table-warning")) {
+            $("#bill-table").DataTable({
+                "info": false,
+                "bFilter": false
+            });
+        }
+
 
         loadAjaxComponents();
     });

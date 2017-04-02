@@ -3,9 +3,13 @@
     #region Usings
 
     using System;
+    using System.Collections.Generic;
 
     using MyMoney.DTO.Request.Spending.Bill;
     using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.Proxies.Spending;
+    using MyMoney.ViewModels.Common;
+    using MyMoney.ViewModels.Enum;
     using MyMoney.ViewModels.Spending.Bills;
 
     #endregion
@@ -131,5 +135,7 @@
         ManageBillsViewModel NewManageBillsViewModel(GetBillsForUserResponse apiResponse);
 
         #endregion
+
+        ExportViewModel NewExportViewModel(ExportType exportType, IList<BillProxy> apiResponseBills);
     }
 }

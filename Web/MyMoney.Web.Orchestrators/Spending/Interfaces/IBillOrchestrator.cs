@@ -6,6 +6,8 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using MyMoney.ViewModels.Common;
+    using MyMoney.ViewModels.Enum;
     using MyMoney.ViewModels.Spending.Bills;
     using MyMoney.Wrappers;
 
@@ -89,5 +91,7 @@
             string username);
 
         #endregion
+
+        Task<OrchestratorResponseWrapper<ExportViewModel>> ExportBills(ExportType exportType, string username, Guid userId);
     }
 }
