@@ -140,8 +140,7 @@
                                    new JsonSerializerSettings
                                        {
                                            ContractResolver =
-                                               new CamelCasePropertyNamesContractResolver
-                                                   ()
+                                               new CamelCasePropertyNamesContractResolver()
                                        }),
                            ContentEncoding = Encoding.UTF8
                        };

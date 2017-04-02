@@ -9,6 +9,7 @@
     using MyMoney.Web.Areas.Authentication.Controllers;
     using MyMoney.Web.Areas.Common.Controllers;
     using MyMoney.Web.Areas.Dashboard.Controllers;
+    using MyMoney.Web.Areas.Saving.Controllers;
     using MyMoney.Web.Areas.Spending.Controllers;
     using MyMoney.Web.Controllers;
     using MyMoney.Web.Orchestrators.Authentication;
@@ -49,11 +50,14 @@
                         Dependency.OnComponent<IBillOrchestrator, BillOrchestrator>(),
                         Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
 
+            container.Register(Component.For<GoalController>().LifestylePerWebRequest());
+
             container.Register(Component.For<ResourceController>().LifestylePerWebRequest());
             container.Register(Component.For<ErrorController>().LifestylePerWebRequest());
             container.Register(Component.For<HomeController>().LifestylePerWebRequest());
             container.Register(Component.For<ExpenditureController>().LifestylePerWebRequest());
             container.Register(Component.For<AccountController>().LifestylePerWebRequest());
+            
         }
 
         #endregion

@@ -286,6 +286,15 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set your goals.
+        /// </summary>
+        public static string Title_SetGoals {
+            get {
+                return ResourceManager.GetString("Title_SetGoals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Track your spending.
         /// </summary>
         public static string Title_TrackSpending {

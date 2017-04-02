@@ -191,7 +191,7 @@
         /// </summary>
         /// <returns>The expenditure management view.</returns>
         [HttpGet]
-        [Route("track")]
+        [Route("")]
         public async Task<ActionResult> Track()
         {
             var modelWrapper = await orchestrator.GetExpenditureForUser(UserId, UserEmail);

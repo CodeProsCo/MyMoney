@@ -187,6 +187,10 @@ $(function () {
                     var value = model[prop];
 
                     $(elem).val(value);
+
+                    if ($(elem).parent().hasClass("dropdown")) {
+                        $(elem).siblings(".text").text(value);
+                    }
                 }
             });
 

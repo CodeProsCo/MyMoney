@@ -25,6 +25,10 @@ function ChartGenerator(data) {
             chartData.push(entry);
         }
 
+        var currentDate = new Date();
+        var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getTime();
+        var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1).getTime();
+
         self.chart = new Chartist.Line(options.container,
             {
                 series: [
@@ -41,7 +45,8 @@ function ChartGenerator(data) {
                     labelInterpolationFnc: function (value) {
                         return moment(value).format("DD-MM");
                     },
-                    low : new Date(new Date().getFullYear(), new Date().getMonth(), 1).getTime()
+                    low: startDate,
+                    high: endDate
                 },
                 axisY: {
                     labelInterpolationFnc: function (value) {

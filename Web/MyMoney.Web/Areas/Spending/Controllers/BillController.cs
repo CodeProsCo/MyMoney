@@ -20,7 +20,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [RouteArea("Spending", AreaPrefix = "spending")]
-    [RoutePrefix("bill")]
+    [RoutePrefix("bills")]
     [Authorize]
     public class BillController : BaseController
     {
@@ -205,7 +205,7 @@
         /// </summary>
         /// <returns>The bill management view.</returns>
         [HttpGet]
-        [Route("manage")]
+        [Route("")]
         public async Task<ActionResult> Manage()
         {
             var modelWrapper = await orchestrator.GetBillsForUser(UserId, UserEmail);

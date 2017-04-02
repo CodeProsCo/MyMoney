@@ -192,6 +192,9 @@
   <data name="Title_Overview" xml:space="preserve">
     <value>Overview</value>
   </data>
+  <data name="Title_SetGoals" xml:space="preserve">
+    <value>Set your goals</value>
+  </data>
   <data name="Title_TrackSpending" xml:space="preserve">
     <value>Track your spending</value>
   </data>
