@@ -30,15 +30,15 @@
 
             config.MessageHandlers.Add(
                 new ThrottlingHandler
-                {
-                    Policy =
+                    {
+                        Policy =
                             new ThrottlePolicy(1, 30, 200)
-                            {
-                                IpThrottling = true,
-                                EndpointThrottling = true
-                            },
-                    Repository = new CacheRepository()
-                });
+                                {
+                                    IpThrottling = true,
+                                    EndpointThrottling = true
+                                },
+                        Repository = new CacheRepository()
+                    });
 
             if (!Debugger.IsAttached)
             {

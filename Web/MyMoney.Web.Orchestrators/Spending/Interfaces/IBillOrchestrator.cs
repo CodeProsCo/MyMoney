@@ -51,6 +51,18 @@
         Task<OrchestratorResponseWrapper<BillViewModel>> EditBill(BillViewModel model, string username);
 
         /// <summary>
+        /// Exports the user's bills to the given type.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>The response object.</returns>
+        Task<OrchestratorResponseWrapper<ExportViewModel>> ExportBills(
+            ExportType exportType,
+            string username,
+            Guid userId);
+
+        /// <summary>
         ///     Builds and sends a request to obtain a bill from the database.
         /// </summary>
         /// <param name="billId">
@@ -91,14 +103,5 @@
             string username);
 
         #endregion
-
-        /// <summary>
-        /// Exports the user's bills to the given type.
-        /// </summary>
-        /// <param name="exportType">Type of the export.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="userId">The user identifier.</param>
-        /// <returns>The response object.</returns>
-        Task<OrchestratorResponseWrapper<ExportViewModel>> ExportBills(ExportType exportType, string username, Guid userId);
     }
 }

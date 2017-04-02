@@ -98,6 +98,14 @@
         IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserForMonthResponse apiResponse);
 
         /// <summary>
+        /// Creates a new instance of the <see cref="ExportViewModel"/> class based on the given expenditure.
+        /// </summary>
+        /// <param name="apiResponseExpenditures">The API response expenditures.</param>
+        /// <param name="exportType">Type of the export.</param>
+        /// <returns>The view model.</returns>
+        ExportViewModel NewExportViewModel(IList<ExpenditureProxy> apiResponseExpenditures, ExportType exportType);
+
+        /// <summary>
         ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthRequest" />. class.
         /// </summary>
         /// <param name="monthNumber">The month number.</param>
@@ -145,7 +153,5 @@
         TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpendituresForUserResponse apiResponse);
 
         #endregion
-
-        ExportViewModel NewExportViewModel(IList<ExpenditureProxy> apiResponseExpenditures, ExportType exportType);
     }
 }

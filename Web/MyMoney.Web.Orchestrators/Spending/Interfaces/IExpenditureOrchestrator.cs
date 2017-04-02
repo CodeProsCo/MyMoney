@@ -55,6 +55,18 @@
             string username);
 
         /// <summary>
+        /// Exports the user's expenditure data into the given format.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>The response object.</returns>
+        Task<OrchestratorResponseWrapper<ExportViewModel>> ExportExpenditure(
+            ExportType exportType,
+            string userEmail,
+            Guid userId);
+
+        /// <summary>
         ///     Builds and sends a request to obtain a bill from the database.
         /// </summary>
         /// <param name="billId">
@@ -95,7 +107,5 @@
             string username);
 
         #endregion
-
-        Task<OrchestratorResponseWrapper<ExportViewModel>> ExportExpenditure(ExportType exportType, string userEmail, Guid userId);
     }
 }

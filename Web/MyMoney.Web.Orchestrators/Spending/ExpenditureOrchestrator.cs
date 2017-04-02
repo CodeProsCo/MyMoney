@@ -187,6 +187,45 @@
         }
 
         /// <summary>
+        /// Exports the user's expenditure data into the given format.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <param name="userEmail">The user email.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
+        public async Task<OrchestratorResponseWrapper<ExportViewModel>> ExportExpenditure(
+            ExportType exportType,
+            string userEmail,
+            Guid userId)
+        {
+            var response = new OrchestratorResponseWrapper<ExportViewModel>();
+
+            try
+            {
+                var request = assembler.NewGetExpenditureForUserRequest(userId, userEmail);
+                var apiResponse = await dataAccess.GetExpendituresForUser(request);
+
+                if (!apiResponse.Success)
+                {
+                    response.AddErrors(apiResponse.Errors);
+                }
+
+                response.AddWarnings(apiResponse.Warnings);
+
+                response.Model = assembler.NewExportViewModel(apiResponse.Expenditures, exportType);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, userEmail, GetType(), "ExportExpenditure");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        /// <summary>
         ///     Builds and sends a request to obtain a expenditure from the database.
         /// </summary>
         /// <param name="expenditureId">The expenditure Id.</param>
@@ -298,33 +337,6 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditureForUserForMonth");
-                response.AddError(err);
-            }
-
-            return response;
-        }
-
-        public async Task<OrchestratorResponseWrapper<ExportViewModel>> ExportExpenditure(ExportType exportType, string userEmail, Guid userId)
-        {
-            var response = new OrchestratorResponseWrapper<ExportViewModel>();
-
-            try
-            {
-                var request = assembler.NewGetExpenditureForUserRequest(userId, userEmail);
-                var apiResponse = await dataAccess.GetExpendituresForUser(request);
-
-                if (!apiResponse.Success)
-                {
-                    response.AddErrors(apiResponse.Errors);
-                }
-
-                response.AddWarnings(apiResponse.Warnings);
-
-                response.Model = assembler.NewExportViewModel(apiResponse.Expenditures, exportType);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, userEmail, GetType(), "ExportExpenditure");
                 response.AddError(err);
             }
 

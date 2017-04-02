@@ -183,6 +183,46 @@
         }
 
         /// <summary>
+        /// Exports the user's bills to the given type.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
+        public async Task<OrchestratorResponseWrapper<ExportViewModel>> ExportBills(
+            ExportType exportType,
+            string username,
+            Guid userId)
+        {
+            var response = new OrchestratorResponseWrapper<ExportViewModel>();
+
+            try
+            {
+                var request = assembler.NewGetBillsForUserRequest(userId, username);
+                var apiResponse = await dataAccess.GetBillsForUser(request);
+
+                if (!apiResponse.Success)
+                {
+                    response.AddErrors(apiResponse.Errors);
+                    return response;
+                }
+
+                response.AddWarnings(apiResponse.Warnings);
+
+                response.Model = assembler.NewExportViewModel(exportType, apiResponse.Bills);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, username, GetType(), "ExportBills");
+                response.AddError(err);
+            }
+
+            return response;
+        }
+
+        /// <summary>
         ///     Builds and sends a request to obtain a bill from the database.
         /// </summary>
         /// <param name="billId">The bill Id.</param>
@@ -292,43 +332,6 @@
             catch (Exception ex)
             {
                 var err = ErrorHelper.Create(ex, username, GetType(), "GetBillsForUserForMonth");
-                response.AddError(err);
-            }
-
-            return response;
-        }
-
-        /// <summary>
-        /// Exports the user's bills to the given type.
-        /// </summary>
-        /// <param name="exportType">Type of the export.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="userId">The user identifier.</param>
-        /// <returns>
-        /// The response object.
-        /// </returns>
-        public async Task<OrchestratorResponseWrapper<ExportViewModel>> ExportBills(ExportType exportType, string username, Guid userId)
-        {
-            var response = new OrchestratorResponseWrapper<ExportViewModel>();
-
-            try
-            {
-                var request = assembler.NewGetBillsForUserRequest(userId, username);
-                var apiResponse = await dataAccess.GetBillsForUser(request);
-
-                if (!apiResponse.Success)
-                {
-                    response.AddErrors(apiResponse.Errors);
-                    return response;
-                }
-
-                response.AddWarnings(apiResponse.Warnings);
-
-                response.Model = assembler.NewExportViewModel(exportType, apiResponse.Bills);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, username, GetType(), "ExportBills");
                 response.AddError(err);
             }
 

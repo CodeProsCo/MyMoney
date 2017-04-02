@@ -1,5 +1,4 @@
-﻿@using MyMoney.ViewModels.Enum
-
+@using MyMoney.ViewModels.Enum
 @{
     var controller = ViewData["exportController"].ToString();
 }
@@ -8,13 +7,13 @@
     <i class="external icon"></i>
     <span class="text">Export</span>
     <div class="menu">
-        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Csv})">
+        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Csv })">
             .csv
         </div>
-        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Xml})">
+        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Xml })">
             .xml
         </div>
-        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Json})">
+        <div class="item" data-export="@Url.Action("Export", controller, new { exportType = ExportType.Json })">
             .json
         </div>
     </div>

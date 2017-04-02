@@ -1,4 +1,5 @@
-﻿#pragma warning disable 169
+﻿
+#pragma warning disable 169
 #pragma warning disable 649
 
 namespace MyMoney.Extensions.Assembly

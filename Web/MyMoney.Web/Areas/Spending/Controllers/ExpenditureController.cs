@@ -90,16 +90,6 @@
             return JsonResponse(response);
         }
 
-        [HttpGet]
-        [AjaxOnly]
-        [Route("export")]
-        public async Task<ActionResult> Export(ExportType exportType)
-        {
-            var response = await orchestrator.ExportExpenditure(exportType, UserEmail, UserId);
-
-            return JsonResponse(response);
-        }
-
         /// <summary>
         ///     Handles a HTTP request to delete a specified expenditure.
         /// </summary>
@@ -133,6 +123,21 @@
             model.UserId = UserId;
 
             var response = await orchestrator.EditExpenditure(model, UserEmail);
+
+            return JsonResponse(response);
+        }
+
+        /// <summary>
+        /// Handles an HTTP GET request to export the user's expenditure data to the given format.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <returns>The response object.</returns>
+        [HttpGet]
+        [AjaxOnly]
+        [Route("export")]
+        public async Task<ActionResult> Export(ExportType exportType)
+        {
+            var response = await orchestrator.ExportExpenditure(exportType, UserEmail, UserId);
 
             return JsonResponse(response);
         }

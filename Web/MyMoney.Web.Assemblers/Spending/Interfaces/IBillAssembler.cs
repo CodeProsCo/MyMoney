@@ -91,6 +91,14 @@
         EditBillRequest NewEditBillRequest(BillViewModel model, string username);
 
         /// <summary>
+        /// Creates a new instance of the <see cref="ExportViewModel"/> class based on the given list of bills.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <param name="apiResponseBills">The bills.</param>
+        /// <returns>The view model.</returns>
+        ExportViewModel NewExportViewModel(ExportType exportType, IList<BillProxy> apiResponseBills);
+
+        /// <summary>
         ///     Creates an instance of the <see cref="GetBillRequest" />. class.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
@@ -135,13 +143,5 @@
         ManageBillsViewModel NewManageBillsViewModel(GetBillsForUserResponse apiResponse);
 
         #endregion
-
-        /// <summary>
-        /// Creates a new instance of the <see cref="ExportViewModel"/> class based on the given list of bills.
-        /// </summary>
-        /// <param name="exportType">Type of the export.</param>
-        /// <param name="apiResponseBills">The bills.</param>
-        /// <returns>The view model.</returns>
-        ExportViewModel NewExportViewModel(ExportType exportType, IList<BillProxy> apiResponseBills);
     }
 }

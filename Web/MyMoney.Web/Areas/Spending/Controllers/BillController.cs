@@ -91,21 +91,6 @@
         }
 
         /// <summary>
-        /// Handles an HTTP GET request to export the user's bills to a given type.
-        /// </summary>
-        /// <param name="exportType">Type of the export.</param>
-        /// <returns>The response object.</returns>
-        [HttpGet]
-        [Route("export/{exportType}")]
-        [AjaxOnly]
-        public async Task<ActionResult> Export(ExportType exportType)
-        {
-            var response = await orchestrator.ExportBills(exportType, UserEmail, UserId);
-
-            return JsonResponse(response);
-        }
-
-        /// <summary>
         ///     Handles a HTTP request to delete a specified bill.
         /// </summary>
         /// <param name="billId">The bill identifier.</param>
@@ -138,6 +123,21 @@
             model.UserId = UserId;
 
             var response = await orchestrator.EditBill(model, UserEmail);
+
+            return JsonResponse(response);
+        }
+
+        /// <summary>
+        /// Handles an HTTP GET request to export the user's bills to a given type.
+        /// </summary>
+        /// <param name="exportType">Type of the export.</param>
+        /// <returns>The response object.</returns>
+        [HttpGet]
+        [Route("export/{exportType}")]
+        [AjaxOnly]
+        public async Task<ActionResult> Export(ExportType exportType)
+        {
+            var response = await orchestrator.ExportBills(exportType, UserEmail, UserId);
 
             return JsonResponse(response);
         }

@@ -173,6 +173,41 @@
         }
 
         /// <summary>
+        /// Creates a new instance of the <see cref="ExportViewModel" /> class based on the given expenditure.
+        /// </summary>
+        /// <param name="apiResponseExpenditures">The API response expenditures.</param>
+        /// <param name="exportType">Type of the export.</param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// Exception thrown if the given export type is out of range.
+        /// </exception>
+        public ExportViewModel NewExportViewModel(
+            IList<ExpenditureProxy> apiResponseExpenditures,
+            ExportType exportType)
+        {
+            var retVal = new ExportViewModel { ExportType = exportType, FileName = "expenditure" };
+
+            switch (exportType)
+            {
+                case ExportType.Csv:
+                    retVal.FileData = apiResponseExpenditures.ToCsv();
+                    break;
+                case ExportType.Xml:
+                    retVal.FileData = apiResponseExpenditures.ToXml();
+                    break;
+                case ExportType.Json:
+                    retVal.FileData = apiResponseExpenditures.ToJson();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);
+            }
+
+            return retVal;
+        }
+
+        /// <summary>
         ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthRequest" />. class.
         /// </summary>
         /// <param name="monthNumber">The month number.</param>
@@ -279,7 +314,8 @@
                                        CategoryOptions =
                                            new SelectList(
                                                Enum.GetNames(
-                                                   typeof(Category)).OrderBy(x => x)),
+                                                       typeof(Category))
+                                                   .OrderBy(x => x)),
                                        Expenditure =
                                            new ExpenditureViewModel
                                                {
@@ -302,7 +338,8 @@
                                        CategoryOptions =
                                            new SelectList(
                                                Enum.GetNames(
-                                                   typeof(Category)).OrderBy(x => x)),
+                                                       typeof(Category))
+                                                   .OrderBy(x => x)),
                                        Expenditure =
                                            new ExpenditureViewModel
                                                {
@@ -353,28 +390,6 @@
                            UserId = model.UserId,
                            Id = model.Id
                        };
-        }
-
-        public ExportViewModel NewExportViewModel(IList<ExpenditureProxy> apiResponseExpenditures, ExportType exportType)
-        {
-            var retVal = new ExportViewModel { ExportType = exportType, FileName = "expenditure" };
-
-            switch (exportType)
-            {
-                case ExportType.Csv:
-                    retVal.FileData = apiResponseExpenditures.ToCsv();
-                    break;
-                case ExportType.Xml:
-                    retVal.FileData = apiResponseExpenditures.ToXml();
-                    break;
-                case ExportType.Json:
-                    retVal.FileData = apiResponseExpenditures.ToJson();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);
-            }
-
-            return retVal;
         }
 
         #endregion
