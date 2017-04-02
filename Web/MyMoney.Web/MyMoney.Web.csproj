@@ -294,8 +294,10 @@
     <Content Include="Areas\Spending\Views\Expenditure\Modals\_AddExpenditureModal.cshtml" />
     <Content Include="Areas\Spending\Views\Expenditure\Editors\_ExpenditureEditor.cshtml" />
     <Content Include="Areas\Spending\Views\Expenditure\Modals\_EditExpenditureModal.cshtml" />
-    <Content Include="Areas\Saving\Views\web.config" />
     <Content Include="Views\Shared\Components\Buttons\_ExportButton.cshtml" />
+    <Content Include="Areas\Saving\Views\Goal\Manage.cshtml" />
+    <Content Include="Areas\Saving\Views\web.config" />
+    <Content Include="Areas\Saving\Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -309,8 +311,6 @@
     <Folder Include="Areas\Common\Views\Shared\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
     <Folder Include="Areas\Saving\Models\" />
-    <Folder Include="Areas\Saving\Views\Goal\" />
-    <Folder Include="Areas\Saving\Views\Shared\" />
     <Folder Include="Areas\Spending\Views\Shared\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>

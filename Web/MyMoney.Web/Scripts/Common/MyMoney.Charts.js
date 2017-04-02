@@ -27,7 +27,7 @@ function ChartGenerator(data) {
 
         var currentDate = new Date();
         var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getTime();
-        var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1).getTime();
+        var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, -1).getTime();
 
         self.chart = new Chartist.Line(options.container,
             {
@@ -57,7 +57,10 @@ function ChartGenerator(data) {
                 lineSmooth: Chartist.Interpolation.cardinal({
                     fillHoles: true
                 }),
-                height: 300
+                height: 300,
+                chartPadding: {
+                    right:40
+                }
             });
     }
 
