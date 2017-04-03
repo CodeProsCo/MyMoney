@@ -11,6 +11,8 @@
     using MyMoney.API.DataAccess.Authentication.Interfaces;
     using MyMoney.API.DataAccess.Common;
     using MyMoney.API.DataAccess.Common.Interfaces;
+    using MyMoney.API.DataAccess.Saving;
+    using MyMoney.API.DataAccess.Saving.Interfaces;
     using MyMoney.API.DataAccess.Spending;
     using MyMoney.API.DataAccess.Spending.Interfaces;
 
@@ -58,6 +60,11 @@
                     .ImplementedBy<ExpenditureRepository>()
                     .LifestylePerWebRequest()
                     .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>())
+                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
+
+            container.Register(
+                Component.For<IGoalRepository>()
+                    .ImplementedBy<GoalRepository>()
                     .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
         }
 
