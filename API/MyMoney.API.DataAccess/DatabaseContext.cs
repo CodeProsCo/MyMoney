@@ -8,6 +8,7 @@
 
     using MyMoney.DataModels.Authentication;
     using MyMoney.DataModels.Common;
+    using MyMoney.DataModels.Saving;
     using MyMoney.DataModels.Spending;
 
     #endregion
@@ -56,6 +57,14 @@
         ///     The expenditures.
         /// </value>
         public DbSet<ExpenditureDataModel> Expenditures { get; [UsedImplicitly] set; }
+
+        /// <summary>
+        /// Gets or sets the goals.
+        /// </summary>
+        /// <value>
+        /// The goals.
+        /// </value>
+        public DbSet<GoalDataModel> Goals { get; set; }
 
         /// <summary>
         ///     Gets or sets the users.

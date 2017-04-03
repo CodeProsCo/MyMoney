@@ -8,5 +8,6 @@
     [Amount] FLOAT NOT NULL, 
     [Complete] BIT NOT NULL DEFAULT 0, 
 
+    [CreationTime] DATETIME NOT NULL, 
     CONSTRAINT [FK_Goal_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([Id])
 )
