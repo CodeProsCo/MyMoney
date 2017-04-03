@@ -90,6 +90,8 @@
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="IDatabaseContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saving\GoalRepository.cs" />
+    <Compile Include="Saving\Interfaces\IGoalRepository.cs" />
     <Compile Include="Spending\BillRepository.cs" />
     <Compile Include="Spending\ExpenditureRepository.cs" />
     <Compile Include="Spending\Interfaces\IExpenditureRepository.cs" />
@@ -113,6 +115,7 @@
       <Name>MyMoney.Resources</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -76,6 +76,7 @@
     <Compile Include="BaseDataModel.cs" />
     <Compile Include="Common\CategoryDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saving\GoalDataModel.cs" />
     <Compile Include="Spending\BillDataModel.cs" />
     <Compile Include="Spending\ExpenditureDataModel.cs" />
   </ItemGroup>

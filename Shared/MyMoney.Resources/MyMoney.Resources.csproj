@@ -76,6 +76,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Authentication.resx</DependentUpon>
     </Compile>
+    <Compile Include="Goal.Designer.cs">
+      <DependentUpon>Goal.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Bills.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,6 +112,10 @@
     <EmbeddedResource Include="Authentication.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Authentication.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goal.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Goal.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Bills.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
