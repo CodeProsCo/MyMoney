@@ -78,6 +78,7 @@
     <Compile Include="Authentication\UserProxy.cs" />
     <Compile Include="Common\CategoryProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saving\GoalProxy.cs" />
     <Compile Include="Spending\BillProxy.cs" />
     <Compile Include="Spending\ExpenditureProxy.cs" />
   </ItemGroup>

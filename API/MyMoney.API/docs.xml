@@ -146,6 +146,60 @@
             <param name="request">The request.</param>
             <returns>The response object, wrapped in a 200 response.</returns>
         </member>
+        <member name="T:MyMoney.API.Controllers.Saving.GoalController">
+            <summary>
+            The <see cref="T:MyMoney.API.Controllers.Saving.GoalController"/> class handles HTTP requests for the "spending/goals" route.
+            </summary>
+        </member>
+        <member name="F:MyMoney.API.Controllers.Saving.GoalController.orchestrator">
+            <summary>
+            The orchestrator
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Saving.GoalController.#ctor(MyMoney.API.Orchestrators.Saving.Interfaces.IGoalOrchestrator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Saving.GoalController"/> class.
+            </summary>
+            <param name="orchestrator">The orchestrator.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Exception thrown if the orchestrator is null.
+            </exception>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Saving.GoalController.AddGoal(MyMoney.DTO.Request.Saving.Goal.AddGoalRequest)">
+            <summary>
+                Handles an HTTP POST request to add a goal to the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Saving.GoalController.DeleteGoal(MyMoney.DTO.Request.Saving.Goal.DeleteGoalRequest)">
+            <summary>
+                Handles an HTTP DELETE request to remove a goal from the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Saving.GoalController.EditGoal(MyMoney.DTO.Request.Saving.Goal.EditGoalRequest)">
+            <summary>
+                Handles an HTTP POST request to edit a goal in the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Saving.GoalController.GetGoal(MyMoney.DTO.Request.Saving.Goal.GetGoalRequest)">
+            <summary>
+                Handles an HTTP GET request to obtain a goal from the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
+        <member name="M:MyMoney.API.Controllers.Saving.GoalController.GetGoalsForUser(MyMoney.DTO.Request.Saving.Goal.GetGoalsForUserRequest)">
+            <summary>
+                Handles an HTTP GET request for obtaining the goals for a given user from the database.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>The response object. Wrapped in a 200 response.</returns>
+        </member>
         <member name="T:MyMoney.API.Controllers.Spending.BillController">
             <summary>
                 Handles all API requests regarding bills.

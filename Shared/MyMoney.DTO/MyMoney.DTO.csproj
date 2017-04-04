@@ -84,6 +84,11 @@
     <Compile Include="Request\Chart\Expenditure\GetExpenditureChartDataRequest.cs" />
     <Compile Include="Request\Interfaces\IDeleteRequest.cs" />
     <Compile Include="Request\Interfaces\IGetRequest.cs" />
+    <Compile Include="Request\Saving\Goal\AddGoalRequest.cs" />
+    <Compile Include="Request\Saving\Goal\DeleteGoalRequest.cs" />
+    <Compile Include="Request\Saving\Goal\EditGoalRequest.cs" />
+    <Compile Include="Request\Saving\Goal\GetGoalRequest.cs" />
+    <Compile Include="Request\Saving\Goal\GetGoalsForUserRequest.cs" />
     <Compile Include="Request\Spending\Bill\AddBillRequest.cs" />
     <Compile Include="Request\Spending\Bill\DeleteBillRequest.cs" />
     <Compile Include="Request\Spending\Bill\EditBillRequest.cs" />
@@ -102,12 +107,17 @@
     <Compile Include="Response\Chart\Bill\GetBillCategoryChartDataResponse.cs" />
     <Compile Include="Response\Chart\Bill\GetBillPeriodChartDataResponse.cs" />
     <Compile Include="Response\Chart\Expenditure\GetExpenditureChartDataResponse.cs" />
-    <Compile Include="Response\Spending\Bills\AddBillResponse.cs" />
-    <Compile Include="Response\Spending\Bills\DeleteBillResponse.cs" />
-    <Compile Include="Response\Spending\Bills\EditBillResponse.cs" />
-    <Compile Include="Response\Spending\Bills\GetBillsForUserForMonthResponse.cs" />
-    <Compile Include="Response\Spending\Bills\GetBillsForUserResponse.cs" />
-    <Compile Include="Response\Spending\Bills\GetBillResponse.cs" />
+    <Compile Include="Response\Saving\Goal\AddBillResponse.cs" />
+    <Compile Include="Response\Saving\Goal\DeleteGoalResponse.cs" />
+    <Compile Include="Response\Saving\Goal\EditGoalResponse.cs" />
+    <Compile Include="Response\Saving\Goal\GetGoalResponse.cs" />
+    <Compile Include="Response\Saving\Goal\GetGoalsForUserResponse.cs" />
+    <Compile Include="Response\Spending\Bill\AddBillResponse.cs" />
+    <Compile Include="Response\Spending\Bill\DeleteBillResponse.cs" />
+    <Compile Include="Response\Spending\Bill\EditBillResponse.cs" />
+    <Compile Include="Response\Spending\Bill\GetBillsForUserForMonthResponse.cs" />
+    <Compile Include="Response\Spending\Bill\GetBillsForUserResponse.cs" />
+    <Compile Include="Response\Spending\Bill\GetBillResponse.cs" />
     <Compile Include="Response\Spending\Expenditure\AddBillResponse.cs" />
     <Compile Include="Response\Spending\Expenditure\DeleteBillResponse.cs" />
     <Compile Include="Response\Spending\Expenditure\EditBillResponse.cs" />
@@ -128,9 +138,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Request\Saving\Goal\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
