@@ -10,10 +10,13 @@
     using MyMoney.API.Assemblers.Authentication.Interfaces;
     using MyMoney.API.Assemblers.Chart;
     using MyMoney.API.Assemblers.Chart.Interfaces;
+    using MyMoney.API.Assemblers.Saving;
+    using MyMoney.API.Assemblers.Saving.Interfaces;
     using MyMoney.API.Assemblers.Spending;
     using MyMoney.API.Assemblers.Spending.Interfaces;
     using MyMoney.API.DataAccess.Authentication;
     using MyMoney.API.DataAccess.Authentication.Interfaces;
+    using MyMoney.API.DataAccess.Saving.Interfaces;
     using MyMoney.API.DataAccess.Spending;
     using MyMoney.API.DataAccess.Spending.Interfaces;
     using MyMoney.API.DataTransformers.Spending;
@@ -22,6 +25,8 @@
     using MyMoney.API.Orchestrators.Authentication.Interfaces;
     using MyMoney.API.Orchestrators.Chart;
     using MyMoney.API.Orchestrators.Chart.Interfaces;
+    using MyMoney.API.Orchestrators.Saving;
+    using MyMoney.API.Orchestrators.Saving.Interfaces;
     using MyMoney.API.Orchestrators.Spending;
     using MyMoney.API.Orchestrators.Spending.Interfaces;
 
@@ -77,6 +82,14 @@
                     .DependsOn(
                         Dependency.OnComponent<IExpenditureRepository, ExpenditureRepository>(),
                         Dependency.OnComponent<IExpenditureAssembler, ExpenditureAssembler>()));
+
+            container.Register(
+                Component.For<IGoalOrchestrator>()
+                    .ImplementedBy<GoalOrchestrator>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IGoalAssembler, GoalAssembler>(),
+                        Dependency.OnComponent<IGoalRepository, IGoalRepository>()));
         }
 
         #endregion

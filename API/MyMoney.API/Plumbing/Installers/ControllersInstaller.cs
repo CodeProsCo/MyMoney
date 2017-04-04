@@ -8,11 +8,14 @@
 
     using MyMoney.API.Controllers.Authentication;
     using MyMoney.API.Controllers.Chart;
+    using MyMoney.API.Controllers.Saving;
     using MyMoney.API.Controllers.Spending;
     using MyMoney.API.Orchestrators.Authentication;
     using MyMoney.API.Orchestrators.Authentication.Interfaces;
     using MyMoney.API.Orchestrators.Chart;
     using MyMoney.API.Orchestrators.Chart.Interfaces;
+    using MyMoney.API.Orchestrators.Saving;
+    using MyMoney.API.Orchestrators.Saving.Interfaces;
     using MyMoney.API.Orchestrators.Spending;
     using MyMoney.API.Orchestrators.Spending.Interfaces;
 
@@ -52,6 +55,11 @@
                 Component.For<ExpenditureChartController>()
                     .LifestylePerWebRequest()
                     .DependsOn(Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
+
+            container.Register(
+                Component.For<GoalController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IGoalOrchestrator, GoalOrchestrator>()));
 
             container.Register(
                 Component.For<ExpenditureController>()

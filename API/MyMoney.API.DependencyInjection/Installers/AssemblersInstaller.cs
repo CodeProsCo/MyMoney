@@ -10,6 +10,8 @@
     using MyMoney.API.Assemblers.Authentication.Interfaces;
     using MyMoney.API.Assemblers.Chart;
     using MyMoney.API.Assemblers.Chart.Interfaces;
+    using MyMoney.API.Assemblers.Saving;
+    using MyMoney.API.Assemblers.Saving.Interfaces;
     using MyMoney.API.Assemblers.Spending;
     using MyMoney.API.Assemblers.Spending.Interfaces;
 
@@ -36,6 +38,7 @@
                 Component.For<IExpenditureAssembler>().ImplementedBy<ExpenditureAssembler>().LifestylePerWebRequest());
             container.Register(
                 Component.For<IChartAssembler>().ImplementedBy<ChartAssembler>().LifestylePerWebRequest());
+            container.Register(Component.For<IGoalAssembler>().ImplementedBy<GoalAssembler>().LifestylePerWebRequest());
         }
 
         #endregion
