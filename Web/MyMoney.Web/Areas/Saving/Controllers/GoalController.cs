@@ -2,7 +2,6 @@
 {
     #region Usings
 
-    using System;
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
@@ -21,15 +20,7 @@
         [Route("")]
         public async Task<ActionResult> Manage()
         {
-            try
-            {
-                return View("Manage");
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-            
+            return View("Manage");
         }
 
         #endregion

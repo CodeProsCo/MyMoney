@@ -331,7 +331,8 @@
                                    },
                            Expenditures =
                                apiResponse.Expenditures.Select(ExpenditureProxyToViewModel)
-                                   .OrderBy(x => x.DateOccurred).ToList(),
+                                   .OrderBy(x => x.DateOccurred)
+                                   .ToList(),
                            EditExpenditure =
                                new EditExpenditureViewModel
                                    {

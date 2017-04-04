@@ -18,6 +18,13 @@
         #region Methods
 
         /// <summary>
+        /// Adds a goal to the database.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>The newly added goal.</returns>
+        Task<GoalDataModel> AddGoal(GoalDataModel model);
+
+        /// <summary>
         /// Deletes a goal from the database.
         /// </summary>
         /// <param name="goalId">The goal identifier.</param>
@@ -44,13 +51,6 @@
         /// <param name="userId">The user identifier.</param>
         /// <returns>The list of goals.</returns>
         Task<IList<GoalDataModel>> GetGoalsForUser(Guid userId);
-
-        /// <summary>
-        /// Adds a goal to the database.
-        /// </summary>
-        /// <param name="model">The model.</param>
-        /// <returns>The newly added goal.</returns>
-        Task<GoalDataModel> AddGoal(GoalDataModel model);
 
         #endregion
     }

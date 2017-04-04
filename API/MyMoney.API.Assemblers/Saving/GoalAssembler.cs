@@ -95,10 +95,10 @@
             }
 
             return new EditGoalResponse
-            {
-                Goal = DataModelToProxy(updatedDataModel),
-                RequestReference = requestReference
-            };
+                       {
+                           Goal = DataModelToProxy(updatedDataModel),
+                           RequestReference = requestReference
+                       };
         }
 
         /// <summary>
@@ -149,10 +149,10 @@
             }
 
             return new GetGoalsForUserResponse
-            {
-                Goals = goals.Select(DataModelToProxy).ToList(),
-                RequestReference = requestReference
-            };
+                       {
+                           Goals = goals.Select(DataModelToProxy).ToList(),
+                           RequestReference = requestReference
+                       };
         }
 
         /// <summary>
@@ -165,15 +165,15 @@
         public GoalDataModel NewGoalDataModel(GoalProxy proxy)
         {
             return new GoalDataModel
-            {
-                Amount = proxy.Amount,
-                Complete = proxy.Complete,
-                UserId = proxy.UserId,
-                EndDate = proxy.EndDate,
-                Name = proxy.Name,
-                Id = proxy.Id,
-                StartDate = proxy.StartDate
-            };
+                       {
+                           Amount = proxy.Amount,
+                           Complete = proxy.Complete,
+                           UserId = proxy.UserId,
+                           EndDate = proxy.EndDate,
+                           Name = proxy.Name,
+                           Id = proxy.Id,
+                           StartDate = proxy.StartDate
+                       };
         }
 
         /// <summary>
@@ -184,15 +184,15 @@
         private static GoalProxy DataModelToProxy(GoalDataModel dataModel)
         {
             return new GoalProxy
-            {
-                Amount = dataModel.Amount,
-                Complete = dataModel.Complete,
-                UserId = dataModel.UserId,
-                EndDate = dataModel.EndDate,
-                Name = dataModel.Name,
-                Id = dataModel.Id,
-                StartDate = dataModel.StartDate
-            };
+                       {
+                           Amount = dataModel.Amount,
+                           Complete = dataModel.Complete,
+                           UserId = dataModel.UserId,
+                           EndDate = dataModel.EndDate,
+                           Name = dataModel.Name,
+                           Id = dataModel.Id,
+                           StartDate = dataModel.StartDate
+                       };
         }
 
         #endregion

@@ -46,20 +46,20 @@
         DbSet<ExpenditureDataModel> Expenditures { get; [UsedImplicitly] set; }
 
         /// <summary>
-        ///     Gets or sets the users.
-        /// </summary>
-        /// <value>
-        ///     The users.
-        /// </value>
-        DbSet<UserDataModel> Users { get; [UsedImplicitly] set; }
-
-        /// <summary>
         /// Gets or sets the goals.
         /// </summary>
         /// <value>
         /// The goals.
         /// </value>
         DbSet<GoalDataModel> Goals { get; [UsedImplicitly] set; }
+
+        /// <summary>
+        ///     Gets or sets the users.
+        /// </summary>
+        /// <value>
+        ///     The users.
+        /// </value>
+        DbSet<UserDataModel> Users { get; [UsedImplicitly] set; }
 
         #endregion
 

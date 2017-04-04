@@ -132,18 +132,18 @@
         protected static ContentResult JsonResponse<T>(OrchestratorResponseWrapper<T> response)
         {
             return new ContentResult
-                       {
-                           ContentType = "application/json",
-                           Content =
+            {
+                ContentType = "application/json",
+                Content =
                                JsonConvert.SerializeObject(
                                    response,
                                    new JsonSerializerSettings
-                                       {
-                                           ContractResolver =
+                                   {
+                                       ContractResolver =
                                                new CamelCasePropertyNamesContractResolver()
-                                       }),
-                           ContentEncoding = Encoding.UTF8
-                       };
+                                   }),
+                ContentEncoding = Encoding.UTF8
+            };
         }
 
         /// <summary>Begins execution of the specified request context</summary>

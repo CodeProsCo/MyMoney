@@ -23,6 +23,8 @@
     [UsedImplicitly]
     public class GoalOrchestrator : IGoalOrchestrator
     {
+        #region Fields
+
         /// <summary>
         /// The assembler
         /// </summary>
@@ -32,6 +34,10 @@
         /// The repository
         /// </summary>
         private IGoalRepository repository;
+
+        #endregion
+
+        #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalOrchestrator"/> class.
@@ -56,6 +62,8 @@
             this.assembler = assembler;
             this.repository = repository;
         }
+
+        #endregion
 
         #region Methods
 
