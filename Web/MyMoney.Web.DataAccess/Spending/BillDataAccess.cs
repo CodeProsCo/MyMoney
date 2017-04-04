@@ -7,7 +7,7 @@
     using JetBrains.Annotations;
 
     using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Response.Spending.Bill;
     using MyMoney.Web.DataAccess.Spending.Interfaces;
 
     #endregion

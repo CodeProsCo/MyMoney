@@ -7,7 +7,7 @@
     using System.Linq;
 
     using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Response.Spending.Bill;
     using MyMoney.Proxies.Common;
     using MyMoney.Proxies.Spending;
     using MyMoney.ViewModels.Enum;

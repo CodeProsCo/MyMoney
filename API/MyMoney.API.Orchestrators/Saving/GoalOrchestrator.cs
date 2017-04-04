@@ -5,6 +5,8 @@
     using System;
     using System.Threading.Tasks;
 
+    using JetBrains.Annotations;
+
     using MyMoney.API.Assemblers.Saving.Interfaces;
     using MyMoney.API.DataAccess.Saving.Interfaces;
     using MyMoney.API.Orchestrators.Saving.Interfaces;
@@ -14,12 +16,31 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="GoalOrchestrator"/> responds to requests regarding goals.
+    /// </summary>
+    /// <seealso cref="MyMoney.API.Orchestrators.Saving.Interfaces.IGoalOrchestrator" />
+    [UsedImplicitly]
     public class GoalOrchestrator : IGoalOrchestrator
     {
+        /// <summary>
+        /// The assembler
+        /// </summary>
         private IGoalAssembler assembler;
 
+        /// <summary>
+        /// The repository
+        /// </summary>
         private IGoalRepository repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GoalOrchestrator"/> class.
+        /// </summary>
+        /// <param name="assembler">The assembler.</param>
+        /// <param name="repository">The repository.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the assembler or repository are null.
+        /// </exception>
         public GoalOrchestrator(IGoalAssembler assembler, IGoalRepository repository)
         {
             if (assembler == null)
@@ -38,6 +59,14 @@
 
         #region Methods
 
+        /// <summary>
+        /// Adds a goal to the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <param name="requestUsername">The request username.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<AddGoalResponse> AddGoal(AddGoalRequest request, string requestUsername)
         {
             var response = new AddGoalResponse();
@@ -58,6 +87,13 @@
             return response;
         }
 
+        /// <summary>
+        /// Deletes a goal from the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<DeleteGoalResponse> DeleteGoal(DeleteGoalRequest request)
         {
             var response = new DeleteGoalResponse();
@@ -77,6 +113,13 @@
             return response;
         }
 
+        /// <summary>
+        /// Updates a goal within the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<EditGoalResponse> EditGoal(EditGoalRequest request)
         {
             var response = new EditGoalResponse();
@@ -97,6 +140,13 @@
             return response;
         }
 
+        /// <summary>
+        /// Obtains a goal from the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<GetGoalResponse> GetGoal(GetGoalRequest request)
         {
             var response = new GetGoalResponse();
@@ -116,6 +166,13 @@
             return response;
         }
 
+        /// <summary>
+        /// Gets the goals for a specific user.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<GetGoalsForUserResponse> GetGoalsForUser(GetGoalsForUserRequest request)
         {
             var response = new GetGoalsForUserResponse();

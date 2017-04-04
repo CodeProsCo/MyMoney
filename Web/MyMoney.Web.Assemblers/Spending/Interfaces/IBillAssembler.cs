@@ -6,7 +6,7 @@
     using System.Collections.Generic;
 
     using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Response.Spending.Bill;
     using MyMoney.Proxies.Spending;
     using MyMoney.ViewModels.Common;
     using MyMoney.ViewModels.Enum;

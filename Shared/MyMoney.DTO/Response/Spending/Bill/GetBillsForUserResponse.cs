@@ -1,4 +1,4 @@
-﻿namespace MyMoney.DTO.Response.Spending.Bills
+﻿namespace MyMoney.DTO.Response.Spending.Bill
 {
     #region Usings
 

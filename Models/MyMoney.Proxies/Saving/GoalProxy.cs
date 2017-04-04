@@ -6,6 +6,9 @@
 
     #endregion
 
+    /// <summary>
+    /// The proxy class for goals.
+    /// </summary>
     public class GoalProxy
     {
         #region Properties

@@ -6,7 +6,7 @@
     using System.Collections.Generic;
 
     using MyMoney.DataModels.Spending;
-    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Response.Spending.Bill;
     using MyMoney.Proxies.Spending;
 
     #endregion

@@ -12,7 +12,7 @@
     using MyMoney.API.DataTransformers.Spending.Interfaces;
     using MyMoney.API.Orchestrators.Spending.Interfaces;
     using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Response.Spending.Bill;
     using MyMoney.Helpers.Error;
 
     #endregion

@@ -11,7 +11,7 @@
     using MyMoney.API.Assemblers.Spending.Interfaces;
     using MyMoney.DataModels.Common;
     using MyMoney.DataModels.Spending;
-    using MyMoney.DTO.Response.Spending.Bills;
+    using MyMoney.DTO.Response.Spending.Bill;
     using MyMoney.Proxies.Common;
     using MyMoney.Proxies.Spending;
 
