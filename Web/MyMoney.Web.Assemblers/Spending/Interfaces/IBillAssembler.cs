@@ -12,7 +12,7 @@
 
     using ViewModels.Common;
     using ViewModels.Enum;
-    using ViewModels.Spending.Bills;
+    using ViewModels.Spending.Bill;
 
     #endregion
 

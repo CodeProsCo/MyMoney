@@ -13,6 +13,8 @@
     {
         #region Methods
 
+        Task<AddGoalResponse> AddGoal(AddGoalRequest request);
+
         Task<DeleteGoalResponse> DeleteGoal(DeleteGoalRequest request);
 
         Task<EditGoalResponse> EditGoal(EditGoalRequest request);

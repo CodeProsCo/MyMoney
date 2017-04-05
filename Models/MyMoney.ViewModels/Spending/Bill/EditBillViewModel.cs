@@ -1,4 +1,4 @@
-﻿namespace MyMoney.ViewModels.Spending.Bills
+﻿namespace MyMoney.ViewModels.Spending.Bill
 {
     #region Usings
 
@@ -7,9 +7,9 @@
     #endregion
 
     /// <summary>
-    ///     The <see cref="AddBillViewModel" /> class contains view information for adding a bill.
+    ///     The <see cref="EditBillViewModel" /> class contains view information for editing a bill.
     /// </summary>
-    public class AddBillViewModel
+    public class EditBillViewModel
     {
         #region Properties
 

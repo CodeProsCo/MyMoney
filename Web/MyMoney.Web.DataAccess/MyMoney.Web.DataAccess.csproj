@@ -120,6 +120,8 @@
     <Compile Include="Chart\ChartDataAccess.cs" />
     <Compile Include="Chart\Interfaces\IChartDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saving\GoalDataAccess.cs" />
+    <Compile Include="Saving\Interfaces\IGoalDataAccess.cs" />
     <Compile Include="Spending\ExpenditureDataAccess.cs" />
     <Compile Include="Spending\BillDataAccess.cs" />
     <Compile Include="Spending\Interfaces\IExpenditureDataAccess.cs" />

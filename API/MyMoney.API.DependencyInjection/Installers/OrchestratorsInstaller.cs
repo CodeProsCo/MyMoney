@@ -17,6 +17,7 @@
 
     using DataAccess.Authentication;
     using DataAccess.Authentication.Interfaces;
+    using DataAccess.Saving;
     using DataAccess.Saving.Interfaces;
     using DataAccess.Spending;
     using DataAccess.Spending.Interfaces;
@@ -92,7 +93,7 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IGoalAssembler, GoalAssembler>(),
-                        Dependency.OnComponent<IGoalRepository, IGoalRepository>()));
+                        Dependency.OnComponent<IGoalRepository, GoalRepository>()));
         }
 
         #endregion

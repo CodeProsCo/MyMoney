@@ -25,6 +25,11 @@
             return await Post<EditGoalResponse>(request);
         }
 
+        public async Task<AddGoalResponse> AddGoal(AddGoalRequest request)
+        {
+            return await Post<AddGoalResponse>(request);
+        }
+
         public async Task<GetGoalResponse> GetGoal(GetGoalRequest request)
         {
             return await Get<GetGoalResponse>(request.FormatRequestUri(), request.Username);
@@ -32,7 +37,7 @@
 
         public async Task<GetGoalsForUserResponse> GetGoalsForUser(GetGoalsForUserRequest request)
         {
-            return await Get<GetGoalsForUserResponse>(request.GetAction(), request.Username);
+            return await Get<GetGoalsForUserResponse>(request.FormatRequestUri(), request.Username);
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿namespace MyMoney.ViewModels.Spending.Bills
+﻿namespace MyMoney.ViewModels.Spending.Bill
 {
     #region Usings
 

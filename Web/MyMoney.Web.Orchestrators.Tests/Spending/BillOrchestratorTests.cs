@@ -24,7 +24,7 @@
     using Proxies.Spending;
 
     using ViewModels.Enum;
-    using ViewModels.Spending.Bills;
+    using ViewModels.Spending.Bill;
 
     using Wrappers;
 

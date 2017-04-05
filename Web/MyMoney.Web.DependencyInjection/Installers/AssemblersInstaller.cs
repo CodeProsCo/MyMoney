@@ -6,6 +6,8 @@
     using Assemblers.Authentication.Interfaces;
     using Assemblers.Chart;
     using Assemblers.Chart.Interfaces;
+    using Assemblers.Saving;
+    using Assemblers.Saving.Interfaces;
     using Assemblers.Spending;
     using Assemblers.Spending.Interfaces;
 
@@ -30,6 +32,7 @@
         /// <param name="store">The configuration store.</param>
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            container.Register(Component.For<IGoalAssembler>().ImplementedBy<GoalAssembler>().LifestylePerWebRequest());
             container.Register(Component.For<IUserAssembler>().ImplementedBy<UserAssembler>().LifestylePerWebRequest());
             container.Register(Component.For<IBillAssembler>().ImplementedBy<BillAssembler>().LifestylePerWebRequest());
             container.Register(

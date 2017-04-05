@@ -18,6 +18,8 @@
     using Orchestrators.Authentication.Interfaces;
     using Orchestrators.Chart;
     using Orchestrators.Chart.Interfaces;
+    using Orchestrators.Saving;
+    using Orchestrators.Saving.Interfaces;
     using Orchestrators.Spending;
     using Orchestrators.Spending.Interfaces;
 
@@ -52,7 +54,8 @@
                         Dependency.OnComponent<IBillOrchestrator, BillOrchestrator>(),
                         Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
 
-            container.Register(Component.For<GoalController>().LifestylePerWebRequest());
+            container.Register(Component.For<GoalController>().LifestylePerWebRequest()
+                .DependsOn(Dependency.OnComponent<IGoalOrchestrator, GoalOrchestrator>()));
 
             container.Register(Component.For<ResourceController>().LifestylePerWebRequest());
             container.Register(Component.For<ErrorController>().LifestylePerWebRequest());
