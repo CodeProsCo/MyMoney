@@ -10,6 +10,8 @@
     using MyMoney.Web.DataAccess.Authentication.Interfaces;
     using MyMoney.Web.DataAccess.Chart;
     using MyMoney.Web.DataAccess.Chart.Interfaces;
+    using MyMoney.Web.DataAccess.Saving;
+    using MyMoney.Web.DataAccess.Saving.Interfaces;
     using MyMoney.Web.DataAccess.Spending;
     using MyMoney.Web.DataAccess.Spending.Interfaces;
 
@@ -38,6 +40,9 @@
 
             container.Register(
                 Component.For<IChartDataAccess>().ImplementedBy<ChartDataAccess>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IGoalDataAccess>().ImplementedBy<GoalDataAccess>().LifestylePerWebRequest());
 
             container.Register(
                 Component.For<IExpenditureDataAccess>().ImplementedBy<ExpenditureDataAccess>().LifestylePerWebRequest());
