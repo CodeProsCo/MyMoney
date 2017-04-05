@@ -4,7 +4,7 @@
 
     using System;
 
-    using MyMoney.DTO.Request.Interfaces;
+    using Interfaces;
 
     #endregion
 

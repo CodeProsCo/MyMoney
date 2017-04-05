@@ -5,7 +5,7 @@
     using System;
     using System.Diagnostics;
 
-    using MyMoney.Wrappers;
+    using Wrappers;
 
     #endregion
 

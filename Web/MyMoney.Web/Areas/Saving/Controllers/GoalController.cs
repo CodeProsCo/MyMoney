@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using MyMoney.Web.Controllers;
+    using Web.Controllers;
 
     #endregion
 

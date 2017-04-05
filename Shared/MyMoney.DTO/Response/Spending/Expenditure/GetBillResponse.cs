@@ -2,8 +2,9 @@
 {
     #region Usings
 
-    using MyMoney.DTO.Request.Spending.Expenditure;
-    using MyMoney.Proxies.Spending;
+    using Proxies.Spending;
+
+    using Request.Spending.Expenditure;
 
     #endregion
 

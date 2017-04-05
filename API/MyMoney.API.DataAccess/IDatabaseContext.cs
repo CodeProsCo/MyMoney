@@ -5,12 +5,12 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using DataModels.Authentication;
+    using DataModels.Common;
+    using DataModels.Saving;
+    using DataModels.Spending;
 
-    using MyMoney.DataModels.Authentication;
-    using MyMoney.DataModels.Common;
-    using MyMoney.DataModels.Saving;
-    using MyMoney.DataModels.Spending;
+    using JetBrains.Annotations;
 
     #endregion
 

@@ -6,8 +6,8 @@
 
     using System.Threading.Tasks;
 
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
 
     #endregion
 

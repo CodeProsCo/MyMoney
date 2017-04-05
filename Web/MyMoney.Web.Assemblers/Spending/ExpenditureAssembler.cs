@@ -7,18 +7,21 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using DTO.Request.Spending.Expenditure;
+    using DTO.Response.Spending.Expenditure;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.DTO.Request.Spending.Expenditure;
-    using MyMoney.DTO.Response.Spending.Expenditure;
-    using MyMoney.Proxies.Common;
-    using MyMoney.Proxies.Spending;
-    using MyMoney.ViewModels.Common;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.ViewModels.Spending.Expenditure;
-    using MyMoney.Web.Assemblers.Spending.Interfaces;
+    using Proxies.Common;
+    using Proxies.Spending;
 
     using ServiceStack;
+
+    using ViewModels.Common;
+    using ViewModels.Enum;
+    using ViewModels.Spending.Expenditure;
 
     #endregion
 

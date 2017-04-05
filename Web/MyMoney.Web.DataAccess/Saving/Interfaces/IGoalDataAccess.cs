@@ -4,8 +4,8 @@
 
     using System.Threading.Tasks;
 
-    using MyMoney.DTO.Request.Saving.Goal;
-    using MyMoney.DTO.Response.Saving.Goal;
+    using DTO.Request.Saving.Goal;
+    using DTO.Response.Saving.Goal;
 
     #endregion
 

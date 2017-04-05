@@ -5,12 +5,14 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bill;
-    using MyMoney.Proxies.Spending;
-    using MyMoney.ViewModels.Common;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.ViewModels.Spending.Bills;
+    using DTO.Request.Spending.Bill;
+    using DTO.Response.Spending.Bill;
+
+    using Proxies.Spending;
+
+    using ViewModels.Common;
+    using ViewModels.Enum;
+    using ViewModels.Spending.Bills;
 
     #endregion
 

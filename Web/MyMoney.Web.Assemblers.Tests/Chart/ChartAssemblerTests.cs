@@ -5,12 +5,14 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Chart.Bill;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.Web.Assemblers.Chart;
-    using MyMoney.Web.Assemblers.Chart.Interfaces;
+    using Assemblers.Chart;
+    using Assemblers.Chart.Interfaces;
+
+    using DTO.Request.Chart.Bill;
 
     using NUnit.Framework;
+
+    using ViewModels.Enum;
 
     #endregion
 

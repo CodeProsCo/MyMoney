@@ -5,20 +5,26 @@
     using System;
     using System.Security.Claims;
 
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
-    using MyMoney.Proxies.Authentication;
-    using MyMoney.ViewModels.Authentication.User;
-    using MyMoney.Web.Assemblers.Authentication.Interfaces;
-    using MyMoney.Web.DataAccess.Authentication.Interfaces;
-    using MyMoney.Web.Orchestrators.Authentication;
-    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
-    using MyMoney.Wrappers;
+    using Assemblers.Authentication.Interfaces;
+
+    using DataAccess.Authentication.Interfaces;
+
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
 
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
     using NUnit.Framework;
+
+    using Orchestrators.Authentication;
+    using Orchestrators.Authentication.Interfaces;
+
+    using Proxies.Authentication;
+
+    using ViewModels.Authentication.User;
+
+    using Wrappers;
 
     #endregion
 

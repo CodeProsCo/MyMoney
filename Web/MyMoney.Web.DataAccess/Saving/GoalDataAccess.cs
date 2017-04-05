@@ -4,9 +4,10 @@
 
     using System.Threading.Tasks;
 
-    using MyMoney.DTO.Request.Saving.Goal;
-    using MyMoney.DTO.Response.Saving.Goal;
-    using MyMoney.Web.DataAccess.Saving.Interfaces;
+    using DTO.Request.Saving.Goal;
+    using DTO.Response.Saving.Goal;
+
+    using Interfaces;
 
     #endregion
 

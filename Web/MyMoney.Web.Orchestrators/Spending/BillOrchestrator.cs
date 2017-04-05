@@ -6,16 +6,21 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Assemblers.Spending.Interfaces;
+
+    using DataAccess.Spending.Interfaces;
+
+    using Helpers.Error;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.Helpers.Error;
-    using MyMoney.ViewModels.Common;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.ViewModels.Spending.Bills;
-    using MyMoney.Web.Assemblers.Spending.Interfaces;
-    using MyMoney.Web.DataAccess.Spending.Interfaces;
-    using MyMoney.Web.Orchestrators.Spending.Interfaces;
-    using MyMoney.Wrappers;
+    using ViewModels.Common;
+    using ViewModels.Enum;
+    using ViewModels.Spending.Bills;
+
+    using Wrappers;
 
     #endregion
 

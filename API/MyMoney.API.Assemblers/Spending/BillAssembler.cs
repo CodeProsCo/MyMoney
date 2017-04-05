@@ -6,14 +6,17 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using DataModels.Common;
+    using DataModels.Spending;
+
+    using DTO.Response.Spending.Bill;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.API.Assemblers.Spending.Interfaces;
-    using MyMoney.DataModels.Common;
-    using MyMoney.DataModels.Spending;
-    using MyMoney.DTO.Response.Spending.Bill;
-    using MyMoney.Proxies.Common;
-    using MyMoney.Proxies.Spending;
+    using Proxies.Common;
+    using Proxies.Spending;
 
     #endregion
 

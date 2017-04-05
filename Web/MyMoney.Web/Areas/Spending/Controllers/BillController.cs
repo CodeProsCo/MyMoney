@@ -6,12 +6,15 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.ViewModels.Spending.Bills;
-    using MyMoney.Web.Attributes;
-    using MyMoney.Web.Controllers;
-    using MyMoney.Web.Orchestrators.Chart.Interfaces;
-    using MyMoney.Web.Orchestrators.Spending.Interfaces;
+    using Attributes;
+
+    using Orchestrators.Chart.Interfaces;
+    using Orchestrators.Spending.Interfaces;
+
+    using ViewModels.Enum;
+    using ViewModels.Spending.Bills;
+
+    using Web.Controllers;
 
     #endregion
 

@@ -5,7 +5,7 @@
     using System;
     using System.Threading.Tasks;
 
-    using MyMoney.DataModels.Authentication;
+    using DataModels.Authentication;
 
     #endregion
 

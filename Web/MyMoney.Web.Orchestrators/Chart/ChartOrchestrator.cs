@@ -6,14 +6,19 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Assemblers.Chart.Interfaces;
+
+    using DataAccess.Chart.Interfaces;
+
+    using Helpers.Error;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.Helpers.Error;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.Web.Assemblers.Chart.Interfaces;
-    using MyMoney.Web.DataAccess.Chart.Interfaces;
-    using MyMoney.Web.Orchestrators.Chart.Interfaces;
-    using MyMoney.Wrappers;
+    using ViewModels.Enum;
+
+    using Wrappers;
 
     #endregion
 

@@ -6,12 +6,15 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
+    using DataModels.Authentication;
+
+    using Helpers.Security;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.API.DataAccess.Authentication.Interfaces;
-    using MyMoney.DataModels.Authentication;
-    using MyMoney.Helpers.Security;
-    using MyMoney.Resources;
+    using Resources;
 
     #endregion
 

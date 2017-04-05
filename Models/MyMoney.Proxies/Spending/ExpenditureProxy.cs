@@ -4,7 +4,7 @@
 
     using System;
 
-    using MyMoney.Proxies.Common;
+    using Common;
 
     #endregion
 

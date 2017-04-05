@@ -5,9 +5,11 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    using MyMoney.ViewModels.Authentication.Account;
-    using MyMoney.Web.Attributes;
-    using MyMoney.Web.Controllers;
+    using Attributes;
+
+    using ViewModels.Authentication.Account;
+
+    using Web.Controllers;
 
     #endregion
 

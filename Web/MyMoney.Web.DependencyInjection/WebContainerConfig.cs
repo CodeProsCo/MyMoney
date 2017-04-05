@@ -4,7 +4,7 @@
 
     using Castle.Windsor;
 
-    using MyMoney.Web.DependencyInjection.Installers;
+    using Installers;
 
     #endregion
 

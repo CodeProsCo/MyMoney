@@ -6,8 +6,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.Wrappers;
+    using ViewModels.Enum;
+
+    using Wrappers;
 
     #endregion
 

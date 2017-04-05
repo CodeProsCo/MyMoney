@@ -5,15 +5,20 @@
     using System;
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using Assemblers.Spending.Interfaces;
 
-    using MyMoney.API.Assemblers.Spending.Interfaces;
-    using MyMoney.API.DataAccess.Spending.Interfaces;
-    using MyMoney.API.DataTransformers.Spending.Interfaces;
-    using MyMoney.API.Orchestrators.Spending.Interfaces;
-    using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bill;
-    using MyMoney.Helpers.Error;
+    using DataAccess.Spending.Interfaces;
+
+    using DataTransformers.Spending.Interfaces;
+
+    using DTO.Request.Spending.Bill;
+    using DTO.Response.Spending.Bill;
+
+    using Helpers.Error;
+
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

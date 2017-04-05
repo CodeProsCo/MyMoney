@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using MyMoney.DTO.Request.Saving.Goal;
+    using Request.Saving.Goal;
 
     #endregion
 

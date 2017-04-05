@@ -6,7 +6,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using MyMoney.DataModels.Common;
+    using Common;
 
     #endregion
 

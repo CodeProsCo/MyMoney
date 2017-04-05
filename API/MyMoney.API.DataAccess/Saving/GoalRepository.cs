@@ -8,11 +8,13 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using DataModels.Saving;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.API.DataAccess.Saving.Interfaces;
-    using MyMoney.DataModels.Saving;
-    using MyMoney.Resources;
+    using Resources;
 
     #endregion
 

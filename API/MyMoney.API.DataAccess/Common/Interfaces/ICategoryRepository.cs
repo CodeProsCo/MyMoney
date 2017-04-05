@@ -4,7 +4,7 @@
 
     using System.Threading.Tasks;
 
-    using MyMoney.DataModels.Common;
+    using DataModels.Common;
 
     #endregion
 

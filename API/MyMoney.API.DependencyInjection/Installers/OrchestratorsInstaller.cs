@@ -2,33 +2,36 @@
 {
     #region Usings
 
+    using Assemblers.Authentication;
+    using Assemblers.Authentication.Interfaces;
+    using Assemblers.Chart;
+    using Assemblers.Chart.Interfaces;
+    using Assemblers.Saving;
+    using Assemblers.Saving.Interfaces;
+    using Assemblers.Spending;
+    using Assemblers.Spending.Interfaces;
+
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using MyMoney.API.Assemblers.Authentication;
-    using MyMoney.API.Assemblers.Authentication.Interfaces;
-    using MyMoney.API.Assemblers.Chart;
-    using MyMoney.API.Assemblers.Chart.Interfaces;
-    using MyMoney.API.Assemblers.Saving;
-    using MyMoney.API.Assemblers.Saving.Interfaces;
-    using MyMoney.API.Assemblers.Spending;
-    using MyMoney.API.Assemblers.Spending.Interfaces;
-    using MyMoney.API.DataAccess.Authentication;
-    using MyMoney.API.DataAccess.Authentication.Interfaces;
-    using MyMoney.API.DataAccess.Saving.Interfaces;
-    using MyMoney.API.DataAccess.Spending;
-    using MyMoney.API.DataAccess.Spending.Interfaces;
-    using MyMoney.API.DataTransformers.Spending;
-    using MyMoney.API.DataTransformers.Spending.Interfaces;
-    using MyMoney.API.Orchestrators.Authentication;
-    using MyMoney.API.Orchestrators.Authentication.Interfaces;
-    using MyMoney.API.Orchestrators.Chart;
-    using MyMoney.API.Orchestrators.Chart.Interfaces;
-    using MyMoney.API.Orchestrators.Saving;
-    using MyMoney.API.Orchestrators.Saving.Interfaces;
-    using MyMoney.API.Orchestrators.Spending;
-    using MyMoney.API.Orchestrators.Spending.Interfaces;
+    using DataAccess.Authentication;
+    using DataAccess.Authentication.Interfaces;
+    using DataAccess.Saving.Interfaces;
+    using DataAccess.Spending;
+    using DataAccess.Spending.Interfaces;
+
+    using DataTransformers.Spending;
+    using DataTransformers.Spending.Interfaces;
+
+    using Orchestrators.Authentication;
+    using Orchestrators.Authentication.Interfaces;
+    using Orchestrators.Chart;
+    using Orchestrators.Chart.Interfaces;
+    using Orchestrators.Saving;
+    using Orchestrators.Saving.Interfaces;
+    using Orchestrators.Spending;
+    using Orchestrators.Spending.Interfaces;
 
     #endregion
 

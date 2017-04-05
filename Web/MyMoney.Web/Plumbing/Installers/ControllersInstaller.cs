@@ -2,22 +2,24 @@
 {
     #region Usings
 
+    using Areas.Authentication.Controllers;
+    using Areas.Common.Controllers;
+    using Areas.Dashboard.Controllers;
+    using Areas.Saving.Controllers;
+    using Areas.Spending.Controllers;
+
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using MyMoney.Web.Areas.Authentication.Controllers;
-    using MyMoney.Web.Areas.Common.Controllers;
-    using MyMoney.Web.Areas.Dashboard.Controllers;
-    using MyMoney.Web.Areas.Saving.Controllers;
-    using MyMoney.Web.Areas.Spending.Controllers;
-    using MyMoney.Web.Controllers;
-    using MyMoney.Web.Orchestrators.Authentication;
-    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
-    using MyMoney.Web.Orchestrators.Chart;
-    using MyMoney.Web.Orchestrators.Chart.Interfaces;
-    using MyMoney.Web.Orchestrators.Spending;
-    using MyMoney.Web.Orchestrators.Spending.Interfaces;
+    using Controllers;
+
+    using Orchestrators.Authentication;
+    using Orchestrators.Authentication.Interfaces;
+    using Orchestrators.Chart;
+    using Orchestrators.Chart.Interfaces;
+    using Orchestrators.Spending;
+    using Orchestrators.Spending.Interfaces;
 
     #endregion
 

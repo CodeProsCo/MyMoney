@@ -4,8 +4,8 @@
 
     using System.Threading.Tasks;
 
-    using MyMoney.DTO.Request.Spending.Expenditure;
-    using MyMoney.DTO.Response.Spending.Expenditure;
+    using DTO.Request.Spending.Expenditure;
+    using DTO.Response.Spending.Expenditure;
 
     #endregion
 

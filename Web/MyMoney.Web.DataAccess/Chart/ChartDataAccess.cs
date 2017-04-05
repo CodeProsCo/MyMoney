@@ -4,13 +4,14 @@
 
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Expenditure;
+    using DTO.Response.Chart.Bill;
+    using DTO.Response.Chart.Expenditure;
 
-    using MyMoney.DTO.Request.Chart.Bill;
-    using MyMoney.DTO.Request.Chart.Expenditure;
-    using MyMoney.DTO.Response.Chart.Bill;
-    using MyMoney.DTO.Response.Chart.Expenditure;
-    using MyMoney.Web.DataAccess.Chart.Interfaces;
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

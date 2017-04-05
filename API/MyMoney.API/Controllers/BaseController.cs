@@ -8,7 +8,7 @@
     using System.Web.Http;
     using System.Web.Http.Controllers;
 
-    using MyMoney.Helpers.Benchmarking;
+    using Helpers.Benchmarking;
 
     #endregion
 

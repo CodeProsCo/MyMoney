@@ -5,19 +5,24 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Chart.Bill;
-    using MyMoney.DTO.Response.Chart.Bill;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.Web.Assemblers.Chart.Interfaces;
-    using MyMoney.Web.DataAccess.Chart.Interfaces;
-    using MyMoney.Web.Orchestrators.Chart;
-    using MyMoney.Web.Orchestrators.Chart.Interfaces;
-    using MyMoney.Wrappers;
+    using Assemblers.Chart.Interfaces;
+
+    using DataAccess.Chart.Interfaces;
+
+    using DTO.Request.Chart.Bill;
+    using DTO.Response.Chart.Bill;
 
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
     using NUnit.Framework;
+
+    using Orchestrators.Chart;
+    using Orchestrators.Chart.Interfaces;
+
+    using ViewModels.Enum;
+
+    using Wrappers;
 
     #endregion
 

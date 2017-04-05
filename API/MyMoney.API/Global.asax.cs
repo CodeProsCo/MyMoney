@@ -8,11 +8,12 @@
 
     using Castle.Windsor;
 
+    using DependencyInjection;
+
     using JetBrains.Annotations;
 
-    using MyMoney.API.DependencyInjection;
-    using MyMoney.API.Plumbing;
-    using MyMoney.API.Plumbing.Installers;
+    using Plumbing;
+    using Plumbing.Installers;
 
     #endregion
 

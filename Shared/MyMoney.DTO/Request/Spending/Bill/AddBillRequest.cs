@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using MyMoney.Proxies.Spending;
+    using Proxies.Spending;
 
     #endregion
 

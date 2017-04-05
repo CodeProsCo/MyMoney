@@ -5,17 +5,22 @@
     using System;
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using Assemblers.Chart.Interfaces;
 
-    using MyMoney.API.Assemblers.Chart.Interfaces;
-    using MyMoney.API.DataAccess.Spending.Interfaces;
-    using MyMoney.API.DataTransformers.Spending.Interfaces;
-    using MyMoney.API.Orchestrators.Chart.Interfaces;
-    using MyMoney.DTO.Request.Chart.Bill;
-    using MyMoney.DTO.Request.Chart.Expenditure;
-    using MyMoney.DTO.Response.Chart.Bill;
-    using MyMoney.DTO.Response.Chart.Expenditure;
-    using MyMoney.Helpers.Error;
+    using DataAccess.Spending.Interfaces;
+
+    using DataTransformers.Spending.Interfaces;
+
+    using DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Expenditure;
+    using DTO.Response.Chart.Bill;
+    using DTO.Response.Chart.Expenditure;
+
+    using Helpers.Error;
+
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

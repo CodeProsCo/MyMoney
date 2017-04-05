@@ -6,8 +6,9 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using MyMoney.API.Orchestrators.Authentication.Interfaces;
-    using MyMoney.DTO.Request.Authentication;
+    using DTO.Request.Authentication;
+
+    using Orchestrators.Authentication.Interfaces;
 
     #endregion
 

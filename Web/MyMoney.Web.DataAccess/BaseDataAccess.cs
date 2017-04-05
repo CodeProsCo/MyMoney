@@ -11,10 +11,11 @@
     using System.Web;
     using System.Web.Configuration;
 
-    using MyMoney.DTO.Request;
-    using MyMoney.DTO.Response;
-    using MyMoney.Helpers.Benchmarking;
-    using MyMoney.Helpers.Error;
+    using DTO.Request;
+    using DTO.Response;
+
+    using Helpers.Benchmarking;
+    using Helpers.Error;
 
     #endregion
 

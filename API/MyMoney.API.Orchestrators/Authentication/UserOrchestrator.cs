@@ -5,14 +5,18 @@
     using System;
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using Assemblers.Authentication.Interfaces;
 
-    using MyMoney.API.Assemblers.Authentication.Interfaces;
-    using MyMoney.API.DataAccess.Authentication.Interfaces;
-    using MyMoney.API.Orchestrators.Authentication.Interfaces;
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
-    using MyMoney.Helpers.Error;
+    using DataAccess.Authentication.Interfaces;
+
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
+
+    using Helpers.Error;
+
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

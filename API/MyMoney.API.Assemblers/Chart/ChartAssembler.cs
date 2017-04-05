@@ -5,11 +5,12 @@
     using System;
     using System.Collections.Generic;
 
-    using JetBrains.Annotations;
+    using DTO.Response.Chart.Bill;
+    using DTO.Response.Chart.Expenditure;
 
-    using MyMoney.API.Assemblers.Chart.Interfaces;
-    using MyMoney.DTO.Response.Chart.Bill;
-    using MyMoney.DTO.Response.Chart.Expenditure;
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

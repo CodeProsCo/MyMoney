@@ -5,8 +5,9 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using MyMoney.ViewModels.Authentication.User;
-    using MyMoney.Wrappers;
+    using ViewModels.Authentication.User;
+
+    using Wrappers;
 
     #endregion
 

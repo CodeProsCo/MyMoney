@@ -5,9 +5,11 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DataModels.Saving;
-    using MyMoney.DTO.Response.Saving.Goal;
-    using MyMoney.Proxies.Saving;
+    using DataModels.Saving;
+
+    using DTO.Response.Saving.Goal;
+
+    using Proxies.Saving;
 
     #endregion
 

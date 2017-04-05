@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Spending.Bill;
+    using Request.Spending.Bill;
 
     #endregion
 

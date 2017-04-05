@@ -6,10 +6,11 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using MyMoney.ViewModels.Common;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.ViewModels.Spending.Expenditure;
-    using MyMoney.Wrappers;
+    using ViewModels.Common;
+    using ViewModels.Enum;
+    using ViewModels.Spending.Expenditure;
+
+    using Wrappers;
 
     #endregion
 

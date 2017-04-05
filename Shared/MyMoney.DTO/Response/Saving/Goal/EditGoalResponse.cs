@@ -2,8 +2,9 @@
 {
     #region Usings
 
-    using MyMoney.DTO.Request.Saving.Goal;
-    using MyMoney.Proxies.Saving;
+    using Proxies.Saving;
+
+    using Request.Saving.Goal;
 
     #endregion
 

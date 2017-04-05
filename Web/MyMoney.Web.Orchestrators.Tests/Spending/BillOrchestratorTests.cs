@@ -5,22 +5,28 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bill;
-    using MyMoney.Proxies.Common;
-    using MyMoney.Proxies.Spending;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.ViewModels.Spending.Bills;
-    using MyMoney.Web.Assemblers.Spending.Interfaces;
-    using MyMoney.Web.DataAccess.Spending.Interfaces;
-    using MyMoney.Web.Orchestrators.Spending;
-    using MyMoney.Web.Orchestrators.Spending.Interfaces;
-    using MyMoney.Wrappers;
+    using Assemblers.Spending.Interfaces;
+
+    using DataAccess.Spending.Interfaces;
+
+    using DTO.Request.Spending.Bill;
+    using DTO.Response.Spending.Bill;
 
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
     using NUnit.Framework;
+
+    using Orchestrators.Spending;
+    using Orchestrators.Spending.Interfaces;
+
+    using Proxies.Common;
+    using Proxies.Spending;
+
+    using ViewModels.Enum;
+    using ViewModels.Spending.Bills;
+
+    using Wrappers;
 
     #endregion
 

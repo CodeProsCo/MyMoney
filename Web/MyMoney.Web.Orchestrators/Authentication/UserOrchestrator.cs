@@ -6,14 +6,19 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using Assemblers.Authentication.Interfaces;
+
+    using DataAccess.Authentication.Interfaces;
+
+    using Helpers.Error;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.Helpers.Error;
-    using MyMoney.ViewModels.Authentication.User;
-    using MyMoney.Web.Assemblers.Authentication.Interfaces;
-    using MyMoney.Web.DataAccess.Authentication.Interfaces;
-    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
-    using MyMoney.Wrappers;
+    using ViewModels.Authentication.User;
+
+    using Wrappers;
 
     #endregion
 

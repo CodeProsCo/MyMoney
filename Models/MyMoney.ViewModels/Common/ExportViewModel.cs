@@ -2,9 +2,9 @@
 {
     #region Usings
 
-    using JetBrains.Annotations;
+    using Enum;
 
-    using MyMoney.ViewModels.Enum;
+    using JetBrains.Annotations;
 
     #endregion
 

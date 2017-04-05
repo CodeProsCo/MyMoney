@@ -6,12 +6,15 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using DataModels.Saving;
+
+    using DTO.Response.Saving.Goal;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.API.Assemblers.Saving.Interfaces;
-    using MyMoney.DataModels.Saving;
-    using MyMoney.DTO.Response.Saving.Goal;
-    using MyMoney.Proxies.Saving;
+    using Proxies.Saving;
 
     #endregion
 

@@ -4,10 +4,10 @@
 
     using System.Threading.Tasks;
 
-    using MyMoney.DTO.Request.Chart.Bill;
-    using MyMoney.DTO.Request.Chart.Expenditure;
-    using MyMoney.DTO.Response.Chart.Bill;
-    using MyMoney.DTO.Response.Chart.Expenditure;
+    using DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Expenditure;
+    using DTO.Response.Chart.Bill;
+    using DTO.Response.Chart.Expenditure;
 
     #endregion
 

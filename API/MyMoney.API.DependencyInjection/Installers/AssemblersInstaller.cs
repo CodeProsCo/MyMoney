@@ -2,18 +2,18 @@
 {
     #region Usings
 
+    using Assemblers.Authentication;
+    using Assemblers.Authentication.Interfaces;
+    using Assemblers.Chart;
+    using Assemblers.Chart.Interfaces;
+    using Assemblers.Saving;
+    using Assemblers.Saving.Interfaces;
+    using Assemblers.Spending;
+    using Assemblers.Spending.Interfaces;
+
     using Castle.MicroKernel.Registration;
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
-
-    using MyMoney.API.Assemblers.Authentication;
-    using MyMoney.API.Assemblers.Authentication.Interfaces;
-    using MyMoney.API.Assemblers.Chart;
-    using MyMoney.API.Assemblers.Chart.Interfaces;
-    using MyMoney.API.Assemblers.Saving;
-    using MyMoney.API.Assemblers.Saving.Interfaces;
-    using MyMoney.API.Assemblers.Spending;
-    using MyMoney.API.Assemblers.Spending.Interfaces;
 
     #endregion
 

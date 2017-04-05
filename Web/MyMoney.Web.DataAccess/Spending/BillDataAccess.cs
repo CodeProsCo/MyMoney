@@ -4,11 +4,12 @@
 
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using DTO.Request.Spending.Bill;
+    using DTO.Response.Spending.Bill;
 
-    using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bill;
-    using MyMoney.Web.DataAccess.Spending.Interfaces;
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

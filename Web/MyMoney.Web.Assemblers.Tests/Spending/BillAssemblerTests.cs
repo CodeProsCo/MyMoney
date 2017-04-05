@@ -6,16 +6,19 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using MyMoney.DTO.Request.Spending.Bill;
-    using MyMoney.DTO.Response.Spending.Bill;
-    using MyMoney.Proxies.Common;
-    using MyMoney.Proxies.Spending;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.ViewModels.Spending.Bills;
-    using MyMoney.Web.Assemblers.Spending;
-    using MyMoney.Web.Assemblers.Spending.Interfaces;
+    using Assemblers.Spending;
+    using Assemblers.Spending.Interfaces;
+
+    using DTO.Request.Spending.Bill;
+    using DTO.Response.Spending.Bill;
 
     using NUnit.Framework;
+
+    using Proxies.Common;
+    using Proxies.Spending;
+
+    using ViewModels.Enum;
+    using ViewModels.Spending.Bills;
 
     #endregion
 

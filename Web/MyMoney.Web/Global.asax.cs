@@ -10,14 +10,16 @@
 
     using Castle.Windsor;
 
+    using DependencyInjection;
+
+    using Helpers.Error;
+
     using JetBrains.Annotations;
 
-    using MyMoney.Helpers.Error;
-    using MyMoney.Web.DependencyInjection;
-    using MyMoney.Web.Plumbing;
-    using MyMoney.Web.Plumbing.Installers;
-
     using Newtonsoft.Json.Serialization;
+
+    using Plumbing;
+    using Plumbing.Installers;
 
     #endregion
 

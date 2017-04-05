@@ -4,8 +4,9 @@
 
     using System.Web.Mvc;
 
-    using MyMoney.Web.Attributes;
-    using MyMoney.Web.Controllers;
+    using Attributes;
+
+    using Web.Controllers;
 
     #endregion
 

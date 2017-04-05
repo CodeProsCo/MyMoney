@@ -6,8 +6,9 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using MyMoney.API.Orchestrators.Spending.Interfaces;
-    using MyMoney.DTO.Request.Spending.Expenditure;
+    using DTO.Request.Spending.Expenditure;
+
+    using Orchestrators.Spending.Interfaces;
 
     #endregion
 

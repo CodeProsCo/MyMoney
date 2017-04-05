@@ -6,10 +6,11 @@
     using System.Data.Entity;
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using DataModels.Common;
 
-    using MyMoney.API.DataAccess.Common.Interfaces;
-    using MyMoney.DataModels.Common;
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

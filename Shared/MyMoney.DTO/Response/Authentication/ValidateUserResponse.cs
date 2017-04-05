@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using MyMoney.Proxies.Authentication;
+    using Proxies.Authentication;
 
     #endregion
 

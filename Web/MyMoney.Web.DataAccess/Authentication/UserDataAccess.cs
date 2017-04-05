@@ -4,11 +4,12 @@
 
     using System.Threading.Tasks;
 
-    using JetBrains.Annotations;
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
 
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
-    using MyMoney.Web.DataAccess.Authentication.Interfaces;
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

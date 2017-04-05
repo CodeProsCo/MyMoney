@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using MyMoney.DTO.Request.Spending.Bill;
+    using Request.Spending.Bill;
 
     #endregion
 

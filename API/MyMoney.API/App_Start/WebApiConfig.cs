@@ -5,7 +5,7 @@
     using System.Diagnostics;
     using System.Web.Http;
 
-    using MyMoney.API.Attributes;
+    using Attributes;
 
     using WebApiThrottle;
 

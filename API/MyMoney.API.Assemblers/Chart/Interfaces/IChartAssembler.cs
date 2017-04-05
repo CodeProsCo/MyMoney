@@ -5,8 +5,8 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Response.Chart.Bill;
-    using MyMoney.DTO.Response.Chart.Expenditure;
+    using DTO.Response.Chart.Bill;
+    using DTO.Response.Chart.Expenditure;
 
     #endregion
 

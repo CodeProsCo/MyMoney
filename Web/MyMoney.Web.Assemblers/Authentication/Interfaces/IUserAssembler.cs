@@ -4,9 +4,10 @@
 
     using System.Security.Claims;
 
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
-    using MyMoney.ViewModels.Authentication.User;
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
+
+    using ViewModels.Authentication.User;
 
     #endregion
 

@@ -5,12 +5,14 @@
     using System;
     using System.Security.Claims;
 
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
-    using MyMoney.ViewModels.Authentication.User;
-    using MyMoney.Web.Assemblers.Authentication.Interfaces;
+    using ViewModels.Authentication.User;
 
     #endregion
 

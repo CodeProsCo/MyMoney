@@ -6,10 +6,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using JetBrains.Annotations;
+    using DataModels.Spending;
 
-    using MyMoney.API.DataTransformers.Spending.Interfaces;
-    using MyMoney.DataModels.Spending;
+    using Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 

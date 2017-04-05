@@ -5,7 +5,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using MyMoney.ViewModels.Attributes;
+    using Attributes;
 
     #endregion
 

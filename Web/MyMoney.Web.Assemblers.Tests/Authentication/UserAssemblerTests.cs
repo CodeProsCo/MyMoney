@@ -6,14 +6,17 @@
     using System.Linq;
     using System.Security.Claims;
 
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
-    using MyMoney.Proxies.Authentication;
-    using MyMoney.ViewModels.Authentication.User;
-    using MyMoney.Web.Assemblers.Authentication;
-    using MyMoney.Web.Assemblers.Authentication.Interfaces;
+    using Assemblers.Authentication;
+    using Assemblers.Authentication.Interfaces;
+
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
 
     using NUnit.Framework;
+
+    using Proxies.Authentication;
+
+    using ViewModels.Authentication.User;
 
     #endregion
 

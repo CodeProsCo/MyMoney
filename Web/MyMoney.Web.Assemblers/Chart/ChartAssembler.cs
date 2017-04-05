@@ -6,12 +6,14 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Expenditure;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.DTO.Request.Chart.Bill;
-    using MyMoney.DTO.Request.Chart.Expenditure;
-    using MyMoney.ViewModels.Enum;
-    using MyMoney.Web.Assemblers.Chart.Interfaces;
+    using ViewModels.Enum;
 
     #endregion
 

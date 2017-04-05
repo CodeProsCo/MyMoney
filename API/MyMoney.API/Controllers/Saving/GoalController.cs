@@ -6,8 +6,9 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using MyMoney.API.Orchestrators.Saving.Interfaces;
-    using MyMoney.DTO.Request.Saving.Goal;
+    using DTO.Request.Saving.Goal;
+
+    using Orchestrators.Saving.Interfaces;
 
     #endregion
 

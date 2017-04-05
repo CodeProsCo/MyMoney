@@ -6,8 +6,9 @@
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    using MyMoney.API.Orchestrators.Chart.Interfaces;
-    using MyMoney.DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Bill;
+
+    using Orchestrators.Chart.Interfaces;
 
     #endregion
 

@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using MyMoney.DataModels.Spending;
+    using DataModels.Spending;
 
     #endregion
 

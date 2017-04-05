@@ -2,7 +2,7 @@
 {
     #region Usings
 
-    using MyMoney.DTO.Request.Authentication;
+    using Request.Authentication;
 
     #endregion
 

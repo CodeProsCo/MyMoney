@@ -6,8 +6,8 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using MyMoney.API.DataTransformers.Spending;
-    using MyMoney.API.DataTransformers.Spending.Interfaces;
+    using DataTransformers.Spending;
+    using DataTransformers.Spending.Interfaces;
 
     #endregion
 

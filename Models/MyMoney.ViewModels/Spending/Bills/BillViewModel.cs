@@ -6,8 +6,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    using MyMoney.Resources;
-    using MyMoney.ViewModels.Enum;
+    using Enum;
+
+    using Resources;
 
     #endregion
 

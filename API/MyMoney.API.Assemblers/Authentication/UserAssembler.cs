@@ -4,14 +4,18 @@
 
     using System;
 
+    using DataModels.Authentication;
+
+    using DTO.Request.Authentication;
+    using DTO.Response.Authentication;
+
+    using Helpers.Security;
+
+    using Interfaces;
+
     using JetBrains.Annotations;
 
-    using MyMoney.API.Assemblers.Authentication.Interfaces;
-    using MyMoney.DataModels.Authentication;
-    using MyMoney.DTO.Request.Authentication;
-    using MyMoney.DTO.Response.Authentication;
-    using MyMoney.Helpers.Security;
-    using MyMoney.Proxies.Authentication;
+    using Proxies.Authentication;
 
     #endregion
 

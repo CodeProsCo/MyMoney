@@ -5,9 +5,11 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DataModels.Spending;
-    using MyMoney.DTO.Response.Spending.Expenditure;
-    using MyMoney.Proxies.Spending;
+    using DataModels.Spending;
+
+    using DTO.Response.Spending.Expenditure;
+
+    using Proxies.Spending;
 
     #endregion
 

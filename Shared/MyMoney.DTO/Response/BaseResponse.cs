@@ -7,7 +7,7 @@
 
     using JetBrains.Annotations;
 
-    using MyMoney.Wrappers;
+    using Wrappers;
 
     #endregion
 

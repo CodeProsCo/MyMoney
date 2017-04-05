@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DataModels.Spending;
+    using DataModels.Spending;
 
     #endregion
 

@@ -6,14 +6,14 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using MyMoney.Web.DataAccess.Authentication;
-    using MyMoney.Web.DataAccess.Authentication.Interfaces;
-    using MyMoney.Web.DataAccess.Chart;
-    using MyMoney.Web.DataAccess.Chart.Interfaces;
-    using MyMoney.Web.DataAccess.Saving;
-    using MyMoney.Web.DataAccess.Saving.Interfaces;
-    using MyMoney.Web.DataAccess.Spending;
-    using MyMoney.Web.DataAccess.Spending.Interfaces;
+    using DataAccess.Authentication;
+    using DataAccess.Authentication.Interfaces;
+    using DataAccess.Chart;
+    using DataAccess.Chart.Interfaces;
+    using DataAccess.Saving;
+    using DataAccess.Saving.Interfaces;
+    using DataAccess.Spending;
+    using DataAccess.Spending.Interfaces;
 
     #endregion
 

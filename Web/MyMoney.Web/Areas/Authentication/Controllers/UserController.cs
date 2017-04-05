@@ -7,9 +7,11 @@
     using System.Web;
     using System.Web.Mvc;
 
-    using MyMoney.ViewModels.Authentication.User;
-    using MyMoney.Web.Controllers;
-    using MyMoney.Web.Orchestrators.Authentication.Interfaces;
+    using Orchestrators.Authentication.Interfaces;
+
+    using ViewModels.Authentication.User;
+
+    using Web.Controllers;
 
     #endregion
 

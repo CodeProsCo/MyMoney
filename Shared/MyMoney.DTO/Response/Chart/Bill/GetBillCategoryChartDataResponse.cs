@@ -4,7 +4,7 @@
 
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Chart.Bill;
+    using Request.Chart.Bill;
 
     #endregion
 

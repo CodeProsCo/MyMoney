@@ -5,7 +5,7 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Chart.Expenditure;
+    using Request.Chart.Expenditure;
 
     #endregion
 

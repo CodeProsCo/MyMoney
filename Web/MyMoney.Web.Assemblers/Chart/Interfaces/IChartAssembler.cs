@@ -5,9 +5,10 @@
     using System;
     using System.Collections.Generic;
 
-    using MyMoney.DTO.Request.Chart.Bill;
-    using MyMoney.DTO.Request.Chart.Expenditure;
-    using MyMoney.ViewModels.Enum;
+    using DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Expenditure;
+
+    using ViewModels.Enum;
 
     #endregion
 
