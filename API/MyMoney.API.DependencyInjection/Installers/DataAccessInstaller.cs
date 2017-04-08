@@ -34,7 +34,7 @@
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IDatabaseContext>().ImplementedBy<DatabaseContext>().LifestyleSingleton());
+                Component.For<IDatabaseContext>().ImplementedBy<DatabaseContext>().LifestyleTransient());
 
             container.Register(
                 Component.For<IUserRepository>()

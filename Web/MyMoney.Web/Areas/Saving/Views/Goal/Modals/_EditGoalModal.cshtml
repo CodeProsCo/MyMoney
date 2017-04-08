@@ -1,0 +1,35 @@
+﻿@model MyMoney.ViewModels.Saving.Goal.EditGoalViewModel
+    
+@using MyMoney.Resources
+<div class="ui modal" id="edit-goal-modal">
+    <div class="yellow header">
+        <i class="edit icon"></i>
+        @Goal.Title_EditGoal
+    </div>
+    <div class="content">
+        @using (Html.BeginForm("Edit", "Goal", FormMethod.Post, new { id = "edit-goal-form" }))
+        {
+            <div class="description">
+                @{
+                    Html.RenderPartial("Editors/_GoalEditor", Model.Goal, ViewData);
+                }
+            </div>
+                    }
+    </div>
+    <div class="actions">
+        <div class="ui red right labeled left floated icon button"
+             id="delete-goal"
+             data-url="@Url.Action("Delete", "Goal", new { goalId = Model.Goal.Id })">
+            @Common.Button_Delete
+            <i class="trash icon"></i>
+        </div>
+        <div class="ui black deny right labeled icon button" id="cancel">
+            @Common.Button_Cancel
+            <i class="cancel icon"></i>
+        </div>
+        <div class="ui yellow right labeled icon button" id="edit-goal">
+            @Common.Button_Edit
+            <i class="edit icon"></i>
+        </div>
+    </div>
+</div>

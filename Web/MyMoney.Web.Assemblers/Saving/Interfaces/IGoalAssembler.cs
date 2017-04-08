@@ -67,5 +67,7 @@
         /// <param name="username">The username.</param>
         /// <returns>The request object.</returns>
         AddGoalRequest NewAddGoalRequest(GoalViewModel model, string username);
+
+        ManageGoalsViewModel NewManageGoalsViewModel(IList<GoalProxy> goals);
     }
 }

@@ -132,6 +132,16 @@
             return View("Manage", response.Model);
         }
 
+        [HttpGet]
+        [AjaxOnly]
+        [Route("get/{goalId:Guid}")]
+        public async Task<ActionResult> Get(Guid goalId)
+        {
+            var response = await orchestrator.GetGoal(goalId, UserEmail);
+
+            return JsonResponse(response);
+        }
+
         #endregion
     }
 }

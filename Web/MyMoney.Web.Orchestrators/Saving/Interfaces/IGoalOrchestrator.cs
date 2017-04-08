@@ -57,7 +57,7 @@
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
-        Task<OrchestratorResponseWrapper<IList<GoalViewModel>>> GetGoalsForUser(Guid userId, string username);
+        Task<OrchestratorResponseWrapper<ManageGoalsViewModel>> GetGoalsForUser(Guid userId, string username);
 
         #endregion
     }

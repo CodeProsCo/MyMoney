@@ -209,6 +209,34 @@
             };
         }
 
+        public ManageGoalsViewModel NewManageGoalsViewModel(IList<GoalProxy> goals)
+        {
+            var addModel = new AddGoalViewModel
+            {
+                Goal =
+                    new GoalViewModel
+                    {
+                        Amount = 0,
+                        Complete = false,
+                        EndDate = DateTime.Now.AddMonths(6),
+                        Name = string.Empty,
+                        Id = Guid.Empty,
+                        StartDate = DateTime.Now
+                    }
+            };
+
+            var editModel = new EditGoalViewModel { Goal = new GoalViewModel() };
+
+            var retVal = new ManageGoalsViewModel
+            {
+                AddGoal = addModel,
+                EditGoal = editModel,
+                Goals = goals.Select(ProxyToViewModel).ToList()
+            };
+
+            return retVal;
+        }
+
         #endregion
     }
 }

@@ -1,0 +1,14 @@
+﻿@model MyMoney.ViewModels.Saving.Goal.GoalViewModel
+    
+<div class="ui form">
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.UserId)
+    <div class="two fields">
+        @Html.EditorFor(x => x.Name)
+        @Html.EditorFor(x => x.Amount)
+    </div>
+    <div class="two fields">
+        @Html.EditorFor(x => x.StartDate)
+        @Html.EditorFor(x => x.EndDate)
+    </div>
+</div>

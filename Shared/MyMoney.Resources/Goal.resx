@@ -129,6 +129,24 @@
   <data name="Header_YourGoals" xml:space="preserve">
     <value>Your Goals</value>
   </data>
+  <data name="Label_Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Label_EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Label_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Label_StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Title_AddGoal" xml:space="preserve">
+    <value>Create a Goal</value>
+  </data>
+  <data name="Title_EditGoal" xml:space="preserve">
+    <value>Edit a Goal</value>
+  </data>
   <data name="Title_ManageGoals" xml:space="preserve">
     <value>Manage Goals</value>
   </data>

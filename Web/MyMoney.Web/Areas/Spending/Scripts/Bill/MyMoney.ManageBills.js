@@ -10,7 +10,7 @@
 /// <reference path="~/Scripts/Semantic/calendar.js"/>
 /// <reference path="~/Scripts/Extensions/MyMoney.NumberExtensions.js" />
 /// <reference path="~/Scripts/jQuery/datatables.js" />
-$(function() {
+$(function () {
     function addBillSuccessCallback(data) {
         if (data.success) {
             var successMsg = myMoney.strings.get("Bills", "Message_RecordedBill");
@@ -26,9 +26,9 @@ $(function() {
             table.find("tbody").append(row);
             row.addClass("positive");
 
-            setTimeout(function() {
-                    row.removeClass("positive");
-                },
+            setTimeout(function () {
+                row.removeClass("positive");
+            },
                 5000);
 
             $("#bill-table").find("#table-warning").remove();
@@ -60,9 +60,9 @@ $(function() {
                 table.find(".selected").replaceWith(row);
                 row.addClass("warning");
 
-                setTimeout(function() {
-                        row.removeClass("warning");
-                    },
+                setTimeout(function () {
+                    row.removeClass("warning");
+                },
                     5000);
             }
 
@@ -132,13 +132,13 @@ $(function() {
         callback = AjaxResponse(callback);
 
         $.ajax(url,
-        {
-            method: "GET",
-            async: true,
-            dataType: "json",
-            success: callback,
-            error: ajaxFail
-        });
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
     }
 
     function showEditModal(event) {
@@ -150,13 +150,13 @@ $(function() {
         var callback = AjaxResponse(getBillCallback);
 
         $.ajax(url,
-        {
-            method: "GET",
-            async: true,
-            dataType: "json",
-            success: callback,
-            error: ajaxFail
-        });
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
     }
 
     function getBillCallback(data) {
@@ -166,7 +166,7 @@ $(function() {
         var inputs = $(modal).find("input");
 
         $(inputs)
-            .each(function(i, elem) {
+            .each(function (i, elem) {
                 var prop = elem.id.replace("#", "").toCamelCase();
 
                 if ($(elem).attr("type") === "date") {
@@ -207,13 +207,13 @@ $(function() {
         var callback = AjaxResponse(deleteBillSuccessCallback);
 
         $.ajax(url,
-        {
-            method: "GET",
-            async: true,
-            dataType: "json",
-            success: callback,
-            error: ajaxFail
-        });
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
     }
 
     function deleteBillSuccessCallback(data) {
@@ -278,13 +278,13 @@ $(function() {
             .unbind("keydown");
 
         $.ajax(url,
-        {
-            method: "GET",
-            async: true,
-            dataType: "json",
-            success: callback,
-            error: ajaxFail
-        });
+            {
+                method: "GET",
+                async: true,
+                dataType: "json",
+                success: callback,
+                error: ajaxFail
+            });
     }
 
     function loadCalendarDataCallback(data) {
@@ -293,7 +293,7 @@ $(function() {
             var monthCells = [];
 
             $(calendarCells)
-                .each(function(i, elem) {
+                .each(function (i, elem) {
                     elem = $(elem);
 
                     if (elem.hasClass("disabled") || elem.hasClass("adjacent") || elem.is("span")) {
@@ -321,21 +321,18 @@ $(function() {
         }
     }
 
-    $(function() {
-        $("#add").click(showAddModal);
-        $("#add-bill").click(addBillClick);
-        $("#edit-bill").click(editBillClick);
-        $("#delete-bill").click(deleteBillClick);
-        $("tr[data-get]").click(showEditModal);
+    $("#add").click(showAddModal);
+    $("#add-bill").click(addBillClick);
+    $("#edit-bill").click(editBillClick);
+    $("#delete-bill").click(deleteBillClick);
+    $("tr[data-get]").click(showEditModal);
 
-        if (!$("#table-warning")) {
-            $("#bill-table").DataTable({
-                "info": false,
-                "bFilter": false
-            });
-        }
+    if (!$("#table-warning")) {
+        $("#bill-table").DataTable({
+            "info": false,
+            "bFilter": false
+        });
+    }
 
-
-        loadAjaxComponents();
-    });
+    loadAjaxComponents();
 })

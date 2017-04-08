@@ -173,6 +173,8 @@
     <Content Include="Areas\Authentication\Content\user.css" />
     <Content Include="Areas\Authentication\Scripts\MyMoney.ManageAccount.js" />
     <Content Include="Areas\Common\Content\errors.css" />
+    <Content Include="Areas\Saving\Scripts\Goal\MyMoney.Goal.js" />
+    <Content Include="Areas\Saving\Scripts\Goal\MyMoney.ManageGoals.js" />
     <Content Include="Areas\Spending\Content\Expenditure\expenditure.css" />
     <Content Include="Areas\Spending\Scripts\Expenditure\MyMoney.Expenditure.js" />
     <Content Include="Content\Chartist\chartist.css" />
@@ -294,6 +296,9 @@
     <Content Include="Areas\Saving\Views\Goal\Manage.cshtml" />
     <Content Include="Areas\Saving\Views\web.config" />
     <Content Include="Areas\Saving\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Saving\Views\Goal\Editors\_GoalEditor.cshtml" />
+    <Content Include="Areas\Saving\Views\Goal\Modals\_AddGoalModal.cshtml" />
+    <Content Include="Areas\Saving\Views\Goal\Modals\_EditGoalModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

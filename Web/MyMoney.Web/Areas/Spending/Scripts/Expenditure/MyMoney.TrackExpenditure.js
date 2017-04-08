@@ -329,22 +329,20 @@ $(function () {
         loadAjaxComponents();
     }
 
-    $(function () {
-        loadCalendarData("#expenditure-calendar");
-        createChart("#expenditure-chart");
+    loadCalendarData("#expenditure-calendar");
+    createChart("#expenditure-chart");
 
-        $("#add-expenditure").click(addExpenditureClick);
-        $("#add").click(showAddModal);
-        $("#edit-expenditure").click(editExpenditureClick);
-        $("#delete-expenditure").click(deleteExpenditureClick);
+    $("#add-expenditure").click(addExpenditureClick);
+    $("#add").click(showAddModal);
+    $("#edit-expenditure").click(editExpenditureClick);
+    $("#delete-expenditure").click(deleteExpenditureClick);
 
-        if (!$("#table-warning")) {
-            $("#expenditure-table").DataTable({
-                "info": false,
-                "bFilter": false
-            });
-        }
+    if (!$("#table-warning")) {
+        $("#expenditure-table").DataTable({
+            "info": false,
+            "bFilter": false
+        });
+    }
 
-        $("tr[data-get]").click(showEditModal);
-    });
+    $("tr[data-get]").click(showEditModal);
 });

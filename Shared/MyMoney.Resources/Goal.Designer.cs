@@ -97,6 +97,60 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Label_Amount {
+            get {
+                return ResourceManager.GetString("Label_Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Date.
+        /// </summary>
+        public static string Label_EndDate {
+            get {
+                return ResourceManager.GetString("Label_EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Label_Name {
+            get {
+                return ResourceManager.GetString("Label_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        public static string Label_StartDate {
+            get {
+                return ResourceManager.GetString("Label_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a Goal.
+        /// </summary>
+        public static string Title_AddGoal {
+            get {
+                return ResourceManager.GetString("Title_AddGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit a Goal.
+        /// </summary>
+        public static string Title_EditGoal {
+            get {
+                return ResourceManager.GetString("Title_EditGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Goals.
         /// </summary>
         public static string Title_ManageGoals {

@@ -1,0 +1,26 @@
+﻿@using MyMoney.Resources
+@model MyMoney.ViewModels.Saving.Goal.AddGoalViewModel
+<div class="ui modal" id="add-goal-modal">
+    <div class="header">
+        <i class="add icon"></i>
+        @Goal.Title_AddGoal
+    </div>
+    <div class="content">
+        @using (Html.BeginForm("Add", "Goal", FormMethod.Post, new { id = "add-goal-form" }))
+        {
+            <div class="description">
+                @{ Html.RenderPartial("Editors/_GoalEditor", Model.Goal, ViewData); }
+            </div>
+                    }
+    </div>
+    <div class="actions">
+        <div class="ui black deny right labeled icon button">
+            @Common.Button_Cancel
+            <i class="cancel icon"></i>
+        </div>
+        <div class="ui positive right labeled icon button" id="add-goal">
+            @Common.Button_Save
+            <i class="save icon"></i>
+        </div>
+    </div>
+</div>

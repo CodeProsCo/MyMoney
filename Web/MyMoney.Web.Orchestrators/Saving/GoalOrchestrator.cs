@@ -223,11 +223,11 @@
         /// <returns>
         /// The response object.
         /// </returns>
-        public async Task<OrchestratorResponseWrapper<IList<GoalViewModel>>> GetGoalsForUser(
+        public async Task<OrchestratorResponseWrapper<ManageGoalsViewModel>> GetGoalsForUser(
             Guid userId,
             string username)
         {
-            var response = new OrchestratorResponseWrapper<IList<GoalViewModel>>();
+            var response = new OrchestratorResponseWrapper<ManageGoalsViewModel>();
 
             try
             {
@@ -240,7 +240,7 @@
                 }
                 else
                 {
-                    response.Model = assembler.ProxyToViewModel(apiResponse.Goals);
+                    response.Model = assembler.NewManageGoalsViewModel(apiResponse.Goals);
                 }
 
                 response.AddWarnings(apiResponse.Warnings);
