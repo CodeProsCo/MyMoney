@@ -54,8 +54,10 @@
                         Dependency.OnComponent<IBillOrchestrator, BillOrchestrator>(),
                         Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
 
-            container.Register(Component.For<GoalController>().LifestylePerWebRequest()
-                .DependsOn(Dependency.OnComponent<IGoalOrchestrator, GoalOrchestrator>()));
+            container.Register(
+                Component.For<GoalController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IGoalOrchestrator, GoalOrchestrator>()));
 
             container.Register(Component.For<ResourceController>().LifestylePerWebRequest());
             container.Register(Component.For<ErrorController>().LifestylePerWebRequest());

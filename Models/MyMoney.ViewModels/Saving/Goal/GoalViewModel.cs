@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMoney.ViewModels.Saving.Goal
+﻿namespace MyMoney.ViewModels.Saving.Goal
 {
+    #region Usings
+
+    using System;
+
+    #endregion
+
+    /// <summary>
+    /// The <see cref="GoalViewModel"/> class contains view information for goals.
+    /// </summary>
     public class GoalViewModel
     {
         #region Properties
@@ -19,7 +22,7 @@ namespace MyMoney.ViewModels.Saving.Goal
         public double Amount { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="GoalDataModel"/> is complete.
+        /// Gets or sets a value indicating whether this <see cref="GoalViewModel"/> is complete.
         /// </summary>
         /// <value>
         ///   <c>true</c> if complete; otherwise, <c>false</c>.

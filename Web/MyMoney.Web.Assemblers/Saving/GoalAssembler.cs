@@ -10,16 +10,34 @@
 
     using Interfaces;
 
+    using JetBrains.Annotations;
+
     using Proxies.Saving;
 
     using ViewModels.Saving.Goal;
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="GoalAssembler"/> class creates proxies and request objects regarding goals.
+    /// </summary>
+    /// <seealso cref="MyMoney.Web.Assemblers.Saving.Interfaces.IGoalAssembler" />
+    [UsedImplicitly]
     public class GoalAssembler : IGoalAssembler
     {
         #region Methods
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="AddGoalRequest" /> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the model or username are null.
+        /// </exception>
         public AddGoalRequest NewAddGoalRequest(GoalViewModel model, string username)
         {
             if (model == null)
@@ -35,6 +53,17 @@
             return new AddGoalRequest { Goal = ViewModelToProxy(model), Username = username };
         }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="DeleteGoalRequest" /> class.
+        /// </summary>
+        /// <param name="goalId">The goal identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the goal identifier or username are empty.
+        /// </exception>
         public DeleteGoalRequest NewDeleteGoalRequest(Guid goalId, string username)
         {
             if (goalId.Equals(Guid.Empty))
@@ -50,6 +79,17 @@
             return new DeleteGoalRequest { GoalId = goalId, Username = username };
         }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="EditGoalRequest" /> class.
+        /// </summary>
+        /// <param name="goal">The goal.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the model or username are null.
+        /// </exception>
         public EditGoalRequest NewEditGoalRequest(GoalViewModel goal, string username)
         {
             if (goal == null)
@@ -65,6 +105,17 @@
             return new EditGoalRequest { Goal = ViewModelToProxy(goal), Username = username };
         }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="GetGoalRequest" /> class.
+        /// </summary>
+        /// <param name="goalId">The goal identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the goal identifier or username are empty.
+        /// </exception>
         public GetGoalRequest NewGetGoalRequest(Guid goalId, string username)
         {
             if (goalId.Equals(Guid.Empty))
@@ -80,6 +131,17 @@
             return new GetGoalRequest { GoalId = goalId, Username = username };
         }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="GetGoalsForUserRequest" /> class.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The request object.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the user identifier or username are empty.
+        /// </exception>
         public GetGoalsForUserRequest NewGetGoalsForUserRequest(Guid userId, string username)
         {
             if (userId.Equals(Guid.Empty))
@@ -95,6 +157,13 @@
             return new GetGoalsForUserRequest { UserId = userId, Username = username };
         }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="GoalViewModel" /> class.
+        /// </summary>
+        /// <param name="proxy">The proxy.</param>
+        /// <returns>
+        /// The view model.
+        /// </returns>
         public GoalViewModel ProxyToViewModel(GoalProxy proxy)
         {
             return new GoalViewModel
@@ -109,11 +178,23 @@
             };
         }
 
-        public IList<GoalViewModel> ProxyToViewModel(IList<GoalProxy> goals)
+        /// <summary>
+        /// Creates a new instance of the <see cref="GoalViewModel" /> class.
+        /// </summary>
+        /// <param name="goals">The goals.</param>
+        /// <returns>
+        /// The list of view models.
+        /// </returns>
+        public IList<GoalViewModel> ProxyToViewModel(IEnumerable<GoalProxy> goals)
         {
             return goals.Select(ProxyToViewModel).ToList();
         }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="GoalProxy"/> class.
+        /// </summary>
+        /// <param name="goal">The goal.</param>
+        /// <returns>The goal proxy.</returns>
         private static GoalProxy ViewModelToProxy(GoalViewModel goal)
         {
             return new GoalProxy

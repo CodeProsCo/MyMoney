@@ -91,6 +91,7 @@ $("#hint-button")
         }
     });
 
+$(".ui.progress").progress();
 
 $("#password-bar")
     .progress({ total: 4 });

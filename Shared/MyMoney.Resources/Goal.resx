@@ -120,4 +120,25 @@
   <data name="Error_CouldNotFindGoal" xml:space="preserve">
     <value>The requested goal could not be found.</value>
   </data>
+  <data name="Header_CompletedGoals" xml:space="preserve">
+    <value>Completed Goals</value>
+  </data>
+  <data name="Header_CurrentGoals" xml:space="preserve">
+    <value>Current Goals</value>
+  </data>
+  <data name="Header_YourGoals" xml:space="preserve">
+    <value>Your Goals</value>
+  </data>
+  <data name="Title_ManageGoals" xml:space="preserve">
+    <value>Manage Goals</value>
+  </data>
+  <data name="Tooltip_Complete" xml:space="preserve">
+    <value>Complete Goal</value>
+  </data>
+  <data name="Tooltip_Delete" xml:space="preserve">
+    <value>Delete Goal</value>
+  </data>
+  <data name="Tooltip_Edit" xml:space="preserve">
+    <value>Edit Goal</value>
+  </data>
 </root>

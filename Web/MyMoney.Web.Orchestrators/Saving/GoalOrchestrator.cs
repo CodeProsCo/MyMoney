@@ -22,19 +22,37 @@
 
     #endregion
 
+    /// <summary>
+    /// The <see cref="GoalOrchestrator"/> class performs actions regarding goals.
+    /// </summary>
+    /// <seealso cref="MyMoney.Web.Orchestrators.Saving.Interfaces.IGoalOrchestrator" />
     [UsedImplicitly]
     public class GoalOrchestrator : IGoalOrchestrator
     {
         #region Fields
 
-        private IGoalAssembler assembler;
+        /// <summary>
+        /// The assembler
+        /// </summary>
+        private readonly IGoalAssembler assembler;
 
-        private IGoalDataAccess dataAccess;
+        /// <summary>
+        /// The data access
+        /// </summary>
+        private readonly IGoalDataAccess dataAccess;
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GoalOrchestrator"/> class.
+        /// </summary>
+        /// <param name="dataAccess">The data access.</param>
+        /// <param name="assembler">The assembler.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if that data access or assembler are null.
+        /// </exception>
         public GoalOrchestrator(IGoalDataAccess dataAccess, IGoalAssembler assembler)
         {
             if (dataAccess == null)
@@ -55,6 +73,14 @@
 
         #region Methods
 
+        /// <summary>
+        /// Adds a goal to the database.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<OrchestratorResponseWrapper<GoalViewModel>> AddGoal(GoalViewModel model, string username)
         {
             var response = new OrchestratorResponseWrapper<GoalViewModel>();
@@ -84,7 +110,15 @@
             return response;
         }
 
-        public async Task<OrchestratorResponseWrapper<bool>> DelteGoal(Guid goalId, string username)
+        /// <summary>
+        /// Removes a goal from the database.
+        /// </summary>
+        /// <param name="goalId">The goal identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
+        public async Task<OrchestratorResponseWrapper<bool>> DeleteGoal(Guid goalId, string username)
         {
             var response = new OrchestratorResponseWrapper<bool>();
 
@@ -107,6 +141,14 @@
             return response;
         }
 
+        /// <summary>
+        /// Modifies a goal.
+        /// </summary>
+        /// <param name="goal">The goal.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<OrchestratorResponseWrapper<GoalViewModel>> EditGoal(GoalViewModel goal, string username)
         {
             var response = new OrchestratorResponseWrapper<GoalViewModel>();
@@ -136,6 +178,14 @@
             return response;
         }
 
+        /// <summary>
+        /// Obtains a goal.
+        /// </summary>
+        /// <param name="goalId">The goal identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<OrchestratorResponseWrapper<GoalViewModel>> GetGoal(Guid goalId, string username)
         {
             var response = new OrchestratorResponseWrapper<GoalViewModel>();
@@ -165,6 +215,14 @@
             return response;
         }
 
+        /// <summary>
+        /// Obtains a goal for the given user.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="username">The username.</param>
+        /// <returns>
+        /// The response object.
+        /// </returns>
         public async Task<OrchestratorResponseWrapper<IList<GoalViewModel>>> GetGoalsForUser(
             Guid userId,
             string username)

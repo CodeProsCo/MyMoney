@@ -68,5 +68,68 @@ namespace MyMoney.Resources {
                 return ResourceManager.GetString("Error_CouldNotFindGoal", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed Goals.
+        /// </summary>
+        public static string Header_CompletedGoals {
+            get {
+                return ResourceManager.GetString("Header_CompletedGoals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Goals.
+        /// </summary>
+        public static string Header_CurrentGoals {
+            get {
+                return ResourceManager.GetString("Header_CurrentGoals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Goals.
+        /// </summary>
+        public static string Header_YourGoals {
+            get {
+                return ResourceManager.GetString("Header_YourGoals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Goals.
+        /// </summary>
+        public static string Title_ManageGoals {
+            get {
+                return ResourceManager.GetString("Title_ManageGoals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete Goal.
+        /// </summary>
+        public static string Tooltip_Complete {
+            get {
+                return ResourceManager.GetString("Tooltip_Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Goal.
+        /// </summary>
+        public static string Tooltip_Delete {
+            get {
+                return ResourceManager.GetString("Tooltip_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Goal.
+        /// </summary>
+        public static string Tooltip_Edit {
+            get {
+                return ResourceManager.GetString("Tooltip_Edit", resourceCulture);
+            }
+        }
     }
 }
