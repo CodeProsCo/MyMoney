@@ -122,7 +122,9 @@
                 throw new Exception(Goal.Error_CouldNotFindGoal);
             }
 
+            model.Id = toEdit.Id;
             model.CreationTime = toEdit.CreationTime;
+
             toEdit = context.Goals.Attach(toEdit);
             context.Goals.Remove(toEdit);
 

@@ -1,10 +1,12 @@
 ﻿@using Cassette.Scripts
+@using Cassette.Stylesheets
 @using Cassette.Views
 @using MyMoney.Resources
 @model MyMoney.ViewModels.Saving.Goal.ManageGoalsViewModel
 @{
     ViewBag.Title = Goal.Title_ManageGoals;
 
+    Bundles.Reference<StylesheetBundle>("~/Areas/Saving/Content/Goal/goal.css");
     Bundles.Reference<ScriptBundle>("~/Areas/Saving/Scripts/Goal/MyMoney.ManageGoals.js");
 }
 
@@ -18,7 +20,7 @@
             <div class="ui divided items">
                 @foreach (var goal in Model.Goals.Where(x => !x.Complete))
                 {
-                    <div class="item">
+                    <div class="item" data-goal-id="@goal.Id">
                         <div class="content">
                             <span class="header">@goal.Name</span>
                             <div class="ui right floated yellow icon button"
@@ -38,7 +40,7 @@
                                 }
                             </div>
                             <div class="description">
-                                <div class="ui success progress" data-percent="@goal.Amount">
+                                <div class="ui indicating progress" data-percent="@goal.Amount">
                                     <div class="bar">
                                         <div class="progress"></div>
                                     </div>
@@ -95,7 +97,7 @@
                 <i class="flag outline icon"></i>
                 @Goal.Header_YourGoals
             </h4>
-            <div class="ui full-width green button" id="add">
+            <div class="ui green button wide-button" id="add">
                 <i class="add icon"></i>
                 Create a New Goal
             </div>

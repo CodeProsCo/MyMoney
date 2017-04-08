@@ -173,6 +173,7 @@
     <Content Include="Areas\Authentication\Content\user.css" />
     <Content Include="Areas\Authentication\Scripts\MyMoney.ManageAccount.js" />
     <Content Include="Areas\Common\Content\errors.css" />
+    <Content Include="Areas\Saving\Content\Goal\goal.css" />
     <Content Include="Areas\Saving\Scripts\Goal\MyMoney.Goal.js" />
     <Content Include="Areas\Saving\Scripts\Goal\MyMoney.ManageGoals.js" />
     <Content Include="Areas\Spending\Content\Expenditure\expenditure.css" />

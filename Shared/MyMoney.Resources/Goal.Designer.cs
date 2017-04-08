@@ -133,6 +133,33 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your goal was created successfully..
+        /// </summary>
+        public static string Message_CreatedGoal {
+            get {
+                return ResourceManager.GetString("Message_CreatedGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your goal has been deleted..
+        /// </summary>
+        public static string Message_DeletedGoal {
+            get {
+                return ResourceManager.GetString("Message_DeletedGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your goal has been updated..
+        /// </summary>
+        public static string Message_UpdatedGoal {
+            get {
+                return ResourceManager.GetString("Message_UpdatedGoal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a Goal.
         /// </summary>
         public static string Title_AddGoal {

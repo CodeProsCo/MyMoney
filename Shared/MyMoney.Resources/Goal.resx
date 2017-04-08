@@ -141,6 +141,15 @@
   <data name="Label_StartDate" xml:space="preserve">
     <value>Start Date</value>
   </data>
+  <data name="Message_CreatedGoal" xml:space="preserve">
+    <value>Your goal was created successfully.</value>
+  </data>
+  <data name="Message_DeletedGoal" xml:space="preserve">
+    <value>Your goal has been deleted.</value>
+  </data>
+  <data name="Message_UpdatedGoal" xml:space="preserve">
+    <value>Your goal has been updated.</value>
+  </data>
   <data name="Title_AddGoal" xml:space="preserve">
     <value>Create a Goal</value>
   </data>

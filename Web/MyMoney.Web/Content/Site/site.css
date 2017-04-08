@@ -2,6 +2,11 @@
 @reference ~/Content/Semantic/semantic.css
 */
 
+
+.wide-button {
+    width: 100% !important;
+}
+
 #main-grid {
     padding: 25px 40px !important;
 }
