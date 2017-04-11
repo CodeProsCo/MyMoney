@@ -300,6 +300,7 @@
     <Content Include="Areas\Saving\Views\Goal\Editors\_GoalEditor.cshtml" />
     <Content Include="Areas\Saving\Views\Goal\Modals\_AddGoalModal.cshtml" />
     <Content Include="Areas\Saving\Views\Goal\Modals\_EditGoalModal.cshtml" />
+    <Content Include="Areas\Saving\Views\Goal\Components\_GoalProgressBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -8,6 +8,8 @@
 
     using Attributes;
 
+    using Helpers.Views;
+
     using Orchestrators.Saving.Interfaces;
 
     using ViewModels.Saving.Goal;
@@ -140,6 +142,23 @@
             var response = await orchestrator.GetGoal(goalId, UserEmail);
 
             return JsonResponse(response);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        [Route("progress/{goalId:Guid}")]
+        public async Task<ActionResult> GetProgressView(Guid goalId)
+        {
+            var response = await orchestrator.GetGoal(goalId, UserEmail);
+
+            var result = ViewHelper.RenderViewToString(
+                "Components/_GoalProgressBar",
+                response.Model,
+                ControllerContext,
+                ViewData,
+                TempData);
+
+            return ViewResponse(result);
         }
 
         #endregion

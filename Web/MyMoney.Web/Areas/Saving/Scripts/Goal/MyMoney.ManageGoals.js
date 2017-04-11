@@ -85,9 +85,33 @@ $(function () {
                 showSuccess(successMsg);
                 $("#add-goal-form")[0].reset();
             }
+
+            var url = $("#progress-url").val().replace(/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/i, goal.id);
+
+            console.log(url);
+
+            var callback = AjaxResponse(getProgressViewSuccessCallback);
+
+            $.ajax(url,
+                {
+                    method: "GET",
+                    async: true,
+                    dataType: "json",
+                    success: callback,
+                    error: ajaxFail
+                });
         }
 
         $("#add-goal-modal").modal("hide");
+    }
+
+    function getProgressViewSuccessCallback(data) {
+        if (!data.success) {
+            return;
+        }
+
+        $("#in-progress").append(data.view);
+        $("div[data-edit]").click(showEditModal);
     }
 
     function editGoalClick(event) {
@@ -163,7 +187,7 @@ $(function () {
         $(btn).off("click");
         $(btn).click(deleteGoalClick);
 
-        
+
     }
 
     $("#add").click(showAddModal);

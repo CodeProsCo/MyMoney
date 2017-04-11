@@ -9,7 +9,7 @@
     Bundles.Reference<StylesheetBundle>("~/Areas/Saving/Content/Goal/goal.css");
     Bundles.Reference<ScriptBundle>("~/Areas/Saving/Scripts/Goal/MyMoney.ManageGoals.js");
 }
-
+<input type="hidden" id="progress-url" value="@Url.Action("GetProgressView", new { goalId = Guid.Empty})"/>
 <div class="ui grid" id="main-grid">
     <div class="twelve wide column">
         <div class="ui styled segment">
@@ -17,37 +17,10 @@
                 <i class="flag icon"></i>
                 @Goal.Header_CurrentGoals
             </h4>
-            <div class="ui divided items">
+            <div class="ui divided items" id="in-progress">
                 @foreach (var goal in Model.Goals.Where(x => !x.Complete))
                 {
-                    <div class="item" data-goal-id="@goal.Id">
-                        <div class="content">
-                            <span class="header">@goal.Name</span>
-                            <div class="ui right floated yellow icon button"
-                                 data-inverted
-                                 data-tooltip="@Goal.Tooltip_Edit"
-                                 data-edit
-                                 data-get="@Url.Action("Get", "Goal", new {goalId = goal.Id})">
-                                <i class="pencil icon"></i>
-                            </div>
-                            <div class="meta">
-                                @goal.StartDate.ToShortDateString()
-
-                                @if (goal.EndDate.HasValue)
-                                {
-                                    @("- ")
-                                    @goal.EndDate.Value.ToShortDateString()
-                                }
-                            </div>
-                            <div class="description">
-                                <div class="ui indicating progress" data-percent="@goal.Amount">
-                                    <div class="bar">
-                                        <div class="progress"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    Html.RenderPartial("Components/_GoalProgressBar", goal);
                 }
 
                 @if (Model.Goals.All(x => x.Complete))
@@ -66,27 +39,7 @@
             <div class="ui divided items">
                 @foreach (var goal in Model.Goals.Where(x => x.Complete))
                 {
-                    <div class="item">
-                        <div class="content">
-                            <span class="header">@goal.Name</span>
-                            <div class="meta">
-                                @goal.StartDate.ToShortDateString()
-
-                                @if (goal.EndDate.HasValue)
-                                {
-                                    @("- ")
-                                    @goal.EndDate.Value.ToShortDateString()
-                                }
-                            </div>
-                            <div class="description">
-                                <div class="ui progress success" data-percent="100">
-                                    <div class="bar">
-                                        <div class="progress"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    Html.RenderPartial("Components/_GoalProgressBar", goal);
                 }
             </div>
         </div>

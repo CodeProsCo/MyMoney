@@ -147,6 +147,23 @@
             };
         }
 
+        protected static ContentResult ViewResponse(string viewData)
+        {
+            return new ContentResult
+                       {
+                           ContentType = "application/json",
+                           Content =
+                               JsonConvert.SerializeObject(
+                                   new { View = viewData, Success = true },
+                                   new JsonSerializerSettings
+                                       {
+                                           ContractResolver =
+                                               new CamelCasePropertyNamesContractResolver()
+                                       }),
+                           ContentEncoding = Encoding.UTF8
+                       };
+        }
+
         /// <summary>Begins execution of the specified request context</summary>
         /// <returns>Returns an IAsyncController instance.</returns>
         /// <param name="requestContext">The request context.</param>

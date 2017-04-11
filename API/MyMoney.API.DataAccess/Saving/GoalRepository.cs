@@ -88,14 +88,13 @@
         /// </exception>
         public async Task<bool> DeleteGoal(Guid goalId)
         {
-            var toDelete = await GetGoal(goalId);
+            var toDelete = await context.Goals.FirstOrDefaultAsync(x => x.Id.Equals(goalId));
 
             if (toDelete == null)
             {
                 throw new Exception(Goal.Error_CouldNotFindGoal);
             }
 
-            toDelete = context.Goals.Attach(toDelete);
             context.Goals.Remove(toDelete);
 
             var rows = await context.SaveChangesAsync();
