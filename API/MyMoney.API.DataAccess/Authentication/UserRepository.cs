@@ -4,6 +4,7 @@
 
     using System;
     using System.Data.Entity;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using DataModels.Authentication;
@@ -94,14 +95,18 @@
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {
-            var result = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.EmailAddress == username);
+            var result =
+                await context.Users.AsNoTracking()
+                    .Where(x => x.EmailAddress == username)
+                    .Select(x => x.Id)
+                    .SingleOrDefaultAsync();
 
-            if (result == null)
+            if (result == null || result == Guid.Empty)
             {
                 throw new Exception(Authentication.Error_CouldNotFindUser);
             }
 
-            return result.Id;
+            return result;
         }
 
         /// <summary>
