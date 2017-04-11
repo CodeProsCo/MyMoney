@@ -5,7 +5,7 @@
 }
 <table class="ui celled selectable table" id="bill-table" data-sort="true">
     <thead>
-    <tr data-hint="@Bills.Hint_BillTable">
+    <tr data-hint="@Bill.Hint_BillTable">
         <th>@Common.Header_StartDate</th>
         <th>@Common.Header_Description</th>
         <th>@Common.Header_Category</th>
@@ -33,7 +33,7 @@
     {
         <tr id="table-warning">
             <td colspan="5">
-                @Bills.Warning_NoBills
+                @Bill.Warning_NoBills
             </td>
         </tr>
     }
@@ -41,7 +41,7 @@
     <tfoot>
     <tr>
         <th colspan="5">
-            <div class="ui left floated small primary button" id="add" data-hint="@Bills.Hint_AddNewBill">
+            <div class="ui left floated small primary button" id="add" data-hint="@Bill.Hint_AddNewBill">
                 <i class="add icon"></i> @Common.Button_New
             </div>
             @{ Html.RenderPartial("Components/Buttons/_ExportButton"); }

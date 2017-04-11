@@ -106,7 +106,7 @@
 
             if (toDelete == null)
             {
-                throw new Exception(Bills.Error_CouldNotFindBill);
+                throw new Exception(Bill.Error_CouldNotFindBill);
             }
 
             toDelete = context.Bills.Attach(toDelete);
@@ -128,7 +128,7 @@
 
             if (toEdit == null)
             {
-                throw new Exception(Bills.Error_CouldNotFindBill);
+                throw new Exception(Bill.Error_CouldNotFindBill);
             }
 
             bill.CreationTime = toEdit.CreationTime;
@@ -163,7 +163,7 @@
 
             if (bill == null)
             {
-                throw new Exception(Bills.Error_CouldNotFindBill);
+                throw new Exception(Bill.Error_CouldNotFindBill);
             }
 
             return bill;

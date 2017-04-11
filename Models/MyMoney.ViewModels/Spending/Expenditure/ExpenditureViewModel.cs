@@ -25,7 +25,7 @@
         /// </value>
         [UIHint("Currency")]
         [Required]
-        [Display(Name = "Label_Amount", ResourceType = typeof(Bills))]
+        [Display(Name = "Label_Amount", ResourceType = typeof(Expenditure))]
         public double Amount { get; set; }
 
         /// <summary>
@@ -36,7 +36,7 @@
         /// </value>
         [Required]
         [UIHint("Dropdown")]
-        [Display(Name = "Label_Category", ResourceType = typeof(Bills))]
+        [Display(Name = "Label_Category", ResourceType = typeof(Expenditure))]
         public string Category { get; set; }
 
         /// <summary>

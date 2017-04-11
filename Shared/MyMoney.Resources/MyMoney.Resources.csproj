@@ -81,10 +81,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Bills.Designer.cs">
+    <Compile Include="Bill.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Bills.resx</DependentUpon>
+      <DependentUpon>Bill.resx</DependentUpon>
     </Compile>
     <Compile Include="Common.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -117,9 +117,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Goal.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bills.resx">
+    <EmbeddedResource Include="Bill.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Bills.Designer.cs</LastGenOutput>
+      <LastGenOutput>Bill.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

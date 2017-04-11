@@ -13,7 +13,7 @@
 $(function () {
     function addBillSuccessCallback(data) {
         if (data.success) {
-            var successMsg = myMoney.strings.get("Bills", "Message_RecordedBill");
+            var successMsg = myMoney.strings.get("Bill", "Message_RecordedBill");
             var bill = new BillModel(data.model);
 
             showSuccess(successMsg);
@@ -46,7 +46,7 @@ $(function () {
 
     function editBillSuccessCallback(data) {
         if (data.success) {
-            var successMsg = myMoney.strings.get("Bills", "Message_UpdatedBill");
+            var successMsg = myMoney.strings.get("Bill", "Message_UpdatedBill");
             var bill = new BillModel(data.model);
 
             if (typeof (bill.id) !== "undefined") {
@@ -218,7 +218,7 @@ $(function () {
 
     function deleteBillSuccessCallback(data) {
         if (data.success) {
-            var successMsg = myMoney.strings.get("Bills", "Message_DeleteBill");
+            var successMsg = myMoney.strings.get("Bill", "Message_DeleteBill");
 
             showSuccess(successMsg);
             $("tr.selected").remove();
@@ -227,7 +227,7 @@ $(function () {
 
             if (table.find("tbody").find("tr").length === 0) {
                 var row = $("<tr>").attr("id", "table-warning");
-                var cellText = myMoney.strings.get("Bills", "Warning_NoBills");
+                var cellText = myMoney.strings.get("Bill", "Warning_NoBills");
                 var cell = $("<td>").attr("colspan", 5).text(cellText);
 
                 table.append(row.append(cell));

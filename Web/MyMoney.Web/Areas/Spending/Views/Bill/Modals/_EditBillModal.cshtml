@@ -5,7 +5,7 @@
 <div class="ui modal" id="edit-bill-modal">
     <div class="yellow header">
         <i class="edit icon"></i>
-        @Bills.Title_EditBill
+        @Bill.Title_EditBill
     </div>
     <div class="content">
         @using (Html.BeginForm("Edit", "Bill", FormMethod.Post, new { id = "edit-bill-form" }))

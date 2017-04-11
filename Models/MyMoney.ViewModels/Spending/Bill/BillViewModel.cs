@@ -27,7 +27,7 @@
         /// </value>
         [UIHint("Currency")]
         [Required]
-        [Display(Name = "Label_Amount", ResourceType = typeof(Bills))]
+        [Display(Name = "Label_Amount", ResourceType = typeof(Bill))]
         public double Amount { get; set; }
 
         /// <summary>
@@ -38,7 +38,7 @@
         /// </value>
         [Required]
         [UIHint("Dropdown")]
-        [Display(Name = "Label_Category", ResourceType = typeof(Bills))]
+        [Display(Name = "Label_Category", ResourceType = typeof(Bill))]
         public string Category { get; set; }
 
         /// <summary>
@@ -57,7 +57,7 @@
         ///     The name.
         /// </value>
         [Required]
-        [Display(Name = "Label_Name", ResourceType = typeof(Bills))]
+        [Display(Name = "Label_Name", ResourceType = typeof(Bill))]
         public string Name { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@
         /// </value>
         [Required]
         [UIHint("Dropdown")]
-        [Display(Name = "Label_ReoccuringPeriod", ResourceType = typeof(Bills))]
+        [Display(Name = "Label_ReoccuringPeriod", ResourceType = typeof(Bill))]
         public TimePeriod ReoccurringPeriod { get; set; }
 
         /// <summary>
@@ -79,7 +79,7 @@
         /// </value>
         [Required]
         [UIHint("DateTime")]
-        [Display(Name = "Label_StartDate", ResourceType = typeof(Bills))]
+        [Display(Name = "Label_StartDate", ResourceType = typeof(Bill))]
         public DateTime StartDate { get; set; }
 
         /// <summary>

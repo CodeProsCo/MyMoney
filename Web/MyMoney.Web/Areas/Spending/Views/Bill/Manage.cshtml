@@ -5,7 +5,7 @@
 @model MyMoney.ViewModels.Spending.Bill.ManageBillsViewModel
 
 @{
-    ViewBag.Title = Bills.Title_ManageBills;
+    ViewBag.Title = Bill.Title_ManageBills;
 
     Bundles.Reference<ScriptBundle>("~/Areas/Spending/Scripts/Bill/MyMoney.ManageBills.js");
 
@@ -17,23 +17,23 @@
         <div class="ui styled segment">
             <div class="ui block header">
                 <i class="delete calendar icon"></i>
-                @Bills.Title_Bills
+                @Bill.Title_Bills
             </div>
             @{ Html.RenderPartial("Tables/_BillTable", Model.Bills); }
         </div>
         <div class="ui styled segment">
             <div class="ui block header">
                 <i class="clock icon"></i>
-                @Bills.Title_UpcomingBills
+                @Bill.Title_UpcomingBills
             </div>
-            <div class="ui calendar" id="bill-calendar" data-url="@Url.Action("GetBillsForMonth", "Bill", new { monthNumber = DateTime.Now.Month })" data-hint="@Bills.Hint_BillCalendar"></div>
+            <div class="ui calendar" id="bill-calendar" data-url="@Url.Action("GetBillsForMonth", "Bill", new { monthNumber = DateTime.Now.Month })" data-hint="@Bill.Hint_BillCalendar"></div>
         </div>
     </div>
     <div class="four wide column">
         <div class="ui styled segment" id="bill-charts">
-            <div class="ui block header" data-hint="@Bills.Hint_BillBreakdown">
+            <div class="ui block header" data-hint="@Bill.Hint_BillBreakdown">
                 <i class="browser icon"></i>
-                @Bills.Heading_BillBreakdown
+                @Bill.Heading_BillBreakdown
             </div>
             <div class="ui items">
                 <div class="ui active inverted dimmer" id="bill-chart-loader">
