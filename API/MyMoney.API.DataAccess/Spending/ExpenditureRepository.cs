@@ -160,7 +160,9 @@
         public async Task<ExpenditureDataModel> GetExpenditure(Guid expenditureId)
         {
             return
-                await context.Expenditures.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id.Equals(expenditureId));
+                await context.Expenditures.Include(x => x.Category)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id.Equals(expenditureId));
         }
 
         /// <summary>
@@ -172,7 +174,11 @@
         /// </returns>
         public async Task<IList<ExpenditureDataModel>> GetExpendituresForUser(Guid userId)
         {
-            return await context.Expenditures.Include(x => x.Category).Where(x => x.UserId.Equals(userId)).ToListAsync();
+            return
+                await context.Expenditures.Include(x => x.Category)
+                    .AsNoTracking()
+                    .Where(x => x.UserId.Equals(userId))
+                    .ToListAsync();
         }
 
         /// <summary>
@@ -186,9 +192,11 @@
         {
             return
                 await context.Expenditures.Include(x => x.Category)
+                    .AsNoTracking()
                     .Where(
                         x =>
-                            x.DateOccurred.Month == DateTime.Now.Month && x.DateOccurred.Year == DateTime.Now.Year
+                            x.DateOccurred.Month == DateTime.Now.Month 
+                            && x.DateOccurred.Year == DateTime.Now.Year
                             && x.UserId.Equals(userId))
                     .ToListAsync();
         }

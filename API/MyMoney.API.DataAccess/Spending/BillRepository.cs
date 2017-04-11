@@ -159,7 +159,10 @@
         /// </exception>
         public async Task<BillDataModel> GetBill(Guid billId)
         {
-            var bill = await context.Bills.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id.Equals(billId));
+            var bill =
+                await context.Bills.Include(x => x.Category)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Id.Equals(billId));
 
             if (bill == null)
             {
@@ -178,7 +181,11 @@
         /// </returns>
         public async Task<IList<BillDataModel>> GetBillsForUser(Guid userId)
         {
-            return await context.Bills.Include(x => x.Category).Where(x => x.UserId.Equals(userId)).ToListAsync();
+            return
+                await context.Bills.Include(x => x.Category)
+                    .AsNoTracking()
+                    .Where(x => x.UserId.Equals(userId))
+                    .ToListAsync();
         }
 
         #endregion

@@ -98,7 +98,7 @@
         {
             if (await context.Categories.CountAsync() > 0)
             {
-                return await context.Categories.AnyAsync(x => x.Name == name);
+                return await context.Categories.AsNoTracking().AnyAsync(x => x.Name == name);
             }
 
             return false;
@@ -113,7 +113,7 @@
         /// </returns>
         private async Task<CategoryDataModel> GetCategory(string name)
         {
-            return await context.Categories.FirstOrDefaultAsync(x => x.Name == name);
+            return await context.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.Name == name);
         }
 
         #endregion

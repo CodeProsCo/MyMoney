@@ -147,7 +147,7 @@
         /// </exception>
         public async Task<GoalDataModel> GetGoal(Guid goalId)
         {
-            var goal = await context.Goals.FirstOrDefaultAsync(x => x.Id.Equals(goalId));
+            var goal = await context.Goals.AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(goalId));
 
             if (goal == null)
             {
@@ -166,7 +166,7 @@
         /// </returns>
         public async Task<IList<GoalDataModel>> GetGoalsForUser(Guid userId)
         {
-            return await context.Goals.Where(x => x.UserId.Equals(userId)).ToListAsync();
+            return await context.Goals.AsNoTracking().Where(x => x.UserId.Equals(userId)).ToListAsync();
         }
 
         #endregion

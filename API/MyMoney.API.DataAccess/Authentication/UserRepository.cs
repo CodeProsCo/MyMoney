@@ -67,7 +67,7 @@
         /// </returns>
         public async Task<UserDataModel> GetUser(string email, string password)
         {
-            var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == email);
+            var result = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.EmailAddress == email);
 
             if (result == null)
             {
@@ -94,7 +94,7 @@
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {
-            var result = await context.Users.FirstOrDefaultAsync(x => x.EmailAddress == username);
+            var result = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.EmailAddress == username);
 
             if (result == null)
             {
