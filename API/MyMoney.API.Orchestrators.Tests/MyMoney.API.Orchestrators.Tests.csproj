@@ -58,8 +58,17 @@
       <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute, Version=2.0.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NSubstitute.2.0.2\lib\net45\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -95,6 +104,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\MyMoney.DataModels\MyMoney.DataModels.csproj">
+      <Project>{4FC33969-3E6B-4B9B-8F30-5F47DEF0AC49}</Project>
+      <Name>MyMoney.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
+      <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
+      <Name>MyMoney.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
+      <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
+      <Name>MyMoney.Wrappers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyMoney.API.Assemblers\MyMoney.API.Assemblers.csproj">
+      <Project>{92CE09E3-14DD-469A-8603-F792C54B1ECF}</Project>
+      <Name>MyMoney.API.Assemblers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyMoney.API.DataAccess\MyMoney.API.DataAccess.csproj">
+      <Project>{D6D57E85-BB99-4F50-A86B-5B943836E684}</Project>
+      <Name>MyMoney.API.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyMoney.API.Orchestrators\MyMoney.API.Orchestrators.csproj">
       <Project>{f9b6c518-d6a9-4411-9503-27fa9129015f}</Project>
       <Name>MyMoney.API.Orchestrators</Name>
