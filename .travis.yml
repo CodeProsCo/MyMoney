@@ -2,5 +2,4 @@ language: csharp
 solution: MyMoney.sln
 
 script:
- - xbuild /p:Configuration="Web App" MyMoney.sln
- - xbuild /p:Configuration="Web API" MyMoney.sln
+ - xbuild /p:Configuration="Debug" MyMoney.sln
