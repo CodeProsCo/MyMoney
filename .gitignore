@@ -302,5 +302,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 *.jfm
-Database/MyMoney.Database/MyMoney.Database.jfm
-Database/MyMoney.Database/MyMoney.Database.jfm
+*.scmp
+*.jfm
