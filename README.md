@@ -2,7 +2,8 @@
 A personal finance planner written in .NET.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1f8dil59itpavc5d?svg=true)](https://ci.appveyor.com/project/davidsbond/mymoney)
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-brightgreen.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![GitHub issues](https://img.shields.io/github/issues/davidsbond/MyMoney.svg)](https://github.com/davidsbond/MyMoney/issues)
 
 ## Libraries Used
 ### JavaScript & CSS
