@@ -36,7 +36,7 @@
         /// <returns>
         /// The response object.
         /// </returns>
-        public ValidateUserResponse NewGetClaimForUserResponse(UserDataModel userDataModel, Guid reqReference)
+        public ValidateUserResponse NewValidateUserResponse(UserDataModel userDataModel, Guid reqReference)
         {
             var success = userDataModel != null;
 

@@ -46,6 +46,12 @@
 
         private RegisterUserRequest exceptionRegisterUserRequest;
 
+        private ValidateUserRequest validValidateUserRequest;
+
+        private ValidateUserRequest invalidValidateUserRequest;
+
+        private ValidateUserRequest exceptionValidateUserRequest;
+
         private UserDataModel validDataModel;
 
         private UserDataModel invalidDataModel;
@@ -53,6 +59,10 @@
         private RegisterUserResponse validRegisterUserResponse;
 
         private RegisterUserResponse invalidRegisterUserResponse;
+
+        private ValidateUserResponse validValidateUserResponse;
+
+        private ValidateUserResponse invalidValidateUserResponse;
 
         #endregion
 
@@ -93,12 +103,17 @@
                 };
 
             invalidDataModel = new UserDataModel();
-
             invalidRegisterUserRequest = new RegisterUserRequest();
-
             invalidRegisterUserResponse = new RegisterUserResponse { Errors = { new ResponseErrorWrapper() } };
-
             exceptionRegisterUserRequest = new RegisterUserRequest { DateOfBirth = DateTime.MinValue };
+
+            validValidateUserRequest =
+                new ValidateUserRequest { EmailAddress = "TEST", Password = "TEST", Username = "TEST" };
+            invalidValidateUserRequest = new ValidateUserRequest();
+            exceptionValidateUserRequest = new ValidateUserRequest { EmailAddress = "EXC", Password = "EXC", Username = "EXC"};
+
+            invalidValidateUserResponse = new ValidateUserResponse { Errors = { new ResponseErrorWrapper() } };
+            validValidateUserResponse = new ValidateUserResponse { LoginSuccess = true };
 
             assembler = Substitute.For<IUserAssembler>();
             repository = Substitute.For<IUserRepository>();
@@ -110,9 +125,22 @@
             assembler.NewUserDataModel(exceptionRegisterUserRequest).Throws(new Exception("TEST"));
             assembler.NewRegisterUserResponse(invalidDataModel, invalidRegisterUserRequest.RequestReference)
                 .Returns(invalidRegisterUserResponse);
+            assembler.NewValidateUserResponse(validDataModel, validValidateUserRequest.RequestReference)
+                .Returns(validValidateUserResponse);
+            assembler.NewValidateUserResponse(invalidDataModel, invalidValidateUserRequest.RequestReference)
+                .Returns(invalidValidateUserResponse);
+           
 
             repository.RegisterUser(validDataModel).Returns(validDataModel);
             repository.RegisterUser(invalidDataModel).Returns(invalidDataModel);
+            repository.GetUser(validValidateUserRequest.EmailAddress, validValidateUserRequest.Password)
+                .Returns(validDataModel);
+            repository.GetUser(invalidValidateUserRequest.EmailAddress, invalidRegisterUserRequest.Password)
+                .Returns(invalidDataModel);
+            repository.GetUser(exceptionValidateUserRequest.EmailAddress, exceptionValidateUserRequest.Password)
+                .Throws(new Exception("TEST"));
+
+            
 
             orchestrator = new UserOrchestrator(assembler, repository);
         }
@@ -122,6 +150,38 @@
         {
             assembler = null;
             repository = null;
+        }
+
+        [Test]
+        public void ValidateUser_ValidParams_ReturnsResponse()
+        {
+            var test = orchestrator.ValidateUser(validValidateUserRequest).Result;
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<ValidateUserResponse>(test);
+            Assert.True(test.LoginSuccess);
+        }
+
+        [Test]
+        public void ValidateUser_InvalidParams_ReturnsResponse()
+        {
+            var test = orchestrator.ValidateUser(invalidValidateUserRequest).Result;
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<ValidateUserResponse>(test);
+            Assert.False(test.LoginSuccess);
+            Assert.AreEqual(test.Errors.Count, 1);
+        }
+
+        [Test]
+        public void ValidateUser_ExceptionThrown_ReturnsResponse()
+        {
+            var test = orchestrator.ValidateUser(exceptionValidateUserRequest).Result;
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<ValidateUserResponse>(test);
+            Assert.False(test.LoginSuccess);
+            Assert.AreEqual(test.Errors.Count, 1);
         }
 
         [Test]
@@ -155,6 +215,8 @@
             Assert.False(test.RegisterSuccess);
             Assert.AreEqual(test.Errors.Count, 1);
         }
+
+
 
         #endregion
     }

@@ -24,7 +24,7 @@
         /// <param name="userDataModel">The user data model.</param>
         /// <param name="reqReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        ValidateUserResponse NewGetClaimForUserResponse(UserDataModel userDataModel, Guid reqReference);
+        ValidateUserResponse NewValidateUserResponse(UserDataModel userDataModel, Guid reqReference);
 
         /// <summary>
         ///     Creates a new instance of the <see cref="RegisterUserResponse" /> class.

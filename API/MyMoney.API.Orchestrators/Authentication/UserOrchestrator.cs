@@ -113,7 +113,7 @@
             {
                 var userDataModel = await repository.GetUser(request.EmailAddress, request.Password);
 
-                response = assembler.NewGetClaimForUserResponse(userDataModel, request.RequestReference);
+                response = assembler.NewValidateUserResponse(userDataModel, request.RequestReference);
             }
             catch (Exception ex)
             {
