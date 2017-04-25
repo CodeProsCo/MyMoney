@@ -1,6 +1,8 @@
 # MyMoney
 A personal finance planner written in .NET.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/1f8dil59itpavc5d?svg=true)](https://ci.appveyor.com/project/davidsbond/mymoney)
+
 ## Libraries Used
 ### JavaScript & CSS
 - [Semantic UI](https://github.com/semantic-org/semantic-ui/)
