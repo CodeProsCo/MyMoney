@@ -9,6 +9,7 @@
     using Assemblers.Chart.Interfaces;
 
     using DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Expenditure;
 
     using NUnit.Framework;
 
@@ -90,6 +91,26 @@
             Assert.IsInstanceOf<GetBillPeriodChartDataRequest>(test);
             Assert.AreEqual(test.UserId, validUserId);
             Assert.AreEqual(test.Username, validUsername);
+        }
+
+        [Test]
+        public void NewGetExpenditureChartDataRequest_ValidParams_ReturnsRequest()
+        {
+            var test = assembler.NewGetExpenditureChartDataRequest(1, validUserId, validUsername);
+
+            Assert.IsNotNull(test);
+
+            Assert.IsInstanceOf<GetExpenditureChartDataRequest>(test);
+
+            Assert.AreEqual(1, test.Month);
+            Assert.AreEqual(validUserId, test.UserId);
+        }
+
+        [Test]
+        public void NewGetExpenditureChartDataRequest_InvalidParams_ThrowsException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(
+                delegate { assembler.NewGetExpenditureChartDataRequest(99, validUserId, validUsername); });
         }
 
         [SetUp]
