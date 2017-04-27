@@ -216,6 +216,13 @@
             Assert.AreEqual(test.Errors.Count, 1);
         }
 
+        [Test]
+        public void Constructor_NullParams_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(null, repository); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(assembler, null); });
+        }
+
 
 
         #endregion
