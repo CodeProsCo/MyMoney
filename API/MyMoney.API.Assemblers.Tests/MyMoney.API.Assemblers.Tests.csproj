@@ -86,10 +86,29 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Authentication\UserAssemblerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Models\MyMoney.DataModels\MyMoney.DataModels.csproj">
+      <Project>{4FC33969-3E6B-4B9B-8F30-5F47DEF0AC49}</Project>
+      <Name>MyMoney.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\MyMoney.Proxies\MyMoney.Proxies.csproj">
+      <Project>{6AE51393-4A4C-4A7F-BBCC-B32CE31D62EA}</Project>
+      <Name>MyMoney.Proxies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
+      <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
+      <Name>MyMoney.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyMoney.API.Assemblers\MyMoney.API.Assemblers.csproj">
+      <Project>{92ce09e3-14dd-469a-8603-f792c54b1ecf}</Project>
+      <Name>MyMoney.API.Assemblers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

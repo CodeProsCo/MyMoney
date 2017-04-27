@@ -41,21 +41,21 @@
             var success = userDataModel != null;
 
             return new ValidateUserResponse
-                       {
-                           LoginSuccess = success,
-                           User =
+            {
+                LoginSuccess = success,
+                User =
                                new UserProxy
-                                   {
-                                       FirstName = userDataModel?.FirstName,
-                                       LastName = userDataModel?.LastName,
-                                       EmailAddress = userDataModel?.EmailAddress,
-                                       DateOfBirth =
+                               {
+                                   FirstName = userDataModel?.FirstName,
+                                   LastName = userDataModel?.LastName,
+                                   EmailAddress = userDataModel?.EmailAddress,
+                                   DateOfBirth =
                                            userDataModel?.DateOfBirth
                                            ?? DateTime.MinValue,
-                                       Id = userDataModel?.Id ?? Guid.Empty
-                                   },
-                           RequestReference = reqReference
-                       };
+                                   Id = userDataModel?.Id ?? Guid.Empty
+                               },
+                RequestReference = reqReference
+            };
         }
 
         /// <summary>
@@ -69,10 +69,10 @@
         public RegisterUserResponse NewRegisterUserResponse(UserDataModel registerResult, Guid reqReference)
         {
             return new RegisterUserResponse
-                       {
-                           RegisterSuccess = registerResult != null,
-                           RequestReference = reqReference
-                       };
+            {
+                RegisterSuccess = registerResult != null,
+                RequestReference = reqReference
+            };
         }
 
         /// <summary>
@@ -87,15 +87,15 @@
             var encryptionModel = EncryptionHelper.EncryptPassword(request.Password);
 
             return new UserDataModel
-                       {
-                           DateOfBirth = request.DateOfBirth,
-                           EmailAddress = request.EmailAddress,
-                           FirstName = request.FirstName,
-                           LastName = request.LastName,
-                           Salt = encryptionModel.Salt,
-                           Hash = encryptionModel.Hash,
-                           Iterations = encryptionModel.Iterations
-                       };
+            {
+                DateOfBirth = request.DateOfBirth,
+                EmailAddress = request.EmailAddress,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Salt = encryptionModel.Salt,
+                Hash = encryptionModel.Hash,
+                Iterations = encryptionModel.Iterations
+            };
         }
 
         #endregion
