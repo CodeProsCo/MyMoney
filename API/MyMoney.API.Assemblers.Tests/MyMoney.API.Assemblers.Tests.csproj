@@ -89,6 +89,7 @@
     <Compile Include="Authentication\UserAssemblerTests.cs" />
     <Compile Include="Chart\ChartAssemblerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saving\GoalAssemblerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -116,7 +117,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Saving\" />
     <Folder Include="Spending\" />
   </ItemGroup>
   <Choose>
