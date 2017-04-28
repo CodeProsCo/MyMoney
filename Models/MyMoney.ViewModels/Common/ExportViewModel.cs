@@ -21,7 +21,7 @@
         /// <value>
         /// The type of the export.
         /// </value>
-        public ExportType ExportType { private get; set; }
+        public ExportType ExportType { get; set; }
 
         /// <summary>
         /// Gets or sets the file data.
@@ -37,7 +37,7 @@
         /// <value>
         /// The name of the file.
         /// </value>
-        public string FileName { private get; set; }
+        public string FileName { get; set; }
 
         /// <summary>
         /// Gets the full name of the file.

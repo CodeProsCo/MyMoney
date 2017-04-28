@@ -17,6 +17,7 @@
     using Proxies.Common;
     using Proxies.Spending;
 
+    using ViewModels.Common;
     using ViewModels.Enum;
     using ViewModels.Spending.Bill;
 
@@ -252,6 +253,21 @@
             Assert.AreEqual(test.Username, validUsername);
             Assert.AreEqual(test.UserId, validUserId);
             Assert.AreNotEqual(Guid.Empty, test.RequestReference);
+        }
+
+        [Test]
+        public void NewExportViewModel_ValidParams_ReturnsViewModel()
+        {
+            var test = assembler.NewExportViewModel(ExportType.Csv, new List<BillProxy> { validBillProxy });
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<ExportViewModel>(test);
+            
+            Assert.IsNotNull(test.FileData);
+            Assert.IsNotNull(test.FileName);
+            Assert.IsNotNull(test.FullFileName);
+            
+            Assert.AreEqual(ExportType.Csv, test.ExportType);
         }
 
         [Test]
