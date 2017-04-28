@@ -262,11 +262,11 @@
 
             Assert.IsNotNull(test);
             Assert.IsInstanceOf<ExportViewModel>(test);
-            
+
             Assert.IsNotNull(test.FileData);
             Assert.IsNotNull(test.FileName);
             Assert.IsNotNull(test.FullFileName);
-            
+
             Assert.AreEqual(ExportType.Csv, test.ExportType);
         }
 
@@ -298,6 +298,16 @@
             Assert.IsNotNull(test.FullFileName);
 
             Assert.AreEqual(ExportType.Xml, test.ExportType);
+        }
+
+        [Test]
+        public void NewExportViewModel_InvalidParams_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(
+                delegate
+                    {
+                        assembler.NewExportViewModel((ExportType)Enum.Parse(typeof(ExportType), "10"), new List<BillProxy>());
+                    });
         }
 
         [Test]
@@ -351,39 +361,39 @@
             validUserId = Guid.NewGuid();
 
             validBillProxy = new BillProxy
-                                 {
-                                     Amount = 10,
-                                     Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" },
-                                     CategoryId = Guid.NewGuid(),
-                                     Id = Guid.NewGuid(),
-                                     Name = "TEST",
-                                     ReoccurringPeriod = 1,
-                                     StartDate = DateTime.MaxValue,
-                                     UserId = Guid.NewGuid()
-                                 };
+            {
+                Amount = 10,
+                Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" },
+                CategoryId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
+                Name = "TEST",
+                ReoccurringPeriod = 1,
+                StartDate = DateTime.MaxValue,
+                UserId = Guid.NewGuid()
+            };
 
             validGetBillResponse = new GetBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
 
             validBillViewModel = new BillViewModel
-                                     {
-                                         Amount = 10,
-                                         Category = "TEST",
-                                         Id = Guid.NewGuid(),
-                                         Name = "TEST",
-                                         ReoccurringPeriod = TimePeriod.Daily,
-                                         StartDate = DateTime.MinValue,
-                                         UserId = Guid.NewGuid()
-                                     };
+            {
+                Amount = 10,
+                Category = "TEST",
+                Id = Guid.NewGuid(),
+                Name = "TEST",
+                ReoccurringPeriod = TimePeriod.Daily,
+                StartDate = DateTime.MinValue,
+                UserId = Guid.NewGuid()
+            };
 
             validAddBillResponse = new AddBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
 
             validEditBillResponse = new EditBillResponse { Bill = validBillProxy, RequestReference = Guid.NewGuid() };
 
             validGetBillsForUserResponse = new GetBillsForUserResponse
-                                               {
-                                                   Bills = new List<BillProxy> { validBillProxy },
-                                                   RequestReference = Guid.NewGuid()
-                                               };
+            {
+                Bills = new List<BillProxy> { validBillProxy },
+                RequestReference = Guid.NewGuid()
+            };
         }
 
         [TearDown]
