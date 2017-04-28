@@ -256,7 +256,7 @@
         }
 
         [Test]
-        public void NewExportViewModel_ValidParams_ReturnsViewModel()
+        public void NewExportViewModel_Csv_ReturnsViewModel()
         {
             var test = assembler.NewExportViewModel(ExportType.Csv, new List<BillProxy> { validBillProxy });
 
@@ -268,6 +268,36 @@
             Assert.IsNotNull(test.FullFileName);
             
             Assert.AreEqual(ExportType.Csv, test.ExportType);
+        }
+
+        [Test]
+        public void NewExportViewModel_Json_ReturnsViewModel()
+        {
+            var test = assembler.NewExportViewModel(ExportType.Json, new List<BillProxy> { validBillProxy });
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<ExportViewModel>(test);
+
+            Assert.IsNotNull(test.FileData);
+            Assert.IsNotNull(test.FileName);
+            Assert.IsNotNull(test.FullFileName);
+
+            Assert.AreEqual(ExportType.Json, test.ExportType);
+        }
+
+        [Test]
+        public void NewExportViewModel_Xml_ReturnsViewModel()
+        {
+            var test = assembler.NewExportViewModel(ExportType.Xml, new List<BillProxy> { validBillProxy });
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<ExportViewModel>(test);
+
+            Assert.IsNotNull(test.FileData);
+            Assert.IsNotNull(test.FileName);
+            Assert.IsNotNull(test.FullFileName);
+
+            Assert.AreEqual(ExportType.Xml, test.ExportType);
         }
 
         [Test]
