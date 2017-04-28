@@ -133,6 +133,12 @@
         }
 
         [Test]
+        public void GetExpenditureChartData_ValidParams_ReturnsResponse()
+        {
+            var test = orchestrator.GetExpenditureChartData(validUserId, validUsername);
+        }
+
+        [Test]
         public void GetBillPeriodChartData_ValidParams_ReturnsKeyValuePairs()
         {
             var test = orchestrator.GetBillPeriodChartData(validUserId, validUsername).Result;

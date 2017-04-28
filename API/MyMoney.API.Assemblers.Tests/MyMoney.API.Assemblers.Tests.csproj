@@ -87,6 +87,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Authentication\UserAssemblerTests.cs" />
+    <Compile Include="Chart\ChartAssemblerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,10 +106,18 @@
       <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
       <Name>MyMoney.DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
+      <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
+      <Name>MyMoney.Wrappers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyMoney.API.Assemblers\MyMoney.API.Assemblers.csproj">
       <Project>{92ce09e3-14dd-469a-8603-f792c54b1ecf}</Project>
       <Name>MyMoney.API.Assemblers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Saving\" />
+    <Folder Include="Spending\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
