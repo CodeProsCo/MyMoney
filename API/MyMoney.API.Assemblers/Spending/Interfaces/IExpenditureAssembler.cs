@@ -60,12 +60,12 @@
         GetExpenditureResponse NewGetExpenditureResponse(ExpenditureDataModel expenditure, Guid requestReference);
 
         /// <summary>
-        ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthResponse" /> class.
+        ///     Creates an instance of the <see cref="GetExpenditureForUserForMonthResponse" /> class.
         /// </summary>
         /// <param name="data">The expenditure data.</param>
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        GetExpendituresForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
+        GetExpenditureForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
             IEnumerable<ExpenditureDataModel> data,
             Guid requestReference);
 

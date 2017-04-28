@@ -56,7 +56,7 @@
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        Task<GetExpendituresForUserForMonthResponse> GetExpendituresForUserForMonth(
+        Task<GetExpenditureForUserForMonthResponse> GetExpendituresForUserForMonth(
             GetExpenditureForUserForMonthRequest request);
 
         #endregion

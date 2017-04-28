@@ -14,7 +14,7 @@
     ///     The response object for the <see cref="GetExpenditureForUserForMonthRequest" /> class.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
-    public class GetExpendituresForUserForMonthResponse : BaseResponse
+    public class GetExpenditureForUserForMonthResponse : BaseResponse
     {
         #region Properties
 

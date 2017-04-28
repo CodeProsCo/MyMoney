@@ -44,6 +44,8 @@
 
         private GetExpenditureForUserResponse validGetExpenditureForUserResponse;
 
+        private GetExpenditureForUserForMonthResponse validGetExpenditureForUserForMonthResponse;
+
         private Guid validUserId;
 
         private string validUsername;
@@ -298,6 +300,22 @@
         }
 
         [Test]
+        public void NewExpenditureViewModelList_ValidParams_ReturnsList()
+        {
+            var test = assembler.NewExpenditureViewModelList(validGetExpenditureForUserForMonthResponse);
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<IList<ExpenditureViewModel>>(test);
+            Assert.AreEqual(1, test.Count);
+        }
+
+        [Test]
+        public void NewExpenditureViewModelList_NullParams_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(delegate { assembler.NewExpenditureViewModelList(null); });
+        }
+
+        [Test]
         public void NewExportViewModel_InvalidParams_ThrowsArgumentOutOfRangeException()
         {
             Assert.Throws<ArgumentOutOfRangeException>(
@@ -395,6 +413,13 @@
                         Expenditure =
                             new List<ExpenditureProxy> { validExpenditureProxy },
                         RequestReference = Guid.NewGuid()
+                    };
+
+            validGetExpenditureForUserForMonthResponse =
+                new GetExpenditureForUserForMonthResponse
+                    {
+                        Data =
+                            new List<ExpenditureProxy> { validExpenditureProxy }
                     };
         }
 

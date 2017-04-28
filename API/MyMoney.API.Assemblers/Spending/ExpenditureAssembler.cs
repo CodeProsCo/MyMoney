@@ -100,18 +100,18 @@
         }
 
         /// <summary>
-        ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthResponse" /> class.
+        ///     Creates an instance of the <see cref="GetExpenditureForUserForMonthResponse" /> class.
         /// </summary>
         /// <param name="data">The expenditure data.</param>
         /// <param name="requestReference">The request reference.</param>
         /// <returns>
         ///     The response object.
         /// </returns>
-        public GetExpendituresForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
+        public GetExpenditureForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
             IEnumerable<ExpenditureDataModel> data,
             Guid requestReference)
         {
-            return new GetExpendituresForUserForMonthResponse
+            return new GetExpenditureForUserForMonthResponse
                        {
                            Data = data.Select(ExpenditureDataModelToProxy),
                            RequestReference = requestReference

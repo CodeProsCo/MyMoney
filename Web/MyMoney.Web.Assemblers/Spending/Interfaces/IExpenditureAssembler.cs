@@ -97,7 +97,7 @@
         /// </summary>
         /// <param name="apiResponse">The API response.</param>
         /// <returns>The list of view models.</returns>
-        IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpendituresForUserForMonthResponse apiResponse);
+        IList<ExpenditureViewModel> NewExpenditureViewModelList(GetExpenditureForUserForMonthResponse apiResponse);
 
         /// <summary>
         /// Creates a new instance of the <see cref="ExportViewModel"/> class based on the given expenditure.

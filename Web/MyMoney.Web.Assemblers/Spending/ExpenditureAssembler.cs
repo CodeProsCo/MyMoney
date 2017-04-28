@@ -165,7 +165,7 @@
         /// Exception thrown if the API response is null.
         /// </exception>
         public IList<ExpenditureViewModel> NewExpenditureViewModelList(
-            GetExpendituresForUserForMonthResponse apiResponse)
+            GetExpenditureForUserForMonthResponse apiResponse)
         {
             if (apiResponse == null)
             {

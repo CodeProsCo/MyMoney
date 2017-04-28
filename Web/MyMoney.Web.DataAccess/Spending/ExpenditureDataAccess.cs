@@ -90,10 +90,10 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetExpendituresForUserForMonthResponse> GetExpendituresForUserForMonth(
+        public async Task<GetExpenditureForUserForMonthResponse> GetExpendituresForUserForMonth(
             GetExpenditureForUserForMonthRequest request)
         {
-            return await Get<GetExpendituresForUserForMonthResponse>(request.FormatRequestUri(), request.Username);
+            return await Get<GetExpenditureForUserForMonthResponse>(request.FormatRequestUri(), request.Username);
         }
 
         #endregion

@@ -211,10 +211,10 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetExpendituresForUserForMonthResponse> GetExpendituresForUserForMonth(
+        public async Task<GetExpenditureForUserForMonthResponse> GetExpendituresForUserForMonth(
             GetExpenditureForUserForMonthRequest request)
         {
-            var response = new GetExpendituresForUserForMonthResponse();
+            var response = new GetExpenditureForUserForMonthResponse();
 
             try
             {
