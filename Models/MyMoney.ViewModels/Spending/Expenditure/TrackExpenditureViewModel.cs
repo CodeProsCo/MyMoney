@@ -35,7 +35,7 @@
         /// <value>
         /// The expenditures.
         /// </value>
-        public IList<ExpenditureViewModel> Expenditures { get; set; }
+        public IList<ExpenditureViewModel> Expenditure { get; set; }
 
         #endregion
     }

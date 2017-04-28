@@ -185,9 +185,9 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetExpendituresForUserResponse> GetExpendituresForUser(GetExpendituresForUserRequest request)
+        public async Task<GetExpenditureForUserResponse> GetExpendituresForUser(GetExpenditureForUserRequest request)
         {
-            var response = new GetExpendituresForUserResponse();
+            var response = new GetExpenditureForUserResponse();
 
             try
             {
@@ -212,7 +212,7 @@
         ///     The response object.
         /// </returns>
         public async Task<GetExpendituresForUserForMonthResponse> GetExpendituresForUserForMonth(
-            GetExpendituresForUserForMonthRequest request)
+            GetExpenditureForUserForMonthRequest request)
         {
             var response = new GetExpendituresForUserForMonthResponse();
 

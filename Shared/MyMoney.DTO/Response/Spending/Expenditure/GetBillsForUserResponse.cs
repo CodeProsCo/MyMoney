@@ -10,10 +10,10 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GetExpendituresForUserResponse"/> contains all the expenditures for a user.
+    /// The <see cref="GetExpenditureForUserResponse"/> contains all the expenditures for a user.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Response.BaseResponse" />
-    public class GetExpendituresForUserResponse : BaseResponse
+    public class GetExpenditureForUserResponse : BaseResponse
     {
         #region Properties
 
@@ -23,7 +23,7 @@
         /// <value>
         /// The expenditure count.
         /// </value>
-        public int ExpenditureCount => Expenditures?.Count ?? 0;
+        public int ExpenditureCount => Expenditure?.Count ?? 0;
 
         /// <summary>
         /// Gets or sets the expenditures.
@@ -31,7 +31,7 @@
         /// <value>
         /// The expenditures.
         /// </value>
-        public IList<ExpenditureProxy> Expenditures { get; set; }
+        public IList<ExpenditureProxy> Expenditure { get; set; }
 
         /// <summary>
         /// Gets the expenditure total.
@@ -39,7 +39,7 @@
         /// <value>
         /// The expenditure total.
         /// </value>
-        public double ExpenditureTotal => Expenditures?.Sum(x => x.Amount) ?? 0;
+        public double ExpenditureTotal => Expenditure?.Sum(x => x.Amount) ?? 0;
 
         #endregion
     }

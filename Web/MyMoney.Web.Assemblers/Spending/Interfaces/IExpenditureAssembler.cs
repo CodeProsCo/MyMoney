@@ -108,7 +108,7 @@
         ExportViewModel NewExportViewModel(IList<ExpenditureProxy> apiResponseExpenditures, ExportType exportType);
 
         /// <summary>
-        ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthRequest" />. class.
+        ///     Creates an instance of the <see cref="GetExpenditureForUserForMonthRequest" />. class.
         /// </summary>
         /// <param name="monthNumber">The month number.</param>
         /// <param name="userId">The user identifier.</param>
@@ -116,13 +116,13 @@
         /// <returns>
         ///     The request object.
         /// </returns>
-        GetExpendituresForUserForMonthRequest NewGetExpenditureForUserForMonthRequest(
+        GetExpenditureForUserForMonthRequest NewGetExpenditureForUserForMonthRequest(
             int monthNumber,
             Guid userId,
             string userEmail);
 
         /// <summary>
-        ///     Assembles an instance of the <see cref="GetExpendituresForUserRequest" /> class based on the given
+        ///     Assembles an instance of the <see cref="GetExpenditureForUserRequest" /> class based on the given
         ///     <see cref="string" />.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
@@ -130,7 +130,7 @@
         /// <returns>
         ///     The request object.
         /// </returns>
-        GetExpendituresForUserRequest NewGetExpenditureForUserRequest(Guid userId, string username);
+        GetExpenditureForUserRequest NewGetExpenditureForUserRequest(Guid userId, string username);
 
         /// <summary>
         ///     Creates an instance of the <see cref="GetExpenditureRequest" />. class.
@@ -146,13 +146,13 @@
 
         /// <summary>
         ///     Assembles an instance of the <see cref="IList{ExpenditureViewModel}" /> class based on the given
-        ///     <see cref="GetExpendituresForUserResponse" />.
+        ///     <see cref="GetExpenditureForUserResponse" />.
         /// </summary>
         /// <param name="apiResponse">The response object.</param>
         /// <returns>
         ///     The view model.
         /// </returns>
-        TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpendituresForUserResponse apiResponse);
+        TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpenditureForUserResponse apiResponse);
 
         #endregion
     }

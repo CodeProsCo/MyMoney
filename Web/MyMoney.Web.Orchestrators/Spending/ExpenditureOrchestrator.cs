@@ -219,7 +219,7 @@
 
                 response.AddWarnings(apiResponse.Warnings);
 
-                response.Model = assembler.NewExportViewModel(apiResponse.Expenditures, exportType);
+                response.Model = assembler.NewExportViewModel(apiResponse.Expenditure, exportType);
             }
             catch (Exception ex)
             {

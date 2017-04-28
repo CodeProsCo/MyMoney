@@ -119,19 +119,19 @@
         }
 
         /// <summary>
-        ///     Creates a new instance of the <see cref="GetExpendituresForUserResponse" /> class.
+        ///     Creates a new instance of the <see cref="GetExpenditureForUserResponse" /> class.
         /// </summary>
         /// <param name="expenditures">The expenditures.</param>
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        public GetExpendituresForUserResponse NewGetExpendituresForUserResponse(
+        public GetExpenditureForUserResponse NewGetExpendituresForUserResponse(
             IList<ExpenditureDataModel> expenditures,
             Guid requestReference)
         {
-            return new GetExpendituresForUserResponse
+            return new GetExpenditureForUserResponse
                        {
                            RequestReference = requestReference,
-                           Expenditures =
+                           Expenditure =
                                expenditures.Select(ExpenditureDataModelToProxy).ToList()
                        };
         }

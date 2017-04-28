@@ -70,12 +70,12 @@
             Guid requestReference);
 
         /// <summary>
-        ///     Creates an instance of the <see cref="GetExpendituresForUserResponse" /> class.
+        ///     Creates an instance of the <see cref="GetExpenditureForUserResponse" /> class.
         /// </summary>
         /// <param name="expenditures">The expenditures.</param>
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        GetExpendituresForUserResponse NewGetExpendituresForUserResponse(
+        GetExpenditureForUserResponse NewGetExpendituresForUserResponse(
             IList<ExpenditureDataModel> expenditures,
             Guid requestReference);
 

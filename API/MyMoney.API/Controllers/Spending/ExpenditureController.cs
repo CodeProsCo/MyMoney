@@ -114,7 +114,7 @@
         /// <returns>The response object. Wrapped in a 200 response.</returns>
         [HttpGet]
         [Route("user/{userId:Guid}/{requestReference:Guid}/")]
-        public async Task<IHttpActionResult> GetExpendituresForUser([FromUri] GetExpendituresForUserRequest request)
+        public async Task<IHttpActionResult> GetExpendituresForUser([FromUri] GetExpenditureForUserRequest request)
         {
             var response = await orchestrator.GetExpendituresForUser(request);
 
@@ -129,7 +129,7 @@
         [HttpGet]
         [Route("get/{userId:Guid}/month/{monthNumber:int}/{requestReference:Guid}/")]
         public async Task<IHttpActionResult> GetExpendituresForUserForMonth(
-            [FromUri] GetExpendituresForUserForMonthRequest request)
+            [FromUri] GetExpenditureForUserForMonthRequest request)
         {
             var response = await orchestrator.GetExpendituresForUserForMonth(request);
 

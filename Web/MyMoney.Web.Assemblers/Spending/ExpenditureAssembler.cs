@@ -211,7 +211,7 @@
         }
 
         /// <summary>
-        ///     Creates an instance of the <see cref="GetExpendituresForUserForMonthRequest" />. class.
+        ///     Creates an instance of the <see cref="GetExpenditureForUserForMonthRequest" />. class.
         /// </summary>
         /// <param name="monthNumber">The month number.</param>
         /// <param name="userId">The user identifier.</param>
@@ -219,7 +219,7 @@
         /// <returns>
         ///     The request object.
         /// </returns>
-        public GetExpendituresForUserForMonthRequest NewGetExpenditureForUserForMonthRequest(
+        public GetExpenditureForUserForMonthRequest NewGetExpenditureForUserForMonthRequest(
             int monthNumber,
             Guid userId,
             string userEmail)
@@ -239,7 +239,7 @@
                 throw new ArgumentNullException(nameof(userId));
             }
 
-            return new GetExpendituresForUserForMonthRequest
+            return new GetExpenditureForUserForMonthRequest
                        {
                            UserId = userId,
                            MonthNumber = monthNumber,
@@ -248,7 +248,7 @@
         }
 
         /// <summary>
-        ///     Assembles an instance of the <see cref="GetExpendituresForUserRequest" /> class based on the given
+        ///     Assembles an instance of the <see cref="GetExpenditureForUserRequest" /> class based on the given
         ///     <see cref="Guid" />.
         /// </summary>
         /// <param name="id">The user identifier.</param>
@@ -256,7 +256,7 @@
         /// <returns>
         ///     The request object.
         /// </returns>
-        public GetExpendituresForUserRequest NewGetExpenditureForUserRequest(Guid id, string username)
+        public GetExpenditureForUserRequest NewGetExpenditureForUserRequest(Guid id, string username)
         {
             if (id == Guid.Empty)
             {
@@ -268,7 +268,7 @@
                 throw new ArgumentNullException(nameof(username));
             }
 
-            return new GetExpendituresForUserRequest { UserId = id, Username = username };
+            return new GetExpenditureForUserRequest { UserId = id, Username = username };
         }
 
         /// <summary>
@@ -296,13 +296,13 @@
 
         /// <summary>
         ///     Assembles an instance of the <see cref="IList{ExpenditureViewModel}" /> class based on the given
-        ///     <see cref="GetExpendituresForUserResponse" />.
+        ///     <see cref="GetExpenditureForUserResponse" />.
         /// </summary>
         /// <param name="apiResponse">The response object.</param>
         /// <returns>
         ///     The view model.
         /// </returns>
-        public TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpendituresForUserResponse apiResponse)
+        public TrackExpenditureViewModel NewTrackExpenditureViewModel(GetExpenditureForUserResponse apiResponse)
         {
             if (apiResponse == null)
             {
@@ -332,8 +332,8 @@
                                                Enum.GetValues(
                                                    typeof(TimePeriod)))
                                    },
-                           Expenditures =
-                               apiResponse.Expenditures.Select(ExpenditureProxyToViewModel)
+                           Expenditure =
+                               apiResponse.Expenditure.Select(ExpenditureProxyToViewModel)
                                    .OrderBy(x => x.DateOccurred)
                                    .ToList(),
                            EditExpenditure =

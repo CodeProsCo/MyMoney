@@ -9,33 +9,25 @@
     #endregion
 
     /// <summary>
-    ///     The HTTP GET response object for obtaining a user's monthly expenditures from the API.
+    ///     The<see cref="GetExpenditureForUserRequest" /> class is used for obtaining the list of expenditures for a user.
     /// </summary>
     /// <seealso cref="MyMoney.DTO.Request.BaseRequest" />
     /// <seealso cref="MyMoney.DTO.Request.Interfaces.IGetRequest" />
-    public class GetExpendituresForUserForMonthRequest : BaseRequest, IGetRequest
+    public class GetExpenditureForUserRequest : BaseRequest, IGetRequest
     {
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GetExpendituresForUserForMonthRequest" /> class.
+        ///     Initializes a new instance of the <see cref="GetExpenditureForUserRequest" /> class.
         /// </summary>
-        public GetExpendituresForUserForMonthRequest()
-            : base("spending/expenditures/get/{0}/month/{1}/{2}")
+        public GetExpenditureForUserRequest()
+            : base("spending/expenditures/user/{0}/{1}/")
         {
         }
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        ///     Gets or sets the month number.
-        /// </summary>
-        /// <value>
-        ///     The month number.
-        /// </value>
-        public int MonthNumber { get; set; }
 
         /// <summary>
         ///     Gets or sets the user identifier.
@@ -52,10 +44,12 @@
         /// <summary>
         ///     Formats the request URI.
         /// </summary>
-        /// <returns>The formatted uri.</returns>
+        /// <returns>
+        ///     The formatted uri.
+        /// </returns>
         public string FormatRequestUri()
         {
-            return string.Format(GetAction(), UserId, MonthNumber, RequestReference);
+            return string.Format(GetAction(), UserId, RequestReference);
         }
 
         #endregion

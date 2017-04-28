@@ -99,8 +99,8 @@
     <Compile Include="Request\Spending\Expenditure\DeleteExpenditureRequest.cs" />
     <Compile Include="Request\Spending\Expenditure\EditExpenditureRequest.cs" />
     <Compile Include="Request\Spending\Expenditure\GetExpenditureRequest.cs" />
-    <Compile Include="Request\Spending\Expenditure\GetExpendituresForUserForMonthRequest.cs" />
-    <Compile Include="Request\Spending\Expenditure\GetExpendituresForUserRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\GetExpenditureForUserForMonthRequest.cs" />
+    <Compile Include="Request\Spending\Expenditure\GetExpenditureForUserRequest.cs" />
     <Compile Include="Response\Authentication\ValidateUserResponse.cs" />
     <Compile Include="Response\Authentication\RegisterUserResponse.cs" />
     <Compile Include="Response\BaseResponse.cs" />
