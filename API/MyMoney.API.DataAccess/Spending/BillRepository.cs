@@ -33,12 +33,6 @@
         ///     The category repository
         /// </summary>
         private readonly ICategoryRepository categoryRepository;
-
-        /// <summary>
-        /// The context
-        /// </summary>
-        private readonly IDatabaseContext context;
-
         #endregion
 
         #region Constructor
@@ -51,20 +45,14 @@
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown when the category repository, or context are null.
         /// </exception>
-        public BillRepository(ICategoryRepository categoryRepository, IDatabaseContext context)
+        public BillRepository(ICategoryRepository categoryRepository)
         {
             if (categoryRepository == null)
             {
                 throw new ArgumentNullException(nameof(categoryRepository));
             }
 
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
             this.categoryRepository = categoryRepository;
-            this.context = context;
         }
 
         #endregion
@@ -80,19 +68,22 @@
         /// </returns>
         public async Task<BillDataModel> AddBill(BillDataModel dataModel)
         {
-            dataModel.Id = Guid.NewGuid();
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                dataModel.Id = Guid.NewGuid();
 
-            var category = await categoryRepository.GetOrAdd(dataModel.Category);
+                var category = await categoryRepository.GetOrAdd(dataModel.Category);
 
-            dataModel.Category = category;
-            dataModel.CategoryId = category.Id;
+                dataModel.Category = category;
+                dataModel.CategoryId = category.Id;
 
-            dataModel.CreationTime = DateTime.Now;
-            context.Bills.Add(dataModel);
+                dataModel.CreationTime = DateTime.Now;
+                context.Bills.Add(dataModel);
 
-            var rows = await context.SaveChangesAsync();
+                var rows = await context.SaveChangesAsync();
 
-            return rows > 0 ? dataModel : null;
+                return rows > 0 ? dataModel : null;
+            }
         }
 
         /// <summary>
@@ -102,19 +93,22 @@
         /// <returns>If successful, true. Otherwise, false.</returns>
         public async Task<bool> DeleteBill(Guid billId)
         {
-            var toDelete = await GetBill(billId);
-
-            if (toDelete == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                throw new Exception(Bill.Error_CouldNotFindBill);
+                var toDelete = await GetBill(billId);
+
+                if (toDelete == null)
+                {
+                    throw new Exception(Bill.Error_CouldNotFindBill);
+                }
+
+                toDelete = context.Bills.Attach(toDelete);
+                context.Bills.Remove(toDelete);
+
+                var rows = await context.SaveChangesAsync();
+
+                return rows > 0;
             }
-
-            toDelete = context.Bills.Attach(toDelete);
-            context.Bills.Remove(toDelete);
-
-            var rows = await context.SaveChangesAsync();
-
-            return rows > 0;
         }
 
         /// <summary>
@@ -124,27 +118,29 @@
         /// <returns>The updated bill data model.</returns>
         public async Task<BillDataModel> EditBill(BillDataModel bill)
         {
-            var toEdit = await GetBill(bill.Id);
-
-            if (toEdit == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                throw new Exception(Bill.Error_CouldNotFindBill);
+                var toEdit = await GetBill(bill.Id);
+
+                if (toEdit == null)
+                {
+                    throw new Exception(Bill.Error_CouldNotFindBill);
+                }
+
+                bill.CreationTime = toEdit.CreationTime;
+
+                var category = await categoryRepository.GetOrAdd(bill.Category);
+
+                bill.Category = category;
+                bill.CategoryId = category.Id;
+
+                context.Bills.Attach(bill);
+                context.Entry(bill).State = EntityState.Modified;
+
+                var rows = await context.SaveChangesAsync();
+
+                return rows > 0 ? bill : null;
             }
-
-            bill.CreationTime = toEdit.CreationTime;
-            toEdit = context.Bills.Attach(toEdit);
-            context.Bills.Remove(toEdit);
-
-            var category = await categoryRepository.GetOrAdd(bill.Category);
-
-            bill.Category = category;
-            bill.CategoryId = category.Id;
-
-            context.Bills.Add(bill);
-
-            var rows = await context.SaveChangesAsync();
-
-            return rows > 0 ? bill : null;
         }
 
         /// <summary>
@@ -159,17 +155,20 @@
         /// </exception>
         public async Task<BillDataModel> GetBill(Guid billId)
         {
-            var bill =
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                var bill =
                 await context.Bills.Include(x => x.Category)
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id.Equals(billId));
 
-            if (bill == null)
-            {
-                throw new Exception(Bill.Error_CouldNotFindBill);
-            }
+                if (bill == null)
+                {
+                    throw new Exception(Bill.Error_CouldNotFindBill);
+                }
 
-            return bill;
+                return bill;
+            }
         }
 
         /// <summary>
@@ -181,11 +180,14 @@
         /// </returns>
         public async Task<IList<BillDataModel>> GetBillsForUser(Guid userId)
         {
-            return
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return
                 await context.Bills.Include(x => x.Category)
                     .AsNoTracking()
                     .Where(x => x.UserId.Equals(userId))
                     .ToListAsync();
+            }
         }
 
         #endregion

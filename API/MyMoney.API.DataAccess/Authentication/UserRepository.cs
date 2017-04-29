@@ -27,33 +27,6 @@
     public class UserRepository : IUserRepository
     {
         #region Fields
-
-        /// <summary>
-        /// The context
-        /// </summary>
-        private readonly IDatabaseContext context;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserRepository"/> class.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the database context is null.
-        /// </exception>
-        public UserRepository(IDatabaseContext context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            this.context = context;
-        }
-
         #endregion
 
         #region Methods
@@ -68,19 +41,22 @@
         /// </returns>
         public async Task<UserDataModel> GetUser(string email, string password)
         {
-            var result = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.EmailAddress == email);
-
-            if (result == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
+                var result = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.EmailAddress == email);
+
+                if (result == null)
+                {
+                    throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
+                }
+
+                if (EncryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
+                {
+                    return result;
+                }
+
                 throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
             }
-
-            if (EncryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
-            {
-                return result;
-            }
-
-            throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
         }
 
         /// <summary>
@@ -95,18 +71,21 @@
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {
-            var result =
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                var result =
                 await context.Users.AsNoTracking()
                     .Where(x => x.EmailAddress == username)
                     .Select(x => x.Id)
                     .SingleOrDefaultAsync();
 
-            if (result == null || result == Guid.Empty)
-            {
-                throw new Exception(Authentication.Error_CouldNotFindUser);
-            }
+                if (result == null || result == Guid.Empty)
+                {
+                    throw new Exception(Authentication.Error_CouldNotFindUser);
+                }
 
-            return result;
+                return result;
+            }
         }
 
         /// <summary>
@@ -118,14 +97,17 @@
         /// </returns>
         public async Task<UserDataModel> RegisterUser(UserDataModel model)
         {
-            model.Id = Guid.NewGuid();
-            model.CreationTime = DateTime.Now;
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                model.Id = Guid.NewGuid();
+                model.CreationTime = DateTime.Now;
 
-            var result = context.Users.Add(model);
+                var result = context.Users.Add(model);
 
-            var rowsChanged = await context.SaveChangesAsync();
+                var rowsChanged = await context.SaveChangesAsync();
 
-            return rowsChanged > 0 ? result : null;
+                return rowsChanged > 0 ? result : null;
+            }
         }
 
         #endregion
