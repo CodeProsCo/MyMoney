@@ -37,7 +37,6 @@
         {
             validGoalId = Guid.NewGuid();
 
-
             validViewModel = new GoalViewModel
             {
                 Amount = 1,

@@ -210,7 +210,7 @@
             try
             {
                 var request = assembler.NewGetExpenditureForUserRequest(userId, userEmail);
-                var apiResponse = await dataAccess.GetExpendituresForUser(request);
+                var apiResponse = await dataAccess.GetExpenditureForUser(request);
 
                 if (!apiResponse.Success)
                 {
@@ -287,7 +287,7 @@
             try
             {
                 var request = assembler.NewGetExpenditureForUserRequest(userId, username);
-                var apiResponse = await dataAccess.GetExpendituresForUser(request);
+                var apiResponse = await dataAccess.GetExpenditureForUser(request);
 
                 if (!apiResponse.Success)
                 {
@@ -328,7 +328,7 @@
             try
             {
                 var request = assembler.NewGetExpenditureForUserForMonthRequest(monthNumber, userId, username);
-                var apiResponse = await dataAccess.GetExpendituresForUserForMonth(request);
+                var apiResponse = await dataAccess.GetExpenditureForUserForMonth(request);
 
                 if (!apiResponse.Success)
                 {
