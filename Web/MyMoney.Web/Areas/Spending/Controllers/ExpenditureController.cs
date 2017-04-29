@@ -169,7 +169,7 @@
         [AjaxOnly]
         public async Task<ActionResult> GetExpenditureChartData()
         {
-            var modelWrapper = await chartOrchestrator.GetExpenditureChartData(UserId, UserEmail);
+            var modelWrapper = await chartOrchestrator.GetExpenditureChartData(DateTime.Now.Month, UserId, UserEmail);
 
             return JsonResponse(modelWrapper);
         }

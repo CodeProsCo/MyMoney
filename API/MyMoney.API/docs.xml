@@ -310,14 +310,14 @@
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.GetExpendituresForUser(MyMoney.DTO.Request.Spending.Expenditure.GetExpendituresForUserRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.GetExpendituresForUser(MyMoney.DTO.Request.Spending.Expenditure.GetExpenditureForUserRequest)">
             <summary>
                 Handles an HTTP GET request for obtaining the expenditures for a given user from the database.
             </summary>
             <param name="request">The request.</param>
             <returns>The response object. Wrapped in a 200 response.</returns>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.GetExpendituresForUserForMonth(MyMoney.DTO.Request.Spending.Expenditure.GetExpendituresForUserForMonthRequest)">
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.GetExpendituresForUserForMonth(MyMoney.DTO.Request.Spending.Expenditure.GetExpenditureForUserForMonthRequest)">
             <summary>
                 Handles an HTTP GET request for obtaining the expenditures for a given user in a given month.
             </summary>

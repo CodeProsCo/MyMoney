@@ -10,7 +10,9 @@
     using DataAccess.Chart.Interfaces;
 
     using DTO.Request.Chart.Bill;
+    using DTO.Request.Chart.Expenditure;
     using DTO.Response.Chart.Bill;
+    using DTO.Response.Chart.Expenditure;
 
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
@@ -56,6 +58,14 @@
 
         private GetBillPeriodChartDataResponse validGetBillPeriodChartDataResponse;
 
+        private GetExpenditureChartDataResponse validGetExpenditureChartDataResponse;
+
+        private GetExpenditureChartDataResponse invalidGetExpenditureChartDataResponse;
+
+        private GetExpenditureChartDataRequest validGetExpenditureChartDataRequest;
+
+        private GetExpenditureChartDataRequest invalidGetExpenditureChartDataRequest;
+        
         private Guid validUserId;
 
         private string validUsername;
@@ -133,9 +143,39 @@
         }
 
         [Test]
-        public void GetExpenditureChartData_ValidParams_ReturnsResponse()
+        public void GetExpenditureChartData_ExceptionThrown_ReturnsErrorResponse()
         {
-            var test = orchestrator.GetExpenditureChartData(validUserId, validUsername);
+            var test = orchestrator.GetExpenditureChartData(-1, invalidUserId, string.Empty).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNull(test.Model);
+            Assert.AreEqual(test.Errors.Count, 1);
+            Assert.IsFalse(test.Success);
+        }
+
+        [Test]
+        public void GetExpenditureChartData_InvalidParams_ReturnsErrorResponse()
+        {
+            var test = orchestrator.GetExpenditureChartData(1, invalidUserId, validUsername).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNull(test.Model);
+            Assert.AreEqual(test.Errors.Count, 1);
+            Assert.IsFalse(test.Success);
+        }
+
+        [Test]
+        public void GetExpenditureChartData_ValidParams_ReturnsKeyValuePairs()
+        {
+            var test = orchestrator.GetExpenditureChartData(1, validUserId, validUsername).Result;
+
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>>(test);
+            Assert.IsNotNull(test);
+            Assert.IsNotNull(test.Model);
+            Assert.AreEqual(test.Errors.Count, 0);
+            Assert.IsTrue(test.Success);
         }
 
         [Test]
@@ -217,6 +257,18 @@
                                                                   }
                                                           };
 
+            validGetExpenditureChartDataRequest =
+                new GetExpenditureChartDataRequest { Month = 1, UserId = validUserId, Username = validUsername };
+
+            invalidGetExpenditureChartDataRequest =
+                new GetExpenditureChartDataRequest { Month = 1, UserId = invalidUserId, Username = string.Empty };
+
+            validGetExpenditureChartDataResponse =
+                new GetExpenditureChartDataResponse { Data = new List<KeyValuePair<DateTime, double>>() };
+
+            invalidGetExpenditureChartDataResponse =
+                new GetExpenditureChartDataResponse { Errors = { new ResponseErrorWrapper() } };
+
             assembler.NewGetBillCategoryChartDataRequest(invalidUserId, validUsername)
                 .Returns(invalidGetBillCategoryChartDataRequest);
             assembler.NewGetBillCategoryChartDataRequest(validUserId, validUsername)
@@ -236,10 +288,23 @@
             assembler.NewGetBillPeriodChartDataRequest(validUserId, string.Empty)
                 .Throws(new Exception("TEST EXCEPTION"));
 
+
+            assembler.NewGetExpenditureChartDataRequest(1, invalidUserId, validUsername)
+                .Returns(invalidGetExpenditureChartDataRequest);
+            assembler.NewGetExpenditureChartDataRequest(1, validUserId, validUsername)
+                .Returns(validGetExpenditureChartDataRequest);
+            assembler.NewGetExpenditureChartDataRequest(-1, invalidUserId, string.Empty)
+                .Throws(new Exception("TEST EXCEPTION"));
+
             dataAccess.GetBillPeriodChartData(validGetBillPeriodChartDataRequest)
                 .Returns(validGetBillPeriodChartDataResponse);
             dataAccess.GetBillPeriodChartData(invalidGetBillPeriodChartDataRequest)
                 .Returns(invalidGetBillPeriodChartDataResponse);
+
+            dataAccess.GetExpenditureChartData(validGetExpenditureChartDataRequest)
+                .Returns(validGetExpenditureChartDataResponse);
+            dataAccess.GetExpenditureChartData(invalidGetExpenditureChartDataRequest)
+                .Returns(invalidGetExpenditureChartDataResponse);
 
             orchestrator = new ChartOrchestrator(assembler, dataAccess);
         }

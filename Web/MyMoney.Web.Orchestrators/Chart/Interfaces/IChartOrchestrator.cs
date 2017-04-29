@@ -42,12 +42,11 @@
         /// <summary>
         /// Builds and sends an HTTP request for the data required to produce the expenditure chart.
         /// </summary>
+        /// <param name="month"></param>
         /// <param name="userId">The user identifier.</param>
         /// <param name="userEmail">The user email.</param>
         /// <returns>The response object.</returns>
-        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(
-            Guid userId,
-            string userEmail);
+        Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(int month, Guid userId, string userEmail);
 
         #endregion
     }

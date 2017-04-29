@@ -148,12 +148,14 @@
         /// <summary>
         /// Builds and sends an HTTP request for the data required to produce the expenditure chart.
         /// </summary>
+        /// <param name="month"></param>
         /// <param name="userId">The user identifier.</param>
         /// <param name="userEmail">The user email.</param>
         /// <returns>
         /// The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(
+            int month,
             Guid userId,
             string userEmail)
         {
@@ -161,7 +163,7 @@
 
             try
             {
-                var request = assembler.NewGetExpenditureChartDataRequest(DateTime.Now.Month, userId, userEmail);
+                var request = assembler.NewGetExpenditureChartDataRequest(month, userId, userEmail);
                 var apiResponse = await dataAccess.GetExpenditureChartData(request);
 
                 if (!apiResponse.Success)
