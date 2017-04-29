@@ -23,6 +23,7 @@
     using Proxies.Common;
     using Proxies.Spending;
 
+    using ViewModels.Common;
     using ViewModels.Enum;
     using ViewModels.Spending.Bill;
 
@@ -127,6 +128,35 @@
             Assert.IsInstanceOf<OrchestratorResponseWrapper<BillViewModel>>(test);
             Assert.IsNotNull(test);
             Assert.IsNull(test.Model);
+            Assert.AreEqual(1, test.Errors.Count);
+        }
+
+        [Test]
+        public void ExportBills_ValidParams_ReturnsResponse()
+        {
+            var test = orchestrator.ExportBills(ExportType.Csv, validUsername, validViewModel.Id).Result;
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<ExportViewModel>>(test);
+        }
+
+        [Test]
+        public void ExportBills_InvalidParams_ReturnsResponse()
+        {
+            var test = orchestrator.ExportBills(ExportType.Csv, validUsername, invalidBillViewModel.Id).Result;
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<ExportViewModel>>(test);
+            Assert.AreEqual(1, test.Errors.Count);
+        }
+
+        [Test]
+        public void ExportBills_ThrowsException_ReturnsResponse()
+        {
+            var test = orchestrator.ExportBills(ExportType.Json, validUsername, validViewModel.Id).Result;
+
+            Assert.IsNotNull(test);
+            Assert.IsInstanceOf<OrchestratorResponseWrapper<ExportViewModel>>(test);
             Assert.AreEqual(1, test.Errors.Count);
         }
 
@@ -318,27 +348,27 @@
         public void SetUp()
         {
             validViewModel = new BillViewModel
-                                 {
-                                     Amount = 10,
-                                     Category = "TEST",
-                                     Id = Guid.NewGuid(),
-                                     Name = "TEST",
-                                     ReoccurringPeriod = TimePeriod.Daily,
-                                     StartDate = DateTime.Now,
-                                     UserId = Guid.NewGuid()
-                                 };
+            {
+                Amount = 10,
+                Category = "TEST",
+                Id = Guid.NewGuid(),
+                Name = "TEST",
+                ReoccurringPeriod = TimePeriod.Daily,
+                StartDate = DateTime.Now,
+                UserId = Guid.NewGuid()
+            };
 
             validBillProxy = new BillProxy
-                                 {
-                                     Amount = 10,
-                                     Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" },
-                                     CategoryId = Guid.NewGuid(),
-                                     Id = Guid.NewGuid(),
-                                     Name = "TEST",
-                                     ReoccurringPeriod = 1,
-                                     StartDate = DateTime.Now,
-                                     UserId = Guid.NewGuid()
-                                 };
+            {
+                Amount = 10,
+                Category = new CategoryProxy { Id = Guid.NewGuid(), Name = "TEST" },
+                CategoryId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
+                Name = "TEST",
+                ReoccurringPeriod = 1,
+                StartDate = DateTime.Now,
+                UserId = Guid.NewGuid()
+            };
 
             validManageBillsViewModel = new ManageBillsViewModel();
 
@@ -349,20 +379,13 @@
             validGetBillRequest = new GetBillRequest { BillId = validBillProxy.Id };
             validGetBillResponse = new GetBillResponse { Bill = validBillProxy };
             validGetBillsForUserRequest = new GetBillsForUserRequest { UserId = validBillProxy.Id };
-            validGetBillsForUserResponse = new GetBillsForUserResponse
-                                               {
-                                                   Bills = new List<BillProxy> { validBillProxy }
-                                               };
+            validGetBillsForUserResponse =
+                new GetBillsForUserResponse { Bills = new List<BillProxy> { validBillProxy } };
             validEditBillRequest = new EditBillRequest { Bill = validBillProxy };
             validEditBillResponse = new EditBillResponse { Bill = validBillProxy };
             validGetBillsForUserForMonthRequest = new GetBillsForUserForMonthRequest { UserId = validBillProxy.Id };
-            validGetBillsForUserForMonthResponse = new GetBillsForUserForMonthResponse
-                                                       {
-                                                           Data =
-                                                               new List
-                                                               <
-                                                                   KeyValuePair<DateTime, double>>()
-                                                       };
+            validGetBillsForUserForMonthResponse =
+                new GetBillsForUserForMonthResponse { Data = new List<KeyValuePair<DateTime, double>>() };
 
             invalidBillViewModel = new BillViewModel { Id = Guid.NewGuid() };
             invalidAddBillRequest = new AddBillRequest();
@@ -376,14 +399,8 @@
             invalidEditBillRequest = new EditBillRequest();
             invalidEditBillResponse = new EditBillResponse { Errors = { new ResponseErrorWrapper() } };
             invalidGetBillsForUserForMonthRequest = new GetBillsForUserForMonthRequest();
-            invalidGetBillsForUserForMonthResponse = new GetBillsForUserForMonthResponse
-                                                         {
-                                                             Errors =
-                                                                 {
-                                                                     new ResponseErrorWrapper
-                                                                         ()
-                                                                 }
-                                                         };
+            invalidGetBillsForUserForMonthResponse =
+                new GetBillsForUserForMonthResponse { Errors = { new ResponseErrorWrapper() } };
 
             assembler = Substitute.For<IBillAssembler>();
             dataAccess = Substitute.For<IBillDataAccess>();
@@ -411,6 +428,7 @@
             assembler.NewGetBillsForUserForMonthRequest(1, invalidBillViewModel.Id, validUsername)
                 .Returns(invalidGetBillsForUserForMonthRequest);
             assembler.NewManageBillsViewModel(validGetBillsForUserResponse).Returns(validManageBillsViewModel);
+            assembler.NewExportViewModel(ExportType.Json, Arg.Any<IList<BillProxy>>()).Throws(new Exception("TEST"));
 
             dataAccess.AddBill(validAddBillRequest).Returns(validAddBillResponse);
             dataAccess.AddBill(invalidAddBillRequest).Returns(invalidAddBillResponse);
@@ -426,6 +444,9 @@
                 .Returns(validGetBillsForUserForMonthResponse);
             dataAccess.GetBillsForUserForMonth(invalidGetBillsForUserForMonthRequest)
                 .Returns(invalidGetBillsForUserForMonthResponse);
+
+            assembler.NewExportViewModel(ExportType.Csv, new List<BillProxy> { validBillProxy })
+                .Returns(new ExportViewModel());
 
             orchestrator = new BillOrchestrator(assembler, dataAccess);
         }
