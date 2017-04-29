@@ -65,18 +65,18 @@
         /// <param name="data">The expenditure data.</param>
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        GetExpenditureForUserForMonthResponse NewGetExpendituresForUserForMonthResponse(
+        GetExpenditureForUserForMonthResponse NewGetExpenditureForUserForMonthResponse(
             IEnumerable<ExpenditureDataModel> data,
             Guid requestReference);
 
         /// <summary>
         ///     Creates an instance of the <see cref="GetExpenditureForUserResponse" /> class.
         /// </summary>
-        /// <param name="expenditures">The expenditures.</param>
+        /// <param name="expenditure">The expenditure.</param>
         /// <param name="requestReference">The request reference.</param>
         /// <returns>The response object.</returns>
-        GetExpenditureForUserResponse NewGetExpendituresForUserResponse(
-            IList<ExpenditureDataModel> expenditures,
+        GetExpenditureForUserResponse NewGetExpenditureForUserResponse(
+            IList<ExpenditureDataModel> expenditure,
             Guid requestReference);
 
         #endregion

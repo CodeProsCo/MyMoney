@@ -193,7 +193,7 @@
             {
                 var expenditures = await repository.GetExpendituresForUser(request.UserId);
 
-                response = assembler.NewGetExpendituresForUserResponse(expenditures, request.RequestReference);
+                response = assembler.NewGetExpenditureForUserResponse(expenditures, request.RequestReference);
             }
             catch (Exception ex)
             {
@@ -220,7 +220,7 @@
             {
                 var expenditures = await repository.GetExpendituresForUserForMonth(request.UserId);
 
-                response = assembler.NewGetExpendituresForUserForMonthResponse(expenditures, request.RequestReference);
+                response = assembler.NewGetExpenditureForUserForMonthResponse(expenditures, request.RequestReference);
             }
             catch (Exception ex)
             {
