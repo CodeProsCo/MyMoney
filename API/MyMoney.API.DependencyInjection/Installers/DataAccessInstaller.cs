@@ -34,38 +34,31 @@
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IDatabaseContext>().ImplementedBy<DatabaseContext>().LifestyleTransient());
-
-            container.Register(
                 Component.For<IUserRepository>()
                     .ImplementedBy<UserRepository>()
-                    .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
+                    .LifestylePerWebRequest());
 
             container.Register(
                 Component.For<IBillRepository>()
                     .ImplementedBy<BillRepository>()
                     .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>())
-                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
+                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>()));
 
             container.Register(
                 Component.For<ICategoryRepository>()
                     .ImplementedBy<CategoryRepository>()
-                    .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
+                    .LifestylePerWebRequest());
 
             container.Register(
                 Component.For<IExpenditureRepository>()
                     .ImplementedBy<ExpenditureRepository>()
                     .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>())
-                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
+                    .DependsOn(Dependency.OnComponent<ICategoryRepository, CategoryRepository>()));
 
             container.Register(
                 Component.For<IGoalRepository>()
                     .ImplementedBy<GoalRepository>()
-                    .DependsOn(Dependency.OnComponent<IDatabaseContext, DatabaseContext>()));
+                    .LifestylePerWebRequest());
         }
 
         #endregion

@@ -23,33 +23,6 @@
     public class CategoryRepository : ICategoryRepository
     {
         #region Fields
-
-        /// <summary>
-        /// The context
-        /// </summary>
-        private readonly IDatabaseContext context;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CategoryRepository"/> class.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the database context is null.
-        /// </exception>
-        public CategoryRepository(IDatabaseContext context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            this.context = context;
-        }
-
         #endregion
 
         #region Methods
@@ -64,12 +37,15 @@
         /// </returns>
         public async Task<CategoryDataModel> GetOrAdd(CategoryDataModel category)
         {
-            if (await Exists(category.Name))
+            using (DatabaseContext context = new DatabaseContext())
             {
-                return await GetCategory(category.Name);
-            }
+                if (await Exists(category.Name))
+                {
+                    return await GetCategory(category.Name);
+                }
 
-            return await AddCategory(category);
+                return await AddCategory(category);
+            }
         }
 
         /// <summary>
@@ -79,14 +55,17 @@
         /// <returns>The newly added category.</returns>
         private async Task<CategoryDataModel> AddCategory(CategoryDataModel category)
         {
-            category.Id = Guid.NewGuid();
-            category.CreationTime = DateTime.Now;
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                category.Id = Guid.NewGuid();
+                category.CreationTime = DateTime.Now;
 
-            var addedModel = context.Categories.Add(category);
+                var addedModel = context.Categories.Add(category);
 
-            var rowsChanged = await context.SaveChangesAsync();
+                var rowsChanged = await context.SaveChangesAsync();
 
-            return rowsChanged > 0 ? addedModel : null;
+                return rowsChanged > 0 ? addedModel : null;
+            }
         }
 
         /// <summary>
@@ -96,12 +75,15 @@
         /// <returns>If it exists, true. Otherwise, false.</returns>
         private async Task<bool> Exists(string name)
         {
-            if (await context.Categories.CountAsync() > 0)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                return await context.Categories.AsNoTracking().AnyAsync(x => x.Name == name);
-            }
+                if (await context.Categories.CountAsync() > 0)
+                {
+                    return await context.Categories.AsNoTracking().AnyAsync(x => x.Name == name);
+                }
 
-            return false;
+                return false;
+            }
         }
 
         /// <summary>
@@ -113,7 +95,10 @@
         /// </returns>
         private async Task<CategoryDataModel> GetCategory(string name)
         {
-            return await context.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.Name == name);
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return await context.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.Name == name);
+            }
         }
 
         #endregion

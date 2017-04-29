@@ -27,32 +27,6 @@
     {
         #region Fields
 
-        /// <summary>
-        /// The context
-        /// </summary>
-        private readonly IDatabaseContext context;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GoalRepository"/> class.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <exception cref="System.ArgumentNullException">context
-        /// Exception thrown if the given database context is null.
-        /// </exception>
-        public GoalRepository(IDatabaseContext context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            this.context = context;
-        }
-
         #endregion
 
         #region Methods
@@ -66,14 +40,17 @@
         /// </returns>
         public async Task<GoalDataModel> AddGoal(GoalDataModel model)
         {
-            model.Id = Guid.NewGuid();
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                model.Id = Guid.NewGuid();
 
-            model.CreationTime = DateTime.Now;
-            context.Goals.Add(model);
+                model.CreationTime = DateTime.Now;
+                context.Goals.Add(model);
 
-            var rows = await context.SaveChangesAsync();
+                var rows = await context.SaveChangesAsync();
 
-            return rows > 0 ? model : null;
+                return rows > 0 ? model : null;
+            }
         }
 
         /// <summary>
@@ -88,18 +65,21 @@
         /// </exception>
         public async Task<bool> DeleteGoal(Guid goalId)
         {
-            var toDelete = await context.Goals.FirstOrDefaultAsync(x => x.Id.Equals(goalId));
-
-            if (toDelete == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                throw new Exception(Goal.Error_CouldNotFindGoal);
+                var toDelete = await context.Goals.FirstOrDefaultAsync(x => x.Id.Equals(goalId));
+
+                if (toDelete == null)
+                {
+                    throw new Exception(Goal.Error_CouldNotFindGoal);
+                }
+
+                context.Goals.Remove(toDelete);
+
+                var rows = await context.SaveChangesAsync();
+
+                return rows > 0;
             }
-
-            context.Goals.Remove(toDelete);
-
-            var rows = await context.SaveChangesAsync();
-
-            return rows > 0;
         }
 
         /// <summary>
@@ -114,24 +94,25 @@
         /// </exception>
         public async Task<GoalDataModel> EditGoal(GoalDataModel model)
         {
-            var toEdit = await GetGoal(model.Id);
-
-            if (toEdit == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                throw new Exception(Goal.Error_CouldNotFindGoal);
+                var toEdit = await GetGoal(model.Id);
+
+                if (toEdit == null)
+                {
+                    throw new Exception(Goal.Error_CouldNotFindGoal);
+                }
+
+                model.Id = toEdit.Id;
+                model.CreationTime = toEdit.CreationTime;
+
+                context.Goals.Attach(model);
+                context.Entry(model).State = EntityState.Modified;
+                
+                var rows = await context.SaveChangesAsync();
+
+                return rows > 0 ? model : null;
             }
-
-            model.Id = toEdit.Id;
-            model.CreationTime = toEdit.CreationTime;
-
-            toEdit = context.Goals.Attach(toEdit);
-            context.Goals.Remove(toEdit);
-
-            context.Goals.Add(model);
-
-            var rows = await context.SaveChangesAsync();
-
-            return rows > 0 ? model : null;
         }
 
         /// <summary>
@@ -146,14 +127,17 @@
         /// </exception>
         public async Task<GoalDataModel> GetGoal(Guid goalId)
         {
-            var goal = await context.Goals.AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(goalId));
-
-            if (goal == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                throw new Exception(Goal.Error_CouldNotFindGoal);
-            }
+                var goal = await context.Goals.AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(goalId));
 
-            return goal;
+                if (goal == null)
+                {
+                    throw new Exception(Goal.Error_CouldNotFindGoal);
+                }
+
+                return goal;
+            }
         }
 
         /// <summary>
@@ -165,7 +149,10 @@
         /// </returns>
         public async Task<IList<GoalDataModel>> GetGoalsForUser(Guid userId)
         {
-            return await context.Goals.AsNoTracking().Where(x => x.UserId.Equals(userId)).ToListAsync();
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return await context.Goals.AsNoTracking().Where(x => x.UserId.Equals(userId)).ToListAsync();
+            }
         }
 
         #endregion
