@@ -34,12 +34,6 @@
         ///     The category repository
         /// </summary>
         private readonly ICategoryRepository categoryRepository;
-
-        /// <summary>
-        /// The context
-        /// </summary>
-        private readonly IDatabaseContext context;
-
         #endregion
 
         #region Constructor
@@ -52,19 +46,13 @@
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown if the category repository or context are null.
         /// </exception>
-        public ExpenditureRepository(ICategoryRepository categoryRepository, IDatabaseContext context)
+        public ExpenditureRepository(ICategoryRepository categoryRepository)
         {
             if (categoryRepository == null)
             {
                 throw new ArgumentNullException(nameof(categoryRepository));
             }
 
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            this.context = context;
             this.categoryRepository = categoryRepository;
         }
 
@@ -81,19 +69,22 @@
         /// </returns>
         public async Task<ExpenditureDataModel> AddExpenditure(ExpenditureDataModel dataModel)
         {
-            dataModel.Id = Guid.NewGuid();
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                dataModel.Id = Guid.NewGuid();
 
-            var category = await categoryRepository.GetOrAdd(dataModel.Category);
+                var category = await categoryRepository.GetOrAdd(dataModel.Category);
 
-            dataModel.Category = category;
-            dataModel.CategoryId = category.Id;
-            dataModel.CreationTime = DateTime.Now;
+                dataModel.Category = category;
+                dataModel.CategoryId = category.Id;
+                dataModel.CreationTime = DateTime.Now;
 
-            context.Expenditures.Add(dataModel);
+                context.Expenditures.Add(dataModel);
 
-            var rows = await context.SaveChangesAsync();
+                var rows = await context.SaveChangesAsync();
 
-            return rows > 0 ? dataModel : null;
+                return rows > 0 ? dataModel : null;
+            }
         }
 
         /// <summary>
@@ -103,19 +94,22 @@
         /// <returns>If successful, true. Otherwise, false.</returns>
         public async Task<bool> DeleteExpenditure(Guid expenditureId)
         {
-            var toDelete = await GetExpenditure(expenditureId);
-
-            if (toDelete == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                throw new Exception(Expenditure.Error_CouldNotFindExpenditure);
+                var toDelete = await GetExpenditure(expenditureId);
+
+                if (toDelete == null)
+                {
+                    throw new Exception(Expenditure.Error_CouldNotFindExpenditure);
+                }
+
+                toDelete = context.Expenditures.Attach(toDelete);
+                context.Expenditures.Remove(toDelete);
+
+                var rows = await context.SaveChangesAsync();
+
+                return rows > 0;
             }
-
-            toDelete = context.Expenditures.Attach(toDelete);
-            context.Expenditures.Remove(toDelete);
-
-            var rows = await context.SaveChangesAsync();
-
-            return rows > 0;
         }
 
         /// <summary>
@@ -125,29 +119,29 @@
         /// <returns>The updated expenditure data model.</returns>
         public async Task<ExpenditureDataModel> EditExpenditure(ExpenditureDataModel expenditure)
         {
-            var toEdit = await GetExpenditure(expenditure.Id);
-
-            if (toEdit == null)
+            using (DatabaseContext context = new DatabaseContext())
             {
-                throw new Exception(Expenditure.Error_CouldNotFindExpenditure);
+                var toEdit = await GetExpenditure(expenditure.Id);
+
+                if (toEdit == null)
+                {
+                    throw new Exception(Expenditure.Error_CouldNotFindExpenditure);
+                }
+
+                expenditure.CreationTime = toEdit.CreationTime;
+
+                var category = await categoryRepository.GetOrAdd(expenditure.Category);
+
+                expenditure.Category = category;
+                expenditure.CategoryId = category.Id;
+
+                context.Expenditures.Attach(expenditure);
+                context.Entry(expenditure).State = EntityState.Modified;
+
+                var rows = await context.SaveChangesAsync();
+
+                return rows > 0 ? expenditure : null;
             }
-
-            toEdit = context.Expenditures.Attach(toEdit);
-
-            expenditure.CreationTime = toEdit.CreationTime;
-
-            context.Expenditures.Remove(toEdit);
-
-            var category = await categoryRepository.GetOrAdd(expenditure.Category);
-
-            expenditure.Category = category;
-            expenditure.CategoryId = category.Id;
-
-            context.Expenditures.Add(expenditure);
-
-            var rows = await context.SaveChangesAsync();
-
-            return rows > 0 ? expenditure : null;
         }
 
         /// <summary>
@@ -159,10 +153,13 @@
         /// </returns>
         public async Task<ExpenditureDataModel> GetExpenditure(Guid expenditureId)
         {
-            return
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return
                 await context.Expenditures.Include(x => x.Category)
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Id.Equals(expenditureId));
+            }
         }
 
         /// <summary>
@@ -174,11 +171,14 @@
         /// </returns>
         public async Task<IList<ExpenditureDataModel>> GetExpendituresForUser(Guid userId)
         {
-            return
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return
                 await context.Expenditures.Include(x => x.Category)
                     .AsNoTracking()
                     .Where(x => x.UserId.Equals(userId))
                     .ToListAsync();
+            }
         }
 
         /// <summary>
@@ -190,15 +190,18 @@
         /// </returns>
         public async Task<IEnumerable<ExpenditureDataModel>> GetExpendituresForUserForMonth(Guid userId)
         {
-            return
+            using (DatabaseContext context = new DatabaseContext())
+            {
+                return
                 await context.Expenditures.Include(x => x.Category)
                     .AsNoTracking()
                     .Where(
                         x =>
-                            x.DateOccurred.Month == DateTime.Now.Month 
+                            x.DateOccurred.Month == DateTime.Now.Month
                             && x.DateOccurred.Year == DateTime.Now.Year
                             && x.UserId.Equals(userId))
                     .ToListAsync();
+            }
         }
 
         #endregion
