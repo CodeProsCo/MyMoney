@@ -101,6 +101,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Authentication\UserOrchestratorTests.cs" />
+    <Compile Include="Chart\ChartOrchestratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +125,10 @@
       <Project>{D6D57E85-BB99-4F50-A86B-5B943836E684}</Project>
       <Name>MyMoney.API.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyMoney.API.DataTransformers\MyMoney.API.DataTransformers.csproj">
+      <Project>{74ED1566-509F-4080-8ACA-07F248F76FAF}</Project>
+      <Name>MyMoney.API.DataTransformers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyMoney.API.Orchestrators\MyMoney.API.Orchestrators.csproj">
       <Project>{f9b6c518-d6a9-4411-9503-27fa9129015f}</Project>
       <Name>MyMoney.API.Orchestrators</Name>
@@ -133,7 +138,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Chart\" />
     <Folder Include="Spending\" />
   </ItemGroup>
   <Choose>
