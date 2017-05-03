@@ -103,6 +103,7 @@
     <Compile Include="Authentication\UserOrchestratorTests.cs" />
     <Compile Include="Chart\ChartOrchestratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saving\GoalOrchestratorTests.cs" />
     <Compile Include="Spending\BillOrchestratorTests.cs" />
     <Compile Include="Spending\ExpenditureOrchestratorTests.cs" />
   </ItemGroup>
@@ -143,9 +144,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Saving\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
