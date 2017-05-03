@@ -20,6 +20,7 @@
     #endregion
 
     [TestFixture]
+    [Category("Web Assemblers")]
     public class GoalAssemblerTests
     {
         private IGoalAssembler assembler;

@@ -103,9 +103,9 @@
             billRepository.GetBillsForUser(validGetBillPeriodChartDataRequest.UserId).Returns(validBills);
             billRepository.GetBillsForUser(Guid.Empty).Throws(new Exception("TEST"));
 
-            expenditureRepository.GetExpendituresForUserForMonth(validGetExpenditureChartDataRequest.UserId)
+            expenditureRepository.GetExpenditureForUserForMonth(validGetExpenditureChartDataRequest.UserId)
                 .Returns(validExpenditure);
-            expenditureRepository.GetExpendituresForUserForMonth(Guid.Empty).Throws(new Exception("TEST"));
+            expenditureRepository.GetExpenditureForUserForMonth(Guid.Empty).Throws(new Exception("TEST"));
 
             validData = new List<KeyValuePair<string, int>> { new KeyValuePair<string, int>("TEST", 1) };
 

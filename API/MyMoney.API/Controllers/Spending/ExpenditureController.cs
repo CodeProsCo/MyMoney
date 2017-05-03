@@ -116,7 +116,7 @@
         [Route("user/{userId:Guid}/{requestReference:Guid}/")]
         public async Task<IHttpActionResult> GetExpendituresForUser([FromUri] GetExpenditureForUserRequest request)
         {
-            var response = await orchestrator.GetExpendituresForUser(request);
+            var response = await orchestrator.GetExpenditureForUser(request);
 
             return Ok(response);
         }
@@ -131,7 +131,7 @@
         public async Task<IHttpActionResult> GetExpendituresForUserForMonth(
             [FromUri] GetExpenditureForUserForMonthRequest request)
         {
-            var response = await orchestrator.GetExpendituresForUserForMonth(request);
+            var response = await orchestrator.GetExpenditureForUserForMonth(request);
 
             return Ok(response);
         }
