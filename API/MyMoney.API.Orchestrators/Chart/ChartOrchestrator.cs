@@ -193,7 +193,7 @@
 
             try
             {
-                var expenditure = await expenditureRepository.GetExpendituresForUserForMonth(request.UserId);
+                var expenditure = await expenditureRepository.GetExpenditureForUserForMonth(request.UserId);
                 var data = expenditureDataTransformer.GetRollingExpenditureSum(expenditure);
 
                 response = assembler.NewGetExpenditureChartDataResponse(data, request.RequestReference);

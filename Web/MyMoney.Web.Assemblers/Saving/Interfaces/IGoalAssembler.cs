@@ -54,11 +54,11 @@
         GetGoalsForUserRequest NewGetGoalsForUserRequest(Guid userId, string username);
 
         /// <summary>
-        /// Creates a new instance of the <see cref="GoalViewModel"/> class.
+        /// Creates a new list instance of the <see cref="GoalViewModel"/> class.
         /// </summary>
         /// <param name="goals">The goals.</param>
         /// <returns>The list of view models.</returns>
-        IList<GoalViewModel> ProxyToViewModel(IEnumerable<GoalProxy> goals);
+        IList<GoalViewModel> ProxyToViewModelList(IEnumerable<GoalProxy> goals);
 
         /// <summary>
         /// Creates a new instance of the <see cref="AddGoalRequest"/> class.

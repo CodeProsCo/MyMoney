@@ -185,19 +185,19 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetExpenditureForUserResponse> GetExpendituresForUser(GetExpenditureForUserRequest request)
+        public async Task<GetExpenditureForUserResponse> GetExpenditureForUser(GetExpenditureForUserRequest request)
         {
             var response = new GetExpenditureForUserResponse();
 
             try
             {
-                var expenditures = await repository.GetExpendituresForUser(request.UserId);
+                var expenditures = await repository.GetExpenditureForUser(request.UserId);
 
-                response = assembler.NewGetExpendituresForUserResponse(expenditures, request.RequestReference);
+                response = assembler.NewGetExpenditureForUserResponse(expenditures, request.RequestReference);
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpendituresForUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUser");
                 response.AddError(err);
             }
 
@@ -211,20 +211,20 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetExpenditureForUserForMonthResponse> GetExpendituresForUserForMonth(
+        public async Task<GetExpenditureForUserForMonthResponse> GetExpenditureForUserForMonth(
             GetExpenditureForUserForMonthRequest request)
         {
             var response = new GetExpenditureForUserForMonthResponse();
 
             try
             {
-                var expenditures = await repository.GetExpendituresForUserForMonth(request.UserId);
+                var expenditures = await repository.GetExpenditureForUserForMonth(request.UserId);
 
-                response = assembler.NewGetExpendituresForUserForMonthResponse(expenditures, request.RequestReference);
+                response = assembler.NewGetExpenditureForUserForMonthResponse(expenditures, request.RequestReference);
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpendituresForUserForMonth");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUserForMonth");
                 response.AddError(err);
             }
 

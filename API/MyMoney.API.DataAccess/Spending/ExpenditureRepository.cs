@@ -169,7 +169,7 @@
         /// <returns>
         ///     The list of expenditures.
         /// </returns>
-        public async Task<IList<ExpenditureDataModel>> GetExpendituresForUser(Guid userId)
+        public async Task<IList<ExpenditureDataModel>> GetExpenditureForUser(Guid userId)
         {
             using (DatabaseContext context = new DatabaseContext())
             {
@@ -188,7 +188,7 @@
         /// <returns>
         ///     The list of expenditures.
         /// </returns>
-        public async Task<IEnumerable<ExpenditureDataModel>> GetExpendituresForUserForMonth(Guid userId)
+        public async Task<IEnumerable<ExpenditureDataModel>> GetExpenditureForUserForMonth(Guid userId)
         {
             using (DatabaseContext context = new DatabaseContext())
             {

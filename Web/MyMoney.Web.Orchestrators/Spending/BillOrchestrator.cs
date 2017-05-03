@@ -188,13 +188,13 @@
         }
 
         /// <summary>
-        /// Exports the user's bills to the given type.
+        ///     Exports the user's bills to the given type.
         /// </summary>
         /// <param name="exportType">Type of the export.</param>
         /// <param name="username">The username.</param>
         /// <param name="userId">The user identifier.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<ExportViewModel>> ExportBills(
             ExportType exportType,
