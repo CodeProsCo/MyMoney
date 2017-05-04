@@ -1,3 +1,7 @@
+/*
+    @reference semantic.css
+*/
+
 /*!
  * # Semantic UI 0.0.6 - Calendar
  * http://github.com/semantic-org/semantic-ui/
@@ -7,20 +11,17 @@
  * http://opensource.org/licenses/MIT
  *
  */
-
-
 /*******************************
             Popup
 *******************************/
-
 .ui.calendar .ui.popup {
-  max-width: none;
-  padding: 0;
-  border: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+    max-width: none;
+    padding: 0;
+    border: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 

@@ -2,47 +2,43 @@
 @using Cassette.Scripts
 @using Cassette.Stylesheets
 @{
-    Bundles.Reference<StylesheetBundle>("~/Content/Site/site.css");
-    Bundles.Reference<StylesheetBundle>("~/Content/Semantic/semantic.css");
-    Bundles.Reference<StylesheetBundle>("~/Content/Toastr/toastr.css");
-    Bundles.Reference<StylesheetBundle>("~/Content/Intro/introjs.css");
-    Bundles.Reference<StylesheetBundle>("~/Content/Intro/introjs-modern.css");
+    Bundles.Reference<StylesheetBundle>("~/Content/Site");
+    Bundles.Reference<StylesheetBundle>("~/Content/Semantic");
+    Bundles.Reference<StylesheetBundle>("~/Content/Toastr");
+    Bundles.Reference<StylesheetBundle>("~/Content/Intro");
 
-    Bundles.Reference<ScriptBundle>("~/Scripts/Semantic/semantic.js");
-    Bundles.Reference<ScriptBundle>("~/Scripts/Common/MyMoney.Common.js");
-    Bundles.Reference<ScriptBundle>("~/Scripts/Common/MyMoney.Localization.js");
-    Bundles.Reference<ScriptBundle>("~/Scripts/Common/MyMoney.Initialize.js");
-    Bundles.Reference<ScriptBundle>("~/Scripts/Common/MyMoney.Hints.js");
+    Bundles.Reference<ScriptBundle>("~/Scripts/Semantic");
+    Bundles.Reference<ScriptBundle>("~/Scripts/Common");
 }
 
 <!DOCTYPE html>
 <html lang="@CultureInfo.CurrentCulture.TwoLetterISOLanguageName">
 <head>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - MyMoney</title>
     @Bundles.RenderStylesheets()
 </head>
 <body>
-@{ Html.RenderPartial("_SideBar"); }
+    @{ Html.RenderPartial("_SideBar"); }
 
-<div class="pusher">
-    @{ Html.RenderPartial("_Navigation"); }
-    <div class="ui container">
-        @RenderBody()
+    <div class="pusher">
+        @{ Html.RenderPartial("_Navigation"); }
+        <div class="ui container">
+            @RenderBody()
+        </div>
     </div>
-</div>
 
 
-<div id="modal-container">
-    @RenderSection("Modals", false)
-</div>
+    <div id="modal-container">
+        @RenderSection("Modals", false)
+    </div>
 
-<div id="script-container">
-    @Bundles.RenderScripts()
-    @RenderSection("Scripts", false)
-    <script type="text/javascript">
-        initializeGlobalObject();
-    </script>
-</div>
+    <div id="script-container">
+        @Bundles.RenderScripts()
+        @RenderSection("Scripts", false)
+        <script type="text/javascript">
+            initializeGlobalObject();
+        </script>
+    </div>
 </body>
 </html>

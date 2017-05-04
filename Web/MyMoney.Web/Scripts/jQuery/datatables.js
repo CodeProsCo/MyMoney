@@ -1,3 +1,5 @@
+/// <reference path="~/Scripts/jQuery/jquery-3.1.1.js" />
+
 /*
  * This combined file was created by the DataTables downloader builder:
  *   https://datatables.net/download

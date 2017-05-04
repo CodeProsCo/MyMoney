@@ -309,7 +309,7 @@
                 throw new ArgumentNullException(nameof(apiResponse));
             }
 
-            return new TrackExpenditureViewModel
+            var retVal =  new TrackExpenditureViewModel
                        {
                            AddExpenditure =
                                new AddExpenditureViewModel
@@ -333,7 +333,7 @@
                                                    typeof(TimePeriod)))
                                    },
                            Expenditure =
-                               apiResponse.Expenditure.Select(ExpenditureProxyToViewModel)
+                               apiResponse.Expenditure?.Select(ExpenditureProxyToViewModel)
                                    .OrderBy(x => x.DateOccurred)
                                    .ToList(),
                            EditExpenditure =
@@ -358,6 +358,13 @@
                                                    typeof(TimePeriod)))
                                    }
                        };
+
+            if (retVal.Expenditure == null)
+            {
+                retVal.Expenditure = new List<ExpenditureViewModel>();
+            }
+
+            return retVal;
         }
 
         /// <summary>

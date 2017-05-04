@@ -3,9 +3,10 @@
 @model MyMoney.ViewModels.Authentication.Account.ManageAccountViewModel
 @{
     ViewBag.Title = "Account";
-    Bundles.Reference<ScriptBundle>("~/Areas/Authentication/Scripts/MyMoney.ManageAccount.js");
-    Bundles.Reference<ScriptBundle>("~/Scripts/jQuery/datatables.js");
-    Bundles.Reference<StylesheetBundle>("~/Content/jQuery/datatables.css");
+    Bundles.Reference<ScriptBundle>("~/Areas/Authentication/Scripts/Account");
+
+    Bundles.Reference<ScriptBundle>("~/Scripts/jQuery");
+    Bundles.Reference<StylesheetBundle>("~/Content/jQuery");
 }
 
 <div class="ui grid" id="main-grid">

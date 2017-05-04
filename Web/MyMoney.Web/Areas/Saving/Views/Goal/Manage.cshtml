@@ -6,8 +6,8 @@
 @{
     ViewBag.Title = Goal.Title_ManageGoals;
 
-    Bundles.Reference<StylesheetBundle>("~/Areas/Saving/Content/Goal/goal.css");
-    Bundles.Reference<ScriptBundle>("~/Areas/Saving/Scripts/Goal/MyMoney.ManageGoals.js");
+    Bundles.Reference<StylesheetBundle>("~/Areas/Saving/Content/Goal");
+    Bundles.Reference<ScriptBundle>("~/Areas/Saving/Scripts/Goal");
 }
 <input type="hidden" id="progress-url" value="@Url.Action("GetProgressView", new { goalId = Guid.Empty})"/>
 <div class="ui grid" id="main-grid">
