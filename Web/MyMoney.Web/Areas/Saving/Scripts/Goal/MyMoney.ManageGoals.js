@@ -35,7 +35,6 @@ $(function () {
 
         $("#delete-goal").data("url", deleteUrl).attr("data-url", deleteUrl);
 
-
         $(inputs)
             .each(function (i, elem) {
                 var prop = elem.id.replace("#", "").toCamelCase();
@@ -111,6 +110,7 @@ $(function () {
         }
 
         $("#in-progress").append(data.view);
+        initProgressBars();
         $("div[data-edit]").click(showEditModal);
     }
 
@@ -130,9 +130,33 @@ $(function () {
                 $("#edit-goal-form")[0].reset();
             }
 
+            var url = $("#progress-url").val().replace(/[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/i, goal.id);
+
+            var callback = AjaxResponse(function (data) {
+                replaceActiveGoalSuccessCallback(data);
+            });
+
+            $.ajax(url,
+                {
+                    method: "GET",
+                    async: true,
+                    dataType: "json",
+                    success: callback,
+                    error: ajaxFail
+                });
         }
 
         $("#edit-goal-modal").modal("hide");
+    }
+
+    function replaceActiveGoalSuccessCallback(data) {
+        if (!data.success) {
+            return;
+        }
+
+        $(".active-goal").replaceWith(data.view);
+        initProgressBars();
+        $("div[data-edit]").click(showEditModal);        
     }
 
     function deleteGoalClick(event) {
@@ -186,8 +210,12 @@ $(function () {
         $(btn).append(icon);
         $(btn).off("click");
         $(btn).click(deleteGoalClick);
+    }
 
-
+    function initProgressBars() {
+        $("#in-progress .ui.progress").each(function () {
+            $(this).progress();
+        });
     }
 
     $("#add").click(showAddModal);
