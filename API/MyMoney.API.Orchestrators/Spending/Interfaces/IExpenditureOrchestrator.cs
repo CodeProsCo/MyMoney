@@ -50,14 +50,14 @@
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        Task<GetExpenditureForUserResponse> GetExpendituresForUser(GetExpenditureForUserRequest request);
+        Task<GetExpenditureForUserResponse> GetExpenditureForUser(GetExpenditureForUserRequest request);
 
         /// <summary>
         ///     Gets the expenditures for a given user for month.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
-        Task<GetExpenditureForUserForMonthResponse> GetExpendituresForUserForMonth(
+        Task<GetExpenditureForUserForMonthResponse> GetExpenditureForUserForMonth(
             GetExpenditureForUserForMonthRequest request);
 
         #endregion

@@ -185,7 +185,7 @@
         /// <returns>
         /// The list of view models.
         /// </returns>
-        public IList<GoalViewModel> ProxyToViewModel(IEnumerable<GoalProxy> goals)
+        public IList<GoalViewModel> ProxyToViewModelList(IEnumerable<GoalProxy> goals)
         {
             return goals.Select(ProxyToViewModel).ToList();
         }
@@ -209,8 +209,14 @@
             };
         }
 
+       
         public ManageGoalsViewModel NewManageGoalsViewModel(IList<GoalProxy> goals)
         {
+            if (goals == null)
+            {
+                throw new ArgumentNullException(nameof(goals));    
+            }
+
             var addModel = new AddGoalViewModel
             {
                 Goal =

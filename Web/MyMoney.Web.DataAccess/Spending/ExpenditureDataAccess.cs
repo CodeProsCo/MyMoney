@@ -78,7 +78,7 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetExpenditureForUserResponse> GetExpendituresForUser(GetExpenditureForUserRequest request)
+        public async Task<GetExpenditureForUserResponse> GetExpenditureForUser(GetExpenditureForUserRequest request)
         {
             return await Get<GetExpenditureForUserResponse>(request.FormatRequestUri(), request.Username);
         }
@@ -90,7 +90,7 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<GetExpenditureForUserForMonthResponse> GetExpendituresForUserForMonth(
+        public async Task<GetExpenditureForUserForMonthResponse> GetExpenditureForUserForMonth(
             GetExpenditureForUserForMonthRequest request)
         {
             return await Get<GetExpenditureForUserForMonthResponse>(request.FormatRequestUri(), request.Username);
