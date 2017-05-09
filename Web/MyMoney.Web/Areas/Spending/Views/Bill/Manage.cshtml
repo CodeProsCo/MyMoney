@@ -31,13 +31,18 @@
     </div>
     <div class="four wide column">
         <div class="ui styled segment" id="bill-charts">
-            <div class="ui block header" data-hint="@Bill.Hint_BillBreakdown">
-                <i class="browser icon"></i>
-                @Bill.Heading_BillBreakdown
-            </div>
             <div class="ui items">
                 <div class="ui active inverted dimmer" id="bill-chart-loader">
-                    <div class="ui text loader" id="chart-loading-text"></div>
+                    <div class="ui text loader" id="chart-loading-text">
+                    </div>
+                </div>
+                <div class="chart-error-container">
+                    <h2 class="ui icon header">
+                        <div class="content">
+                            <i class="disk outline icon"></i>
+                            <div class="sub header">@Common.Message_NotEnoughChartData</div>
+                        </div>
+                    </h2>
                 </div>
                 <div class="item">
                     <div id="category-chart" data-url="@Url.Action("GetCategoryChartData", "Bill")"></div>

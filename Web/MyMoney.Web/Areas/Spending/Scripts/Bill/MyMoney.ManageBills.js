@@ -112,15 +112,9 @@ $(function () {
     }
 
     function getPeriodChartDataSuccessCallback(data) {
-        if (data.model.length <= 1) {
-            hideChart("#period-chart");
-            return;
-        }
-
         var chartGenerator = new ChartGenerator(data.model);
-        chartGenerator.createBillPeriodChart("#period-chart");
 
-        $("#period-chart").siblings(".dimmer").addClass("disabled").removeClass("active");
+        chartGenerator.createBillPeriodChart("#period-chart");
     }
 
 

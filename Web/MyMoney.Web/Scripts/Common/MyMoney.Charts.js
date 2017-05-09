@@ -32,8 +32,7 @@ function ChartGenerator(data) {
         var container = $(options.container);
 
         container.siblings().fadeOut();
-        
-        
+               
         if (chartData.length >= 2) {
             container.empty();
         } else {
@@ -97,14 +96,16 @@ function ChartGenerator(data) {
 
         var chartData = options.data;
 
+        var container = $(options.container).parent().parent();
+
+        container.find(".dimmer").fadeOut();
+
         if (chartData.length < 2) {
-            
-            var container = $(options.container);
-
-            $(container)
-
+            container.find(".chart-error-container").addClass("active");
             return;
-        }
+        } else {
+            container.find(".chart-error-container").removeClass("active");
+        } 
 
         for (var i = 0; i < chartData.length; i++) {
             var item = chartData[i];
