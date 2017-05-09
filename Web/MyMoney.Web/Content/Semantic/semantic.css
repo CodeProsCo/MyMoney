@@ -33803,7 +33803,7 @@ body.pushable {
 }
 
 body.pushable > .pusher {
-    background: #FFFFFF;
+    background: #EFEFEF;
 }
 
 /* Pusher should inherit background from context */
