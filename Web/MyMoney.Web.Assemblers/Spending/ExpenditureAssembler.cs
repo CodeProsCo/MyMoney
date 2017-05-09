@@ -309,7 +309,12 @@
                 throw new ArgumentNullException(nameof(apiResponse));
             }
 
-            var retVal =  new TrackExpenditureViewModel
+            if (apiResponse.Expenditure == null)
+            {
+                apiResponse.Expenditure = new List<ExpenditureProxy>();
+            }
+
+            return new TrackExpenditureViewModel
                        {
                            AddExpenditure =
                                new AddExpenditureViewModel
@@ -358,13 +363,6 @@
                                                    typeof(TimePeriod)))
                                    }
                        };
-
-            if (retVal.Expenditure == null)
-            {
-                retVal.Expenditure = new List<ExpenditureViewModel>();
-            }
-
-            return retVal;
         }
 
         /// <summary>

@@ -2,6 +2,16 @@
 @reference ~/Content/Semantic/semantic.css
 */
 
+.chart-error-container {
+    width: 100%;
+    text-align: center;
+    padding-top: 6.5em;
+    display: none;
+}
+
+.chart-error-container.active {
+    display: block;
+}
 
 .wide-button {
     width: 100% !important;
