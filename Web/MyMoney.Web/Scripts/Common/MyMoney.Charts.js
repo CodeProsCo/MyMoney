@@ -1,16 +1,17 @@
 ﻿/// <reference path="~/Scripts/Chartist/chartist-plugin-tooltip.js"/>
 /// <reference path="~/Scripts/Moment/moment.js" />
+/// <reference path="~/Scripts/jQuery/jquery-3.1.1.js" />
 function ChartGenerator(data) {
     this.data = data;
     this.chart = {};
 
     var self = this;
 
-    this.createExpenditureChart = function(containerId) {
+    this.createExpenditureChart = function (containerId) {
         var options = {
             container: containerId,
             data: this.data,
-            animated:true
+            animated: true
         }
 
         return createLineChart(options);
@@ -28,6 +29,16 @@ function ChartGenerator(data) {
         var currentDate = new Date();
         var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getTime();
         var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, -1).getTime();
+        var container = $(options.container);
+
+        container.siblings().fadeOut();
+               
+        if (chartData.length >= 2) {
+            container.empty();
+        } else {
+            container.find(".chart-error-container").addClass("active");
+            return; 
+        } 
 
         self.chart = new Chartist.Line(options.container,
             {
@@ -52,26 +63,26 @@ function ChartGenerator(data) {
                     labelInterpolationFnc: function (value) {
                         return value.asCurrency();
                     },
-                    low:0
+                    low: 0
                 },
                 lineSmooth: Chartist.Interpolation.cardinal({
                     fillHoles: true
                 }),
                 height: 300,
                 chartPadding: {
-                    right:40
+                    right: 40
                 }
             });
     }
 
-    this.createBillCategoryChart = function(containerId) {
+    this.createBillCategoryChart = function (containerId) {
         var options = {
             container: containerId,
             data: this.data
         };
         return createDonutChart(options);
     };
-    this.createBillPeriodChart = function(containerId) {
+    this.createBillPeriodChart = function (containerId) {
         var options = {
             container: containerId,
             data: this.data
@@ -84,6 +95,17 @@ function ChartGenerator(data) {
         var series = [];
 
         var chartData = options.data;
+
+        var container = $(options.container).parent().parent();
+
+        container.find(".dimmer").fadeOut();
+
+        if (chartData.length < 2) {
+            container.find(".chart-error-container").addClass("active");
+            return;
+        } else {
+            container.find(".chart-error-container").removeClass("active");
+        } 
 
         for (var i = 0; i < chartData.length; i++) {
             var item = chartData[i];

@@ -132,8 +132,6 @@ $(function () {
             var generator = new ChartGenerator(data.model);
 
             generator.createExpenditureChart("#expenditure-chart");
-
-            $("#expenditure-chart").siblings().fadeOut();
         } else {
             hideChart("#expenditure-chart");
         }

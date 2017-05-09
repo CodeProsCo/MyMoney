@@ -180,6 +180,9 @@
   <data name="Label_AcceptTermsAndConditions" xml:space="preserve">
     <value>I accept the terms and conditions</value>
   </data>
+  <data name="Message_NotEnoughChartData" xml:space="preserve">
+    <value>Once you have provided enough data, charts will appear.</value>
+  </data>
   <data name="Success_Title" xml:space="preserve">
     <value>Success</value>
   </data>
