@@ -15,7 +15,16 @@
             <div class="ui active inverted dimmer">
                 <div class="ui text loader" id="chart-loading-text"></div>
             </div>
-            <div data-hint="@Expenditure.Hint_ExpenditureChart" id="expenditure-chart" data-url="@Url.Action("GetExpenditureChartData", "Expenditure")"></div>
+            <div data-hint="@Expenditure.Hint_ExpenditureChart" id="expenditure-chart" data-url="@Url.Action("GetExpenditureChartData", "Expenditure")">
+                <div class="chart-error-container">
+                    <h2 class="ui icon header">
+                        <div class="content">
+                            <i class="disk outline icon"></i>
+                            <div class="sub header">@Common.Message_NotEnoughChartData</div>
+                        </div>
+                    </h2>
+                </div>
+            </div>
         </div>
     </div>
     <div class="eight wide column">

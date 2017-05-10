@@ -309,6 +309,11 @@
                 throw new ArgumentNullException(nameof(apiResponse));
             }
 
+            if (apiResponse.Expenditure == null || apiResponse.ExpenditureCount == 0)
+            {
+                apiResponse.Expenditure = new List<ExpenditureProxy>();
+            }
+
             return new TrackExpenditureViewModel
                        {
                            AddExpenditure =

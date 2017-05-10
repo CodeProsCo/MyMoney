@@ -250,6 +250,15 @@ namespace MyMoney.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Once you have provided enough data, charts will appear..
+        /// </summary>
+        public static string Message_NotEnoughChartData {
+            get {
+                return ResourceManager.GetString("Message_NotEnoughChartData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string Success_Title {
