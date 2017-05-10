@@ -110,8 +110,8 @@ $(function () {
         }
 
         $("#in-progress").append(data.view);
-        initProgressBars();
         $("div[data-edit]").click(showEditModal);
+        initProgressBars();
     }
 
     function editGoalClick(event) {
@@ -155,8 +155,8 @@ $(function () {
         }
 
         $(".active-goal").replaceWith(data.view);
+        $("div[data-edit]").click(showEditModal); 
         initProgressBars();
-        $("div[data-edit]").click(showEditModal);        
     }
 
     function deleteGoalClick(event) {
