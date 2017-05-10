@@ -69,7 +69,7 @@
         /// </returns>
         public async Task<ExpenditureDataModel> AddExpenditure(ExpenditureDataModel dataModel)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 dataModel.Id = Guid.NewGuid();
 
@@ -94,7 +94,7 @@
         /// <returns>If successful, true. Otherwise, false.</returns>
         public async Task<bool> DeleteExpenditure(Guid expenditureId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var toDelete = await GetExpenditure(expenditureId);
 
@@ -119,7 +119,7 @@
         /// <returns>The updated expenditure data model.</returns>
         public async Task<ExpenditureDataModel> EditExpenditure(ExpenditureDataModel expenditure)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var toEdit = await GetExpenditure(expenditure.Id);
 
@@ -153,7 +153,7 @@
         /// </returns>
         public async Task<ExpenditureDataModel> GetExpenditure(Guid expenditureId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 return
                 await context.Expenditures.Include(x => x.Category)
@@ -171,7 +171,7 @@
         /// </returns>
         public async Task<IList<ExpenditureDataModel>> GetExpenditureForUser(Guid userId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 return
                 await context.Expenditures.Include(x => x.Category)
@@ -190,7 +190,7 @@
         /// </returns>
         public async Task<IEnumerable<ExpenditureDataModel>> GetExpenditureForUserForMonth(Guid userId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 return
                 await context.Expenditures.Include(x => x.Category)

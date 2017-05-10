@@ -68,7 +68,7 @@
         /// </returns>
         public async Task<BillDataModel> AddBill(BillDataModel dataModel)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 dataModel.Id = Guid.NewGuid();
 
@@ -93,7 +93,7 @@
         /// <returns>If successful, true. Otherwise, false.</returns>
         public async Task<bool> DeleteBill(Guid billId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var toDelete = await GetBill(billId);
 
@@ -118,7 +118,7 @@
         /// <returns>The updated bill data model.</returns>
         public async Task<BillDataModel> EditBill(BillDataModel bill)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var toEdit = await GetBill(bill.Id);
 
@@ -155,7 +155,7 @@
         /// </exception>
         public async Task<BillDataModel> GetBill(Guid billId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var bill =
                 await context.Bills.Include(x => x.Category)
@@ -180,7 +180,7 @@
         /// </returns>
         public async Task<IList<BillDataModel>> GetBillsForUser(Guid userId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 return
                 await context.Bills.Include(x => x.Category)

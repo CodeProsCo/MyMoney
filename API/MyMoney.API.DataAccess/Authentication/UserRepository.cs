@@ -41,7 +41,7 @@
         /// </returns>
         public async Task<UserDataModel> GetUser(string email, string password)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var result = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.EmailAddress == email);
 
@@ -71,7 +71,7 @@
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var result =
                 await context.Users.AsNoTracking()
@@ -97,7 +97,7 @@
         /// </returns>
         public async Task<UserDataModel> RegisterUser(UserDataModel model)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 model.Id = Guid.NewGuid();
                 model.CreationTime = DateTime.Now;

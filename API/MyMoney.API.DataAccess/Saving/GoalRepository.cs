@@ -40,7 +40,7 @@
         /// </returns>
         public async Task<GoalDataModel> AddGoal(GoalDataModel model)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 model.Id = Guid.NewGuid();
 
@@ -65,7 +65,7 @@
         /// </exception>
         public async Task<bool> DeleteGoal(Guid goalId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var toDelete = await context.Goals.FirstOrDefaultAsync(x => x.Id.Equals(goalId));
 
@@ -94,7 +94,7 @@
         /// </exception>
         public async Task<GoalDataModel> EditGoal(GoalDataModel model)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var toEdit = await GetGoal(model.Id);
 
@@ -127,7 +127,7 @@
         /// </exception>
         public async Task<GoalDataModel> GetGoal(Guid goalId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var goal = await context.Goals.AsNoTracking().FirstOrDefaultAsync(x => x.Id.Equals(goalId));
 
@@ -149,7 +149,7 @@
         /// </returns>
         public async Task<IList<GoalDataModel>> GetGoalsForUser(Guid userId)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 return await context.Goals.AsNoTracking().Where(x => x.UserId.Equals(userId)).ToListAsync();
             }
