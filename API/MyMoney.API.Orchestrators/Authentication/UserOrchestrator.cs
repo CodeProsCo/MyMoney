@@ -13,6 +13,7 @@
     using DTO.Response.Authentication;
 
     using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -39,6 +40,11 @@
         /// </summary>
         private readonly IUserRepository repository;
 
+        /// <summary>
+        ///     The error helper
+        /// </summary>
+        private readonly IErrorHelper errorHelper;
+
         #endregion
 
         #region Constructor
@@ -51,7 +57,7 @@
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown if the assembler or repository are null.
         /// </exception>
-        public UserOrchestrator(IUserAssembler assembler, IUserRepository repository)
+        public UserOrchestrator(IUserAssembler assembler, IUserRepository repository, IErrorHelper errorHelper)
         {
             if (assembler == null)
             {
@@ -63,8 +69,14 @@
                 throw new ArgumentNullException(nameof(repository));
             }
 
+            if (errorHelper == null)
+            {
+                throw new ArgumentNullException(nameof(errorHelper));
+            }
+
             this.assembler = assembler;
             this.repository = repository;
+            this.errorHelper = errorHelper;
         }
 
         #endregion
@@ -91,7 +103,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.EmailAddress, GetType(), "RegisterUser");
+                var err = errorHelper.Create(ex, request.EmailAddress, GetType(), "RegisterUser");
                 response.AddError(err);
             }
 
@@ -117,7 +129,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

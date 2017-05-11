@@ -107,7 +107,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "AddExpenditure");
+                var err = errorHelper.Create(ex, username, GetType(), "AddExpenditure");
                 response.AddError(err);
             }
 
@@ -145,7 +145,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "DeleteExpenditure");
+                var err = errorHelper.Create(ex, username, GetType(), "DeleteExpenditure");
                 response.AddError(err);
             }
 
@@ -184,7 +184,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "EditExpenditure");
+                var err = errorHelper.Create(ex, username, GetType(), "EditExpenditure");
                 response.AddError(err);
             }
 
@@ -223,7 +223,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, userEmail, GetType(), "ExportExpenditure");
+                var err = errorHelper.Create(ex, userEmail, GetType(), "ExportExpenditure");
                 response.AddError(err);
             }
 
@@ -263,7 +263,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditure");
+                var err = errorHelper.Create(ex, username, GetType(), "GetExpenditure");
                 response.AddError(err);
             }
 
@@ -302,7 +302,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditureForUser");
+                var err = errorHelper.Create(ex, username, GetType(), "GetExpenditureForUser");
                 response.AddError(err);
             }
 
@@ -341,7 +341,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditureForUserForMonth");
+                var err = errorHelper.Create(ex, username, GetType(), "GetExpenditureForUserForMonth");
                 response.AddError(err);
             }
 

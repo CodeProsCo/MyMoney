@@ -7,6 +7,8 @@
     using DTO.Request.Spending.Bill;
     using DTO.Response.Spending.Bill;
 
+    using Helpers.Error.Interfaces;
+
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -21,6 +23,15 @@
     [UsedImplicitly]
     public class BillDataAccess : BaseDataAccess, IBillDataAccess
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillDataAccess"/> class.
+        /// </summary>
+        /// <param name="errorHelper">The error helper.</param>
+        public BillDataAccess(IErrorHelper errorHelper)
+            : base(errorHelper)
+        {
+        }
+
         #region Methods
 
         /// <summary>

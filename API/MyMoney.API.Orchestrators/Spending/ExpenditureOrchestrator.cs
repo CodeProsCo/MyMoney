@@ -92,7 +92,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "AddExpenditure");
+                var err = errorHelper.Create(ex, username, GetType(), "AddExpenditure");
                 response.AddError(err);
             }
 
@@ -118,7 +118,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteExpenditure");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "DeleteExpenditure");
                 response.AddError(err);
             }
 
@@ -145,7 +145,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditExpenditure");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "EditExpenditure");
                 response.AddError(err);
             }
 
@@ -171,7 +171,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditure");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditure");
                 response.AddError(err);
             }
 
@@ -197,7 +197,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUser");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUser");
                 response.AddError(err);
             }
 
@@ -224,7 +224,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUserForMonth");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUserForMonth");
                 response.AddError(err);
             }
 
