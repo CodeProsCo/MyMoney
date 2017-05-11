@@ -11,7 +11,6 @@
     using DataAccess.Authentication.Interfaces;
 
     using Helpers.Error;
-    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -42,8 +41,6 @@
         /// </summary>
         private readonly IUserDataAccess dataAccess;
 
-        private readonly IErrorHelper errorHelper;
-
         #endregion
 
         #region Constructor
@@ -57,7 +54,7 @@
         /// <param name="dataAccess">
         ///     The data Access.
         /// </param>
-        public UserOrchestrator(IUserAssembler assembler, IUserDataAccess dataAccess, IErrorHelper errorHelper)
+        public UserOrchestrator(IUserAssembler assembler, IUserDataAccess dataAccess)
         {
             if (assembler == null)
             {
@@ -69,14 +66,8 @@
                 throw new ArgumentNullException(nameof(dataAccess));
             }
 
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
             this.assembler = assembler;
             this.dataAccess = dataAccess;
-            this.errorHelper = errorHelper;
         }
 
         #endregion
@@ -110,7 +101,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, model?.EmailAddress, GetType(), "RegisterUser");
+                var err = ErrorHelper.Create(ex, model?.EmailAddress, GetType(), "RegisterUser");
                 response.AddError(err);
             }
 
@@ -144,7 +135,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, model?.EmailAddress, GetType(), "ValidateUser");
+                var err = ErrorHelper.Create(ex, model?.EmailAddress, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

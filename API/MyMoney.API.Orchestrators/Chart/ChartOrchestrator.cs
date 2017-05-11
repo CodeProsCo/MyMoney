@@ -16,7 +16,7 @@
     using DTO.Response.Chart.Bill;
     using DTO.Response.Chart.Expenditure;
 
-    using Helpers.Error.Interfaces;
+    using Helpers.Error;
 
     using Interfaces;
 
@@ -37,11 +37,6 @@
         ///     The assembler
         /// </summary>
         private readonly IChartAssembler assembler;
-
-        /// <summary>
-        ///     The error helper
-        /// </summary>
-        private readonly IErrorHelper errorHelper;
 
         /// <summary>
         ///     The bill data transformer
@@ -93,8 +88,7 @@
             IBillRepository billRepository,
             IBillDataTransformer billDataTransformer,
             IExpenditureRepository expenditureRepository,
-            IExpenditureDataTransformer expenditureDataTransformer,
-            IErrorHelper errorHelper)
+            IExpenditureDataTransformer expenditureDataTransformer)
         {
             if (assembler == null)
             {
@@ -121,12 +115,6 @@
                 throw new ArgumentNullException(nameof(expenditureDataTransformer));
             }
 
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
-            this.errorHelper = errorHelper;
             this.assembler = assembler;
             this.billRepository = billRepository;
             this.billDataTransformer = billDataTransformer;
@@ -159,7 +147,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
                 response.AddError(err);
             }
 
@@ -186,7 +174,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
                 response.AddError(err);
             }
 
@@ -194,7 +182,7 @@
         }
 
         /// <summary>
-        ///     Obtains the data required for the expenditure chart.
+        /// Obtains the data required for the expenditure chart.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>
@@ -212,7 +200,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditureChartData");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureChartData");
                 response.AddError(err);
             }
 

@@ -15,8 +15,6 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
-    using Helpers.Security.Interfaces;
-
     #endregion
 
     /// <summary>
@@ -34,12 +32,7 @@
         /// <param name="store">The configuration store.</param>
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(
-                Component.For<IUserAssembler>()
-                    .ImplementedBy<UserAssembler>()
-                    .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<IEncryptionHelper, IEncryptionHelper>()));
-
+            container.Register(Component.For<IUserAssembler>().ImplementedBy<UserAssembler>().LifestylePerWebRequest());
             container.Register(Component.For<IBillAssembler>().ImplementedBy<BillAssembler>().LifestylePerWebRequest());
             container.Register(
                 Component.For<IExpenditureAssembler>().ImplementedBy<ExpenditureAssembler>().LifestylePerWebRequest());

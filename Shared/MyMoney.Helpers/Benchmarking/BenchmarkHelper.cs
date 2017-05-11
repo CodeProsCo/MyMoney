@@ -4,10 +4,6 @@
 
     using System;
 
-    using Interfaces;
-
-    using JetBrains.Annotations;
-
     #endregion
 
     /// <summary>
@@ -21,8 +17,7 @@
     ///     httpResponse = await Client.DeleteAsync(uri);
     ///     }
     /// </example>
-    [UsedImplicitly]
-    public class BenchmarkHelper : IBenchmarkHelper
+    public static class BenchmarkHelper
     {
         #region Methods
 
@@ -31,7 +26,7 @@
         /// </summary>
         /// <param name="uri">The request URI.</param>
         /// <returns>The benchmarking object. Once disposed, the metrics will be written to the log.</returns>
-        public Benchmark Create(string uri)
+        public static Benchmark Create(string uri)
         {
             return new Benchmark(uri);
         }
@@ -41,7 +36,7 @@
         /// </summary>
         /// <param name="uri">The request URI.</param>
         /// <returns>The benchmarking object. Once disposed, the metrics will be written to the log.</returns>
-        public Benchmark Create(Uri uri)
+        public static Benchmark Create(Uri uri)
         {
             return Create(uri.AbsoluteUri);
         }

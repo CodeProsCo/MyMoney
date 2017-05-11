@@ -39,6 +39,11 @@
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
+            var exception = Server.GetLastError();
+
+            ErrorHelper.Create(exception, "SYSTEM", GetType(), "Application_Error");
+
+            Server.ClearError();
             HttpContext.Current.Response.RedirectToRoute(
                 new { action = "SystemError", controller = "Error", area = "Common" });
         }

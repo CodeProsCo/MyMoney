@@ -15,8 +15,7 @@
     using System.Web.Routing;
 
     using Helpers.Benchmarking;
-    using Helpers.Benchmarking.Interfaces;
-    using Helpers.Error.Interfaces;
+    using Helpers.Error;
 
     using Microsoft.Owin.Security;
 
@@ -36,46 +35,9 @@
         #region Fields
 
         /// <summary>
-        ///     The benchmark helper.
-        /// </summary>
-        private readonly IBenchmarkHelper benchmarkHelper;
-
-        /// <summary>
-        ///     The error helper
-        /// </summary>
-        private readonly IErrorHelper errorHelper;
-
-        /// <summary>
-        ///     The controller benchmark
+        /// The controller benchmark
         /// </summary>
         private Benchmark controllerBenchmark;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="BaseController" /> class.
-        /// </summary>
-        /// <param name="errorHelper">
-        ///     The error helper.
-        /// </param>
-        /// <param name="benchmarkHelper">
-        ///     The benchmark helper.
-        /// </param>
-        /// <exception cref="ArgumentNullException">
-        ///     Exception thrown if the error helper or benchmark helper are null
-        /// </exception>
-        public BaseController(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
-        {
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
-            this.errorHelper = errorHelper;
-            this.benchmarkHelper = benchmarkHelper ?? throw new ArgumentNullException(nameof(benchmarkHelper));
-        }
 
         #endregion
 
@@ -137,7 +99,7 @@
         }
 
         /// <summary>
-        ///     Gets the resource value.
+        /// Gets the resource value.
         /// </summary>
         /// <param name="nameSpace">The resource namespace.</param>
         /// <param name="key">The key.</param>
@@ -163,7 +125,7 @@
         }
 
         /// <summary>
-        ///     Creates a JSON response object based on the given response object.
+        /// Creates a JSON response object based on the given response object.
         /// </summary>
         /// <typeparam name="T">The model type.</typeparam>
         /// <param name="response">The response.</param>
@@ -171,38 +133,33 @@
         protected static ContentResult JsonResponse<T>(OrchestratorResponseWrapper<T> response)
         {
             return new ContentResult
-                       {
-                           ContentType = "application/json",
-                           Content = JsonConvert.SerializeObject(
-                               response,
-                               new JsonSerializerSettings
+            {
+                ContentType = "application/json",
+                Content =
+                               JsonConvert.SerializeObject(
+                                   response,
+                                   new JsonSerializerSettings
                                    {
                                        ContractResolver =
-                                           new
-                                               CamelCasePropertyNamesContractResolver()
+                                               new CamelCasePropertyNamesContractResolver()
                                    }),
-                           ContentEncoding = Encoding.UTF8
-                       };
+                ContentEncoding = Encoding.UTF8
+            };
         }
 
-        /// <summary>
-        ///     Creates an instance of the <see cref="ContentResult" /> class based on the given view data.
-        /// </summary>
-        /// <param name="viewData">The view data.</param>
-        /// <returns>The content result.</returns>
         protected static ContentResult ViewResponse(string viewData)
         {
             return new ContentResult
                        {
                            ContentType = "application/json",
-                           Content = JsonConvert.SerializeObject(
-                               new { View = viewData, Success = true },
-                               new JsonSerializerSettings
-                                   {
-                                       ContractResolver =
-                                           new
-                                               CamelCasePropertyNamesContractResolver()
-                                   }),
+                           Content =
+                               JsonConvert.SerializeObject(
+                                   new { View = viewData, Success = true },
+                                   new JsonSerializerSettings
+                                       {
+                                           ContractResolver =
+                                               new CamelCasePropertyNamesContractResolver()
+                                       }),
                            ContentEncoding = Encoding.UTF8
                        };
         }
@@ -217,7 +174,7 @@
             AsyncCallback callback,
             object state)
         {
-            controllerBenchmark = benchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl);
+            controllerBenchmark = BenchmarkHelper.Create(requestContext.HttpContext.Request.RawUrl);
 
             return base.BeginExecute(requestContext, callback, state);
         }
@@ -244,11 +201,7 @@
             {
                 foreach (var error in modelState.Errors)
                 {
-                    var errorWrapper = errorHelper.Create(
-                        error.ErrorMessage,
-                        UserEmail,
-                        GetType(),
-                        "InvalidModelState");
+                    var errorWrapper = ErrorHelper.Create(error.ErrorMessage, UserEmail, GetType(), "InvalidModelState");
 
                     response.AddError(errorWrapper);
                 }

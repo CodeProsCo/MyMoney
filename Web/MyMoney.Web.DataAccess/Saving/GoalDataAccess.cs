@@ -7,8 +7,6 @@
     using DTO.Request.Saving.Goal;
     using DTO.Response.Saving.Goal;
 
-    using Helpers.Error.Interfaces;
-
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -23,15 +21,6 @@
     [UsedImplicitly]
     public class GoalDataAccess : BaseDataAccess, IGoalDataAccess
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GoalDataAccess"/> class.
-        /// </summary>
-        /// <param name="errorHelper">The error helper.</param>
-        public GoalDataAccess(IErrorHelper errorHelper)
-            : base(errorHelper)
-        {
-        }
-
         #region Methods
 
         /// <summary>

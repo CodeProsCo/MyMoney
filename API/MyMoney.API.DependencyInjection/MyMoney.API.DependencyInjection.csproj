@@ -97,10 +97,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\MyMoney.Helpers\MyMoney.Helpers.csproj">
-      <Project>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</Project>
-      <Name>MyMoney.Helpers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyMoney.API.Assemblers\MyMoney.API.Assemblers.csproj">
       <Project>{92CE09E3-14DD-469A-8603-F792C54B1ECF}</Project>
       <Name>MyMoney.API.Assemblers</Name>

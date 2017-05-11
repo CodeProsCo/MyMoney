@@ -5,10 +5,6 @@
     using System;
     using System.Diagnostics;
 
-    using Interfaces;
-
-    using JetBrains.Annotations;
-
     using Wrappers;
 
     #endregion
@@ -16,8 +12,7 @@
     /// <summary>
     /// The <see cref="ErrorHelper"/> class creates instances of the <see cref="ResponseErrorWrapper"/> class for use when components throw exceptions or fail to perform an action.
     /// </summary>
-    [UsedImplicitly]
-    public class ErrorHelper : IErrorHelper
+    public static class ErrorHelper
     {
         #region Constants
 
@@ -39,7 +34,7 @@
         /// <param name="className">Name of the class.</param>
         /// <param name="methodName">Name of the method.</param>
         /// <returns>The error wrapper.</returns>
-        public ResponseErrorWrapper Create(Exception ex, string username, Type className, string methodName)
+        public static ResponseErrorWrapper Create(Exception ex, string username, Type className, string methodName)
         {
             var message = string.Empty;
 
@@ -60,7 +55,7 @@
         /// <param name="className">Name of the class.</param>
         /// <param name="methodName">Name of the method.</param>
         /// <returns>The error wrapper.</returns>
-        public ResponseErrorWrapper Create(string message, string username, Type className, string methodName)
+        public static ResponseErrorWrapper Create(string message, string username, Type className, string methodName)
         {
             var retVal = new ResponseErrorWrapper
                              {
@@ -80,7 +75,7 @@
         /// Writes the trace.
         /// </summary>
         /// <param name="error">The error.</param>
-        private void WriteTrace(ResponseErrorWrapper error)
+        private static void WriteTrace(ResponseErrorWrapper error)
         {
             var logFormat = string.Format(TraceFormat, error.Occurred, error.Message, error.ClassName, error.MethodName);
 

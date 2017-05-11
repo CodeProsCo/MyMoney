@@ -9,8 +9,6 @@
     using DTO.Response.Chart.Bill;
     using DTO.Response.Chart.Expenditure;
 
-    using Helpers.Error.Interfaces;
-
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -25,15 +23,6 @@
     [UsedImplicitly]
     public class ChartDataAccess : BaseDataAccess, IChartDataAccess
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartDataAccess"/> class.
-        /// </summary>
-        /// <param name="errorHelper">The error helper.</param>
-        public ChartDataAccess(IErrorHelper errorHelper)
-            : base(errorHelper)
-        {          
-        }
-
         #region Methods
 
         /// <summary>

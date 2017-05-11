@@ -109,7 +109,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "AddBill");
+                var err = ErrorHelper.Create(ex, username, GetType(), "AddBill");
                 response.AddError(err);
             }
 
@@ -133,7 +133,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "DeleteBill");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteBill");
                 response.AddError(err);
             }
 
@@ -159,7 +159,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "EditBill");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditBill");
                 response.AddError(err);
             }
 
@@ -183,7 +183,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetBill");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBill");
                 response.AddError(err);
             }
 
@@ -207,7 +207,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetBillsForUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillsForUser");
                 response.AddError(err);
             }
 
@@ -235,7 +235,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetBillsForUserForMonth");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillsForUserForMonth");
                 response.AddError(err);
             }
 

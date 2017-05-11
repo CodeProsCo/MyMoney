@@ -10,7 +10,7 @@
 
     using DataAccess.Chart.Interfaces;
 
-    using Helpers.Error.Interfaces;
+    using Helpers.Error;
 
     using Interfaces;
 
@@ -41,11 +41,6 @@
         /// </summary>
         private readonly IChartDataAccess dataAccess;
 
-        /// <summary>
-        ///     The error helper.
-        /// </summary>
-        private readonly IErrorHelper errorHelper;
-
         #endregion
 
         #region Constructor
@@ -55,11 +50,10 @@
         /// </summary>
         /// <param name="assembler">The assembler.</param>
         /// <param name="dataAccess">The data access.</param>
-        /// <param name="errorHelper">The error helper.</param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown if the assembler, error helper or data access are null.
+        ///     Exception thrown if the assembler or data access are null.
         /// </exception>
-        public ChartOrchestrator(IChartAssembler assembler, IChartDataAccess dataAccess, IErrorHelper errorHelper)
+        public ChartOrchestrator(IChartAssembler assembler, IChartDataAccess dataAccess)
         {
             if (assembler == null)
             {
@@ -71,14 +65,8 @@
                 throw new ArgumentNullException(nameof(dataAccess));
             }
 
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
             this.assembler = assembler;
             this.dataAccess = dataAccess;
-            this.errorHelper = errorHelper;
         }
 
         #endregion
@@ -114,7 +102,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "GetBillCategoryChartData");
+                var err = ErrorHelper.Create(ex, username, GetType(), "GetBillCategoryChartData");
                 response.AddError(err);
             }
 
@@ -150,7 +138,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "GetBillPeriodChartData");
+                var err = ErrorHelper.Create(ex, username, GetType(), "GetBillPeriodChartData");
                 response.AddError(err);
             }
 
@@ -158,13 +146,13 @@
         }
 
         /// <summary>
-        ///     Builds and sends an HTTP request for the data required to produce the expenditure chart.
+        /// Builds and sends an HTTP request for the data required to produce the expenditure chart.
         /// </summary>
-        /// <param name="month">The month, represented as an integer.</param>
+        /// <param name="month"></param>
         /// <param name="userId">The user identifier.</param>
         /// <param name="userEmail">The user email.</param>
         /// <returns>
-        ///     The response object.
+        /// The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<IList<KeyValuePair<DateTime, double>>>> GetExpenditureChartData(
             int month,
@@ -189,7 +177,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, userEmail, GetType(), "GetExpenditureChartData");
+                var err = ErrorHelper.Create(ex, userEmail, GetType(), "GetExpenditureChartData");
                 response.AddError(err);
             }
 
