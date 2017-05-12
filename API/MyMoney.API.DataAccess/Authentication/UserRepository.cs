@@ -10,6 +10,7 @@
     using DataModels.Authentication;
 
     using Helpers.Security;
+    using Helpers.Security.Interfaces;
 
     using Interfaces;
 
@@ -27,7 +28,20 @@
     public class UserRepository : IUserRepository
     {
         #region Fields
+
+        private IEncryptionHelper encryptionHelper;
+
         #endregion
+
+        public UserRepository(IEncryptionHelper encryptionHelper)
+        {
+            if (encryptionHelper == null)
+            {
+                throw new ArgumentNullException(nameof(encryptionHelper));
+            }
+
+            this.encryptionHelper = encryptionHelper;
+        }
 
         #region Methods
 
@@ -50,7 +64,7 @@
                     throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
                 }
 
-                if (EncryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
+                if (encryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
                 {
                     return result;
                 }
@@ -79,7 +93,7 @@
                     .Select(x => x.Id)
                     .SingleOrDefaultAsync();
 
-                if (result == null || result == Guid.Empty)
+                if (result == Guid.Empty)
                 {
                     throw new Exception(Authentication.Error_CouldNotFindUser);
                 }

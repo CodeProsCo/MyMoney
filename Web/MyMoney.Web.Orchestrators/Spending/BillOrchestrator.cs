@@ -105,7 +105,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "AddBill");
+                var err = errorHelper.Create(ex, username, GetType(), "AddBill");
                 response.AddError(err);
             }
 
@@ -143,7 +143,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "DeleteBill");
+                var err = errorHelper.Create(ex, username, GetType(), "DeleteBill");
                 response.AddError(err);
             }
 
@@ -180,7 +180,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "EditBill");
+                var err = errorHelper.Create(ex, username, GetType(), "EditBill");
                 response.AddError(err);
             }
 
@@ -220,7 +220,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "ExportBills");
+                var err = errorHelper.Create(ex, username, GetType(), "ExportBills");
                 response.AddError(err);
             }
 
@@ -258,7 +258,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetBill");
+                var err = errorHelper.Create(ex, username, GetType(), "GetBill");
                 response.AddError(err);
             }
 
@@ -297,7 +297,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetBillsForUser");
+                var err = errorHelper.Create(ex, username, GetType(), "GetBillsForUser");
                 response.AddError(err);
             }
 
@@ -336,7 +336,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetBillsForUserForMonth");
+                var err = errorHelper.Create(ex, username, GetType(), "GetBillsForUserForMonth");
                 response.AddError(err);
             }
 

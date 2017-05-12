@@ -15,21 +15,29 @@
     using DTO.Response;
 
     using Helpers.Benchmarking;
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
+
+    using JetBrains.Annotations;
 
     #endregion
 
     /// <summary>
     ///     The base class for all data access objects.
     /// </summary>
+    [UsedImplicitly]
     public class BaseDataAccess
     {
         #region Fields
 
         /// <summary>
-        ///     The Client
+        ///     The client
         /// </summary>
         private readonly HttpClient client;
+
+        /// <summary>
+        ///     The error helper.
+        /// </summary>
+        private readonly IErrorHelper errorHelper;
 
         #endregion
 
@@ -38,8 +46,18 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="BaseDataAccess" /> class.
         /// </summary>
-        protected BaseDataAccess()
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
+        protected BaseDataAccess(IErrorHelper errorHelper)
         {
+            if (errorHelper == null)
+            {
+                throw new ArgumentNullException(nameof(errorHelper));
+            }
+
+            this.errorHelper = errorHelper;
+
             var context = HttpContext.Current.GetOwinContext();
             var user = context.Authentication.User;
             var claim = user.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier);
@@ -67,7 +85,8 @@
         /// <param name="uri">The URI.</param>
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
-        protected async Task<T> Delete<T>(string uri, string username) where T : BaseResponse
+        protected async Task<T> Delete<T>(string uri, string username)
+            where T : BaseResponse
         {
             var response = (T)Activator.CreateInstance(typeof(T));
 
@@ -80,7 +99,7 @@
 
             if (!httpResponse.IsSuccessStatusCode)
             {
-                var err = ErrorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Delete");
+                var err = errorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Delete");
                 response.AddError(err);
 
                 return response;
@@ -98,7 +117,8 @@
         /// <param name="uri">The request URI.</param>
         /// <param name="username">The username</param>
         /// <returns>The response object.</returns>
-        protected async Task<T> Get<T>(string uri, string username) where T : BaseResponse
+        protected async Task<T> Get<T>(string uri, string username)
+            where T : BaseResponse
         {
             var response = (T)Activator.CreateInstance(typeof(T));
 
@@ -111,7 +131,7 @@
 
             if (!httpResponse.IsSuccessStatusCode)
             {
-                var err = ErrorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Get");
+                var err = errorHelper.Create(GetHttpError(httpResponse), username, GetType(), "Get");
                 response.AddError(err);
 
                 return response;
@@ -128,7 +148,8 @@
         /// <typeparam name="T">The response type.</typeparam>
         /// <param name="request">The request object.</param>
         /// <returns>The response object.</returns>
-        protected async Task<T> Post<T>(BaseRequest request) where T : BaseResponse
+        protected async Task<T> Post<T>(BaseRequest request)
+            where T : BaseResponse
         {
             var response = (T)Activator.CreateInstance(typeof(T));
 
@@ -141,7 +162,7 @@
 
             if (!httpResponse.IsSuccessStatusCode)
             {
-                var err = ErrorHelper.Create(GetHttpError(httpResponse), request.Username, GetType(), "Post");
+                var err = errorHelper.Create(GetHttpError(httpResponse), request.Username, GetType(), "Post");
                 response.AddError(err);
 
                 return response;
@@ -164,92 +185,49 @@
         {
             switch (response.StatusCode)
             {
-                case HttpStatusCode.Continue:
-                    break;
-                case HttpStatusCode.SwitchingProtocols:
-                    break;
-                case HttpStatusCode.OK:
-                    break;
-                case HttpStatusCode.Created:
-                    break;
-                case HttpStatusCode.Accepted:
-                    break;
-                case HttpStatusCode.NonAuthoritativeInformation:
-                    break;
-                case HttpStatusCode.NoContent:
-                    break;
-                case HttpStatusCode.ResetContent:
-                    break;
-                case HttpStatusCode.PartialContent:
-                    break;
-                case HttpStatusCode.MultipleChoices:
-                    break;
-                case HttpStatusCode.MovedPermanently:
-                    break;
-                case HttpStatusCode.Found:
-                    break;
-                case HttpStatusCode.SeeOther:
-                    break;
-                case HttpStatusCode.NotModified:
-                    break;
-                case HttpStatusCode.UseProxy:
-                    break;
-                case HttpStatusCode.Unused:
-                    break;
-                case HttpStatusCode.TemporaryRedirect:
-                    break;
-                case HttpStatusCode.BadRequest:
-                    break;
-                case HttpStatusCode.Unauthorized:
-                    break;
-                case HttpStatusCode.PaymentRequired:
-                    break;
-                case HttpStatusCode.Forbidden:
-                    return "You do not have sufficient priviledges to view this content.";
-                case HttpStatusCode.NotFound:
-                    return "The resource you requested could not be found.";
-                case HttpStatusCode.MethodNotAllowed:
-                    break;
-                case HttpStatusCode.NotAcceptable:
-                    break;
-                case HttpStatusCode.ProxyAuthenticationRequired:
-                    break;
-                case HttpStatusCode.RequestTimeout:
-                    break;
-                case HttpStatusCode.Conflict:
-                    break;
-                case HttpStatusCode.Gone:
-                    break;
-                case HttpStatusCode.LengthRequired:
-                    break;
-                case HttpStatusCode.PreconditionFailed:
-                    break;
-                case HttpStatusCode.RequestEntityTooLarge:
-                    break;
-                case HttpStatusCode.RequestUriTooLong:
-                    break;
-                case HttpStatusCode.UnsupportedMediaType:
-                    break;
-                case HttpStatusCode.RequestedRangeNotSatisfiable:
-                    break;
-                case HttpStatusCode.ExpectationFailed:
-                    break;
-                case HttpStatusCode.UpgradeRequired:
-                    break;
-                case HttpStatusCode.InternalServerError:
-                    return "An internal server error has occurred in the API.";
-                case HttpStatusCode.NotImplemented:
-                    break;
-                case HttpStatusCode.BadGateway:
-                    break;
-                case HttpStatusCode.ServiceUnavailable:
-                    break;
-                case HttpStatusCode.GatewayTimeout:
-                    break;
-                case HttpStatusCode.HttpVersionNotSupported:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                case HttpStatusCode.Continue: break;
+                case HttpStatusCode.SwitchingProtocols: break;
+                case HttpStatusCode.OK: break;
+                case HttpStatusCode.Created: break;
+                case HttpStatusCode.Accepted: break;
+                case HttpStatusCode.NonAuthoritativeInformation: break;
+                case HttpStatusCode.NoContent: break;
+                case HttpStatusCode.ResetContent: break;
+                case HttpStatusCode.PartialContent: break;
+                case HttpStatusCode.MultipleChoices: break;
+                case HttpStatusCode.MovedPermanently: break;
+                case HttpStatusCode.Found: break;
+                case HttpStatusCode.SeeOther: break;
+                case HttpStatusCode.NotModified: break;
+                case HttpStatusCode.UseProxy: break;
+                case HttpStatusCode.Unused: break;
+                case HttpStatusCode.TemporaryRedirect: break;
+                case HttpStatusCode.BadRequest: break;
+                case HttpStatusCode.Unauthorized: break;
+                case HttpStatusCode.PaymentRequired: break;
+                case HttpStatusCode.Forbidden: return "You do not have sufficient priviledges to view this content.";
+                case HttpStatusCode.NotFound: return "The resource you requested could not be found.";
+                case HttpStatusCode.MethodNotAllowed: break;
+                case HttpStatusCode.NotAcceptable: break;
+                case HttpStatusCode.ProxyAuthenticationRequired: break;
+                case HttpStatusCode.RequestTimeout: break;
+                case HttpStatusCode.Conflict: break;
+                case HttpStatusCode.Gone: break;
+                case HttpStatusCode.LengthRequired: break;
+                case HttpStatusCode.PreconditionFailed: break;
+                case HttpStatusCode.RequestEntityTooLarge: break;
+                case HttpStatusCode.RequestUriTooLong: break;
+                case HttpStatusCode.UnsupportedMediaType: break;
+                case HttpStatusCode.RequestedRangeNotSatisfiable: break;
+                case HttpStatusCode.ExpectationFailed: break;
+                case HttpStatusCode.UpgradeRequired: break;
+                case HttpStatusCode.InternalServerError: return "An internal server error has occurred in the API.";
+                case HttpStatusCode.NotImplemented: break;
+                case HttpStatusCode.BadGateway: break;
+                case HttpStatusCode.ServiceUnavailable: break;
+                case HttpStatusCode.GatewayTimeout: break;
+                case HttpStatusCode.HttpVersionNotSupported: break;
+                default: throw new ArgumentOutOfRangeException();
             }
 
             return string.Empty;

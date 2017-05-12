@@ -10,6 +10,7 @@
     using DTO.Response.Authentication;
 
     using Helpers.Security;
+    using Helpers.Security.Interfaces;
 
     using Interfaces;
 
@@ -26,6 +27,20 @@
     [UsedImplicitly]
     public class UserAssembler : IUserAssembler
     {
+        /// <summary>
+        /// The encryption helper
+        /// </summary>
+        private readonly IEncryptionHelper encryptionHelper;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserAssembler"/> class.
+        /// </summary>
+        /// <param name="encryptionHelper">The encryption helper.</param>
+        private UserAssembler(IEncryptionHelper encryptionHelper)
+        {
+            this.encryptionHelper = encryptionHelper ?? throw new ArgumentNullException(nameof(encryptionHelper));
+        }
+
         #region Methods
 
         /// <summary>
@@ -84,7 +99,7 @@
         /// </returns>
         public UserDataModel NewUserDataModel(RegisterUserRequest request)
         {
-            var encryptionModel = EncryptionHelper.EncryptPassword(request.Password);
+            var encryptionModel = encryptionHelper.EncryptPassword(request.Password);
 
             return new UserDataModel
             {

@@ -7,12 +7,17 @@
     using System.Security.Cryptography;
     using System.Text;
 
+    using Interfaces;
+
+    using JetBrains.Annotations;
+
     #endregion
 
     /// <summary>
     ///     The <see cref="EncryptionHelper" /> class contains helper functions for performing encryption tasks.
     /// </summary>
-    public static class EncryptionHelper
+    [UsedImplicitly]
+    public class EncryptionHelper : IEncryptionHelper
     {
         #region Methods
 
@@ -21,7 +26,7 @@
         /// </summary>
         /// <param name="password">The password.</param>
         /// <returns>The model.</returns>
-        public static EncryptedPasswordModel EncryptPassword(string password)
+        public EncryptedPasswordModel EncryptPassword(string password)
         {
             var rnd = new Random(DateTime.Now.Millisecond);
             var passwordBytes = Encoding.ASCII.GetBytes(password);
@@ -42,7 +47,7 @@
         /// <param name="hash">The hash.</param>
         /// <param name="iterations">The iterations.</param>
         /// <returns>If the password is valid, true. Otherwise, false.</returns>
-        public static bool ValidatePassword(string givenPassword, byte[] salt, byte[] hash, int iterations)
+        public bool ValidatePassword(string givenPassword, byte[] salt, byte[] hash, int iterations)
         {
             var passwordBytes = Encoding.ASCII.GetBytes(givenPassword);
             var newHash = GenerateHash(passwordBytes, salt, iterations, passwordBytes.Length);
@@ -58,7 +63,7 @@
         /// <param name="iterations">The iterations.</param>
         /// <param name="length">The length.</param>
         /// <returns>The hash.</returns>
-        private static byte[] GenerateHash(byte[] password, byte[] salt, int iterations, int length)
+        private byte[] GenerateHash(byte[] password, byte[] salt, int iterations, int length)
         {
             using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, iterations))
             {
@@ -71,7 +76,7 @@
         /// </summary>
         /// <param name="length">The length.</param>
         /// <returns>The salt.</returns>
-        private static byte[] GenerateSalt(int length)
+        private byte[] GenerateSalt(int length)
         {
             var bytes = new byte[length];
 

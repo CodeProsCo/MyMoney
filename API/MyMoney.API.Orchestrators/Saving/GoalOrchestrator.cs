@@ -12,7 +12,7 @@
     using DTO.Request.Saving.Goal;
     using DTO.Response.Saving.Goal;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -21,7 +21,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GoalOrchestrator"/> responds to requests regarding goals.
+    ///     The <see cref="GoalOrchestrator" /> responds to requests regarding goals.
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Saving.Interfaces.IGoalOrchestrator" />
     [UsedImplicitly]
@@ -30,28 +30,33 @@
         #region Fields
 
         /// <summary>
-        /// The assembler
+        ///     The assembler
         /// </summary>
-        private IGoalAssembler assembler;
+        private readonly IGoalAssembler assembler;
 
         /// <summary>
-        /// The repository
+        ///     The repository
         /// </summary>
-        private IGoalRepository repository;
+        private readonly IGoalRepository repository;
+
+        /// <summary>
+        ///     The error helper
+        /// </summary>
+        private readonly IErrorHelper errorHelper;
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GoalOrchestrator"/> class.
+        ///     Initializes a new instance of the <see cref="GoalOrchestrator" /> class.
         /// </summary>
         /// <param name="assembler">The assembler.</param>
         /// <param name="repository">The repository.</param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the assembler or repository are null.
+        ///     Exception thrown if the assembler or repository are null.
         /// </exception>
-        public GoalOrchestrator(IGoalAssembler assembler, IGoalRepository repository)
+        public GoalOrchestrator(IGoalAssembler assembler, IGoalRepository repository, IErrorHelper errorHelper)
         {
             if (assembler == null)
             {
@@ -63,6 +68,12 @@
                 throw new ArgumentNullException(nameof(repository));
             }
 
+            if (errorHelper == null)
+            {
+                throw new ArgumentNullException(nameof(errorHelper));
+            }
+
+            this.errorHelper = errorHelper;
             this.assembler = assembler;
             this.repository = repository;
         }
@@ -72,12 +83,12 @@
         #region Methods
 
         /// <summary>
-        /// Adds a goal to the database.
+        ///     Adds a goal to the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="requestUsername">The request username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<AddGoalResponse> AddGoal(AddGoalRequest request, string requestUsername)
         {
@@ -92,7 +103,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, requestUsername, GetType(), "AddGoal");
+                var err = errorHelper.Create(ex, requestUsername, GetType(), "AddGoal");
                 response.AddError(err);
             }
 
@@ -100,11 +111,11 @@
         }
 
         /// <summary>
-        /// Deletes a goal from the database.
+        ///     Deletes a goal from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<DeleteGoalResponse> DeleteGoal(DeleteGoalRequest request)
         {
@@ -118,7 +129,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteGoal");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "DeleteGoal");
                 response.AddError(err);
             }
 
@@ -126,11 +137,11 @@
         }
 
         /// <summary>
-        /// Updates a goal within the database.
+        ///     Updates a goal within the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<EditGoalResponse> EditGoal(EditGoalRequest request)
         {
@@ -145,7 +156,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditGoal");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "EditGoal");
                 response.AddError(err);
             }
 
@@ -153,11 +164,11 @@
         }
 
         /// <summary>
-        /// Obtains a goal from the database.
+        ///     Obtains a goal from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetGoalResponse> GetGoal(GetGoalRequest request)
         {
@@ -171,7 +182,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetGoal");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "GetGoal");
                 response.AddError(err);
             }
 
@@ -179,11 +190,11 @@
         }
 
         /// <summary>
-        /// Gets the goals for a specific user.
+        ///     Gets the goals for a specific user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetGoalsForUserResponse> GetGoalsForUser(GetGoalsForUserRequest request)
         {
@@ -196,7 +207,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetGoalsForUser");
+                var err = errorHelper.Create(ex, request.Username, GetType(), "GetGoalsForUser");
                 response.AddError(err);
             }
 
