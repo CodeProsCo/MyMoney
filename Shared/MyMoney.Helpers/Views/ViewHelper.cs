@@ -11,9 +11,24 @@
 
     #endregion
 
+    /// <summary>
+    /// The view helper contains methods to help developers manipulate views.
+    /// </summary>
+    /// <seealso cref="MyMoney.Helpers.Views.Interfaces.IViewHelper" />
     [UsedImplicitly]
     public class ViewHelper : IViewHelper
     {
+        /// <summary>
+        /// Renders the given view to a <see cref="string" />.
+        /// </summary>
+        /// <param name="viewName">Name of the view.</param>
+        /// <param name="model">The model.</param>
+        /// <param name="context">The context.</param>
+        /// <param name="viewData">The view data.</param>
+        /// <param name="tempData">The temporary data.</param>
+        /// <returns>
+        /// The rendered view as a <see cref="string" />
+        /// </returns>
         public string RenderViewToString(
             string viewName,
             object model,

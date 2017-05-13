@@ -12,6 +12,8 @@
     using DTO.Request.Spending.Bill;
     using DTO.Response.Spending.Bill;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -42,6 +44,8 @@
         #endregion
 
         #region Fields
+
+        private IErrorHelper errorHelper;
 
         private IBillAssembler assembler;
 
@@ -174,9 +178,9 @@
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(null, dataAccess); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(null, dataAccess, errorHelper); });
 
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(assembler, null); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new BillOrchestrator(assembler, null, errorHelper); });
         }
 
         [Test]
@@ -404,6 +408,12 @@
 
             assembler = Substitute.For<IBillAssembler>();
             dataAccess = Substitute.For<IBillDataAccess>();
+            errorHelper = Substitute.For<IErrorHelper>();
+
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
 
             assembler.NewAddBillRequest(validViewModel, validUsername).Returns(validAddBillRequest);
             assembler.NewAddBillRequest(invalidBillViewModel, validUsername).Returns(invalidAddBillRequest);
@@ -448,7 +458,7 @@
             assembler.NewExportViewModel(ExportType.Csv, new List<BillProxy> { validBillProxy })
                 .Returns(new ExportViewModel());
 
-            orchestrator = new BillOrchestrator(assembler, dataAccess);
+            orchestrator = new BillOrchestrator(assembler, dataAccess, errorHelper);
         }
 
         [TearDown]

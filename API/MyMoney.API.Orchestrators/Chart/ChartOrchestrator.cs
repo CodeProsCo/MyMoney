@@ -29,7 +29,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator" />
     [UsedImplicitly]
-    public class ChartOrchestrator : IChartOrchestrator
+    public class ChartOrchestrator : BaseOrchestrator, IChartOrchestrator
     {
         #region Fields
 
@@ -37,11 +37,6 @@
         ///     The assembler
         /// </summary>
         private readonly IChartAssembler assembler;
-
-        /// <summary>
-        ///     The error helper
-        /// </summary>
-        private readonly IErrorHelper errorHelper;
 
         /// <summary>
         ///     The bill data transformer
@@ -68,25 +63,28 @@
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ChartOrchestrator" /> class.
+        /// Initializes a new instance of the <see cref="ChartOrchestrator"/> class.
         /// </summary>
         /// <param name="assembler">
-        ///     The assembler.
+        /// The assembler.
         /// </param>
         /// <param name="billRepository">
-        ///     The bill repository.
+        /// The bill repository.
         /// </param>
         /// <param name="billDataTransformer">
-        ///     The bill data transformer.
+        /// The bill data transformer.
         /// </param>
         /// <param name="expenditureRepository">
-        ///     The expenditure Repository.
+        /// The expenditure Repository.
         /// </param>
         /// <param name="expenditureDataTransformer">
-        ///     The expenditure Data Transformer.
+        /// The expenditure Data Transformer.
+        /// </param>
+        /// <param name="errorHelper">
+        /// The error helper.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown if the assembler, repository or transformer are null.
+        /// Exception thrown if the assembler, repository or transformer are null.
         /// </exception>
         public ChartOrchestrator(
             IChartAssembler assembler,
@@ -94,7 +92,7 @@
             IBillDataTransformer billDataTransformer,
             IExpenditureRepository expenditureRepository,
             IExpenditureDataTransformer expenditureDataTransformer,
-            IErrorHelper errorHelper)
+            IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {
@@ -121,12 +119,6 @@
                 throw new ArgumentNullException(nameof(expenditureDataTransformer));
             }
 
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
-            this.errorHelper = errorHelper;
             this.assembler = assembler;
             this.billRepository = billRepository;
             this.billDataTransformer = billDataTransformer;
@@ -159,7 +151,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
                 response.AddError(err);
             }
 
@@ -186,7 +178,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
                 response.AddError(err);
             }
 
@@ -212,7 +204,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditureChartData");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureChartData");
                 response.AddError(err);
             }
 

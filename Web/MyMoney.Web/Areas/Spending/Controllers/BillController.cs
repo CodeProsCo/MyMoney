@@ -8,6 +8,10 @@
 
     using Attributes;
 
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+    using Helpers.Views.Interfaces;
+
     using Orchestrators.Chart.Interfaces;
     using Orchestrators.Spending.Interfaces;
 
@@ -46,12 +50,31 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="BillController" /> class.
         /// </summary>
-        /// <param name="orchestrator">The orchestrator.</param>
-        /// <param name="chartOrchestrator">The chart orchestrator.</param>
+        /// <param name="orchestrator">
+        ///     The orchestrator.
+        /// </param>
+        /// <param name="chartOrchestrator">
+        ///     The chart orchestrator.
+        /// </param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        ///     The benchmark helper.
+        /// </param>
+        /// <param name="viewHelper">
+        ///     The view helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown if the chart or bill orchestrator are null.
         /// </exception>
-        public BillController(IBillOrchestrator orchestrator, IChartOrchestrator chartOrchestrator)
+        public BillController(
+            IBillOrchestrator orchestrator,
+            IChartOrchestrator chartOrchestrator,
+            IErrorHelper errorHelper,
+            IBenchmarkHelper benchmarkHelper,
+            IViewHelper viewHelper)
+            : base(errorHelper, benchmarkHelper, viewHelper)
         {
             if (orchestrator == null)
             {
@@ -131,7 +154,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP GET request to export the user's bills to a given type.
+        ///     Handles an HTTP GET request to export the user's bills to a given type.
         /// </summary>
         /// <param name="exportType">Type of the export.</param>
         /// <returns>The response object.</returns>

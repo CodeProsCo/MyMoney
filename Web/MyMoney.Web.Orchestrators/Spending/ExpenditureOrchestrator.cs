@@ -10,7 +10,7 @@
 
     using DataAccess.Spending.Interfaces;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -29,7 +29,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.Web.Orchestrators.Spending.Interfaces.IExpenditureOrchestrator" />
     [UsedImplicitly]
-    public class ExpenditureOrchestrator : IExpenditureOrchestrator
+    public class ExpenditureOrchestrator : BaseOrchestrator, IExpenditureOrchestrator
     {
         #region Fields
 
@@ -52,10 +52,17 @@
         /// </summary>
         /// <param name="assembler">The assembler.</param>
         /// <param name="dataAccess">The data access.</param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown when the assembler or data access objects are null.
         /// </exception>
-        public ExpenditureOrchestrator(IExpenditureAssembler assembler, IExpenditureDataAccess dataAccess)
+        public ExpenditureOrchestrator(
+            IExpenditureAssembler assembler,
+            IExpenditureDataAccess dataAccess,
+            IErrorHelper errorHelper)
+            : base(errorHelper)
         {
             if (assembler == null)
             {
@@ -107,7 +114,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "AddExpenditure");
+                var err = ErrorHelper.Create(ex, username, GetType(), "AddExpenditure");
                 response.AddError(err);
             }
 
@@ -145,7 +152,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "DeleteExpenditure");
+                var err = ErrorHelper.Create(ex, username, GetType(), "DeleteExpenditure");
                 response.AddError(err);
             }
 
@@ -184,7 +191,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "EditExpenditure");
+                var err = ErrorHelper.Create(ex, username, GetType(), "EditExpenditure");
                 response.AddError(err);
             }
 
@@ -192,13 +199,13 @@
         }
 
         /// <summary>
-        /// Exports the user's expenditure data into the given format.
+        ///     Exports the user's expenditure data into the given format.
         /// </summary>
         /// <param name="exportType">Type of the export.</param>
         /// <param name="userEmail">The user email.</param>
         /// <param name="userId">The user identifier.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<ExportViewModel>> ExportExpenditure(
             ExportType exportType,
@@ -223,7 +230,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, userEmail, GetType(), "ExportExpenditure");
+                var err = ErrorHelper.Create(ex, userEmail, GetType(), "ExportExpenditure");
                 response.AddError(err);
             }
 
@@ -263,7 +270,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "GetExpenditure");
+                var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditure");
                 response.AddError(err);
             }
 
@@ -302,7 +309,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "GetExpenditureForUser");
+                var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditureForUser");
                 response.AddError(err);
             }
 
@@ -341,7 +348,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "GetExpenditureForUserForMonth");
+                var err = ErrorHelper.Create(ex, username, GetType(), "GetExpenditureForUserForMonth");
                 response.AddError(err);
             }
 

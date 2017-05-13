@@ -7,6 +7,7 @@
     using DTO.Request.Spending.Bill;
     using DTO.Response.Spending.Bill;
 
+    using Helpers.Benchmarking.Interfaces;
     using Helpers.Error.Interfaces;
 
     using Interfaces;
@@ -27,8 +28,9 @@
         /// Initializes a new instance of the <see cref="BillDataAccess"/> class.
         /// </summary>
         /// <param name="errorHelper">The error helper.</param>
-        public BillDataAccess(IErrorHelper errorHelper)
-            : base(errorHelper)
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        public BillDataAccess(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
+            : base(errorHelper, benchmarkHelper)
         {
         }
 

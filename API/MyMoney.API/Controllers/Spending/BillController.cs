@@ -8,6 +8,8 @@
 
     using DTO.Request.Spending.Bill;
 
+    using Helpers.Benchmarking.Interfaces;
+
     using Orchestrators.Spending.Interfaces;
 
     #endregion
@@ -31,13 +33,18 @@
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="BillController" /> class.
+        /// Initializes a new instance of the <see cref="BillController"/> class.
         /// </summary>
-        /// <param name="orchestrator">The orchestrator.</param>
+        /// <param name="orchestrator">
+        /// The orchestrator.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        /// The benchmark helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown when the orchestrator is null.
+        /// Exception thrown when the orchestrator is null.
         /// </exception>
-        public BillController(IBillOrchestrator orchestrator)
+        public BillController(IBillOrchestrator orchestrator, IBenchmarkHelper benchmarkHelper) : base(benchmarkHelper)
         {
             if (orchestrator == null)
             {

@@ -48,11 +48,12 @@
                 The orchestrator
             </summary>
         </member>
-        <member name="M:MyMoney.API.Controllers.Authentication.UserController.#ctor(MyMoney.API.Orchestrators.Authentication.Interfaces.IUserOrchestrator)">
+        <member name="M:MyMoney.API.Controllers.Authentication.UserController.#ctor(MyMoney.API.Orchestrators.Authentication.Interfaces.IUserOrchestrator,MyMoney.Helpers.Benchmarking.Interfaces.IBenchmarkHelper)">
             <summary>
                 Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Authentication.UserController" /> class.
             </summary>
             <param name="orchestrator">The orchestrator.</param>
+            <param name="benchmarkHelper">The benchmark helper</param>
             <exception cref="T:System.ArgumentNullException">Exception thrown if the orchestrator is null.</exception>
         </member>
         <member name="M:MyMoney.API.Controllers.Authentication.UserController.RegisterUser(MyMoney.DTO.Request.Authentication.RegisterUserRequest)">
@@ -79,6 +80,21 @@
             </summary>
             <seealso cref="T:System.Web.Http.ApiController" />
         </member>
+        <member name="F:MyMoney.API.Controllers.BaseController.benchmarkHelper">
+            <summary>
+                The benchmark helper
+            </summary>
+        </member>
+        <member name="M:MyMoney.API.Controllers.BaseController.#ctor(MyMoney.Helpers.Benchmarking.Interfaces.IBenchmarkHelper)">
+            <summary>
+                Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.BaseController" /> class.
+            </summary>
+            <param name="benchmarkHelper">The benchmark helper.</param>
+            <exception cref="T:System.ArgumentNullException">
+                benchmarkHelper
+                Exception thrown if the benchmark helper is null.
+            </exception>
+        </member>
         <member name="M:MyMoney.API.Controllers.BaseController.ExecuteAsync(System.Web.Http.Controllers.HttpControllerContext,System.Threading.CancellationToken)">
             <summary>Executes asynchronously a single HTTP operation.</summary>
             <returns>The newly started task.</returns>
@@ -96,13 +112,18 @@
                 The orchestrator
             </summary>
         </member>
-        <member name="M:MyMoney.API.Controllers.Chart.BillChartController.#ctor(MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator)">
+        <member name="M:MyMoney.API.Controllers.Chart.BillChartController.#ctor(MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator,MyMoney.Helpers.Benchmarking.Interfaces.IBenchmarkHelper)">
             <summary>
-                Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Chart.BillChartController" /> class.
+            Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Chart.BillChartController"/> class.
             </summary>
-            <param name="orchestrator">The orchestrator.</param>
+            <param name="orchestrator">
+            The orchestrator.
+            </param>
+            <param name="benchmarkHelper">
+            The benchmark helper.
+            </param>
             <exception cref="T:System.ArgumentNullException">
-                Exception thrown if the orchestrator is null.
+            Exception thrown if the orchestrator is null.
             </exception>
         </member>
         <member name="M:MyMoney.API.Controllers.Chart.BillChartController.GetCategoryChartData(MyMoney.DTO.Request.Chart.Bill.GetBillCategoryChartDataRequest)">
@@ -130,12 +151,18 @@
             The orchestrator
             </summary>
         </member>
-        <member name="M:MyMoney.API.Controllers.Chart.ExpenditureChartController.#ctor(MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator)">
+        <member name="M:MyMoney.API.Controllers.Chart.ExpenditureChartController.#ctor(MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator,MyMoney.Helpers.Benchmarking.Interfaces.IBenchmarkHelper)">
             <summary>
             Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Chart.ExpenditureChartController"/> class.
             </summary>
-            <param name="orchestrator">The orchestrator.</param>
-            <exception cref="T:System.ArgumentNullException">orchestrator
+            <param name="orchestrator">
+            The orchestrator.
+            </param>
+            <param name="benchmarkHelper">
+            The benchmark helper.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            orchestrator
             Exception thrown if the orchestrator is null.
             </exception>
         </member>
@@ -156,11 +183,16 @@
             The orchestrator
             </summary>
         </member>
-        <member name="M:MyMoney.API.Controllers.Saving.GoalController.#ctor(MyMoney.API.Orchestrators.Saving.Interfaces.IGoalOrchestrator)">
+        <member name="M:MyMoney.API.Controllers.Saving.GoalController.#ctor(MyMoney.API.Orchestrators.Saving.Interfaces.IGoalOrchestrator,MyMoney.Helpers.Benchmarking.Interfaces.IBenchmarkHelper)">
             <summary>
             Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Saving.GoalController"/> class.
             </summary>
-            <param name="orchestrator">The orchestrator.</param>
+            <param name="orchestrator">
+            The orchestrator.
+            </param>
+            <param name="benchmarkHelper">
+            The benchmark helper.
+            </param>
             <exception cref="T:System.ArgumentNullException">
             Exception thrown if the orchestrator is null.
             </exception>
@@ -211,13 +243,18 @@
                 The orchestrator
             </summary>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.BillController.#ctor(MyMoney.API.Orchestrators.Spending.Interfaces.IBillOrchestrator)">
+        <member name="M:MyMoney.API.Controllers.Spending.BillController.#ctor(MyMoney.API.Orchestrators.Spending.Interfaces.IBillOrchestrator,MyMoney.Helpers.Benchmarking.Interfaces.IBenchmarkHelper)">
             <summary>
-                Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Spending.BillController" /> class.
+            Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Spending.BillController"/> class.
             </summary>
-            <param name="orchestrator">The orchestrator.</param>
+            <param name="orchestrator">
+            The orchestrator.
+            </param>
+            <param name="benchmarkHelper">
+            The benchmark helper.
+            </param>
             <exception cref="T:System.ArgumentNullException">
-                Exception thrown when the orchestrator is null.
+            Exception thrown when the orchestrator is null.
             </exception>
         </member>
         <member name="M:MyMoney.API.Controllers.Spending.BillController.AddBill(MyMoney.DTO.Request.Spending.Bill.AddBillRequest)">
@@ -273,13 +310,18 @@
                 The orchestrator
             </summary>
         </member>
-        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.#ctor(MyMoney.API.Orchestrators.Spending.Interfaces.IExpenditureOrchestrator)">
+        <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.#ctor(MyMoney.API.Orchestrators.Spending.Interfaces.IExpenditureOrchestrator,MyMoney.Helpers.Benchmarking.Interfaces.IBenchmarkHelper)">
             <summary>
-                Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Spending.ExpenditureController" /> class.
+            Initializes a new instance of the <see cref="T:MyMoney.API.Controllers.Spending.ExpenditureController"/> class.
             </summary>
-            <param name="orchestrator">The orchestrator.</param>
+            <param name="orchestrator">
+            The orchestrator.
+            </param>
+            <param name="benchmarkHelper">
+            The benchmark helper.
+            </param>
             <exception cref="T:System.ArgumentNullException">
-                Exception thrown when the orchestrator is null.
+            Exception thrown when the orchestrator is null.
             </exception>
         </member>
         <member name="M:MyMoney.API.Controllers.Spending.ExpenditureController.AddExpenditure(MyMoney.DTO.Request.Spending.Expenditure.AddExpenditureRequest)">

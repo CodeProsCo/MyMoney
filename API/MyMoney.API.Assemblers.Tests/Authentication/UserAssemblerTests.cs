@@ -12,6 +12,11 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
+    using Helpers.Security;
+    using Helpers.Security.Interfaces;
+
+    using NSubstitute;
+
     using NUnit.Framework;
 
     #endregion
@@ -26,10 +31,17 @@
 
         private RegisterUserRequest validRegisterUserRequest;
 
+        private IEncryptionHelper encryptionHelper;
+
         [SetUp]
         public void SetUp()
         {
-            assembler = new UserAssembler();
+            encryptionHelper = Substitute.For<IEncryptionHelper>();
+
+            encryptionHelper.EncryptPassword(Arg.Any<string>())
+                .Returns(new EncryptedPasswordModel { Hash = new byte[] { }, Iterations = 1, Salt = new byte[] { } });
+
+            assembler = new UserAssembler(encryptionHelper);
 
             validDataModel = new UserDataModel
             {

@@ -25,7 +25,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Saving.Interfaces.IGoalOrchestrator" />
     [UsedImplicitly]
-    public class GoalOrchestrator : IGoalOrchestrator
+    public class GoalOrchestrator : BaseOrchestrator, IGoalOrchestrator
     {
         #region Fields
 
@@ -39,24 +39,26 @@
         /// </summary>
         private readonly IGoalRepository repository;
 
-        /// <summary>
-        ///     The error helper
-        /// </summary>
-        private readonly IErrorHelper errorHelper;
-
         #endregion
 
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GoalOrchestrator" /> class.
+        /// Initializes a new instance of the <see cref="GoalOrchestrator"/> class.
         /// </summary>
-        /// <param name="assembler">The assembler.</param>
-        /// <param name="repository">The repository.</param>
+        /// <param name="assembler">
+        /// The assembler.
+        /// </param>
+        /// <param name="repository">
+        /// The repository.
+        /// </param>
+        /// <param name="errorHelper">
+        /// The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown if the assembler or repository are null.
+        /// Exception thrown if the assembler or repository are null.
         /// </exception>
-        public GoalOrchestrator(IGoalAssembler assembler, IGoalRepository repository, IErrorHelper errorHelper)
+        public GoalOrchestrator(IGoalAssembler assembler, IGoalRepository repository, IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {
@@ -68,12 +70,6 @@
                 throw new ArgumentNullException(nameof(repository));
             }
 
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
-            this.errorHelper = errorHelper;
             this.assembler = assembler;
             this.repository = repository;
         }
@@ -103,7 +99,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, requestUsername, GetType(), "AddGoal");
+                var err = ErrorHelper.Create(ex, requestUsername, GetType(), "AddGoal");
                 response.AddError(err);
             }
 
@@ -129,7 +125,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "DeleteGoal");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteGoal");
                 response.AddError(err);
             }
 
@@ -156,7 +152,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "EditGoal");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditGoal");
                 response.AddError(err);
             }
 
@@ -182,7 +178,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetGoal");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetGoal");
                 response.AddError(err);
             }
 
@@ -207,7 +203,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetGoalsForUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetGoalsForUser");
                 response.AddError(err);
             }
 

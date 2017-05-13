@@ -120,6 +120,10 @@
       <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
       <Name>MyMoney.DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Helpers\MyMoney.Helpers.csproj">
+      <Project>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</Project>
+      <Name>MyMoney.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
       <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
       <Name>MyMoney.Wrappers</Name>

@@ -8,6 +8,8 @@
 
     using DTO.Request.Spending.Expenditure;
 
+    using Helpers.Benchmarking.Interfaces;
+
     using Orchestrators.Spending.Interfaces;
 
     #endregion
@@ -31,13 +33,18 @@
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ExpenditureController" /> class.
+        /// Initializes a new instance of the <see cref="ExpenditureController"/> class.
         /// </summary>
-        /// <param name="orchestrator">The orchestrator.</param>
+        /// <param name="orchestrator">
+        /// The orchestrator.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        /// The benchmark helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown when the orchestrator is null.
+        /// Exception thrown when the orchestrator is null.
         /// </exception>
-        public ExpenditureController(IExpenditureOrchestrator orchestrator)
+        public ExpenditureController(IExpenditureOrchestrator orchestrator, IBenchmarkHelper benchmarkHelper) : base(benchmarkHelper)
         {
             if (orchestrator == null)
             {

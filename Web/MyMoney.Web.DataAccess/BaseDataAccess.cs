@@ -14,7 +14,7 @@
     using DTO.Request;
     using DTO.Response;
 
-    using Helpers.Benchmarking;
+    using Helpers.Benchmarking.Interfaces;
     using Helpers.Error.Interfaces;
 
     using JetBrains.Annotations;
@@ -28,6 +28,11 @@
     public class BaseDataAccess
     {
         #region Fields
+
+        /// <summary>
+        ///     The benchmark helper
+        /// </summary>
+        private readonly IBenchmarkHelper benchmarkHelper;
 
         /// <summary>
         ///     The client
@@ -46,10 +51,12 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="BaseDataAccess" /> class.
         /// </summary>
-        /// <param name="errorHelper">
-        ///     The error helper.
-        /// </param>
-        protected BaseDataAccess(IErrorHelper errorHelper)
+        /// <param name="errorHelper">The error helper.</param>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        /// <exception cref="System.ArgumentNullException">
+        ///     Exception thrown if either of the helpers are null.
+        /// </exception>
+        protected BaseDataAccess(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
         {
             if (errorHelper == null)
             {
@@ -57,6 +64,13 @@
             }
 
             this.errorHelper = errorHelper;
+
+            if (benchmarkHelper == null)
+            {
+                throw new ArgumentNullException(nameof(benchmarkHelper));
+            }
+
+            this.benchmarkHelper = benchmarkHelper;
 
             var context = HttpContext.Current.GetOwinContext();
             var user = context.Authentication.User;
@@ -92,7 +106,7 @@
 
             HttpResponseMessage httpResponse;
 
-            using (BenchmarkHelper.Create(uri))
+            using (benchmarkHelper.Create(uri))
             {
                 httpResponse = await client.DeleteAsync(uri);
             }
@@ -124,7 +138,7 @@
 
             HttpResponseMessage httpResponse;
 
-            using (BenchmarkHelper.Create(uri))
+            using (benchmarkHelper.Create(uri))
             {
                 httpResponse = await client.GetAsync(uri);
             }
@@ -155,7 +169,7 @@
 
             HttpResponseMessage httpResponse;
 
-            using (BenchmarkHelper.Create(request.GetAction()))
+            using (benchmarkHelper.Create(request.GetAction()))
             {
                 httpResponse = await client.PostAsJsonAsync(request.GetAction(), request);
             }

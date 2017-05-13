@@ -7,6 +7,7 @@
     using DTO.Request.Saving.Goal;
     using DTO.Response.Saving.Goal;
 
+    using Helpers.Benchmarking.Interfaces;
     using Helpers.Error.Interfaces;
 
     using Interfaces;
@@ -26,9 +27,14 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalDataAccess"/> class.
         /// </summary>
-        /// <param name="errorHelper">The error helper.</param>
-        public GoalDataAccess(IErrorHelper errorHelper)
-            : base(errorHelper)
+        /// <param name="errorHelper">
+        /// The error helper.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        /// The benchmark helper.
+        /// </param>
+        public GoalDataAccess(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
+            : base(errorHelper, benchmarkHelper)
         {
         }
 

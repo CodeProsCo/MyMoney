@@ -19,7 +19,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GoalAssembler"/> class creates proxies and request objects regarding goals.
+    ///     The <see cref="GoalAssembler" /> class creates proxies and request objects regarding goals.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Assemblers.Saving.Interfaces.IGoalAssembler" />
     [UsedImplicitly]
@@ -28,15 +28,15 @@
         #region Methods
 
         /// <summary>
-        /// Creates a new instance of the <see cref="AddGoalRequest" /> class.
+        ///     Creates a new instance of the <see cref="AddGoalRequest" /> class.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the model or username are null.
+        ///     Exception thrown if the model or username are null.
         /// </exception>
         public AddGoalRequest NewAddGoalRequest(GoalViewModel model, string username)
         {
@@ -54,15 +54,15 @@
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="DeleteGoalRequest" /> class.
+        ///     Creates a new instance of the <see cref="DeleteGoalRequest" /> class.
         /// </summary>
         /// <param name="goalId">The goal identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the goal identifier or username are empty.
+        ///     Exception thrown if the goal identifier or username are empty.
         /// </exception>
         public DeleteGoalRequest NewDeleteGoalRequest(Guid goalId, string username)
         {
@@ -80,15 +80,15 @@
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="EditGoalRequest" /> class.
+        ///     Creates a new instance of the <see cref="EditGoalRequest" /> class.
         /// </summary>
         /// <param name="goal">The goal.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the model or username are null.
+        ///     Exception thrown if the model or username are null.
         /// </exception>
         public EditGoalRequest NewEditGoalRequest(GoalViewModel goal, string username)
         {
@@ -106,15 +106,15 @@
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="GetGoalRequest" /> class.
+        ///     Creates a new instance of the <see cref="GetGoalRequest" /> class.
         /// </summary>
         /// <param name="goalId">The goal identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the goal identifier or username are empty.
+        ///     Exception thrown if the goal identifier or username are empty.
         /// </exception>
         public GetGoalRequest NewGetGoalRequest(Guid goalId, string username)
         {
@@ -132,15 +132,15 @@
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="GetGoalsForUserRequest" /> class.
+        ///     Creates a new instance of the <see cref="GetGoalsForUserRequest" /> class.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The request object.
+        ///     The request object.
         /// </returns>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the user identifier or username are empty.
+        ///     Exception thrown if the user identifier or username are empty.
         /// </exception>
         public GetGoalsForUserRequest NewGetGoalsForUserRequest(Guid userId, string username)
         {
@@ -158,32 +158,76 @@
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="GoalViewModel" /> class.
+        ///     Creates an instance of the <see cref="ManageGoalsViewModel" /> class.
+        /// </summary>
+        /// <param name="goals">The goals.</param>
+        /// <returns>
+        ///     The view model.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        ///     goals
+        ///     Exception thrown if the goals are null.
+        /// </exception>
+        public ManageGoalsViewModel NewManageGoalsViewModel(IList<GoalProxy> goals)
+        {
+            if (goals == null)
+            {
+                throw new ArgumentNullException(nameof(goals));
+            }
+
+            var addModel = new AddGoalViewModel
+                               {
+                                   Goal =
+                                       new GoalViewModel
+                                           {
+                                               Amount = 0,
+                                               Complete = false,
+                                               EndDate = DateTime.Now.AddMonths(6),
+                                               Name = string.Empty,
+                                               Id = Guid.Empty,
+                                               StartDate = DateTime.Now
+                                           }
+                               };
+
+            var editModel = new EditGoalViewModel { Goal = new GoalViewModel() };
+
+            var retVal = new ManageGoalsViewModel
+                             {
+                                 AddGoal = addModel,
+                                 EditGoal = editModel,
+                                 Goals = goals.Select(ProxyToViewModel).ToList()
+                             };
+
+            return retVal;
+        }
+
+        /// <summary>
+        ///     Creates a new instance of the <see cref="GoalViewModel" /> class.
         /// </summary>
         /// <param name="proxy">The proxy.</param>
         /// <returns>
-        /// The view model.
+        ///     The view model.
         /// </returns>
         public GoalViewModel ProxyToViewModel(GoalProxy proxy)
         {
             return new GoalViewModel
-            {
-                Id = proxy.Id,
-                UserId = proxy.UserId,
-                Amount = proxy.Amount,
-                Complete = proxy.Complete,
-                StartDate = proxy.StartDate,
-                Name = proxy.Name,
-                EndDate = proxy.EndDate
-            };
+                       {
+                           Id = proxy.Id,
+                           UserId = proxy.UserId,
+                           Amount = proxy.Amount,
+                           Complete = proxy.Complete,
+                           StartDate = proxy.StartDate,
+                           Name = proxy.Name,
+                           EndDate = proxy.EndDate
+                       };
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="GoalViewModel" /> class.
+        ///     Creates a new instance of the <see cref="GoalViewModel" /> class.
         /// </summary>
         /// <param name="goals">The goals.</param>
         /// <returns>
-        /// The list of view models.
+        ///     The list of view models.
         /// </returns>
         public IList<GoalViewModel> ProxyToViewModelList(IEnumerable<GoalProxy> goals)
         {
@@ -191,56 +235,22 @@
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="GoalProxy"/> class.
+        ///     Creates a new instance of the <see cref="GoalProxy" /> class.
         /// </summary>
         /// <param name="goal">The goal.</param>
         /// <returns>The goal proxy.</returns>
         private static GoalProxy ViewModelToProxy(GoalViewModel goal)
         {
             return new GoalProxy
-            {
-                Amount = goal.Amount,
-                Complete = goal.Complete,
-                EndDate = goal.EndDate,
-                Id = goal.Id,
-                Name = goal.Name,
-                StartDate = goal.StartDate,
-                UserId = goal.UserId
-            };
-        }
-
-       
-        public ManageGoalsViewModel NewManageGoalsViewModel(IList<GoalProxy> goals)
-        {
-            if (goals == null)
-            {
-                throw new ArgumentNullException(nameof(goals));    
-            }
-
-            var addModel = new AddGoalViewModel
-            {
-                Goal =
-                    new GoalViewModel
-                    {
-                        Amount = 0,
-                        Complete = false,
-                        EndDate = DateTime.Now.AddMonths(6),
-                        Name = string.Empty,
-                        Id = Guid.Empty,
-                        StartDate = DateTime.Now
-                    }
-            };
-
-            var editModel = new EditGoalViewModel { Goal = new GoalViewModel() };
-
-            var retVal = new ManageGoalsViewModel
-            {
-                AddGoal = addModel,
-                EditGoal = editModel,
-                Goals = goals.Select(ProxyToViewModel).ToList()
-            };
-
-            return retVal;
+                       {
+                           Amount = goal.Amount,
+                           Complete = goal.Complete,
+                           EndDate = goal.EndDate,
+                           Id = goal.Id,
+                           Name = goal.Name,
+                           StartDate = goal.StartDate,
+                           UserId = goal.UserId
+                       };
         }
 
         #endregion

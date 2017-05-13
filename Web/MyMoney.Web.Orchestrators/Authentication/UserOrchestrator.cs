@@ -28,7 +28,7 @@
     /// </summary>
     /// <seealso cref="IUserOrchestrator" />
     [UsedImplicitly]
-    public class UserOrchestrator : IUserOrchestrator
+    public class UserOrchestrator : BaseOrchestrator, IUserOrchestrator
     {
         #region Fields
 
@@ -42,22 +42,24 @@
         /// </summary>
         private readonly IUserDataAccess dataAccess;
 
-        private readonly IErrorHelper errorHelper;
-
         #endregion
 
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="UserOrchestrator" /> class.
+        /// Initializes a new instance of the <see cref="UserOrchestrator"/> class.
         /// </summary>
-        /// <param name="assembler">
-        ///     The assembler.
-        /// </param>
-        /// <param name="dataAccess">
-        ///     The data Access.
-        /// </param>
-        public UserOrchestrator(IUserAssembler assembler, IUserDataAccess dataAccess, IErrorHelper errorHelper)
+        /// <param name="assembler">The assembler.</param>
+        /// <param name="dataAccess">The data access.</param>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// assembler
+        /// or
+        /// dataAccess
+        /// or
+        /// errorHelper
+        /// </exception>
+        public UserOrchestrator(IUserAssembler assembler, IUserDataAccess dataAccess, IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {
@@ -69,14 +71,8 @@
                 throw new ArgumentNullException(nameof(dataAccess));
             }
 
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
             this.assembler = assembler;
             this.dataAccess = dataAccess;
-            this.errorHelper = errorHelper;
         }
 
         #endregion
@@ -110,7 +106,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, model?.EmailAddress, GetType(), "RegisterUser");
+                var err = ErrorHelper.Create(ex, model?.EmailAddress, GetType(), "RegisterUser");
                 response.AddError(err);
             }
 
@@ -144,7 +140,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, model?.EmailAddress, GetType(), "ValidateUser");
+                var err = ErrorHelper.Create(ex, model?.EmailAddress, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

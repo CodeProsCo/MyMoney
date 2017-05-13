@@ -12,7 +12,7 @@
     using DTO.Request.Spending.Expenditure;
     using DTO.Response.Spending.Expenditure;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -25,7 +25,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Spending.Interfaces.IExpenditureOrchestrator" />
     [UsedImplicitly]
-    public class ExpenditureOrchestrator : IExpenditureOrchestrator
+    public class ExpenditureOrchestrator : BaseOrchestrator, IExpenditureOrchestrator
     {
         #region Fields
 
@@ -46,12 +46,23 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="ExpenditureOrchestrator" /> class.
         /// </summary>
-        /// <param name="repository">The repository.</param>
-        /// <param name="assembler">The assembler.</param>
+        /// <param name="repository">
+        ///     The repository.
+        /// </param>
+        /// <param name="assembler">
+        ///     The assembler.
+        /// </param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown if the repository or assembler are null.
         /// </exception>
-        public ExpenditureOrchestrator(IExpenditureRepository repository, IExpenditureAssembler assembler)
+        public ExpenditureOrchestrator(
+            IExpenditureRepository repository,
+            IExpenditureAssembler assembler,
+            IErrorHelper errorHelper)
+            : base(errorHelper)
         {
             if (repository == null)
             {
@@ -92,7 +103,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, username, GetType(), "AddExpenditure");
+                var err = ErrorHelper.Create(ex, username, GetType(), "AddExpenditure");
                 response.AddError(err);
             }
 
@@ -118,7 +129,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "DeleteExpenditure");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteExpenditure");
                 response.AddError(err);
             }
 
@@ -145,7 +156,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "EditExpenditure");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditExpenditure");
                 response.AddError(err);
             }
 
@@ -171,7 +182,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditure");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditure");
                 response.AddError(err);
             }
 
@@ -197,7 +208,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUser");
                 response.AddError(err);
             }
 
@@ -224,7 +235,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUserForMonth");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUserForMonth");
                 response.AddError(err);
             }
 

@@ -17,6 +17,7 @@
     using Helpers.Benchmarking;
     using Helpers.Benchmarking.Interfaces;
     using Helpers.Error.Interfaces;
+    using Helpers.Views.Interfaces;
 
     using Microsoft.Owin.Security;
 
@@ -63,18 +64,32 @@
         /// <param name="benchmarkHelper">
         ///     The benchmark helper.
         /// </param>
+        /// <param name="viewHelper">
+        ///     The view helper.
+        /// </param>
         /// <exception cref="ArgumentNullException">
-        ///     Exception thrown if the error helper or benchmark helper are null
+        ///     Exception thrown if any of the given parameters are null.
         /// </exception>
-        public BaseController(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
+        public BaseController(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper, IViewHelper viewHelper)
         {
             if (errorHelper == null)
             {
                 throw new ArgumentNullException(nameof(errorHelper));
             }
 
+            if (benchmarkHelper == null)
+            {
+                throw new ArgumentNullException(nameof(errorHelper));
+            }
+
+            if (viewHelper == null)
+            {
+                throw new ArgumentNullException(nameof(viewHelper));
+            }
+
             this.errorHelper = errorHelper;
-            this.benchmarkHelper = benchmarkHelper ?? throw new ArgumentNullException(nameof(benchmarkHelper));
+            this.benchmarkHelper = benchmarkHelper;
+            ViewHelper = viewHelper;
         }
 
         #endregion
@@ -96,6 +111,14 @@
         ///     The user identifier.
         /// </value>
         protected static Guid UserId => Guid.Parse(GetUserClaim(ClaimTypes.NameIdentifier).Value);
+
+        /// <summary>
+        /// Gets the view helper.
+        /// </summary>
+        /// <value>
+        /// The view helper.
+        /// </value>
+        protected IViewHelper ViewHelper { get; }
 
         #endregion
 

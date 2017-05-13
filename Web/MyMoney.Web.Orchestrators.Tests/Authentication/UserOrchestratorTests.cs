@@ -12,6 +12,8 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -33,6 +35,8 @@
     public class UserOrchestratorTests
     {
         #region Fields
+
+        private IErrorHelper errorHelper;
 
         private IUserAssembler assembler;
 
@@ -71,9 +75,9 @@
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(null, dataAccess); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(null, dataAccess, errorHelper); });
 
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(assembler, null); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(assembler, null, errorHelper); });
         }
 
         [Test]
@@ -132,6 +136,13 @@
         {
             assembler = Substitute.For<IUserAssembler>();
             dataAccess = Substitute.For<IUserDataAccess>();
+
+            errorHelper = Substitute.For<IErrorHelper>();
+
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
 
             validRegisterUserRequest = new RegisterUserRequest
                                            {
@@ -246,7 +257,7 @@
             dataAccess.ValidateUser(invalidValidateUserRequest).Returns(invalidValidateUserResponse);
             dataAccess.ValidateUser(validValidateUserRequest).Returns(validValidateUserResponse);
 
-            orchestrator = new UserOrchestrator(assembler, dataAccess);
+            orchestrator = new UserOrchestrator(assembler, dataAccess, errorHelper);
         }
 
         [TearDown]

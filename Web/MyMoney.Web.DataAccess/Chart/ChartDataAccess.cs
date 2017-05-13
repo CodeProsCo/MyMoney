@@ -9,6 +9,7 @@
     using DTO.Response.Chart.Bill;
     using DTO.Response.Chart.Expenditure;
 
+    using Helpers.Benchmarking.Interfaces;
     using Helpers.Error.Interfaces;
 
     using Interfaces;
@@ -28,9 +29,14 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartDataAccess"/> class.
         /// </summary>
-        /// <param name="errorHelper">The error helper.</param>
-        public ChartDataAccess(IErrorHelper errorHelper)
-            : base(errorHelper)
+        /// <param name="errorHelper">
+        /// The error helper.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        /// The benchmark helper.
+        /// </param>
+        public ChartDataAccess(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
+            : base(errorHelper, benchmarkHelper)
         {          
         }
 

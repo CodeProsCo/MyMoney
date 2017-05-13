@@ -14,6 +14,8 @@
     using DTO.Request.Saving.Goal;
     using DTO.Response.Saving.Goal;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -23,6 +25,8 @@
     using Orchestrators.Saving.Interfaces;
 
     using Proxies.Saving;
+
+    using Wrappers;
 
     #endregion
 
@@ -76,6 +80,8 @@
 
         private GetGoalsForUserResponse validGetGoalsForUserResponse;
 
+        private IErrorHelper errorHelper;
+
         [SetUp]
         public void SetUp()
         {
@@ -120,6 +126,11 @@
             assembler = Substitute.For<IGoalAssembler>();
             repository = Substitute.For<IGoalRepository>();
 
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+
             repository.AddGoal(validGoalDataModel).Returns(validGoalDataModel);
             repository.AddGoal(null).Throws(new Exception("TEST"));
 
@@ -157,7 +168,7 @@
             assembler.NewGetGoalResponse(validGoalDataModel, validGetGoalRequest.RequestReference)
                 .Returns(validGetGoalResponse);
 
-            orchestrator = new GoalOrchestrator(assembler, repository);
+            orchestrator = new GoalOrchestrator(assembler, repository, errorHelper);
         }
 
         [TearDown]
@@ -171,9 +182,9 @@
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new GoalOrchestrator(null, repository); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new GoalOrchestrator(null, repository, errorHelper); });
 
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new GoalOrchestrator(assembler, null); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new GoalOrchestrator(assembler, null, errorHelper); });
         }
 
         [Test]

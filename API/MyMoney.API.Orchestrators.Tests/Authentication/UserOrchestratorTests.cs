@@ -13,6 +13,8 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
+    using Helpers.Error.Interfaces;
+
     using JetBrains.Annotations;
 
     using NSubstitute;
@@ -33,6 +35,8 @@
     public class UserOrchestratorTests
     {
         #region Fields
+
+        private IErrorHelper errorHelper;
 
         private IUserAssembler assembler;
 
@@ -140,9 +144,14 @@
             repository.GetUser(exceptionValidateUserRequest.EmailAddress, exceptionValidateUserRequest.Password)
                 .Throws(new Exception("TEST"));
 
-            
+            errorHelper = Substitute.For<IErrorHelper>();
 
-            orchestrator = new UserOrchestrator(assembler, repository);
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+
+            orchestrator = new UserOrchestrator(assembler, repository, errorHelper);
         }
 
         [TearDown]
@@ -219,8 +228,8 @@
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(null, repository); });
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(assembler, null); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(null, repository, errorHelper); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new UserOrchestrator(assembler, null, errorHelper); });
         }
 
 

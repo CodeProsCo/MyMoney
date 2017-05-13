@@ -12,7 +12,6 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
-    using Helpers.Error;
     using Helpers.Error.Interfaces;
 
     using Interfaces;
@@ -26,7 +25,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Authentication.Interfaces.IUserOrchestrator" />
     [UsedImplicitly]
-    public class UserOrchestrator : IUserOrchestrator
+    public class UserOrchestrator : BaseOrchestrator, IUserOrchestrator
     {
         #region Fields
 
@@ -40,11 +39,6 @@
         /// </summary>
         private readonly IUserRepository repository;
 
-        /// <summary>
-        ///     The error helper
-        /// </summary>
-        private readonly IErrorHelper errorHelper;
-
         #endregion
 
         #region Constructor
@@ -52,12 +46,19 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="UserOrchestrator" /> class.
         /// </summary>
-        /// <param name="assembler">The assembler.</param>
-        /// <param name="repository">The repository.</param>
+        /// <param name="assembler">
+        ///     The assembler.
+        /// </param>
+        /// <param name="repository">
+        ///     The repository.
+        /// </param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown if the assembler or repository are null.
         /// </exception>
-        public UserOrchestrator(IUserAssembler assembler, IUserRepository repository, IErrorHelper errorHelper)
+        public UserOrchestrator(IUserAssembler assembler, IUserRepository repository, IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {
@@ -69,14 +70,8 @@
                 throw new ArgumentNullException(nameof(repository));
             }
 
-            if (errorHelper == null)
-            {
-                throw new ArgumentNullException(nameof(errorHelper));
-            }
-
             this.assembler = assembler;
             this.repository = repository;
-            this.errorHelper = errorHelper;
         }
 
         #endregion
@@ -103,7 +98,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.EmailAddress, GetType(), "RegisterUser");
+                var err = ErrorHelper.Create(ex, request.EmailAddress, GetType(), "RegisterUser");
                 response.AddError(err);
             }
 
@@ -129,7 +124,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
                 response.AddError(err);
             }
 

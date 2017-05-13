@@ -8,6 +8,8 @@
 
     using DTO.Request.Chart.Expenditure;
 
+    using Helpers.Benchmarking.Interfaces;
+
     using Orchestrators.Chart.Interfaces;
 
     #endregion
@@ -33,11 +35,17 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpenditureChartController"/> class.
         /// </summary>
-        /// <param name="orchestrator">The orchestrator.</param>
-        /// <exception cref="System.ArgumentNullException">orchestrator
+        /// <param name="orchestrator">
+        /// The orchestrator.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        /// The benchmark helper.
+        /// </param>
+        /// <exception cref="System.ArgumentNullException">
+        /// orchestrator
         /// Exception thrown if the orchestrator is null.
         /// </exception>
-        public ExpenditureChartController(IChartOrchestrator orchestrator)
+        public ExpenditureChartController(IChartOrchestrator orchestrator, IBenchmarkHelper benchmarkHelper) : base(benchmarkHelper)
         {
             if (orchestrator == null)
             {

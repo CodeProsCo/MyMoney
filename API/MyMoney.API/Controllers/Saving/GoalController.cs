@@ -8,6 +8,8 @@
 
     using DTO.Request.Saving.Goal;
 
+    using Helpers.Benchmarking.Interfaces;
+
     using Orchestrators.Saving.Interfaces;
 
     #endregion
@@ -32,11 +34,16 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalController"/> class.
         /// </summary>
-        /// <param name="orchestrator">The orchestrator.</param>
+        /// <param name="orchestrator">
+        /// The orchestrator.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        /// The benchmark helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         /// Exception thrown if the orchestrator is null.
         /// </exception>
-        public GoalController(IGoalOrchestrator orchestrator)
+        public GoalController(IGoalOrchestrator orchestrator, IBenchmarkHelper benchmarkHelper) : base(benchmarkHelper)
         {
             if (orchestrator == null)
             {
