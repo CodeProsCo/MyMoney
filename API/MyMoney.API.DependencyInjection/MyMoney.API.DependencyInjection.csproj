@@ -93,6 +93,7 @@
     <Compile Include="Installers\AssemblersInstaller.cs" />
     <Compile Include="Installers\DataAccessInstaller.cs" />
     <Compile Include="Installers\DataTransformersInstaller.cs" />
+    <Compile Include="Installers\HelperInstaller.cs" />
     <Compile Include="Installers\OrchestratorsInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
