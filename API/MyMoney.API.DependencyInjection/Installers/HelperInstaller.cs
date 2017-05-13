@@ -1,4 +1,4 @@
-﻿namespace MyMoney.Web.DependencyInjection.Installers
+﻿namespace MyMoney.API.DependencyInjection.Installers
 {
     #region Usings
 
@@ -16,7 +16,7 @@
     #endregion
 
     /// <summary>
-    ///     The castle windsor installer for web application helpers.
+    ///     The castle windsor installer for API helpers.
     /// </summary>
     /// <seealso cref="Castle.MicroKernel.Registration.IWindsorInstaller" />
     public class HelperInstaller : IWindsorInstaller
