@@ -24,6 +24,7 @@
             container.Install(new OrchestratorsInstaller());
             container.Install(new AssemblersInstaller());
             container.Install(new DataAccessInstaller());
+            container.Install(new HelperInstaller());
         }
 
         #endregion
