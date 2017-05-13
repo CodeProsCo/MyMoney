@@ -9,6 +9,8 @@
 
     using JetBrains.Annotations;
 
+    using Logging.Interfaces;
+
     using Wrappers;
 
     #endregion
@@ -26,6 +28,36 @@
         private const string TraceFormat =
                 "Error Time:\t\t{0}\nMessage:\t\t{1}\nClass Name:\t\t{2}\nMethod Name:\t{3}\n==============================="
             ;
+
+        #region Fields
+
+        /// <summary>
+        /// The log helper
+        /// </summary>
+        private readonly ILogHelper logHelper;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorHelper"/> class.
+        /// </summary>
+        /// <param name="logHelper">The log helper.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// Exception thrown if the log helper is null.
+        /// </exception>
+        public ErrorHelper(ILogHelper logHelper)
+        {
+            if (logHelper == null)
+            {
+                throw new ArgumentNullException(nameof(logHelper));
+            }
+
+            this.logHelper = logHelper;
+        }
+
+        #endregion
 
         #region Methods
 
@@ -61,15 +93,18 @@
         public ResponseErrorWrapper Create(string message, string username, Type className, string methodName)
         {
             var retVal = new ResponseErrorWrapper
-                             {
-                                 ClassName = className.FullName,
-                                 Message = message,
-                                 MethodName = methodName,
-                                 Occurred = DateTime.Now,
-                                 Username = username
-                             };
+            {
+                ClassName = className.FullName,
+                Message = message,
+                MethodName = methodName,
+                Occurred = DateTime.Now,
+                Username = username
+            };
 
             WriteTrace(retVal);
+
+            logHelper.Log(retVal);
+
             return retVal;
         }
 

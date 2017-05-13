@@ -10,6 +10,8 @@
     using Helpers.Benchmarking.Interfaces;
     using Helpers.Error;
     using Helpers.Error.Interfaces;
+    using Helpers.Logging;
+    using Helpers.Logging.Interfaces;
     using Helpers.Views;
     using Helpers.Views.Interfaces;
 
@@ -30,7 +32,13 @@
         /// <param name="store">The configuration store.</param>
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IErrorHelper>().ImplementedBy<ErrorHelper>().LifestylePerWebRequest());
+            container.Register(Component.For<ILogHelper>().ImplementedBy<LogHelper>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IErrorHelper>()
+                    .ImplementedBy<ErrorHelper>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<ILogHelper, LogHelper>()));
 
             container.Register(Component.For<IViewHelper>().ImplementedBy<ViewHelper>().LifestylePerWebRequest());
 
