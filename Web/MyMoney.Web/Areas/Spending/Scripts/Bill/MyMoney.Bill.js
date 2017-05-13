@@ -21,8 +21,8 @@ function BillModel(dataObj) {
         var periodRow = $("<td>").text(this.reoccurringPeriod);
         var amountRow = $("<td>").addClass("right").addClass("aligned").text(this.amount.asCurrency());
 
-        row.attr("data-get", "/spending/bill/get/" + this.id);
-        row.attr("data-delete", "/spending/bill/delete/" + this.id);
+        row.attr("data-get", "/spending/bills/get/" + this.id);
+        row.attr("data-delete", "/spending/bills/delete/" + this.id);
 
         row.append(dateRow);
         row.append(descRow);
