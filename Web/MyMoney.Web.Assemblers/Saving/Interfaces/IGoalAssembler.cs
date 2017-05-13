@@ -68,6 +68,11 @@
         /// <returns>The request object.</returns>
         AddGoalRequest NewAddGoalRequest(GoalViewModel model, string username);
 
+        /// <summary>
+        /// Creates an instance of the <see cref="ManageGoalsViewModel"/> class.
+        /// </summary>
+        /// <param name="goals">The goals.</param>
+        /// <returns>The view model.</returns>
         ManageGoalsViewModel NewManageGoalsViewModel(IList<GoalProxy> goals);
     }
 }

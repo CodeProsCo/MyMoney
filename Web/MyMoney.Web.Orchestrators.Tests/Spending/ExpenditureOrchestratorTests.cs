@@ -12,6 +12,8 @@
     using DTO.Request.Spending.Expenditure;
     using DTO.Response.Spending.Expenditure;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -105,6 +107,8 @@
 
         private ExpenditureViewModel validViewModel;
 
+        private IErrorHelper errorHelper;
+
         #endregion
 
         #region Methods
@@ -176,10 +180,10 @@
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
-                delegate { orchestrator = new ExpenditureOrchestrator(null, dataAccess); });
+                delegate { orchestrator = new ExpenditureOrchestrator(null, dataAccess, errorHelper); });
 
             Assert.Throws<ArgumentNullException>(
-                delegate { orchestrator = new ExpenditureOrchestrator(assembler, null); });
+                delegate { orchestrator = new ExpenditureOrchestrator(assembler, null, errorHelper); });
         }
 
         [Test]
@@ -417,6 +421,12 @@
 
             assembler = Substitute.For<IExpenditureAssembler>();
             dataAccess = Substitute.For<IExpenditureDataAccess>();
+            errorHelper = Substitute.For<IErrorHelper>();
+
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
 
             assembler.NewAddExpenditureRequest(validViewModel, validUsername).Returns(validAddExpenditureRequest);
             assembler.NewAddExpenditureRequest(invalidExpenditureViewModel, validUsername)
@@ -472,7 +482,7 @@
             assembler.NewExportViewModel(new List<ExpenditureProxy> { validExpenditureProxy }, ExportType.Csv)
                 .Returns(new ExportViewModel());
 
-            orchestrator = new ExpenditureOrchestrator(assembler, dataAccess);
+            orchestrator = new ExpenditureOrchestrator(assembler, dataAccess, errorHelper);
         }
 
         [TearDown]

@@ -12,6 +12,8 @@
     using DTO.Request.Saving.Goal;
     using DTO.Response.Saving.Goal;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -32,11 +34,7 @@
     [TestFixture]
     public class GoalOrchestratorTests
     {
-        #region Constants
-
         private const string validUsername = "TEST";
-
-        #endregion
 
         #region Fields
 
@@ -44,11 +42,11 @@
 
         private IGoalDataAccess dataAccess;
 
+        private IErrorHelper errorHelper;
+
         private AddGoalRequest invalidAddGoalRequest;
 
         private AddGoalResponse invalidAddGoalResponse;
-
-        private GoalViewModel invalidGoalViewModel;
 
         private DeleteGoalRequest invalidDeleteGoalRequest;
 
@@ -66,13 +64,13 @@
 
         private GetGoalsForUserResponse invalidGetGoalsForUserResponse;
 
+        private GoalViewModel invalidGoalViewModel;
+
         private IGoalOrchestrator orchestrator;
 
         private AddGoalRequest validAddGoalRequest;
 
         private AddGoalResponse validAddGoalResponse;
-
-        private GoalProxy validGoalProxy;
 
         private DeleteGoalRequest validDeleteGoalRequest;
 
@@ -89,6 +87,8 @@
         private GetGoalsForUserRequest validGetGoalsForUserRequest;
 
         private GetGoalsForUserResponse validGetGoalsForUserResponse;
+
+        private GoalProxy validGoalProxy;
 
         private ManageGoalsViewModel validManageGoalsViewModel;
 
@@ -133,9 +133,11 @@
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new GoalOrchestrator(null, assembler); });
+            Assert.Throws<ArgumentNullException>(
+                delegate { orchestrator = new GoalOrchestrator(null, assembler, errorHelper); });
 
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new GoalOrchestrator(dataAccess, null); });
+            Assert.Throws<ArgumentNullException>(
+                delegate { orchestrator = new GoalOrchestrator(dataAccess, null, errorHelper); });
         }
 
         [Test]
@@ -334,7 +336,14 @@
             dataAccess.EditGoal(validEditGoalRequest).Returns(validEditGoalResponse);
             dataAccess.EditGoal(invalidEditGoalRequest).Returns(invalidEditGoalResponse);
 
-            orchestrator = new GoalOrchestrator(dataAccess, assembler);
+            errorHelper = Substitute.For<IErrorHelper>();
+
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+
+            orchestrator = new GoalOrchestrator(dataAccess, assembler, errorHelper);
         }
 
         [TearDown]

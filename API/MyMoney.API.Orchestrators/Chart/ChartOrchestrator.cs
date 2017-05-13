@@ -16,7 +16,7 @@
     using DTO.Response.Chart.Bill;
     using DTO.Response.Chart.Expenditure;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -29,7 +29,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Chart.Interfaces.IChartOrchestrator" />
     [UsedImplicitly]
-    public class ChartOrchestrator : IChartOrchestrator
+    public class ChartOrchestrator : BaseOrchestrator, IChartOrchestrator
     {
         #region Fields
 
@@ -63,32 +63,36 @@
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ChartOrchestrator" /> class.
+        /// Initializes a new instance of the <see cref="ChartOrchestrator"/> class.
         /// </summary>
         /// <param name="assembler">
-        ///     The assembler.
+        /// The assembler.
         /// </param>
         /// <param name="billRepository">
-        ///     The bill repository.
+        /// The bill repository.
         /// </param>
         /// <param name="billDataTransformer">
-        ///     The bill data transformer.
+        /// The bill data transformer.
         /// </param>
         /// <param name="expenditureRepository">
-        ///     The expenditure Repository.
+        /// The expenditure Repository.
         /// </param>
         /// <param name="expenditureDataTransformer">
-        ///     The expenditure Data Transformer.
+        /// The expenditure Data Transformer.
+        /// </param>
+        /// <param name="errorHelper">
+        /// The error helper.
         /// </param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown if the assembler, repository or transformer are null.
+        /// Exception thrown if the assembler, repository or transformer are null.
         /// </exception>
         public ChartOrchestrator(
             IChartAssembler assembler,
             IBillRepository billRepository,
             IBillDataTransformer billDataTransformer,
             IExpenditureRepository expenditureRepository,
-            IExpenditureDataTransformer expenditureDataTransformer)
+            IExpenditureDataTransformer expenditureDataTransformer,
+            IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {
@@ -182,7 +186,7 @@
         }
 
         /// <summary>
-        /// Obtains the data required for the expenditure chart.
+        ///     Obtains the data required for the expenditure chart.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>The response object.</returns>

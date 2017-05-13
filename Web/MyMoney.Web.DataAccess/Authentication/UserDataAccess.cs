@@ -7,6 +7,9 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -21,6 +24,20 @@
     [UsedImplicitly]
     public class UserDataAccess : BaseDataAccess, IUserDataAccess
     {
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserDataAccess"/> class.
+        /// </summary>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        public UserDataAccess(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
+            : base(errorHelper, benchmarkHelper)
+        {
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>

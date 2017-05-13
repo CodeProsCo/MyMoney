@@ -4,6 +4,10 @@
 
     using System.Web.Mvc;
 
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+    using Helpers.Views.Interfaces;
+
     #endregion
 
     /// <summary>
@@ -13,6 +17,21 @@
     [AllowAnonymous]
     public class HomeController : BaseController
     {
+        #region Constructor
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="HomeController" /> class.
+        /// </summary>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        /// <param name="viewHelper">The view helper.</param>
+        public HomeController(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper, IViewHelper viewHelper)
+            : base(errorHelper, benchmarkHelper, viewHelper)
+        {
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>

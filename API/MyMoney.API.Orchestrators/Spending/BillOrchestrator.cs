@@ -14,7 +14,7 @@
     using DTO.Request.Spending.Bill;
     using DTO.Response.Spending.Bill;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -27,7 +27,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Spending.Interfaces.IBillOrchestrator" />
     [UsedImplicitly]
-    public class BillOrchestrator : IBillOrchestrator
+    public class BillOrchestrator : BaseOrchestrator, IBillOrchestrator
     {
         #region Fields
 
@@ -53,16 +53,27 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="BillOrchestrator" /> class.
         /// </summary>
-        /// <param name="assembler">The assembler.</param>
-        /// <param name="repository">The repository.</param>
-        /// <param name="dataTransformer">The data transformer.</param>
+        /// <param name="assembler">
+        ///     The assembler.
+        /// </param>
+        /// <param name="repository">
+        ///     The repository.
+        /// </param>
+        /// <param name="dataTransformer">
+        ///     The data transformer.
+        /// </param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown when either the assembler, repository or data transformer are null.
         /// </exception>
         public BillOrchestrator(
             IBillAssembler assembler,
             IBillRepository repository,
-            IBillDataTransformer dataTransformer)
+            IBillDataTransformer dataTransformer,
+            IErrorHelper errorHelper)
+            : base(errorHelper)
         {
             if (assembler == null)
             {

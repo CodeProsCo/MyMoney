@@ -16,6 +16,8 @@
     using DTO.Request.Spending.Expenditure;
     using DTO.Response.Spending.Expenditure;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -26,6 +28,8 @@
 
     using Proxies.Common;
     using Proxies.Spending;
+
+    using Wrappers;
 
     #endregion
 
@@ -84,6 +88,8 @@
         private GetExpenditureForUserForMonthResponse validGetExpenditureForUserForMonthResponse;
 
         private GetExpenditureForUserResponse validGetExpenditureForUserResponse;
+
+        private IErrorHelper errorHelper;
 
         [SetUp]
         public void SetUp()
@@ -208,7 +214,14 @@
             assembler.NewGetExpenditureResponse(validExpenditureDataModel, validGetExpenditureRequest.RequestReference)
                 .Returns(validGetExpenditureResponse);
 
-            orchestrator = new ExpenditureOrchestrator(repository, assembler);
+            errorHelper = Substitute.For<IErrorHelper>();
+
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+
+            orchestrator = new ExpenditureOrchestrator(repository, assembler, errorHelper);
         }
 
         [TearDown]
@@ -223,10 +236,10 @@
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
-                delegate { orchestrator = new ExpenditureOrchestrator(null, assembler); });
+                delegate { orchestrator = new ExpenditureOrchestrator(null, assembler, errorHelper); });
 
             Assert.Throws<ArgumentNullException>(
-                delegate { orchestrator = new ExpenditureOrchestrator(repository, null); });
+                delegate { orchestrator = new ExpenditureOrchestrator(repository, null, errorHelper); });
         }
 
         [Test]

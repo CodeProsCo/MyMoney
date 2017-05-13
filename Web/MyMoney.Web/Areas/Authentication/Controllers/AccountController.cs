@@ -7,6 +7,10 @@
 
     using Attributes;
 
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+    using Helpers.Views.Interfaces;
+
     using ViewModels.Authentication.Account;
 
     using Web.Controllers;
@@ -14,7 +18,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="AccountController"/> class handles HTTP requests for performing account actions.
+    ///     The <see cref="AccountController" /> class handles HTTP requests for performing account actions.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [RouteArea("Authentication", AreaPrefix = "auth")]
@@ -22,10 +26,25 @@
     [Authorize]
     public class AccountController : BaseController
     {
+        #region Constructor
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="AccountController" /> class.
+        /// </summary>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        /// <param name="viewHelper">The view helper.</param>
+        public AccountController(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper, IViewHelper viewHelper)
+            : base(errorHelper, benchmarkHelper, viewHelper)
+        {
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
-        /// Handles an HTTP POST request to edit a given account.
+        ///     Handles an HTTP POST request to edit a given account.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>The response object.</returns>
@@ -38,7 +57,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP POST request to edit the given personal details.
+        ///     Handles an HTTP POST request to edit the given personal details.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>The response object.</returns>
@@ -51,7 +70,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP GET request for the account management view.
+        ///     Handles an HTTP GET request for the account management view.
         /// </summary>
         /// <returns>The account management view.</returns>
         [HttpGet]

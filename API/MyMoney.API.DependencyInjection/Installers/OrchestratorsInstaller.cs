@@ -25,6 +25,9 @@
     using DataTransformers.Spending;
     using DataTransformers.Spending.Interfaces;
 
+    using Helpers.Error;
+    using Helpers.Error.Interfaces;
+
     using Orchestrators.Authentication;
     using Orchestrators.Authentication.Interfaces;
     using Orchestrators.Chart;
@@ -57,7 +60,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IUserAssembler, UserAssembler>(),
-                        Dependency.OnComponent<IUserRepository, UserRepository>()));
+                        Dependency.OnComponent<IUserRepository, UserRepository>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IBillOrchestrator>()
@@ -66,7 +70,8 @@
                     .DependsOn(
                         Dependency.OnComponent<IBillAssembler, BillAssembler>(),
                         Dependency.OnComponent<IBillRepository, BillRepository>(),
-                        Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>()));
+                        Dependency.OnComponent<IBillDataTransformer, BillDataTransformer>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IChartOrchestrator>()
@@ -77,7 +82,8 @@
                         Dependency.OnComponent<IBillRepository, BillRepository>(),
                         Dependency.OnComponent<IChartAssembler, ChartAssembler>(),
                         Dependency.OnComponent<IExpenditureRepository, ExpenditureRepository>(),
-                        Dependency.OnComponent<IExpenditureDataTransformer, ExpenditureDataTransformer>()));
+                        Dependency.OnComponent<IExpenditureDataTransformer, ExpenditureDataTransformer>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IExpenditureOrchestrator>()
@@ -85,7 +91,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IExpenditureRepository, ExpenditureRepository>(),
-                        Dependency.OnComponent<IExpenditureAssembler, ExpenditureAssembler>()));
+                        Dependency.OnComponent<IExpenditureAssembler, ExpenditureAssembler>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IGoalOrchestrator>()
@@ -93,7 +100,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IGoalAssembler, GoalAssembler>(),
-                        Dependency.OnComponent<IGoalRepository, GoalRepository>()));
+                        Dependency.OnComponent<IGoalRepository, GoalRepository>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
         }
 
         #endregion

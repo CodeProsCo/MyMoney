@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Authentication\Interfaces\IUserOrchestrator.cs" />
     <Compile Include="Authentication\UserOrchestrator.cs" />
+    <Compile Include="BaseOrchestrator.cs" />
     <Compile Include="Chart\ChartOrchestrator.cs" />
     <Compile Include="Chart\Interfaces\IChartOrchestrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

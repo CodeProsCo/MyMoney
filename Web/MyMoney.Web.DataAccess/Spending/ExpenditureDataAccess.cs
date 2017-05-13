@@ -7,6 +7,9 @@
     using DTO.Request.Spending.Expenditure;
     using DTO.Response.Spending.Expenditure;
 
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -21,6 +24,16 @@
     [UsedImplicitly]
     public class ExpenditureDataAccess : BaseDataAccess, IExpenditureDataAccess
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpenditureDataAccess"/> class.
+        /// </summary>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        public ExpenditureDataAccess(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper)
+            : base(errorHelper, benchmarkHelper)
+        {
+        }
+
         #region Methods
 
         /// <summary>

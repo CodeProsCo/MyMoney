@@ -11,6 +11,7 @@
     using DataAccess.Authentication.Interfaces;
 
     using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -27,7 +28,7 @@
     /// </summary>
     /// <seealso cref="IUserOrchestrator" />
     [UsedImplicitly]
-    public class UserOrchestrator : IUserOrchestrator
+    public class UserOrchestrator : BaseOrchestrator, IUserOrchestrator
     {
         #region Fields
 
@@ -46,15 +47,19 @@
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="UserOrchestrator" /> class.
+        /// Initializes a new instance of the <see cref="UserOrchestrator"/> class.
         /// </summary>
-        /// <param name="assembler">
-        ///     The assembler.
-        /// </param>
-        /// <param name="dataAccess">
-        ///     The data Access.
-        /// </param>
-        public UserOrchestrator(IUserAssembler assembler, IUserDataAccess dataAccess)
+        /// <param name="assembler">The assembler.</param>
+        /// <param name="dataAccess">The data access.</param>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// assembler
+        /// or
+        /// dataAccess
+        /// or
+        /// errorHelper
+        /// </exception>
+        public UserOrchestrator(IUserAssembler assembler, IUserDataAccess dataAccess, IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {
