@@ -125,6 +125,7 @@
 
             assembler = Substitute.For<IGoalAssembler>();
             repository = Substitute.For<IGoalRepository>();
+            errorHelper = Substitute.For<IErrorHelper>();
 
             errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
                 .Returns(new ResponseErrorWrapper());
