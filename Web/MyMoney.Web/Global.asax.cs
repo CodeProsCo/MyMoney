@@ -12,8 +12,6 @@
 
     using DependencyInjection;
 
-    using Helpers.Error;
-
     using JetBrains.Annotations;
 
     using Newtonsoft.Json.Serialization;
