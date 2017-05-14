@@ -10,6 +10,8 @@
     using Helpers.Benchmarking.Interfaces;
     using Helpers.Error;
     using Helpers.Error.Interfaces;
+    using Helpers.Export;
+    using Helpers.Export.Interfaces;
     using Helpers.Logging;
     using Helpers.Logging.Interfaces;
     using Helpers.Views;
@@ -44,6 +46,8 @@
 
             container.Register(
                 Component.For<IBenchmarkHelper>().ImplementedBy<BenchmarkHelper>().LifestylePerWebRequest());
+
+            container.Register(Component.For<IExportHelper>().ImplementedBy<ExportHelper>().LifestylePerWebRequest());
         }
 
         #endregion
