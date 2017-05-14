@@ -9,7 +9,7 @@
 
     using DataModels.Authentication;
 
-    using Helpers.Security;
+    using Helpers.Security.Interfaces;
 
     using Interfaces;
 
@@ -27,6 +27,34 @@
     public class UserRepository : IUserRepository
     {
         #region Fields
+
+        /// <summary>
+        ///     The encryption helper
+        /// </summary>
+        private readonly IEncryptionHelper encryptionHelper;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="UserRepository" /> class.
+        /// </summary>
+        /// <param name="encryptionHelper">The encryption helper.</param>
+        /// <exception cref="System.ArgumentNullException">
+        ///     encryptionHelper
+        ///     Exception thrown if the encryption helper is null.
+        /// </exception>
+        public UserRepository(IEncryptionHelper encryptionHelper)
+        {
+            if (encryptionHelper == null)
+            {
+                throw new ArgumentNullException(nameof(encryptionHelper));
+            }
+
+            this.encryptionHelper = encryptionHelper;
+        }
+
         #endregion
 
         #region Methods
@@ -41,7 +69,7 @@
         /// </returns>
         public async Task<UserDataModel> GetUser(string email, string password)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 var result = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.EmailAddress == email);
 
@@ -50,7 +78,7 @@
                     throw new Exception(Authentication.Error_UsernameOrPasswordInvalid);
                 }
 
-                if (EncryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
+                if (encryptionHelper.ValidatePassword(password, result.Salt, result.Hash, result.Iterations))
                 {
                     return result;
                 }
@@ -71,15 +99,14 @@
         /// </exception>
         public async Task<Guid> GetUserIdByEmail(string username)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
-                var result =
-                await context.Users.AsNoTracking()
-                    .Where(x => x.EmailAddress == username)
-                    .Select(x => x.Id)
-                    .SingleOrDefaultAsync();
+                var result = await context.Users.AsNoTracking()
+                                 .Where(x => x.EmailAddress == username)
+                                 .Select(x => x.Id)
+                                 .SingleOrDefaultAsync();
 
-                if (result == null || result == Guid.Empty)
+                if (result == Guid.Empty)
                 {
                     throw new Exception(Authentication.Error_CouldNotFindUser);
                 }
@@ -97,7 +124,7 @@
         /// </returns>
         public async Task<UserDataModel> RegisterUser(UserDataModel model)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 model.Id = Guid.NewGuid();
                 model.CreationTime = DateTime.Now;

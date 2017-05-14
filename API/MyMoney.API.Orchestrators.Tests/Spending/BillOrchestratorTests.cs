@@ -18,6 +18,8 @@
     using DTO.Request.Spending.Bill;
     using DTO.Response.Spending.Bill;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -28,6 +30,8 @@
 
     using Proxies.Common;
     using Proxies.Spending;
+
+    using Wrappers;
 
     #endregion
 
@@ -88,6 +92,8 @@
         private GetBillsForUserForMonthResponse validGetBillsForUserForMonthResponse;
 
         private GetBillsForUserResponse validGetBillsForUserResponse;
+
+        private IErrorHelper errorHelper;
 
         [SetUp]
         public void SetUp()
@@ -212,7 +218,14 @@
             assembler.NewGetBillResponse(validBillDataModel, validGetBillRequest.RequestReference)
                 .Returns(validGetBillResponse);
 
-            orchestrator = new BillOrchestrator(assembler, repository, dataTransformer);
+            errorHelper = Substitute.For<IErrorHelper>();
+
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+
+            orchestrator = new BillOrchestrator(assembler, repository, dataTransformer, errorHelper);
         }
 
         [TearDown]
@@ -227,14 +240,14 @@
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(
-                delegate { orchestrator = new BillOrchestrator(null, repository, dataTransformer); });
+                delegate { orchestrator = new BillOrchestrator(null, repository, dataTransformer, errorHelper); });
 
             Assert.Throws<ArgumentNullException>(
-                delegate { orchestrator = new BillOrchestrator(assembler, null, dataTransformer); });
+                delegate { orchestrator = new BillOrchestrator(assembler, null, dataTransformer, errorHelper); });
 
 
             Assert.Throws<ArgumentNullException>(
-                delegate { orchestrator = new BillOrchestrator(assembler, repository, null); });
+                delegate { orchestrator = new BillOrchestrator(assembler, repository, null, errorHelper); });
         }
 
         [Test]

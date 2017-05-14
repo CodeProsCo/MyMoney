@@ -3,14 +3,13 @@
     #region Usings
 
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Assemblers.Saving.Interfaces;
 
     using DataAccess.Saving.Interfaces;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -23,7 +22,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GoalOrchestrator"/> class performs actions regarding goals.
+    ///     The <see cref="GoalOrchestrator" /> class performs actions regarding goals.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Orchestrators.Saving.Interfaces.IGoalOrchestrator" />
     [UsedImplicitly]
@@ -32,12 +31,17 @@
         #region Fields
 
         /// <summary>
-        /// The assembler
+        ///     The assembler
         /// </summary>
         private readonly IGoalAssembler assembler;
 
         /// <summary>
-        /// The data access
+        ///     The error helper.
+        /// </summary>
+        private readonly IErrorHelper errorHelper;
+
+        /// <summary>
+        ///     The data access
         /// </summary>
         private readonly IGoalDataAccess dataAccess;
 
@@ -48,12 +52,19 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalOrchestrator"/> class.
         /// </summary>
-        /// <param name="dataAccess">The data access.</param>
-        /// <param name="assembler">The assembler.</param>
+        /// <param name="dataAccess">
+        /// The data access.
+        /// </param>
+        /// <param name="assembler">
+        /// The assembler.
+        /// </param>
+        /// <param name="errorHelper">
+        /// The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if that data access or assembler are null.
+        /// Exception thrown if that data access, error helper or assembler are null.
         /// </exception>
-        public GoalOrchestrator(IGoalDataAccess dataAccess, IGoalAssembler assembler)
+        public GoalOrchestrator(IGoalDataAccess dataAccess, IGoalAssembler assembler, IErrorHelper errorHelper)
         {
             if (dataAccess == null)
             {
@@ -65,8 +76,14 @@
                 throw new ArgumentNullException(nameof(assembler));
             }
 
+            if (errorHelper == null)
+            {
+                throw new ArgumentNullException(nameof(errorHelper));
+            }
+
             this.dataAccess = dataAccess;
             this.assembler = assembler;
+            this.errorHelper = errorHelper;
         }
 
         #endregion
@@ -74,12 +91,12 @@
         #region Methods
 
         /// <summary>
-        /// Adds a goal to the database.
+        ///     Adds a goal to the database.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<GoalViewModel>> AddGoal(GoalViewModel model, string username)
         {
@@ -103,7 +120,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "AddGoal");
+                var err = errorHelper.Create(ex, username, GetType(), "AddGoal");
                 response.AddError(err);
             }
 
@@ -111,12 +128,12 @@
         }
 
         /// <summary>
-        /// Removes a goal from the database.
+        ///     Removes a goal from the database.
         /// </summary>
         /// <param name="goalId">The goal identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<bool>> DeleteGoal(Guid goalId, string username)
         {
@@ -134,7 +151,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "DeleteGoal");
+                var err = errorHelper.Create(ex, username, GetType(), "DeleteGoal");
                 response.AddError(err);
             }
 
@@ -142,12 +159,12 @@
         }
 
         /// <summary>
-        /// Modifies a goal.
+        ///     Modifies a goal.
         /// </summary>
         /// <param name="goal">The goal.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<GoalViewModel>> EditGoal(GoalViewModel goal, string username)
         {
@@ -171,7 +188,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "EditGoal");
+                var err = errorHelper.Create(ex, username, GetType(), "EditGoal");
                 response.AddError(err);
             }
 
@@ -179,12 +196,12 @@
         }
 
         /// <summary>
-        /// Obtains a goal.
+        ///     Obtains a goal.
         /// </summary>
         /// <param name="goalId">The goal identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<GoalViewModel>> GetGoal(Guid goalId, string username)
         {
@@ -208,7 +225,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetGoal");
+                var err = errorHelper.Create(ex, username, GetType(), "GetGoal");
                 response.AddError(err);
             }
 
@@ -216,12 +233,12 @@
         }
 
         /// <summary>
-        /// Obtains a goal for the given user.
+        ///     Obtains a goal for the given user.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <param name="username">The username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<OrchestratorResponseWrapper<ManageGoalsViewModel>> GetGoalsForUser(
             Guid userId,
@@ -247,7 +264,7 @@
             }
             catch (Exception ex)
             {
-                var err = ErrorHelper.Create(ex, username, GetType(), "GetGoalsForUser");
+                var err = errorHelper.Create(ex, username, GetType(), "GetGoalsForUser");
                 response.AddError(err);
             }
 

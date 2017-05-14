@@ -37,7 +37,7 @@
         /// </returns>
         public async Task<CategoryDataModel> GetOrAdd(CategoryDataModel category)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 if (await Exists(category.Name))
                 {
@@ -55,7 +55,7 @@
         /// <returns>The newly added category.</returns>
         private async Task<CategoryDataModel> AddCategory(CategoryDataModel category)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 category.Id = Guid.NewGuid();
                 category.CreationTime = DateTime.Now;
@@ -75,7 +75,7 @@
         /// <returns>If it exists, true. Otherwise, false.</returns>
         private async Task<bool> Exists(string name)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 if (await context.Categories.CountAsync() > 0)
                 {
@@ -95,7 +95,7 @@
         /// </returns>
         private async Task<CategoryDataModel> GetCategory(string name)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
                 return await context.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.Name == name);
             }

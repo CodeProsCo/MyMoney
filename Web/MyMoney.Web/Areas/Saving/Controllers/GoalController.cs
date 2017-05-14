@@ -8,7 +8,9 @@
 
     using Attributes;
 
-    using Helpers.Views;
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+    using Helpers.Views.Interfaces;
 
     using Orchestrators.Saving.Interfaces;
 
@@ -19,7 +21,7 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GoalController"/> class handles HTTP requests regarding goals.
+    ///     The <see cref="GoalController" /> class handles HTTP requests regarding goals.
     /// </summary>
     /// <seealso cref="MyMoney.Web.Controllers.BaseController" />
     [RouteArea("Saving", AreaPrefix = "savings")]
@@ -30,7 +32,7 @@
         #region Fields
 
         /// <summary>
-        /// The orchestrator
+        ///     The orchestrator
         /// </summary>
         private readonly IGoalOrchestrator orchestrator;
 
@@ -39,13 +41,29 @@
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GoalController"/> class.
+        ///     Initializes a new instance of the <see cref="GoalController" /> class.
         /// </summary>
-        /// <param name="orchestrator">The orchestrator.</param>
+        /// <param name="orchestrator">
+        ///     The orchestrator.
+        /// </param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        ///     The benchmark helper.
+        /// </param>
+        /// <param name="viewHelper">
+        ///     The view helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
-        /// Exception thrown if the orchestrator is null.
+        ///     Exception thrown if the orchestrator is null.
         /// </exception>
-        public GoalController(IGoalOrchestrator orchestrator)
+        public GoalController(
+            IGoalOrchestrator orchestrator,
+            IErrorHelper errorHelper,
+            IBenchmarkHelper benchmarkHelper,
+            IViewHelper viewHelper)
+            : base(errorHelper, benchmarkHelper, viewHelper)
         {
             if (orchestrator == null)
             {
@@ -60,7 +78,7 @@
         #region Methods
 
         /// <summary>
-        /// Handles an HTTP request to add a goal.
+        ///     Handles an HTTP request to add a goal.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>The response object.</returns>
@@ -82,7 +100,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP request to remove a goal.
+        ///     Handles an HTTP request to remove a goal.
         /// </summary>
         /// <param name="goalId">The goal identifier.</param>
         /// <returns>The response object.</returns>
@@ -97,7 +115,7 @@
         }
 
         /// <summary>
-        /// Handles an HTTP request to modify a goal.
+        ///     Handles an HTTP request to modify a goal.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>The response object.</returns>
@@ -119,21 +137,10 @@
         }
 
         /// <summary>
-        /// Returns the "Manage Goals" view.
+        ///     Handles an HTTP GET request to retrieve a goal.
         /// </summary>
-        /// <returns>The view.</returns>
-        [HttpGet]
-        [Route("")]
-        public async Task<ActionResult> Manage()
-        {
-            var response = await orchestrator.GetGoalsForUser(UserId, UserEmail);
-
-            AddModelErrors(response.Errors);
-            AddModelWarnings(response.Warnings);
-
-            return View("Manage", response.Model);
-        }
-
+        /// <param name="goalId">The goal identifier.</param>
+        /// <returns>The response object.</returns>
         [HttpGet]
         [AjaxOnly]
         [Route("get/{goalId:Guid}")]
@@ -144,6 +151,11 @@
             return JsonResponse(response);
         }
 
+        /// <summary>
+        ///     Handles an HTTP GET request to generate a goal progress view.
+        /// </summary>
+        /// <param name="goalId">The goal identifier.</param>
+        /// <returns>The response object.</returns>
         [HttpGet]
         [AjaxOnly]
         [Route("progress/{goalId:Guid}")]
@@ -159,6 +171,22 @@
                 TempData);
 
             return ViewResponse(result);
+        }
+
+        /// <summary>
+        ///     Returns the "Manage Goals" view.
+        /// </summary>
+        /// <returns>The view.</returns>
+        [HttpGet]
+        [Route("")]
+        public async Task<ActionResult> Manage()
+        {
+            var response = await orchestrator.GetGoalsForUser(UserId, UserEmail);
+
+            AddModelErrors(response.Errors);
+            AddModelWarnings(response.Warnings);
+
+            return View("Manage", response.Model);
         }
 
         #endregion

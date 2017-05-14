@@ -10,6 +10,8 @@
     using DTO.Request.Spending.Bill;
     using DTO.Response.Spending.Bill;
 
+    using Helpers.Export.Interfaces;
+
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -30,8 +32,17 @@
     /// </summary>
     /// <seealso cref="MyMoney.Web.Assemblers.Spending.Interfaces.IBillAssembler" />
     [UsedImplicitly]
-    public class BillAssembler : IBillAssembler
+    public class BillAssembler : BaseAssembler, IBillAssembler
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BillAssembler"/> class.
+        /// </summary>
+        /// <param name="exportHelper">The export helper.</param>
+        public BillAssembler(IExportHelper exportHelper)
+            : base(exportHelper)
+        {            
+        }
+
         #region Methods
 
         /// <summary>
@@ -172,13 +183,13 @@
             switch (exportType)
             {
                 case ExportType.Csv:
-                    retVal.FileData = apiResponseBills.ToCsv();
+                    retVal.FileData = ExportHelper.ToCsv(apiResponseBills);
                     break;
                 case ExportType.Xml:
-                    retVal.FileData = apiResponseBills.ToXml();
+                    retVal.FileData = ExportHelper.ToXml(apiResponseBills);
                     break;
                 case ExportType.Json:
-                    retVal.FileData = apiResponseBills.ToJson();
+                    retVal.FileData = ExportHelper.ToJson(apiResponseBills);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);

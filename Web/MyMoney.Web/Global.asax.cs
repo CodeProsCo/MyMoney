@@ -3,6 +3,8 @@
     #region Usings
 
     using System;
+    using System.Linq;
+    using System.Security.Claims;
     using System.Web;
     using System.Web.Http;
     using System.Web.Mvc;
@@ -13,6 +15,9 @@
     using DependencyInjection;
 
     using Helpers.Error;
+    using Helpers.Error.Interfaces;
+    using Helpers.Logging;
+    using Helpers.Logging.Interfaces;
 
     using JetBrains.Annotations;
 
@@ -30,6 +35,29 @@
     [UsedImplicitly]
     public class MvcApplication : HttpApplication
     {
+        #region Fields
+
+        /// <summary>
+        ///     The error helper
+        /// </summary>
+        private readonly IErrorHelper errorHelper;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="MvcApplication" /> class.
+        /// </summary>
+        public MvcApplication()
+        {
+            ILogHelper logHelper = new LogHelper();
+
+            errorHelper = new ErrorHelper(logHelper);
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -39,11 +67,14 @@
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            var exception = Server.GetLastError();
+            var error = Server.GetLastError();
 
-            ErrorHelper.Create(exception, "SYSTEM", GetType(), "Application_Error");
+            var userId = ((ClaimsIdentity)User.Identity).Claims
+                .FirstOrDefault(c => c.Type.Equals(ClaimTypes.Email))
+                ?.Value;
 
-            Server.ClearError();
+            errorHelper.Create(error, userId, GetType(), "Application_Error");
+
             HttpContext.Current.Response.RedirectToRoute(
                 new { action = "SystemError", controller = "Error", area = "Common" });
         }

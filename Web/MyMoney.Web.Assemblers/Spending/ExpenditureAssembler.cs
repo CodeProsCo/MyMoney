@@ -10,6 +10,8 @@
     using DTO.Request.Spending.Expenditure;
     using DTO.Response.Spending.Expenditure;
 
+    using Helpers.Export.Interfaces;
+
     using Interfaces;
 
     using JetBrains.Annotations;
@@ -30,8 +32,17 @@
     /// </summary>
     /// <seealso cref="MyMoney.Web.Assemblers.Spending.Interfaces.IExpenditureAssembler" />
     [UsedImplicitly]
-    public class ExpenditureAssembler : IExpenditureAssembler
+    public class ExpenditureAssembler : BaseAssembler, IExpenditureAssembler
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpenditureAssembler"/> class.
+        /// </summary>
+        /// <param name="exportHelper">The export helper.</param>
+        public ExpenditureAssembler(IExportHelper exportHelper)
+            : base(exportHelper)
+        {           
+        }
+
         #region Methods
 
         /// <summary>
@@ -195,13 +206,13 @@
             switch (exportType)
             {
                 case ExportType.Csv:
-                    retVal.FileData = apiResponseExpenditures.ToCsv();
+                    retVal.FileData = ExportHelper.ToCsv(apiResponseExpenditures);
                     break;
                 case ExportType.Xml:
-                    retVal.FileData = apiResponseExpenditures.ToXml();
+                    retVal.FileData = ExportHelper.ToXml(apiResponseExpenditures);
                     break;
                 case ExportType.Json:
-                    retVal.FileData = apiResponseExpenditures.ToJson();
+                    retVal.FileData = ExportHelper.ToJson(apiResponseExpenditures);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);

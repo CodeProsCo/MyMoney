@@ -16,6 +16,9 @@
     using DataAccess.Spending;
     using DataAccess.Spending.Interfaces;
 
+    using Helpers.Security;
+    using Helpers.Security.Interfaces;
+
     #endregion
 
     /// <summary>
@@ -36,7 +39,8 @@
             container.Register(
                 Component.For<IUserRepository>()
                     .ImplementedBy<UserRepository>()
-                    .LifestylePerWebRequest());
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IEncryptionHelper, EncryptionHelper>()));
 
             container.Register(
                 Component.For<IBillRepository>()

@@ -14,6 +14,13 @@
 
     using Controllers;
 
+    using Helpers.Benchmarking;
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error;
+    using Helpers.Error.Interfaces;
+    using Helpers.Views;
+    using Helpers.Views.Interfaces;
+
     using Orchestrators.Authentication;
     using Orchestrators.Authentication.Interfaces;
     using Orchestrators.Chart;
@@ -43,27 +50,78 @@
             container.Register(
                 Component.For<UserController>()
                     .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<IUserOrchestrator, UserOrchestrator>()));
+                    .DependsOn(
+                        Dependency.OnComponent<IUserOrchestrator, UserOrchestrator>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
 
-            container.Register(Component.For<BudgetController>().LifestylePerWebRequest());
+            container.Register(
+                Component.For<BudgetController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
 
             container.Register(
                 Component.For<BillController>()
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IBillOrchestrator, BillOrchestrator>(),
-                        Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>()));
+                        Dependency.OnComponent<IChartOrchestrator, ChartOrchestrator>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
 
             container.Register(
                 Component.For<GoalController>()
                     .LifestylePerWebRequest()
-                    .DependsOn(Dependency.OnComponent<IGoalOrchestrator, GoalOrchestrator>()));
+                    .DependsOn(
+                        Dependency.OnComponent<IGoalOrchestrator, GoalOrchestrator>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
 
-            container.Register(Component.For<ResourceController>().LifestylePerWebRequest());
-            container.Register(Component.For<ErrorController>().LifestylePerWebRequest());
-            container.Register(Component.For<HomeController>().LifestylePerWebRequest());
-            container.Register(Component.For<ExpenditureController>().LifestylePerWebRequest());
-            container.Register(Component.For<AccountController>().LifestylePerWebRequest());
+            container.Register(
+                Component.For<ResourceController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
+
+            container.Register(
+                Component.For<ErrorController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
+
+            container.Register(
+                Component.For<HomeController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
+
+            container.Register(
+                Component.For<ExpenditureController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
+
+            container.Register(
+                Component.For<AccountController>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>(),
+                        Dependency.OnComponent<IViewHelper, ViewHelper>()));
         }
 
         #endregion

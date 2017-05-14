@@ -4,6 +4,10 @@
 
     using System.Web.Mvc;
 
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+    using Helpers.Views.Interfaces;
+
     using Web.Controllers;
 
     #endregion
@@ -17,6 +21,21 @@
     [AllowAnonymous]
     public class ErrorController : BaseController
     {
+        #region Constructor
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ErrorController" /> class.
+        /// </summary>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        /// <param name="viewHelper">The view helper.</param>
+        public ErrorController(IErrorHelper errorHelper, IBenchmarkHelper benchmarkHelper, IViewHelper viewHelper)
+            : base(errorHelper, benchmarkHelper, viewHelper)
+        {
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>

@@ -15,6 +15,9 @@
     using Castle.MicroKernel.SubSystems.Configuration;
     using Castle.Windsor;
 
+    using Helpers.Export;
+    using Helpers.Export.Interfaces;
+
     #endregion
 
     /// <summary>
@@ -33,12 +36,23 @@
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(Component.For<IGoalAssembler>().ImplementedBy<GoalAssembler>().LifestylePerWebRequest());
+
             container.Register(Component.For<IUserAssembler>().ImplementedBy<UserAssembler>().LifestylePerWebRequest());
-            container.Register(Component.For<IBillAssembler>().ImplementedBy<BillAssembler>().LifestylePerWebRequest());
+
+            container.Register(
+                Component.For<IBillAssembler>()
+                    .ImplementedBy<BillAssembler>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IExportHelper, ExportHelper>()));
+
             container.Register(
                 Component.For<IChartAssembler>().ImplementedBy<ChartAssembler>().LifestylePerWebRequest());
+
             container.Register(
-                Component.For<IExpenditureAssembler>().ImplementedBy<ExpenditureAssembler>().LifestylePerWebRequest());
+                Component.For<IExpenditureAssembler>()
+                    .ImplementedBy<ExpenditureAssembler>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(Dependency.OnComponent<IExportHelper, ExportHelper>()));
         }
 
         #endregion

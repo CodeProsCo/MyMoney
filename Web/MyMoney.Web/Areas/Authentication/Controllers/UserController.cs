@@ -7,6 +7,10 @@
     using System.Web;
     using System.Web.Mvc;
 
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error.Interfaces;
+    using Helpers.Views.Interfaces;
+
     using Orchestrators.Authentication.Interfaces;
 
     using ViewModels.Authentication.User;
@@ -38,10 +42,20 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="UserController" /> class.
         /// </summary>
-        /// <param name="orchestrator">
-        ///     The orchestrator.
-        /// </param>
-        public UserController(IUserOrchestrator orchestrator)
+        /// <param name="orchestrator">The orchestrator.</param>
+        /// <param name="errorHelper">The error helper.</param>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        /// <param name="viewHelper">The view helper.</param>
+        /// <exception cref="System.ArgumentNullException">
+        ///     orchestrator
+        ///     Exception thrown if the orchestrator is null.
+        /// </exception>
+        public UserController(
+            IUserOrchestrator orchestrator,
+            IErrorHelper errorHelper,
+            IBenchmarkHelper benchmarkHelper,
+            IViewHelper viewHelper)
+            : base(errorHelper, benchmarkHelper, viewHelper)
         {
             if (orchestrator == null)
             {

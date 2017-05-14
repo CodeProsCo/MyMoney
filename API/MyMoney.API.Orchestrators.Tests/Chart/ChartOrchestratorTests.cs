@@ -18,6 +18,8 @@
     using DTO.Response.Chart.Bill;
     using DTO.Response.Chart.Expenditure;
 
+    using Helpers.Error.Interfaces;
+
     using NSubstitute;
     using NSubstitute.ExceptionExtensions;
 
@@ -25,6 +27,8 @@
 
     using Orchestrators.Chart;
     using Orchestrators.Chart.Interfaces;
+
+    using Wrappers;
 
     #endregion
 
@@ -68,9 +72,12 @@
 
         private IList<ExpenditureDataModel> validExpenditure;
 
+        private IErrorHelper errorHelper;
+
         [SetUp]
         public void SetUp()
         {
+            errorHelper = Substitute.For<IErrorHelper>();
             assembler = Substitute.For<IChartAssembler>();
             billRepository = Substitute.For<IBillRepository>();
             billDataTransformer = Substitute.For<IBillDataTransformer>();
@@ -134,12 +141,18 @@
             assembler.NewGetBillCategoryChartDataResponse(validData, Arg.Any<Guid>()).Returns(validGetBillCategoryChartDataResponse);
             assembler.NewGetBillPeriodChartDataResponse(validData, Arg.Any<Guid>()).Returns(validGetBillPeriodChartDataResponse);
 
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+
             orchestrator = new ChartOrchestrator(
                 assembler,
                 billRepository,
                 billDataTransformer,
                 expenditureRepository,
-                expenditureDataTransformer);
+                expenditureDataTransformer,
+                errorHelper);
         }
 
         [TearDown]
@@ -164,7 +177,8 @@
                             billRepository,
                             billDataTransformer,
                             expenditureRepository,
-                            expenditureDataTransformer);
+                            expenditureDataTransformer,
+                            errorHelper);
                     });
 
             Assert.Throws<ArgumentNullException>(
@@ -175,7 +189,8 @@
                             null,
                             billDataTransformer,
                             expenditureRepository,
-                            expenditureDataTransformer);
+                            expenditureDataTransformer,
+                            errorHelper);
                     });
 
             Assert.Throws<ArgumentNullException>(
@@ -186,7 +201,8 @@
                             billRepository,
                             null,
                             expenditureRepository,
-                            expenditureDataTransformer);
+                            expenditureDataTransformer,
+                            errorHelper);
                     });
 
             Assert.Throws<ArgumentNullException>(
@@ -197,7 +213,8 @@
                             billRepository,
                             billDataTransformer,
                             null,
-                            expenditureDataTransformer);
+                            expenditureDataTransformer,
+                            errorHelper);
                     });
 
             Assert.Throws<ArgumentNullException>(
@@ -208,7 +225,8 @@
                             billRepository,
                             billDataTransformer,
                             expenditureRepository,
-                            null);
+                            null,
+                            errorHelper);
                     });
         }
 

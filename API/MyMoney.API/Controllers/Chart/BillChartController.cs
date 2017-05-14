@@ -8,6 +8,8 @@
 
     using DTO.Request.Chart.Bill;
 
+    using Helpers.Benchmarking.Interfaces;
+
     using Orchestrators.Chart.Interfaces;
 
     #endregion
@@ -31,13 +33,18 @@
         #region Constructor
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="BillChartController" /> class.
+        /// Initializes a new instance of the <see cref="BillChartController"/> class.
         /// </summary>
-        /// <param name="orchestrator">The orchestrator.</param>
+        /// <param name="orchestrator">
+        /// The orchestrator.
+        /// </param>
+        /// <param name="benchmarkHelper">
+        /// The benchmark helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
-        ///     Exception thrown if the orchestrator is null.
+        /// Exception thrown if the orchestrator is null.
         /// </exception>
-        public BillChartController(IChartOrchestrator orchestrator)
+        public BillChartController(IChartOrchestrator orchestrator, IBenchmarkHelper benchmarkHelper) : base(benchmarkHelper)
         {
             if (orchestrator == null)
             {

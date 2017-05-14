@@ -12,7 +12,7 @@
     using DTO.Request.Authentication;
     using DTO.Response.Authentication;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -25,7 +25,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Authentication.Interfaces.IUserOrchestrator" />
     [UsedImplicitly]
-    public class UserOrchestrator : IUserOrchestrator
+    public class UserOrchestrator : BaseOrchestrator, IUserOrchestrator
     {
         #region Fields
 
@@ -46,12 +46,19 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="UserOrchestrator" /> class.
         /// </summary>
-        /// <param name="assembler">The assembler.</param>
-        /// <param name="repository">The repository.</param>
+        /// <param name="assembler">
+        ///     The assembler.
+        /// </param>
+        /// <param name="repository">
+        ///     The repository.
+        /// </param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown if the assembler or repository are null.
         /// </exception>
-        public UserOrchestrator(IUserAssembler assembler, IUserRepository repository)
+        public UserOrchestrator(IUserAssembler assembler, IUserRepository repository, IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {

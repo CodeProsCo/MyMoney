@@ -12,7 +12,7 @@
     using DTO.Request.Saving.Goal;
     using DTO.Response.Saving.Goal;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -21,23 +21,23 @@
     #endregion
 
     /// <summary>
-    /// The <see cref="GoalOrchestrator"/> responds to requests regarding goals.
+    ///     The <see cref="GoalOrchestrator" /> responds to requests regarding goals.
     /// </summary>
     /// <seealso cref="MyMoney.API.Orchestrators.Saving.Interfaces.IGoalOrchestrator" />
     [UsedImplicitly]
-    public class GoalOrchestrator : IGoalOrchestrator
+    public class GoalOrchestrator : BaseOrchestrator, IGoalOrchestrator
     {
         #region Fields
 
         /// <summary>
-        /// The assembler
+        ///     The assembler
         /// </summary>
-        private IGoalAssembler assembler;
+        private readonly IGoalAssembler assembler;
 
         /// <summary>
-        /// The repository
+        ///     The repository
         /// </summary>
-        private IGoalRepository repository;
+        private readonly IGoalRepository repository;
 
         #endregion
 
@@ -46,12 +46,19 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalOrchestrator"/> class.
         /// </summary>
-        /// <param name="assembler">The assembler.</param>
-        /// <param name="repository">The repository.</param>
+        /// <param name="assembler">
+        /// The assembler.
+        /// </param>
+        /// <param name="repository">
+        /// The repository.
+        /// </param>
+        /// <param name="errorHelper">
+        /// The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         /// Exception thrown if the assembler or repository are null.
         /// </exception>
-        public GoalOrchestrator(IGoalAssembler assembler, IGoalRepository repository)
+        public GoalOrchestrator(IGoalAssembler assembler, IGoalRepository repository, IErrorHelper errorHelper) : base(errorHelper)
         {
             if (assembler == null)
             {
@@ -72,12 +79,12 @@
         #region Methods
 
         /// <summary>
-        /// Adds a goal to the database.
+        ///     Adds a goal to the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="requestUsername">The request username.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<AddGoalResponse> AddGoal(AddGoalRequest request, string requestUsername)
         {
@@ -100,11 +107,11 @@
         }
 
         /// <summary>
-        /// Deletes a goal from the database.
+        ///     Deletes a goal from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<DeleteGoalResponse> DeleteGoal(DeleteGoalRequest request)
         {
@@ -126,11 +133,11 @@
         }
 
         /// <summary>
-        /// Updates a goal within the database.
+        ///     Updates a goal within the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<EditGoalResponse> EditGoal(EditGoalRequest request)
         {
@@ -153,11 +160,11 @@
         }
 
         /// <summary>
-        /// Obtains a goal from the database.
+        ///     Obtains a goal from the database.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetGoalResponse> GetGoal(GetGoalRequest request)
         {
@@ -179,11 +186,11 @@
         }
 
         /// <summary>
-        /// Gets the goals for a specific user.
+        ///     Gets the goals for a specific user.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>
-        /// The response object.
+        ///     The response object.
         /// </returns>
         public async Task<GetGoalsForUserResponse> GetGoalsForUser(GetGoalsForUserRequest request)
         {

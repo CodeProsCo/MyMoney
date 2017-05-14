@@ -10,7 +10,7 @@
 
     using DataAccess.Spending.Interfaces;
 
-    using Helpers.Error;
+    using Helpers.Error.Interfaces;
 
     using Interfaces;
 
@@ -29,7 +29,7 @@
     /// </summary>
     /// <seealso cref="MyMoney.Web.Orchestrators.Spending.Interfaces.IBillOrchestrator" />
     [UsedImplicitly]
-    public class BillOrchestrator : IBillOrchestrator
+    public class BillOrchestrator : BaseOrchestrator, IBillOrchestrator
     {
         #region Fields
 
@@ -50,12 +50,20 @@
         /// <summary>
         ///     Initializes a new instance of the <see cref="BillOrchestrator" /> class.
         /// </summary>
-        /// <param name="assembler">The assembler.</param>
-        /// <param name="dataAccess">The data access.</param>
+        /// <param name="assembler">
+        ///     The assembler.
+        /// </param>
+        /// <param name="dataAccess">
+        ///     The data access.
+        /// </param>
+        /// <param name="errorHelper">
+        ///     The error helper.
+        /// </param>
         /// <exception cref="System.ArgumentNullException">
         ///     Exception thrown when the assembler or data access objects are null.
         /// </exception>
-        public BillOrchestrator(IBillAssembler assembler, IBillDataAccess dataAccess)
+        public BillOrchestrator(IBillAssembler assembler, IBillDataAccess dataAccess, IErrorHelper errorHelper)
+            : base(errorHelper)
         {
             if (assembler == null)
             {

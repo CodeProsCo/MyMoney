@@ -2,13 +2,14 @@
 {
     #region Usings
 
+    using System;
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Controllers;
 
-    using Helpers.Benchmarking;
+    using Helpers.Benchmarking.Interfaces;
 
     #endregion
 
@@ -18,6 +19,37 @@
     /// <seealso cref="System.Web.Http.ApiController" />
     public class BaseController : ApiController
     {
+        #region Fields
+
+        /// <summary>
+        ///     The benchmark helper
+        /// </summary>
+        private readonly IBenchmarkHelper benchmarkHelper;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="BaseController" /> class.
+        /// </summary>
+        /// <param name="benchmarkHelper">The benchmark helper.</param>
+        /// <exception cref="System.ArgumentNullException">
+        ///     benchmarkHelper
+        ///     Exception thrown if the benchmark helper is null.
+        /// </exception>
+        public BaseController(IBenchmarkHelper benchmarkHelper)
+        {
+            if (benchmarkHelper == null)
+            {
+                throw new ArgumentNullException(nameof(benchmarkHelper));
+            }
+
+            this.benchmarkHelper = benchmarkHelper;
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>Executes asynchronously a single HTTP operation.</summary>
@@ -28,7 +60,7 @@
             HttpControllerContext controllerContext,
             CancellationToken cancellationToken)
         {
-            using (BenchmarkHelper.Create(controllerContext.Request.RequestUri))
+            using (benchmarkHelper.Create(controllerContext.Request.RequestUri))
             {
                 return base.ExecuteAsync(controllerContext, cancellationToken);
             }

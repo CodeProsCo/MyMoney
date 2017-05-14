@@ -25,6 +25,7 @@
     using ViewModels.Enum;
 
     using Wrappers;
+    using MyMoney.Helpers.Error.Interfaces;
 
     #endregion
 
@@ -37,6 +38,8 @@
         private IChartAssembler assembler;
 
         private IChartDataAccess dataAccess;
+
+        private IErrorHelper errorHelper;
 
         private GetBillCategoryChartDataRequest invalidGetBillCategoryChartDataRequest;
 
@@ -77,9 +80,9 @@
         [Test]
         public void Constructor_NullParams_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new ChartOrchestrator(null, dataAccess); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new ChartOrchestrator(null, dataAccess, errorHelper); });
 
-            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new ChartOrchestrator(assembler, null); });
+            Assert.Throws<ArgumentNullException>(delegate { orchestrator = new ChartOrchestrator(assembler, null, errorHelper); });
         }
 
         [Test]
@@ -306,7 +309,14 @@
             dataAccess.GetExpenditureChartData(invalidGetExpenditureChartDataRequest)
                 .Returns(invalidGetExpenditureChartDataResponse);
 
-            orchestrator = new ChartOrchestrator(assembler, dataAccess);
+            errorHelper = Substitute.For<IErrorHelper>();
+
+            errorHelper.Create(Arg.Any<Exception>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+            errorHelper.Create(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<Type>(), Arg.Any<string>())
+                .Returns(new ResponseErrorWrapper());
+
+            orchestrator = new ChartOrchestrator(assembler, dataAccess, errorHelper);
         }
 
         [TearDown]

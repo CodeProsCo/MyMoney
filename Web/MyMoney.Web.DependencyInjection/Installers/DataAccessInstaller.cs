@@ -15,6 +15,11 @@
     using DataAccess.Spending;
     using DataAccess.Spending.Interfaces;
 
+    using Helpers.Benchmarking;
+    using Helpers.Benchmarking.Interfaces;
+    using Helpers.Error;
+    using Helpers.Error.Interfaces;
+
     #endregion
 
     /// <summary>
@@ -33,19 +38,44 @@
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IUserDataAccess>().ImplementedBy<UserDataAccess>().LifestylePerWebRequest());
+                Component.For<IUserDataAccess>()
+                    .ImplementedBy<UserDataAccess>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>()));
 
             container.Register(
-                Component.For<IBillDataAccess>().ImplementedBy<BillDataAccess>().LifestylePerWebRequest());
+                Component.For<IBillDataAccess>()
+                    .ImplementedBy<BillDataAccess>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>()));
 
             container.Register(
-                Component.For<IChartDataAccess>().ImplementedBy<ChartDataAccess>().LifestylePerWebRequest());
+                Component.For<IChartDataAccess>()
+                    .ImplementedBy<ChartDataAccess>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>()));
 
             container.Register(
-                Component.For<IGoalDataAccess>().ImplementedBy<GoalDataAccess>().LifestylePerWebRequest());
+                Component.For<IGoalDataAccess>()
+                    .ImplementedBy<GoalDataAccess>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>()));
 
             container.Register(
-                Component.For<IExpenditureDataAccess>().ImplementedBy<ExpenditureDataAccess>().LifestylePerWebRequest());
+                Component.For<IExpenditureDataAccess>()
+                    .ImplementedBy<ExpenditureDataAccess>()
+                    .LifestylePerWebRequest()
+                    .DependsOn(
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>(),
+                        Dependency.OnComponent<IBenchmarkHelper, BenchmarkHelper>()));
         }
 
         #endregion

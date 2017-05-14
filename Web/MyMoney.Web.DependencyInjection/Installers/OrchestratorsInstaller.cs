@@ -24,6 +24,9 @@
     using DataAccess.Spending;
     using DataAccess.Spending.Interfaces;
 
+    using Helpers.Error;
+    using Helpers.Error.Interfaces;
+
     using Orchestrators.Authentication;
     using Orchestrators.Authentication.Interfaces;
     using Orchestrators.Chart;
@@ -56,7 +59,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IUserAssembler, UserAssembler>(),
-                        Dependency.OnComponent<IUserDataAccess, UserDataAccess>()));
+                        Dependency.OnComponent<IUserDataAccess, UserDataAccess>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IBillOrchestrator>()
@@ -64,7 +68,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IBillAssembler, BillAssembler>(),
-                        Dependency.OnComponent<IBillDataAccess, BillDataAccess>()));
+                        Dependency.OnComponent<IBillDataAccess, BillDataAccess>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IExpenditureOrchestrator>()
@@ -72,7 +77,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IExpenditureAssembler, ExpenditureAssembler>(),
-                        Dependency.OnComponent<IExpenditureDataAccess, ExpenditureDataAccess>()));
+                        Dependency.OnComponent<IExpenditureDataAccess, ExpenditureDataAccess>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IChartOrchestrator>()
@@ -80,7 +86,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IChartAssembler, ChartAssembler>(),
-                        Dependency.OnComponent<IChartDataAccess, ChartDataAccess>()));
+                        Dependency.OnComponent<IChartDataAccess, ChartDataAccess>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
 
             container.Register(
                 Component.For<IGoalOrchestrator>()
@@ -88,7 +95,8 @@
                     .LifestylePerWebRequest()
                     .DependsOn(
                         Dependency.OnComponent<IGoalDataAccess, GoalDataAccess>(),
-                        Dependency.OnComponent<IGoalAssembler, GoalAssembler>()));
+                        Dependency.OnComponent<IGoalAssembler, GoalAssembler>(),
+                        Dependency.OnComponent<IErrorHelper, ErrorHelper>()));
         }
 
         #endregion
