@@ -13,6 +13,8 @@
 
     using JetBrains.Annotations;
 
+    using Xml;
+
     #endregion
 
     /// <summary>
@@ -56,9 +58,12 @@
         /// <returns>
         /// The XML representation of the given objects.
         /// </returns>
-        public string ToXml<T>(IEnumerable<T> data)
+        public string ToXml<T>(IList<T> data)
         {
-            throw new NotImplementedException();
+            var properties = GetCleanObjectProperties(data.First());
+            var propertyNames = properties.Select(x => x.Name).ToArray();
+
+            var generator = new XmlGenerator().AddNodeProperties(propertyNames).AddNodes(data);
         }
 
         /// <summary>

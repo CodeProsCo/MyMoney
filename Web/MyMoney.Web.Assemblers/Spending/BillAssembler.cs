@@ -186,10 +186,10 @@
                     retVal.FileData = ExportHelper.ToCsv(apiResponseBills);
                     break;
                 case ExportType.Xml:
-                    retVal.FileData = apiResponseBills.ToXml();
+                    retVal.FileData = ExportHelper.ToXml(apiResponseBills);
                     break;
                 case ExportType.Json:
-                    retVal.FileData = apiResponseBills.ToJson();
+                    retVal.FileData = ExportHelper.ToJson(apiResponseBills);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(exportType), exportType, null);

@@ -21,7 +21,7 @@
         /// <typeparam name="T">The object type.</typeparam>
         /// <param name="data">The data.</param>
         /// <returns>The XML representation of the given objects.</returns>
-        string ToXml<T>(IEnumerable<T> data);
+        string ToXml<T>(IList<T> data);
 
         /// <summary>
         /// Converts the given list of objects into JSON format.
