@@ -11,6 +11,10 @@
     using DTO.Request.Spending.Expenditure;
     using DTO.Response.Spending.Expenditure;
 
+    using Helpers.Export.Interfaces;
+
+    using NSubstitute;
+
     using NUnit.Framework;
 
     using Proxies.Common;
@@ -367,10 +371,18 @@
             Assert.AreEqual(test.Expenditure.Count, 1);
         }
 
+        private IExportHelper exportHelper;
+
         [SetUp]
         public void SetUp()
         {
-            assembler = new ExpenditureAssembler();
+            exportHelper = Substitute.For<IExportHelper>();
+
+            exportHelper.ToCsv(new List<string>()).ReturnsForAnyArgs(string.Empty);
+            exportHelper.ToJson(new List<string>()).ReturnsForAnyArgs(string.Empty);
+            exportHelper.ToXml(new List<string>()).ReturnsForAnyArgs(string.Empty);
+
+            assembler = new ExpenditureAssembler(exportHelper);
             validUsername = "TEST";
             validExpenditureId = Guid.NewGuid();
             validUserId = Guid.NewGuid();
