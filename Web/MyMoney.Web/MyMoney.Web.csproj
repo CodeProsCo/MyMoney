@@ -311,22 +311,6 @@
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\MyMoney.Extensions\MyMoney.Extensions.csproj">
-      <Project>{AD13EEF3-D27B-4F89-B230-456575D5A0F2}</Project>
-      <Name>MyMoney.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\MyMoney.Helpers\MyMoney.Helpers.csproj">
-      <Project>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</Project>
-      <Name>MyMoney.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\MyMoney.Resources\MyMoney.Resources.csproj">
-      <Project>{48b3b8d0-7999-4022-b2bb-a77bcb18228b}</Project>
-      <Name>MyMoney.Resources</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Models\MyMoney.ViewModels\MyMoney.ViewModels.csproj">
-      <Project>{7CEDB9FF-F121-49B0-A9EA-14C34CAB01F7}</Project>
-      <Name>MyMoney.ViewModels</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyMoney.Web.DependencyInjection\MyMoney.Web.DependencyInjection.csproj">
       <Project>{799a2772-a642-4f8e-8692-7c1fd658df8d}</Project>
       <Name>MyMoney.Web.DependencyInjection</Name>
@@ -334,10 +318,6 @@
     <ProjectReference Include="..\MyMoney.Web.Orchestrators\MyMoney.Web.Orchestrators.csproj">
       <Project>{E4F171AF-EE07-453D-A8A7-76C53877FF4F}</Project>
       <Name>MyMoney.Web.Orchestrators</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\MyMoney.Wrappers\MyMoney.Wrappers.csproj">
-      <Project>{D944DAEC-CA72-48DB-8CFE-A372A60EFB4A}</Project>
-      <Name>MyMoney.Wrappers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
