@@ -92,6 +92,12 @@
     <Compile Include="Benchmarking\Benchmark.cs" />
     <Compile Include="Benchmarking\BenchmarkHelper.cs" />
     <Compile Include="Error\Interfaces\IErrorHelper.cs" />
+    <Compile Include="Export\Csv\CsvGenerator.cs" />
+    <Compile Include="Export\Csv\CsvRow.cs" />
+    <Compile Include="Export\ExportHelper.cs" />
+    <Compile Include="Export\Interfaces\IExportHelper.cs" />
+    <Compile Include="Export\Json\JsonGenerator.cs" />
+    <Compile Include="Export\Xml\XmlGenerator.cs" />
     <Compile Include="Logging\Interfaces\ILogHelper.cs" />
     <Compile Include="Logging\LogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
