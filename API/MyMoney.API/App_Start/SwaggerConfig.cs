@@ -1,10 +1,10 @@
 #region Usings
 
+#endregion
+
 using MyMoney.API;
 
 using WebActivatorEx;
-
-#endregion
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
