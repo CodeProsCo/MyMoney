@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Authentication\Interfaces\IUserAssembler.cs" />
     <Compile Include="Authentication\UserAssembler.cs" />
+    <Compile Include="BaseAssembler.cs" />
     <Compile Include="Chart\ChartAssembler.cs" />
     <Compile Include="Chart\Interfaces\IChartAssembler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +106,10 @@
     <ProjectReference Include="..\..\Shared\MyMoney.DTO\MyMoney.DTO.csproj">
       <Project>{DB1B76A1-FF34-49A1-A219-3C14481CA713}</Project>
       <Name>MyMoney.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\MyMoney.Helpers\MyMoney.Helpers.csproj">
+      <Project>{0BA52AA7-2122-4690-9216-BEC476EA81ED}</Project>
+      <Name>MyMoney.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

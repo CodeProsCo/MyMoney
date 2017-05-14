@@ -12,6 +12,8 @@
     using DTO.Request.Spending.Bill;
     using DTO.Response.Spending.Bill;
 
+    using Helpers.Export;
+
     using NUnit.Framework;
 
     using Proxies.Common;
@@ -20,6 +22,9 @@
     using ViewModels.Common;
     using ViewModels.Enum;
     using ViewModels.Spending.Bill;
+    using MyMoney.Helpers.Export.Interfaces;
+
+    using NSubstitute;
 
     #endregion
 
@@ -48,6 +53,8 @@
         private Guid validUserId;
 
         private string validUsername;
+
+        private IExportHelper exportHelper;
 
         #endregion
 
@@ -355,7 +362,13 @@
         [SetUp]
         public void SetUp()
         {
-            assembler = new BillAssembler();
+            exportHelper = Substitute.For<IExportHelper>();
+
+            exportHelper.ToCsv(new List<string>()).ReturnsForAnyArgs(string.Empty);
+            exportHelper.ToCsv(new List<string>()).ReturnsForAnyArgs(string.Empty);
+            exportHelper.ToCsv(new List<string>()).ReturnsForAnyArgs(string.Empty);
+
+            assembler = new BillAssembler(exportHelper);
             validUsername = "TEST";
             validBillId = Guid.NewGuid();
             validUserId = Guid.NewGuid();
