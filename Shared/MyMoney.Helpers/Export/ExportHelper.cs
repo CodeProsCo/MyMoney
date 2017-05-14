@@ -13,6 +13,8 @@
 
     using JetBrains.Annotations;
 
+    using Json;
+
     using Xml;
 
     #endregion
@@ -35,14 +37,14 @@
         public string ToCsv<T>(IList<T> data)
         {
             var properties = GetCleanObjectProperties(data.First());
-            var propertyNames = properties.Select(x => x.Name).ToArray();
 
-            var generator = new CsvGenerator().AddHeaders(propertyNames);
+            var generator = new CsvGenerator().AddHeaders(properties);
 
             foreach (var item in data)
             {
                 var values = properties.Select(
-                    property => property.GetValue(item).ToString()).ToList();
+                        property => item.GetType().GetProperty(property)?.GetValue(item).ToString())
+                    .ToList();
 
                 generator.CreateRow(values, false);
             }
@@ -61,9 +63,8 @@
         public string ToXml<T>(IList<T> data)
         {
             var properties = GetCleanObjectProperties(data.First());
-            var propertyNames = properties.Select(x => x.Name).ToArray();
 
-            var generator = new XmlGenerator().AddNodeProperties(propertyNames).AddNodes(data);
+            return new XmlGenerator().AddNodeProperties(properties).AddNodes(data).ToString();
         }
 
         /// <summary>
@@ -74,9 +75,11 @@
         /// <returns>
         /// The JSON representation of the given objects.
         /// </returns>
-        public string ToJson<T>(IEnumerable<T> data)
+        public string ToJson<T>(IList<T> data)
         {
-            throw new NotImplementedException();
+            var properties = GetCleanObjectProperties(data.First());
+
+            return new JsonGenerator().AddNodeProperties(properties).AddNodes(data).ToString();
         }
 
         /// <summary>
@@ -84,12 +87,13 @@
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns>The list of properties.</returns>
-        private static List<PropertyInfo> GetCleanObjectProperties(object item)
+        private static List<string> GetCleanObjectProperties(object item)
         {
-            var type = item.GetType();
-            var properties = type.GetProperties();
-
-            return properties.Where(x => !x.Name.ToLowerInvariant().Contains("id")).ToList();
+            return item.GetType()
+                .GetProperties()
+                .Where(x => !(x.Name.ToLowerInvariant().Contains("id") && x.Name.ToLowerInvariant() != "id"))
+                .Select(x => x.Name)
+                .ToList();
         }
 
         #endregion

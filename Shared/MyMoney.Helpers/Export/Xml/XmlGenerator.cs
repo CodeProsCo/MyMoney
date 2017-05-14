@@ -20,7 +20,7 @@
         /// <summary>
         ///     The node format
         /// </summary>
-        private const string NodeFormat = "\n\t<item {0} />";
+        private const string NodeFormat = "\n\t<item {0} />\n";
 
         /// <summary>
         ///     The root format

@@ -29,6 +29,6 @@
         /// <typeparam name="T">The object type.</typeparam>
         /// <param name="data">The data.</param>
         /// <returns>The JSON representation of the given objects.</returns>
-        string ToJson<T>(IEnumerable<T> data);
+        string ToJson<T>(IList<T> data);
     }
 }
