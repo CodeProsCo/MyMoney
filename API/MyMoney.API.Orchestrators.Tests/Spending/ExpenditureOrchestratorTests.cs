@@ -335,7 +335,7 @@
         [Test]
         public void AddExpenditure_ValidParams_ReturnsResponse()
         {
-            var test = orchestrator.AddExpenditure(validAddExpenditureRequest, "TEST").Result;
+            var test = orchestrator.AddExpenditure(validAddExpenditureRequest).Result;
 
             Assert.IsNotNull(test);
             Assert.IsInstanceOf<AddExpenditureResponse>(test);
@@ -346,7 +346,7 @@
         [Test]
         public void AddExpenditure_ExceptionThrown_ReturnsErrorResponse()
         {
-            var test = orchestrator.AddExpenditure(invalidAddExpenditureRequest, "TEST").Result;
+            var test = orchestrator.AddExpenditure(invalidAddExpenditureRequest).Result;
 
             Assert.IsNotNull(test);
             Assert.IsInstanceOf<AddExpenditureResponse>(test);

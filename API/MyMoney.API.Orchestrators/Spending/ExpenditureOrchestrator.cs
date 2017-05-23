@@ -90,24 +90,14 @@
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<AddExpenditureResponse> AddExpenditure(AddExpenditureRequest request, string username)
+        public async Task<AddExpenditureResponse> AddExpenditure(AddExpenditureRequest request)
         {
-            var response = new AddExpenditureResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var dataModel = assembler.NewExpenditureDataModel(request.Expenditure);
                 var newDataModel = await repository.AddExpenditure(dataModel);
 
-                response = assembler.NewAddExpenditureResponse(newDataModel, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, username, GetType(), "AddExpenditure");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewAddExpenditureResponse(newDataModel, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -119,21 +109,11 @@
         /// </returns>
         public async Task<DeleteExpenditureResponse> DeleteExpenditure(DeleteExpenditureRequest request)
         {
-            var response = new DeleteExpenditureResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var deleteSuccess = await repository.DeleteExpenditure(request.ExpenditureId);
 
-                response = assembler.NewDeleteExpenditureResponse(deleteSuccess, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteExpenditure");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewDeleteExpenditureResponse(deleteSuccess, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -145,22 +125,12 @@
         /// </returns>
         public async Task<EditExpenditureResponse> EditExpenditure(EditExpenditureRequest request)
         {
-            var response = new EditExpenditureResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var dataModel = assembler.NewExpenditureDataModel(request.Expenditure);
                 var newDataModel = await repository.EditExpenditure(dataModel);
 
-                response = assembler.NewEditExpenditureResponse(newDataModel, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditExpenditure");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewEditExpenditureResponse(newDataModel, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -172,21 +142,11 @@
         /// </returns>
         public async Task<GetExpenditureResponse> GetExpenditure(GetExpenditureRequest request)
         {
-            var response = new GetExpenditureResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var expenditure = await repository.GetExpenditure(request.ExpenditureId);
 
-                response = assembler.NewGetExpenditureResponse(expenditure, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditure");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetExpenditureResponse(expenditure, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
