@@ -103,28 +103,17 @@
         ///     Adds a bill.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <param name="username">The username.</param>
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<AddBillResponse> AddBill(AddBillRequest request, string username)
+        public async Task<AddBillResponse> AddBill(AddBillRequest request)
         {
-            var response = new AddBillResponse();
+           return await Orchestrate(async delegate {
+               var dataModel = assembler.NewBillDataModel(request.Bill);
+               var bill = await repository.AddBill(dataModel);
 
-            try
-            {
-                var dataModel = assembler.NewBillDataModel(request.Bill);
-                var bills = await repository.AddBill(dataModel);
-
-                response = assembler.NewAddBillResponse(bills, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, username, GetType(), "AddBill");
-                response.AddError(err);
-            }
-
-            return response;
+               return assembler.NewAddBillResponse(bill, request.RequestReference);
+           }, request.Username);
         }
 
         /// <summary>
@@ -134,21 +123,11 @@
         /// <returns>The response object.</returns>
         public async Task<DeleteBillResponse> DeleteBill(DeleteBillRequest request)
         {
-            var response = new DeleteBillResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var success = await repository.DeleteBill(request.BillId);
 
-                response = assembler.NewDeleteBillResponse(success, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteBill");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewDeleteBillResponse(success, request.RequestReference);
+            }, username);
         }
 
         /// <summary>
@@ -158,23 +137,12 @@
         /// <returns>The response object.</returns>
         public async Task<EditBillResponse> EditBill(EditBillRequest request)
         {
-            var response = new EditBillResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var dataModel = assembler.NewBillDataModel(request.Bill);
-
                 var model = await repository.EditBill(dataModel);
 
-                response = assembler.NewEditBillResponse(model, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditBill");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewEditBillResponse(model, request.RequestReference);
+            }, request.Username);
         }
 
         /// <summary>
@@ -184,21 +152,11 @@
         /// <returns>The response object.</returns>
         public async Task<GetBillResponse> GetBill(GetBillRequest request)
         {
-            var response = new GetBillResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var bill = await repository.GetBill(request.BillId);
 
-                response = assembler.NewGetBillResponse(bill, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBill");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetBillResponse(bill, request.RequestReference);
+            }, request.Username);
         }
 
         /// <summary>
@@ -208,21 +166,11 @@
         /// <returns>The response object.</returns>
         public async Task<GetBillsForUserResponse> GetBillsForUser(GetBillsForUserRequest request)
         {
-            var response = new GetBillsForUserResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var bills = await repository.GetBillsForUser(request.UserId);
 
-                response = assembler.NewGetBillsForUserResponse(bills, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillsForUser");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetBillsForUserResponse(bills, request.RequestReference);
+            }, request.Username);
         }
 
         /// <summary>
@@ -235,22 +183,12 @@
         public async Task<GetBillsForUserForMonthResponse> GetBillsForUserForMonth(
             GetBillsForUserForMonthRequest request)
         {
-            var response = new GetBillsForUserForMonthResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var bills = await repository.GetBillsForUser(request.UserId);
                 var data = dataTransformer.GetOutgoingBillsForMonth(request.MonthNumber, bills);
 
-                response = assembler.NewGetBillsForUserForMonthResponse(data, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillsForUserForMonth");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetBillsForUserForMonthResponse(data, request.RequestReference);
+            }, request.Username);
         }
 
         #endregion
