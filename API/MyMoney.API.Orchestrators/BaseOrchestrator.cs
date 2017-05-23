@@ -6,6 +6,10 @@
 
     using Helpers.Error.Interfaces;
 
+    using DTO;
+
+    using System.Threading.Tasks;
+
     #endregion
 
     /// <summary>
