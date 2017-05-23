@@ -7,6 +7,7 @@
     using Helpers.Error.Interfaces;
 
     using DTO.Request;
+    using DTO.Response;
 
     using System.Threading.Tasks;
 
