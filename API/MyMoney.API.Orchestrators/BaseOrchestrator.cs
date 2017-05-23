@@ -45,6 +45,11 @@
         ///     Gets the error helper.
         /// </summary>
         protected IErrorHelper ErrorHelper { get; }
+        
+        /// <summary>
+        ///     The name of the method that called the current one.
+        /// </summary>
+        public string CalledBy => new StackTrace().GetFrame(1).GetMethod().Name;
 
         #endregion
 
@@ -68,7 +73,7 @@
             }
             catch (Exception ex)
             {
-                var err = errorHelper.Create(ex, request.Username, GetType(), "Orchestrate");
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), CalledBy);
 
                 response.AddError(err);
             }
