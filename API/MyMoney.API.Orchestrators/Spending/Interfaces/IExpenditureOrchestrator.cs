@@ -22,7 +22,7 @@
         /// <param name="request">The request.</param>
         /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
-        Task<AddExpenditureResponse> AddExpenditure(AddExpenditureRequest request, string username);
+        Task<AddExpenditureResponse> AddExpenditure(AddExpenditureRequest request);
 
         /// <summary>
         ///     Removes an expenditure from the database.
