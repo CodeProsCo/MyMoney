@@ -113,7 +113,7 @@
                var bill = await repository.AddBill(dataModel);
 
                return assembler.NewAddBillResponse(bill, request.RequestReference);
-           }, request.Username);
+           }, request);
         }
 
         /// <summary>
@@ -127,7 +127,7 @@
                 var success = await repository.DeleteBill(request.BillId);
 
                 return assembler.NewDeleteBillResponse(success, request.RequestReference);
-            }, username);
+            }, request);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@
                 var model = await repository.EditBill(dataModel);
 
                 return assembler.NewEditBillResponse(model, request.RequestReference);
-            }, request.Username);
+            }, request);
         }
 
         /// <summary>
@@ -156,7 +156,7 @@
                 var bill = await repository.GetBill(request.BillId);
 
                 return assembler.NewGetBillResponse(bill, request.RequestReference);
-            }, request.Username);
+            }, request);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@
                 var bills = await repository.GetBillsForUser(request.UserId);
 
                 return assembler.NewGetBillsForUserResponse(bills, request.RequestReference);
-            }, request.Username);
+            }, request);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@
                 var data = dataTransformer.GetOutgoingBillsForMonth(request.MonthNumber, bills);
 
                 return assembler.NewGetBillsForUserForMonthResponse(data, request.RequestReference);
-            }, request.Username);
+            }, request);
         }
 
         #endregion
