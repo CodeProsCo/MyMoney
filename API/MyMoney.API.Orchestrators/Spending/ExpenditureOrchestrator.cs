@@ -158,21 +158,11 @@
         /// </returns>
         public async Task<GetExpenditureForUserResponse> GetExpenditureForUser(GetExpenditureForUserRequest request)
         {
-            var response = new GetExpenditureForUserResponse();
+            return await Orchestrate(async delegate{
+                var expenditure = await repository.GetExpenditureForUser(request.UserId);
 
-            try
-            {
-                var expenditures = await repository.GetExpenditureForUser(request.UserId);
-
-                response = assembler.NewGetExpenditureForUserResponse(expenditures, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUser");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetExpenditureForUserResponse(expenditure, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -185,21 +175,11 @@
         public async Task<GetExpenditureForUserForMonthResponse> GetExpenditureForUserForMonth(
             GetExpenditureForUserForMonthRequest request)
         {
-            var response = new GetExpenditureForUserForMonthResponse();
+            return await Orchestrate(async delegate {
+                var expenditure = await repository.GetExpenditureForUserForMonth(request.UserId);
 
-            try
-            {
-                var expenditures = await repository.GetExpenditureForUserForMonth(request.UserId);
-
-                response = assembler.NewGetExpenditureForUserForMonthResponse(expenditures, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureForUserForMonth");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetExpenditureForUserForMonthResponse(expenditure, request.RequestReference);
+            }, request);
         }
 
         #endregion
