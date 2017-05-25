@@ -107,7 +107,7 @@
         {
             return await Orchestrate(async delegate {
                 var dataModel = assembler.NewGoalDataModel(request.Goal);
-                var editedModel = await repository.Edit(dataModel);
+                var editedModel = await repository.EditGoal(dataModel);
 
                 return assembler.NewEditGoalResponse(editedModel, request.RequestReference);
             }, request);
