@@ -87,22 +87,12 @@
         /// </returns>
         public async Task<RegisterUserResponse> RegisterUser(RegisterUserRequest request)
         {
-            var response = new RegisterUserResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate{
                 var dataModel = assembler.NewUserDataModel(request);
                 var registerResult = await repository.RegisterUser(dataModel);
 
-                response = assembler.NewRegisterUserResponse(registerResult, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.EmailAddress, GetType(), "RegisterUser");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewRegisterUserResponse(registerResult, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -114,21 +104,11 @@
         /// </returns>
         public async Task<ValidateUserResponse> ValidateUser(ValidateUserRequest request)
         {
-            var response = new ValidateUserResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate{
                 var userDataModel = await repository.GetUser(request.EmailAddress, request.Password);
 
-                response = assembler.NewValidateUserResponse(userDataModel, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "ValidateUser");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewValidateUserResponse(userDataModel, request.RequestReference);
+            }, request);
         }
 
         #endregion
