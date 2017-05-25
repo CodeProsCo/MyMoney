@@ -343,7 +343,7 @@
         [Test]
         public void AddBill_ValidParams_ReturnsResponse()
         {
-            var test = orchestrator.AddBill(validAddBillRequest, "TEST").Result;
+            var test = orchestrator.AddBill(validAddBillRequest).Result;
 
             Assert.IsNotNull(test);
             Assert.IsInstanceOf<AddBillResponse>(test);
@@ -354,7 +354,7 @@
         [Test]
         public void AddBill_ExceptionThrown_ReturnsErrorResponse()
         {
-            var test = orchestrator.AddBill(invalidAddBillRequest, "TEST").Result;
+            var test = orchestrator.AddBill(invalidAddBillRequest).Result;
 
             Assert.IsNotNull(test);
             Assert.IsInstanceOf<AddBillResponse>(test);

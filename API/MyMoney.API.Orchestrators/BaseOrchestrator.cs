@@ -6,6 +6,12 @@
 
     using Helpers.Error.Interfaces;
 
+    using DTO.Request;
+    using DTO.Response;
+
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
     #endregion
 
     /// <summary>
@@ -40,6 +46,41 @@
         ///     Gets the error helper.
         /// </summary>
         protected IErrorHelper ErrorHelper { get; }
+        
+        /// <summary>
+        ///     The name of the method that called the current one.
+        /// </summary>
+        public string CalledBy => new StackTrace().GetFrame(1).GetMethod().Name;
+
+        #endregion
+
+        #region Methods 
+
+        ///     Orchestrates the specified method.
+        /// </summary>
+        /// <typeparam name="TRequest">The type of the request.</typeparam>
+        /// <typeparam name="TResponse">The type of the response.</typeparam>
+        /// <param name="method">The orchestrator method.</param>
+        /// <param name="request">The request.</param>
+        /// <returns>The response object.</returns>
+        protected async Task<TResponse> Orchestrate<TRequest, TResponse>(Func<TRequest, Task<TResponse>> method, TRequest request)
+            where TResponse : BaseResponse where TRequest : BaseRequest
+        {
+            var response = Activator.CreateInstance<TResponse>();
+
+            try
+            {
+                response = await method(request);
+            }
+            catch (Exception ex)
+            {
+                var err = ErrorHelper.Create(ex, request.Username, GetType(), CalledBy);
+
+                response.AddError(err);
+            }
+
+            return response;
+        }
 
         #endregion
     }

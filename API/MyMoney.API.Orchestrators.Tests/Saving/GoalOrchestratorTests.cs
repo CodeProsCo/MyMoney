@@ -257,7 +257,7 @@
         [Test]
         public void AddGoal_ValidParams_ReturnsResponse()
         {
-            var test = orchestrator.AddGoal(validAddGoalRequest, "TEST").Result;
+            var test = orchestrator.AddGoal(validAddGoalRequest).Result;
 
             Assert.IsNotNull(test);
             Assert.IsInstanceOf<AddGoalResponse>(test);
@@ -268,7 +268,7 @@
         [Test]
         public void AddGoal_ExceptionThrown_ReturnsErrorResponse()
         {
-            var test = orchestrator.AddGoal(invalidAddGoalRequest, "TEST").Result;
+            var test = orchestrator.AddGoal(invalidAddGoalRequest).Result;
 
             Assert.IsNotNull(test);
             Assert.IsInstanceOf<AddGoalResponse>(test);

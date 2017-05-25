@@ -66,7 +66,7 @@
         [Route("add")]
         public async Task<IHttpActionResult> AddGoal([FromBody] AddGoalRequest request)
         {
-            var response = await orchestrator.AddGoal(request, request.Username);
+            var response = await orchestrator.AddGoal(request);
 
             return Ok(response);
         }

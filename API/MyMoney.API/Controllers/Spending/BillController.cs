@@ -67,7 +67,7 @@
         [Route("add")]
         public async Task<IHttpActionResult> AddBill([FromBody] AddBillRequest request)
         {
-            var response = await orchestrator.AddBill(request, request.Username);
+            var response = await orchestrator.AddBill(request);
 
             return Ok(response);
         }

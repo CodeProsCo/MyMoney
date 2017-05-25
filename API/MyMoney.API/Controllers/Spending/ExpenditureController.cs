@@ -67,7 +67,7 @@
         [Route("add")]
         public async Task<IHttpActionResult> AddExpenditure([FromBody] AddExpenditureRequest request)
         {
-            var response = await orchestrator.AddExpenditure(request, request.Username);
+            var response = await orchestrator.AddExpenditure(request);
 
             return Ok(response);
         }

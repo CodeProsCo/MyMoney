@@ -140,22 +140,12 @@
         public async Task<GetBillCategoryChartDataResponse> GetBillCategoryChartData(
             GetBillCategoryChartDataRequest request)
         {
-            var response = new GetBillCategoryChartDataResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var bills = await billRepository.GetBillsForUser(request.UserId);
                 var data = billDataTransformer.GetBillCategoryChartData(bills);
 
-                response = assembler.NewGetBillCategoryChartDataResponse(data, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetBillCategoryChartDataResponse(data, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -167,22 +157,12 @@
         /// </returns>
         public async Task<GetBillPeriodChartDataResponse> GetBillPeriodChartData(GetBillPeriodChartDataRequest request)
         {
-            var response = new GetBillPeriodChartDataResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var bills = await billRepository.GetBillsForUser(request.UserId);
                 var data = billDataTransformer.GetBillPeriodChartData(bills);
 
-                response = assembler.NewGetBillPeriodChartDataResponse(data, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetBillCategoryChartData");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetBillPeriodChartDataResponse(data, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -193,22 +173,12 @@
         public async Task<GetExpenditureChartDataResponse> GetExpenditureChartData(
             GetExpenditureChartDataRequest request)
         {
-            var response = new GetExpenditureChartDataResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var expenditure = await expenditureRepository.GetExpenditureForUserForMonth(request.UserId);
                 var data = expenditureDataTransformer.GetRollingExpenditureSum(expenditure);
 
-                response = assembler.NewGetExpenditureChartDataResponse(data, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetExpenditureChartData");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetExpenditureChartDataResponse(data, request.RequestReference);
+            }, request);
         }
 
         #endregion
