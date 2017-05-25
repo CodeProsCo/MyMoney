@@ -82,7 +82,6 @@
         ///     Adds a goal to the database.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <param name="requestUsername">The request username.</param>
         /// <returns>
         ///     The response object.
         /// </returns>
@@ -93,6 +92,24 @@
                 var addedModel = await repository.AddGoal(dataModel);
 
                 return assembler.NewAddGoalResponse(addedModel, request.RequestReference);
+            }, request);
+        }
+
+
+        /// <summary>
+        ///     Modifies a goal in the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public async Task<EditGoalResponse> EditGoal(EditGoalRequest request)
+        {
+            return await Orchestrate(async delegate {
+                var dataModel = assembler.NewGoalDataModel(request.Goal);
+                var editedModel = await repository.Edit(dataModel);
+
+                return assembler.NewEditGoalResponse(editedModel, request.RequestReference);
             }, request);
         }
 
