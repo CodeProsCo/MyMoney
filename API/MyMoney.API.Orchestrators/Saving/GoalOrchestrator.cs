@@ -82,28 +82,35 @@
         ///     Adds a goal to the database.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <param name="requestUsername">The request username.</param>
         /// <returns>
         ///     The response object.
         /// </returns>
-        public async Task<AddGoalResponse> AddGoal(AddGoalRequest request, string requestUsername)
+        public async Task<AddGoalResponse> AddGoal(AddGoalRequest request)
         {
-            var response = new AddGoalResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var dataModel = assembler.NewGoalDataModel(request.Goal);
                 var addedModel = await repository.AddGoal(dataModel);
 
-                response = assembler.NewAddGoalResponse(addedModel, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, requestUsername, GetType(), "AddGoal");
-                response.AddError(err);
-            }
+                return assembler.NewAddGoalResponse(addedModel, request.RequestReference);
+            }, request);
+        }
 
-            return response;
+
+        /// <summary>
+        ///     Modifies a goal in the database.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///     The response object.
+        /// </returns>
+        public async Task<EditGoalResponse> EditGoal(EditGoalRequest request)
+        {
+            return await Orchestrate(async delegate {
+                var dataModel = assembler.NewGoalDataModel(request.Goal);
+                var editedModel = await repository.EditGoal(dataModel);
+
+                return assembler.NewEditGoalResponse(editedModel, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -115,48 +122,11 @@
         /// </returns>
         public async Task<DeleteGoalResponse> DeleteGoal(DeleteGoalRequest request)
         {
-            var response = new DeleteGoalResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var deleteSuccess = await repository.DeleteGoal(request.GoalId);
 
-                response = assembler.NewDeleteGoalResponse(deleteSuccess, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "DeleteGoal");
-                response.AddError(err);
-            }
-
-            return response;
-        }
-
-        /// <summary>
-        ///     Updates a goal within the database.
-        /// </summary>
-        /// <param name="request">The request.</param>
-        /// <returns>
-        ///     The response object.
-        /// </returns>
-        public async Task<EditGoalResponse> EditGoal(EditGoalRequest request)
-        {
-            var response = new EditGoalResponse();
-
-            try
-            {
-                var dataModel = assembler.NewGoalDataModel(request.Goal);
-                var updatedDataModel = await repository.EditGoal(dataModel);
-
-                response = assembler.NewEditGoalResponse(updatedDataModel, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "EditGoal");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewDeleteGoalResponse(deleteSuccess, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -168,21 +138,11 @@
         /// </returns>
         public async Task<GetGoalResponse> GetGoal(GetGoalRequest request)
         {
-            var response = new GetGoalResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var dataModel = await repository.GetGoal(request.GoalId);
 
-                response = assembler.NewGetGoalResponse(dataModel, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetGoal");
-                response.AddError(err);
-            }
-
-            return response;
+                return assembler.NewGetGoalResponse(dataModel, request.RequestReference);
+            }, request);
         }
 
         /// <summary>
@@ -194,20 +154,11 @@
         /// </returns>
         public async Task<GetGoalsForUserResponse> GetGoalsForUser(GetGoalsForUserRequest request)
         {
-            var response = new GetGoalsForUserResponse();
-
-            try
-            {
+            return await Orchestrate(async delegate {
                 var goals = await repository.GetGoalsForUser(request.UserId);
-                response = assembler.NewGetGoalsForUserResponse(goals, request.RequestReference);
-            }
-            catch (Exception ex)
-            {
-                var err = ErrorHelper.Create(ex, request.Username, GetType(), "GetGoalsForUser");
-                response.AddError(err);
-            }
-
-            return response;
+                
+                return assembler.NewGetGoalsForUserResponse(goals, request.RequestReference);
+            }, request);
         }
 
         #endregion

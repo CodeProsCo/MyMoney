@@ -20,9 +20,8 @@
         /// Adds a goal to the database.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <param name="requestUsername">The request username.</param>
         /// <returns>The response object.</returns>
-        Task<AddGoalResponse> AddGoal(AddGoalRequest request, string requestUsername);
+        Task<AddGoalResponse> AddGoal(AddGoalRequest request);
 
         /// <summary>
         /// Deletes a goal from the database.

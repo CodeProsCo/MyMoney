@@ -24,9 +24,8 @@
         ///     Adds a bill.
         /// </summary>
         /// <param name="request">The request.</param>
-        /// <param name="username">The username.</param>
         /// <returns>The response object.</returns>
-        Task<AddBillResponse> AddBill(AddBillRequest request, string username);
+        Task<AddBillResponse> AddBill(AddBillRequest request);
 
         /// <summary>
         ///     Deletes a bill.
