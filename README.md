@@ -24,7 +24,7 @@ A personal finance planner written in .NET.
 - [WebApiThrottle](https://github.com/stefanprodan/WebApiThrottle) - ASP.NET Web API rate limiter for IIS and Owin hosting
 
 ## Contributions
-Contributing is fairly simple, firstly, create or assign yourself an issue which you intend to add to the source code. If you are creating an issue, ensure that it is properly labelled and placed in the correct milestone. 
+Contributing is fairly simple. Firstly, create or assign yourself an issue which you intend to add to the source code. If you are creating an issue, ensure that it is properly labelled and placed in the correct milestone. 
 
 Commit your code in small, manageable chunks. Once you're ready, create a pull request for your code. Ensure that the pull request contains the same labels as the issue, and is named in the format '#{Issue Number} {Issue Name}'. Don't put pull requests in projects or milestones.
 
