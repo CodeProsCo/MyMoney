@@ -1,0 +1,27 @@
+version: 0.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+max_jobs: 3
+image: Visual Studio 2015
+configuration: Debug
+platform: Any CPU
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+nuget:
+  project_feed: true
+build_script:
+- cmd: >-
+    Build\restore-packages.bat
+
+    Build\build-release.bat
+notifications:
+- provider: Slack
+  incoming_webhook: https://hooks.slack.com/services/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
+  channel: build
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
