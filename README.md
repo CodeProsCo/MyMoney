@@ -22,3 +22,10 @@ A personal finance planner written in .NET.
 - [EntityFramework](https://github.com/aspnet/EntityFramework) - A lightweight and extensible version of the popular Entity Framework data access technology
 - [Swashbuckle.Core](https://github.com/domaindrivendev/Swashbuckle) - Seamlessly adds a swagger to WebApi projects!
 - [WebApiThrottle](https://github.com/stefanprodan/WebApiThrottle) - ASP.NET Web API rate limiter for IIS and Owin hosting
+
+## Contributions
+Contributing is fairly simple. Firstly, create or assign yourself an issue which you intend to add to the source code. If you are creating an issue, ensure that it is properly labelled and placed in the correct milestone. 
+
+Commit your code in small, manageable chunks. Once you're ready, create a pull request for your code. Ensure that the pull request contains the same labels as the issue, and is named in the format '#{Issue Number} {Issue Name}'. Don't put pull requests in projects or milestones.
+
+When your pull request is created, it will automatically be built in AppVeyor, you will need a passing build and a successful review for your code to be merged into the master branch. If your pull request is approved, it will be mergd into the master branch and your branch will be deleted. Don't worry though, if you need to make further changes you can raise another issue, or your branch can be restored.
