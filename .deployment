@@ -1,2 +1,2 @@
 [config]
-project = MyMoney.Web.sln
+project = Web/MyMoney.Web/MyMoney.Web.csproj
